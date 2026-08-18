@@ -1,0 +1,6 @@
+{
+  "version":"1.0-proposed",
+  "attractiveness":{"market_signal":0.30,"source_diversity":0.20,"evidence_quality":0.20,"momentum":0.15,"strategic_relevance":0.15},
+  "right_to_win":{"offering_fit":0.30,"customer_overlap":0.25,"references":0.25,"partner_readiness":0.20},
+  "publish_thresholds":{"minimum_evidence":2,"minimum_domains":2,"minimum_confidence":45}
+}

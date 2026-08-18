@@ -1,0 +1,10 @@
+[
+  {"name":"The Register","url":"https://www.theregister.com/headlines.atom","domain":"AI, cloud and enterprise IT","geography":"Global","enabled":true},
+  {"name":"Cybersecurity Dive","url":"https://www.cybersecuritydive.com/feeds/news","domain":"Cybersecurity","geography":"Global","enabled":true},
+  {"name":"RCR Wireless","url":"https://feeds.feedburner.com/rcrwireless/sLmV","domain":"Secure connectivity","geography":"Global","enabled":true},
+  {"name":"Manufacturing Dive","url":"https://www.manufacturingdive.com/feeds/news","domain":"Smart industries","geography":"Global","enabled":true},
+  {"name":"Finextra","url":"https://www.finextra.com/rss/headlines.aspx","domain":"Customer experience","geography":"Europe","enabled":true},
+  {"name":"Healthcare Dive","url":"https://www.healthcaredive.com/feeds/news","domain":"Cloud and AI","geography":"Global","enabled":true},
+  {"name":"Smart Cities Dive","url":"https://www.smartcitiesdive.com/feeds/news","domain":"Smart industries","geography":"Global","enabled":true},
+  {"name":"Utility Dive","url":"https://www.utilitydive.com/feeds/news","domain":"Smart industries","geography":"Global","enabled":true}
+]
