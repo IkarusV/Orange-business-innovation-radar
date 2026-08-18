@@ -88,11 +88,3 @@ Local SQLite data is created at `data/radar.db` and is intentionally ignored by 
 ```
 
 On Windows use `.venv\Scripts\python.exe` instead.
-
-## Boundaries
-
-- AI output is candidate evidence, not verified truth.
-- `Radar` means configured evidence gates passed; it is not an investment approval.
-- The right-to-win formula is a proposed team model.
-- The current database has one active company context, not full multi-company isolation.
-- Full methodology and limitations: `docs/CLASSIFICATION_AND_SOURCE_AUDIT.md`.
