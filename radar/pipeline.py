@@ -8,7 +8,8 @@ from urllib.parse import urlsplit
 from radar.ai import APIBudgetError, AIClient
 from radar.company import company_context
 from radar.config import load_json
-from radar.db import add_evidence, add_run_event, connect, rows, save_analysis_candidate, update_analysis_candidate, upsert_opportunity, utcnow
+from radar.db import active_company, add_evidence, add_run_event, connect, knowledge_settings, rows, save_analysis_candidate, update_analysis_candidate, upsert_opportunity, utcnow
+from radar.library import library_context
 from radar.ingestion import ingest_enabled_sources
 from radar.scoring import horizon_from_signal, horizon_rationale, score_opportunity
 
@@ -67,8 +68,19 @@ def analyze_batch(articles: list[dict], client: AIClient) -> dict[int, dict]:
         f"ARTICLE_ID: {article['id']}\nSource: {article['source_name']}\nPublished: {article.get('published_at') or 'unknown'}\nURL: {article['url']}\nTitle: {article['title']}\nContent: {article.get('content', '')[:3500]}"
         for article in articles
     )
+    limits = knowledge_settings()
+    company_name = active_company().get("name", "")
+    stage_budget = max(200, limits["max_context_chars"] // 5)
+    general_context = library_context(company_name, "all", limits["max_context_documents"], stage_budget)
+    stage_parts = [f"\nGENERAL COMPANY GUIDANCE:\n{general_context}"] if general_context else []
+    for stage in ("collection", "opportunity_naming", "scoring", "narrative"):
+        context = library_context(company_name, stage, limits["max_context_documents"], stage_budget, include_all=False)
+        if context:
+            stage_parts.append(f"\nCONTEXT FOR {stage.upper()}:\n{context}")
+    stage_contexts = "\n".join(stage_parts)
     instruction = f"""COMPANY AND PARTNER CONTEXT:
-{company_context(8000)}
+{company_context(2500, "unused", 0)}
+{stage_contexts}
 
 Analyze every external article below independently. Return one JSON object with a `results` array containing exactly one result per ARTICLE_ID. Each result needs:
 article_id, is_relevant, vertical, use_case, technology, geography, orange_domain, persona,

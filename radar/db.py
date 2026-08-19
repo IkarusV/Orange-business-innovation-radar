@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS run_events (id INTEGER PRIMARY KEY, run_id INTEGER NO
 CREATE TABLE IF NOT EXISTS analysis_candidates (id INTEGER PRIMARY KEY, run_id INTEGER NOT NULL, article_id INTEGER NOT NULL, captured_at TEXT NOT NULL, status TEXT NOT NULL, result_json TEXT, error TEXT, promoted_opportunity_id INTEGER, FOREIGN KEY(run_id) REFERENCES runs(id), FOREIGN KEY(article_id) REFERENCES articles(id), FOREIGN KEY(promoted_opportunity_id) REFERENCES opportunities(id));
 CREATE TABLE IF NOT EXISTS company_profiles (id INTEGER PRIMARY KEY CHECK(id=1), name TEXT NOT NULL, geography TEXT, website_url TEXT, strategic_prompt TEXT, updated_at TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS company_documents (id INTEGER PRIMARY KEY, name TEXT NOT NULL, source_type TEXT NOT NULL, source_url TEXT, extracted_text TEXT NOT NULL, added_at TEXT NOT NULL, UNIQUE(name, source_url));
+CREATE TABLE IF NOT EXISTS library_documents (id INTEGER PRIMARY KEY, company_name TEXT NOT NULL, name TEXT NOT NULL, original_name TEXT NOT NULL, raw_path TEXT NOT NULL, processed_path TEXT, source_type TEXT NOT NULL, source_url TEXT, raw_chars INTEGER DEFAULT 0, processed_chars INTEGER DEFAULT 0, status TEXT NOT NULL DEFAULT 'raw', stages_json TEXT NOT NULL DEFAULT '[]', error TEXT, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, UNIQUE(company_name, name));
+CREATE TABLE IF NOT EXISTS knowledge_settings (id INTEGER PRIMARY KEY CHECK(id=1), max_process_documents INTEGER NOT NULL DEFAULT 5, max_context_documents INTEGER NOT NULL DEFAULT 5, max_context_chars INTEGER NOT NULL DEFAULT 8000, max_report_documents INTEGER NOT NULL DEFAULT 10, max_report_chars INTEGER NOT NULL DEFAULT 60000, updated_at TEXT NOT NULL);
 """
 
 
@@ -59,6 +61,14 @@ def initialize(path: Path | None = None) -> None:
             )
         connection.execute(
             "UPDATE runs SET status='interrupted',finished_at=?,notes='Application stopped before the run completed.' WHERE status='running'",
+            (utcnow(),),
+        )
+        library_columns = {row[1] for row in connection.execute("PRAGMA table_info(library_documents)")}
+        if "search_text" not in library_columns:
+            connection.execute("ALTER TABLE library_documents ADD COLUMN search_text TEXT NOT NULL DEFAULT ''")
+        connection.execute(
+            """INSERT OR IGNORE INTO knowledge_settings(id,max_process_documents,max_context_documents,max_context_chars,max_report_documents,max_report_chars,updated_at)
+            VALUES(1,5,5,8000,10,60000,?)""",
             (utcnow(),),
         )
         connection.execute(
@@ -116,6 +126,18 @@ def save_company(name: str, geography: str, website_url: str, strategic_prompt: 
             VALUES(1,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name,geography=excluded.geography,
             website_url=excluded.website_url,strategic_prompt=excluded.strategic_prompt,updated_at=excluded.updated_at""",
             (name, geography, website_url, strategic_prompt, utcnow()),
+        )
+
+
+def knowledge_settings() -> dict:
+    return rows("SELECT * FROM knowledge_settings WHERE id=1")[0]
+
+
+def save_knowledge_settings(max_process_documents: int, max_context_documents: int, max_context_chars: int, max_report_documents: int, max_report_chars: int) -> None:
+    with connect() as connection:
+        connection.execute(
+            """UPDATE knowledge_settings SET max_process_documents=?,max_context_documents=?,max_context_chars=?,max_report_documents=?,max_report_chars=?,updated_at=? WHERE id=1""",
+            (max_process_documents, max_context_documents, max_context_chars, max_report_documents, max_report_chars, utcnow()),
         )
 
 

@@ -59,16 +59,15 @@ def extract_document(name: str, data: bytes, content_type: str = "") -> str:
     return text[:MAX_DOCUMENT_CHARS]
 
 
-def fetch_document_url(url: str) -> tuple[str, str]:
+def fetch_document_url(url: str) -> tuple[str, bytes, str]:
     response = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
     response.raise_for_status()
     name = Path(response.url.split("?", 1)[0]).name or response.url
-    return name, extract_document(name, response.content, response.headers.get("Content-Type", ""))
+    return name, response.content, response.headers.get("Content-Type", "")
 
 
-def company_context(max_chars: int = MAX_CONTEXT_CHARS) -> str:
+def company_context(max_chars: int = MAX_CONTEXT_CHARS, stage: str = "collection", max_documents: int = 5) -> str:
     company = active_company()
-    documents = rows("SELECT name,source_type,source_url,extracted_text FROM company_documents ORDER BY added_at DESC")
     parts = [
         f"Active company: {company.get('name', 'Not configured')}",
         f"Priority geography: {company.get('geography', '')}",
@@ -76,6 +75,8 @@ def company_context(max_chars: int = MAX_CONTEXT_CHARS) -> str:
         f"Company-specific research instruction: {company.get('strategic_prompt', '')}",
         "Partner rule: consider direct, partner-led, ecosystem, reseller, integrator, and capability-gap opportunities. External delivery is not automatically negative; explain the company's role and dependency.",
     ]
-    for document in documents:
-        parts.append(f"\nREFERENCE DOCUMENT: {document['name']} ({document['source_type']}, {document['source_url']})\n{document['extracted_text']}")
+    from radar.library import library_context
+    additional = library_context(company.get("name", ""), stage, max_documents, max_chars)
+    if additional:
+        parts.append(additional)
     return "\n".join(parts)[:max_chars]

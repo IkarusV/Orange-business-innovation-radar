@@ -6,9 +6,10 @@ import plotly.express as px
 import streamlit as st
 
 from radar.ai import AIClient, AIError
-from radar.company import DocumentError, extract_document, fetch_document_url
+from radar.company import DocumentError, fetch_document_url
 from radar.config import ROOT, ai_settings, load_json
-from radar.db import active_company, connect, initialize, rows, save_company, save_company_document, sync_sources
+from radar.db import active_company, connect, initialize, knowledge_settings, rows, save_company, save_knowledge_settings, sync_sources, utcnow
+from radar.library import STAGES, add_document, company_directory, create_report, process_document, refresh_library_index, rename_document, set_stages
 from radar.pipeline import pipeline_preflight, refresh
 from radar.scoring import publication_checks
 from radar.seed import seed_demo
@@ -275,8 +276,8 @@ def run_full_pipeline() -> None:
 def company_page() -> None:
     company = active_company()
     st.title("Company workspace")
-    st.write("Configure the company whose ability to act should be evaluated. Opportunities may be direct, partner-led, ecosystem-led, or capability-gap plays.")
-    st.warning("This version has one active company context. Existing Orange seed cards stay in the database and are visibly demo data; complete multi-company isolation is not implemented yet.")
+    st.write("Store raw company knowledge, process selected files into compact summaries, then choose exactly where those summaries enter the pipeline.")
+    st.info("Raw files are never appended to opportunity prompts. Only explicitly staged processed summaries or reports are injected, with document and character caps.")
 
     with st.form("company_profile"):
         name = st.text_input("Company name", company.get("name", ""))
@@ -293,7 +294,14 @@ def company_page() -> None:
                 st.error("Company name is required.")
             else:
                 save_company(name.strip(), geography.strip(), website_url.strip(), strategic_prompt.strip())
-                st.success("Active company context saved and will be injected into future AI analysis.")
+                company_directory(name.strip())
+                st.success(f"Saved company and ensured `Documents/{name.strip()}/processed/` exists.")
+
+    known_companies = sorted({company.get("name", "Orange Business")} | {item["company_name"] for item in rows("SELECT DISTINCT company_name FROM library_documents")})
+    library_choice = st.selectbox("Existing company library", known_companies + ["Create or type another company"])
+    custom_company = st.text_input("New/custom company name", placeholder="Used only when creating another library")
+    target_company = custom_company.strip() if library_choice == "Create or type another company" and custom_company.strip() else company.get("name", "Orange Business") if library_choice == "Create or type another company" else library_choice
+    target_folder = company_directory(target_company)
 
     st.subheader("Add documentation URL")
     st.caption("Use a direct PDF, PPTX, DOCX, text, or readable HTML URL. A normal company homepage is not automatically crawled recursively.")
@@ -304,10 +312,10 @@ def company_page() -> None:
                 st.error("Enter a valid HTTP or HTTPS URL.")
             else:
                 try:
-                    with st.spinner("Downloading and extracting document text..."):
-                        document_name, text = fetch_document_url(document_url)
-                        save_company_document(document_name, "url", text, document_url)
-                    st.success(f"Added {document_name}: {len(text):,} extracted characters.")
+                    with st.spinner("Downloading and storing raw document..."):
+                        document_name, data, content_type = fetch_document_url(document_url)
+                        saved = add_document(target_company, document_name, data, content_type, document_url)
+                    st.success(f"Added `{saved['name']}` to `Documents/{target_company}/`.")
                 except (DocumentError, Exception) as error:
                     st.error(str(error))
 
@@ -321,20 +329,104 @@ def company_page() -> None:
         added = 0
         for uploaded in uploaded_files:
             try:
-                text = extract_document(uploaded.name, uploaded.getvalue(), uploaded.type or "")
-                save_company_document(uploaded.name, "upload", text)
+                add_document(target_company, uploaded.name, uploaded.getvalue(), uploaded.type or "")
                 added += 1
             except DocumentError as error:
                 st.error(str(error))
         if added:
-            st.success(f"Added {added} company document(s). Future pipeline runs will use their extracted text.")
+            st.success(f"Stored {added} raw document(s) under `Documents/{target_company}/` without AI calls.")
 
-    documents = rows("SELECT id,name,source_type,source_url,LENGTH(extracted_text) extracted_characters,added_at FROM company_documents ORDER BY added_at DESC")
-    st.subheader("Active reference library")
-    if documents:
-        st.dataframe(documents, use_container_width=True, hide_index=True, column_config={"source_url": st.column_config.LinkColumn("Source URL")})
-    else:
-        st.info("No company documents have been added yet.")
+    st.subheader("Company document library")
+    limits = knowledge_settings()
+    with st.expander("Knowledge cost and context limits", expanded=False):
+        with st.form("knowledge_limits"):
+            max_process = st.number_input("Maximum independent summaries per action", 1, 50, limits["max_process_documents"])
+            max_context_docs = st.number_input("Maximum processed documents per pipeline stage", 1, 25, limits["max_context_documents"])
+            max_context_chars = st.number_input("Maximum company-context characters per batch", 1000, 50000, limits["max_context_chars"], step=1000)
+            max_report_docs = st.number_input("Maximum documents in one combined report", 2, 50, limits["max_report_documents"])
+            max_report_chars = st.number_input("Maximum source characters in one report call", 5000, 150000, limits["max_report_chars"], step=5000)
+            if st.form_submit_button("Save knowledge limits"):
+                save_knowledge_settings(int(max_process), int(max_context_docs), int(max_context_chars), int(max_report_docs), int(max_report_chars))
+                st.success("Knowledge limits saved.")
+    refresh_col, path_col = st.columns([1, 4])
+    if refresh_col.button("↻ Refresh library", use_container_width=True):
+        result = refresh_library_index(target_company)
+        st.success(f"Indexed {result['added']} manually added file(s); skipped {result['skipped']} unreadable file(s).")
+    relative_folder = target_folder.relative_to(ROOT)
+    path_col.caption(f"Filesystem: `{relative_folder}/` · summaries: `{relative_folder}/processed/`")
+
+    search = st.text_input("Search library", placeholder="Filename, status, source, or stage")
+    page_size = st.selectbox("Documents per page", [5, 10, 20, 50], index=1)
+    all_documents = rows("SELECT * FROM library_documents WHERE company_name=? ORDER BY updated_at DESC", (target_company,))
+    if search:
+        query = search.lower()
+        all_documents = [doc for doc in all_documents if query in " ".join(str(value) for value in doc.values()).lower()]
+    page_count = max(1, (len(all_documents) + page_size - 1) // page_size)
+    page = st.number_input("Page", 1, page_count, 1)
+    documents = all_documents[(page - 1) * page_size:page * page_size]
+    raw_tab, processed_tab = st.tabs(["Raw documents", "Processed summaries and reports"])
+    with raw_tab:
+        raw_documents = [doc for doc in documents if doc["source_type"] != "report"]
+        st.dataframe([{key: doc[key] for key in ("id", "name", "source_type", "raw_chars", "status", "error", "updated_at")} for doc in raw_documents], use_container_width=True, hide_index=True)
+    with processed_tab:
+        processed_documents = [doc for doc in documents if doc["status"] == "processed"]
+        st.dataframe([{key: doc[key] for key in ("id", "name", "source_type", "processed_chars", "stages_json", "updated_at")} for doc in processed_documents], use_container_width=True, hide_index=True)
+
+    raw_choices = {f"#{doc['id']} · {doc['name']}": doc["id"] for doc in all_documents if doc["source_type"] != "report"}
+    selected_raw_labels = st.multiselect("Select raw documents to process", list(raw_choices))
+    process_limit = limits["max_process_documents"]
+    st.caption(f"This action will process at most {process_limit} documents. One document = one isolated API call.")
+    summary_stages = st.multiselect("Use resulting summaries in pipeline stages", STAGES, default=["all"])
+    if st.button("Process selected independently", type="primary", disabled=not selected_raw_labels):
+        selected_ids = [raw_choices[label] for label in selected_raw_labels[:int(process_limit)]]
+        settings = st.session_state.get("ai_settings", ai_settings())
+        if not settings.get("api_key"):
+            st.error("Configure an API key under AI settings first.")
+        elif settings.get("mode") == "auto":
+            st.error("Choose an explicit `responses` or `chat` endpoint mode in AI settings. `auto` fallback cannot guarantee one HTTP request per document.")
+        else:
+            client = AIClient({**settings, "max_requests": len(selected_ids), "requests_per_minute": 10})
+            progress = st.progress(0, text="Starting independent summaries")
+            for index, document_id in enumerate(selected_ids, 1):
+                try:
+                    process_document(document_id, client, summary_stages)
+                    progress.progress(index / len(selected_ids), text=f"Processed {index}/{len(selected_ids)} · API calls {client.request_count}/{len(selected_ids)}")
+                except Exception as error:
+                    with connect() as connection:
+                        connection.execute("UPDATE library_documents SET status='failed',error=?,updated_at=? WHERE id=?", (str(error)[:1000], utcnow(), document_id))
+                    st.error(f"Document #{document_id}: {error}")
+            st.success(f"Processing finished with {client.request_count} API call(s). One document was isolated per call.")
+
+    processed_choices = {f"#{doc['id']} · {doc['name']}": doc["id"] for doc in all_documents if doc["status"] == "processed"}
+    rename_choices = {f"#{doc['id']} · {doc['name']}": doc["id"] for doc in all_documents}
+    selected_processed_labels = st.multiselect("Select processed documents for context/report actions", list(processed_choices))
+    selected_processed_ids = [processed_choices[label] for label in selected_processed_labels]
+    action_col, rename_col = st.columns(2)
+    with action_col:
+        context_stages = st.multiselect("Assign selected summaries to stages", STAGES, default=["collection"])
+        if st.button("Save stage assignment", disabled=not selected_processed_ids):
+            for document_id in selected_processed_ids:
+                set_stages(document_id, context_stages)
+            st.success(f"Updated {len(selected_processed_ids)} summary/report assignment(s).")
+        if st.button("Create one combined company report", disabled=not selected_processed_ids):
+            settings = st.session_state.get("ai_settings", ai_settings())
+            if not settings.get("api_key"):
+                st.error("Configure an API key under AI settings first.")
+            elif settings.get("mode") == "auto":
+                st.error("Choose an explicit `responses` or `chat` endpoint mode. A report is limited to exactly one HTTP request.")
+            else:
+                client = AIClient({**settings, "max_requests": 1, "requests_per_minute": 10})
+                report = create_report(target_company, selected_processed_ids, client)
+                st.success(f"Created `{report['name']}` with exactly {client.request_count} API call.")
+    with rename_col:
+        rename_label = st.selectbox("Document to rename", [""] + list(rename_choices))
+        new_name = st.text_input("New filename")
+        if st.button("Rename file", disabled=not rename_label or not new_name.strip()):
+            result = rename_document(rename_choices[rename_label], new_name)
+            st.success(f"Renamed to `{result['name']}`.")
+
+    st.subheader("Context budget")
+    st.caption(f"Pipeline injects at most {limits['max_context_documents']} processed documents per stage and {limits['max_context_chars']:,} company-context characters per article batch. Raw documents are never injected.")
 
 
 def sources_page() -> None:

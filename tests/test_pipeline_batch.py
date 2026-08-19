@@ -17,7 +17,7 @@ class FakeClient:
 
 
 def test_five_articles_use_one_model_request(monkeypatch):
-    monkeypatch.setattr("radar.pipeline.company_context", lambda max_chars: "Test company")
+    monkeypatch.setattr("radar.pipeline.company_context", lambda *args, **kwargs: "Test company")
     articles = [
         {"id": index, "source_name": "Source", "published_at": "2026-01-01", "url": f"https://example.com/{index}", "title": f"Article {index}", "content": "Content"}
         for index in range(1, 6)

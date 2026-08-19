@@ -65,11 +65,13 @@ Safe defaults: 20 articles, 5 articles per request, 5 requests maximum, 10 RPM, 
 | `radar/scoring.py` | Deterministic scores, confidence, and horizons |
 | `radar/db.py` | SQLite schema and persistence |
 | `radar/company.py` | Company context and document extraction |
+| `radar/library.py` | Raw/processed company library, summaries, reports, and stage context |
 | `config/prompts.json` | Versioned agent prompts |
 | `config/scoring.json` | Weights and Radar/Watchlist thresholds |
 | `config/sources.json` | Default feeds |
 | `tests/` | Unit and batching tests |
 | `docs/` | Decisions, process, and classification audit |
+| `Compagnyworkspace.md` | Portable company workspace specification and implementation guide |
 | `Aorangeresearch/` | Supplied Orange reference material |
 | `DfluxRss/` | Original RSS research module |
 

@@ -17,6 +17,7 @@ htmlcov/
 # Local application state and output
 data/*.db
 data/*.db-*
+Documents/
 DfluxRss/rss_digest.csv
 *.log
 
