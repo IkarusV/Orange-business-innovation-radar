@@ -1,0 +1,32 @@
+source,feed_url,source_category,source_quality_default,independence_group,domain,collection_method,vertical_scope,signal_types,language,active
+ZDNet,https://www.zdnet.com/news/rss.xml,industry_media,3,cbs_interactive,enterprise_technology,rss,cross_industry,maturity|market_move|proof,en,true
+The Register,https://www.theregister.com/headlines.atom,industry_media,3,the_register,enterprise_technology,rss,cross_industry,maturity|market_move|proof,en,true
+Computerworld,https://www.computerworld.com/feed,industry_media,3,idg,enterprise_technology,rss,cross_industry,maturity|market_move|proof,en,true
+InfoWorld,https://www.infoworld.com/feed,industry_media,3,idg,enterprise_technology,rss,cross_industry,maturity|market_move,en,true
+TechRepublic,https://www.techrepublic.com/rssfeeds/articles,industry_media,3,cbs_interactive,enterprise_technology,rss,cross_industry,maturity|market_move,en,true
+Krebs on Security,https://krebsonsecurity.com/feed,industry_media,4,krebsonsecurity,cybersecurity,rss,cross_industry,proof|market_move,en,true
+Dark Reading,https://www.darkreading.com/rss.xml,industry_media,3,informa_tech,cybersecurity,rss,cross_industry,proof|maturity|market_move,en,true
+The Hacker News,https://feeds.feedburner.com/TheHackersNews,industry_media,3,the_hacker_news,cybersecurity,rss,cross_industry,proof|market_move,en,true
+Help Net Security,https://www.helpnetsecurity.com/feed,industry_media,3,help_net_security,cybersecurity,rss,cross_industry,proof|maturity|market_move,en,true
+SecurityWeek,https://www.securityweek.com/feed,industry_media,3,securityweek,cybersecurity,rss,cross_industry,proof|maturity|market_move,en,true
+Cybersecurity Dive,https://www.cybersecuritydive.com/feeds/news,industry_media,3,industry_dive,cybersecurity,rss,cross_industry,proof|market_move,en,true
+Azure Blog,https://azure.microsoft.com/en-us/blog/feed/,vendor,3,microsoft,cloud_and_data_centers,rss,cross_industry,maturity|proof,en,true
+AWS Blog,https://aws.amazon.com/blogs/aws/feed/,vendor,3,amazon,cloud_and_data_centers,rss,cross_industry,maturity|proof,en,true
+Google Cloud Blog,https://cloudblog.withgoogle.com/rss,vendor,3,google,cloud_and_data_centers,rss,cross_industry,maturity|proof,en,true
+RCR Wireless News,https://feeds.feedburner.com/rcrwireless/sLmV,industry_media,3,rcr_wireless,connectivity_and_telecom,rss,cross_industry,maturity|market_move|proof,en,true
+Schneider Electric Blog - 5G and Infrastructure,https://blog.se.com/tag/5g/feed/,vendor,3,schneider_electric,connectivity_and_telecom,rss,manufacturing,maturity|proof,en,true
+Manufacturing Dive,https://www.manufacturingdive.com/feeds/news,industry_media,3,industry_dive,smart_industries_and_iot,rss,manufacturing,proof|market_move|market_trend,en,true
+Finextra,https://www.finextra.com/rss/headlines.aspx,industry_media,3,finextra,finance_banking_and_insurance,rss,banking_and_insurance,buying|proof|market_move,en,true
+Healthcare Dive,https://www.healthcaredive.com/feeds/news,industry_media,3,industry_dive,healthcare_and_life_sciences,rss,healthcare,regulation|buying|proof|market_move,en,true
+Fierce Healthcare,https://www.fiercehealthcare.com/rss/xml,industry_media,3,fierce_markets,healthcare_and_life_sciences,rss,healthcare,regulation|buying|proof|market_move,en,true
+BioPharma Dive,https://www.biopharmadive.com/feeds/news,industry_media,3,industry_dive,healthcare_and_life_sciences,rss,healthcare,regulation|proof|market_move,en,true
+PharmaVoice,https://www.pharmavoice.com/feeds/news,industry_media,3,pharmavoice,healthcare_and_life_sciences,rss,healthcare,regulation|proof|market_move,en,true
+Retail Dive,https://www.retaildive.com/feeds/news,industry_media,3,industry_dive,retail,rss,retail,buying|proof|market_move,en,true
+Smart Cities Dive,https://www.smartcitiesdive.com/feeds/news,industry_media,3,industry_dive,public_sector_and_smart_cities,rss,public_sector,buying|proof|market_move,en,true
+Construction Dive,https://www.constructiondive.com/feeds/news,industry_media,3,industry_dive,transportation_and_construction,rss,transportation_and_construction,buying|proof|market_move,en,true
+Automotive World,https://www.automotiveworld.com/feed,industry_media,3,automotive_world,transportation_and_construction,rss,manufacturing,proof|maturity|market_move,en,true
+Utility Dive,https://www.utilitydive.com/feeds/news,industry_media,3,industry_dive,energy_and_natural_resources,rss,energy,buying|proof|market_move,en,true
+EIA Today in Energy,https://www.eia.gov/rss/todayinenergy.xml,government,5,us_energy_information_administration,energy_and_natural_resources,rss,energy,regulation|market_trend,en,true
+Business Insider,https://www.businessinsider.com/rss,industry_media,2,insider_inc,enterprise_technology_and_business,rss,cross_industry,market_move|market_trend,en,true
+NPR Business,https://feeds.npr.org/1006/rss.xml,industry_media,3,npr,business_and_economic_context,rss,cross_industry,market_move|market_trend,en,true
+EU-Startups,https://feeds.feedburner.com/eu-startups,industry_media,2,eu_startups,startups_and_innovation,rss,cross_industry,maturity|market_move,en,true
