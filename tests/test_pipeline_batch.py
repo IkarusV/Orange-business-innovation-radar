@@ -8,11 +8,11 @@ class FakeClient:
     def generate_json(self, system_prompt, user_prompt):
         self.calls += 1
         return {"results": [
-            {"article_id": 1, "is_relevant": False},
-            {"article_id": 2, "is_relevant": False},
-            {"article_id": 3, "is_relevant": False},
-            {"article_id": 4, "is_relevant": False},
-            {"article_id": 5, "is_relevant": False},
+            {"article_id": 1, "is_relevant": False, "triage_confidence": "HIGH"},
+            {"article_id": 2, "is_relevant": False, "triage_confidence": "HIGH"},
+            {"article_id": 3, "is_relevant": False, "triage_confidence": "HIGH"},
+            {"article_id": 4, "is_relevant": False, "triage_confidence": "HIGH"},
+            {"article_id": 5, "is_relevant": False, "triage_confidence": "HIGH"},
         ]}
 
 

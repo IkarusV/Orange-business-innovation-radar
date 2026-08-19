@@ -1,0 +1,9 @@
+canonical_type,canonical_id,alias,status,notes
+technology,private_5g,private wireless,approved,Common alternative term
+technology,private_5g,5G campus network,approved,Common industrial deployment term
+technology,industrial_iot,IIoT,approved,Standard abbreviation
+technology,computer_vision,visual AI,approved,Common alternative term
+technology,digital_twin,digital twins,approved,Plural form
+technology,industrial_cybersecurity,OT security,approved,Operational-technology security term
+use_case,real_time_defect_detection,automated quality inspection,approved,Related use-case wording
+use_case,predictive_maintenance,condition-based maintenance,approved,Related use-case wording

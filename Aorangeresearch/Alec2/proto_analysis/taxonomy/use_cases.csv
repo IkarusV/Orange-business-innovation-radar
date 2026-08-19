@@ -1,0 +1,7 @@
+use_case_id,use_case_name,vertical_id,status,description
+real_time_defect_detection,Real-time defect detection,manufacturing,approved,Detect production defects during manufacturing operations
+worker_safety_monitoring,Worker safety monitoring,manufacturing,approved,Monitor workers and hazardous conditions to reduce safety risk
+predictive_maintenance,Predictive maintenance,manufacturing,approved,Anticipate equipment failures and schedule maintenance before disruption
+product_traceability_compliance,Product traceability and compliance reporting,manufacturing,approved,Maintain product provenance and produce required compliance records
+secure_industrial_connectivity,Secure industrial-site connectivity,manufacturing,approved,Connect industrial sites and operational systems securely and reliably
+industrial_energy_optimization,Industrial energy optimization,manufacturing,approved,Measure and reduce energy consumption in industrial operations

@@ -9,6 +9,7 @@ from radar.ai import APIBudgetError, AIClient
 from radar.company import company_context
 from radar.config import load_json
 from radar.db import active_company, add_evidence, add_run_event, connect, knowledge_settings, rows, save_analysis_candidate, update_analysis_candidate, upsert_opportunity, utcnow
+from radar.intelligence import source_metadata, taxonomy_prompt_context
 from radar.library import library_context
 from radar.ingestion import ingest_enabled_sources
 from radar.scoring import horizon_from_signal, horizon_rationale, score_opportunity
@@ -46,6 +47,10 @@ def pipeline_preflight(maximum: int, batch_size: int, retry_limit: int = 2) -> d
 
 
 def _validate_result(result: dict) -> dict:
+    result["triage_classification"] = "RELEVANT" if result.get("is_relevant") else "IRRELEVANT"
+    result["triage_confidence"] = str(result.get("triage_confidence", "MEDIUM")).upper()
+    if result["triage_confidence"] not in {"HIGH", "MEDIUM", "LOW"}:
+        result["triage_confidence"] = "MEDIUM"
     if not result.get("is_relevant"):
         return result
     required = ["vertical", "use_case", "technology", "claim", "signal_type"]
@@ -60,6 +65,22 @@ def _validate_result(result: dict) -> dict:
     result["horizon"] = horizon_from_signal(result["signal_type"], urgency)
     result["horizon_rationale"] = horizon_rationale(result["signal_type"], urgency)
     return result
+
+
+def _save_live_triage(article: dict, result: dict, client: AIClient) -> None:
+    with connect() as connection:
+        connection.execute(
+            """INSERT OR REPLACE INTO triage_records(article_guid,article_link,title,source,classification,triage_confidence,signal_type,vertical_id,use_case_id,technology_id,rationale,named_,actor_role,prompt_version,model,classification_method,research_origin,review_status,processed_at)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (
+                article["guid"], article["url"], article["title"], article["source_name"], result["triage_classification"], result["triage_confidence"],
+                result.get("signal_type", ""), result.get("vertical_id", ""), result.get("use_case_id", ""), result.get("technology_id", ""),
+                result.get("triage_rationale", result.get("claim", "No evidence value for the active radar scope.")),
+                ", ".join(result.get("named_", [])) if isinstance(result.get("named_"), list) else str(result.get("named_", "")),
+                result.get("actor_role", ""), load_json("config/prompts.json")["extractor"]["version"], client.model,
+                "model-assisted pipeline triage", "radar pipeline", "pending_review", utcnow(),
+            ),
+        )
 
 
 def analyze_batch(articles: list[dict], client: AIClient) -> dict[int, dict]:
@@ -81,6 +102,7 @@ def analyze_batch(articles: list[dict], client: AIClient) -> dict[int, dict]:
     instruction = f"""COMPANY AND PARTNER CONTEXT:
 {company_context(2500, "unused", 0)}
 {stage_contexts}
+{taxonomy_prompt_context()}
 
 Analyze every external article below independently. Return one JSON object with a `results` array containing exactly one result per ARTICLE_ID. Each result needs:
 article_id, is_relevant, vertical, use_case, technology, geography, orange_domain, persona,
@@ -121,7 +143,8 @@ def _store_result(article: dict, result: dict) -> tuple[str, int | None]:
         "attractiveness": score.attractiveness, "right_to_win": score.right_to_win, "confidence": score.confidence, "status": score.status,
         "score_rationale": score.rationale, "factors_json": {"attractiveness": result["attractiveness_factors"], "right_to_win": result["right_to_win_factors"], "rationales": result.get("score_rationales", {}), "classification": {"urgency": result["urgency"], "signal_type": result["signal_type"], "horizon_rule": result["horizon_rationale"], "horizon_assigned_by": "Python"}},
     })
-    add_evidence(opportunity_id, {"article_id": article["id"], "source_name": article["source_name"], "source_url": article["url"], "source_domain": urlsplit(article["url"]).netloc.lower(), "published_at": article["published_at"], "signal_type": result["signal_type"], "claim": result["claim"], "quality": result["attractiveness_factors"]["evidence_quality"]})
+    metadata = source_metadata(article["source_name"])
+    add_evidence(opportunity_id, {"article_id": article["id"], "source_name": article["source_name"], "source_url": article["url"], "source_domain": urlsplit(article["url"]).netloc.lower(), "published_at": article["published_at"], "signal_type": result["signal_type"], "claim": result["claim"], "quality": result["attractiveness_factors"]["evidence_quality"], "source_category": metadata.get("source_category"), "independence_group": metadata.get("independence_group"), "research_origin": "radar_pipeline using Alec source metadata", "review_status": "pending_review"})
     return "accepted", opportunity_id
 
 
@@ -143,6 +166,7 @@ def process_pending(client: AIClient, maximum: int, batch_size: int, retry_limit
                     raw_result = results[article["id"]]
                     candidate_id = save_analysis_candidate(run_id, article["id"], "captured", raw_result)
                     result = _validate_result(raw_result)
+                    _save_live_triage(article, result, client)
                     outcome, opportunity_id = _store_result(article, result)
                     accepted += outcome == "accepted"
                     ignored += outcome == "ignored"

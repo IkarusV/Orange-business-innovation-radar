@@ -1,0 +1,8 @@
+technology_id,technology_name,status,description
+private_5g,Private 5G,approved,Dedicated cellular connectivity for industrial sites
+edge_computing,Edge computing,approved,Local compute and data processing near operations
+computer_vision,Computer vision,approved,AI-based visual inspection and operational monitoring
+industrial_iot,Industrial IoT,approved,Connected sensors devices and industrial data collection
+digital_twin,Digital twin,approved,Digital representation of industrial assets processes or facilities
+industrial_cybersecurity,Industrial cybersecurity,approved,Protection monitoring and response for OT and industrial environments
+industrial_data_platform,Industrial data platform,approved,Integration governance and analysis of industrial data

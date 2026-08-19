@@ -1,0 +1,7 @@
+vertical,signal_type,available_sources,independence_groups,raw_articles,status,gap,next_action,last_reviewed
+manufacturing,regulation,0,0,0,gap,No authoritative manufacturing regulation source,Add EUR-Lex manufacturing regulation collection route,2026-08-19
+manufacturing,buying,0,0,0,gap,No manufacturing procurement source,Add TED manufacturing-relevant procurement collection route,2026-08-19
+manufacturing,proof,3,3,30,partial,Current sources are media or vendor sources,Add named manufacturer and customer deployment sources,2026-08-19
+manufacturing,maturity,2,2,20,partial,Limited independent maturity evidence,Add manufacturing association or standards source,2026-08-19
+manufacturing,market_move,2,2,30,partial,Media-led evidence only,Add industry association or official investment evidence,2026-08-19
+manufacturing,market_trend,1,1,10,partial,Limited sector research coverage,Add industry association or analyst research source,2026-08-19

@@ -1,0 +1,7 @@
+signal_type_id,signal_type_name,status,description
+regulation,Regulation,approved,Binding obligation policy direction or compliance deadline
+buying,Buying,approved,Tender procurement budget or formal buyer program
+proof,Proof,approved,Named deployment contract or measured outcome
+maturity,Technology maturity,approved,Production readiness or technology milestone
+market_move,Market move,approved,Investment acquisition partnership or competitor move
+market_trend,Market trend,approved,Market research forecast or broad adoption trend

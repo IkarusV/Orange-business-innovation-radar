@@ -20,6 +20,11 @@ CREATE TABLE IF NOT EXISTS company_profiles (id INTEGER PRIMARY KEY CHECK(id=1),
 CREATE TABLE IF NOT EXISTS company_documents (id INTEGER PRIMARY KEY, name TEXT NOT NULL, source_type TEXT NOT NULL, source_url TEXT, extracted_text TEXT NOT NULL, added_at TEXT NOT NULL, UNIQUE(name, source_url));
 CREATE TABLE IF NOT EXISTS library_documents (id INTEGER PRIMARY KEY, company_name TEXT NOT NULL, name TEXT NOT NULL, original_name TEXT NOT NULL, raw_path TEXT NOT NULL, processed_path TEXT, source_type TEXT NOT NULL, source_url TEXT, raw_chars INTEGER DEFAULT 0, processed_chars INTEGER DEFAULT 0, status TEXT NOT NULL DEFAULT 'raw', stages_json TEXT NOT NULL DEFAULT '[]', error TEXT, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, UNIQUE(company_name, name));
 CREATE TABLE IF NOT EXISTS knowledge_settings (id INTEGER PRIMARY KEY CHECK(id=1), max_process_documents INTEGER NOT NULL DEFAULT 5, max_context_documents INTEGER NOT NULL DEFAULT 5, max_context_chars INTEGER NOT NULL DEFAULT 8000, max_report_documents INTEGER NOT NULL DEFAULT 10, max_report_chars INTEGER NOT NULL DEFAULT 60000, updated_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS taxonomy_terms (taxonomy_type TEXT NOT NULL, canonical_id TEXT NOT NULL, display_name TEXT NOT NULL, parent_id TEXT, description TEXT, status TEXT NOT NULL, research_origin TEXT NOT NULL, PRIMARY KEY(taxonomy_type,canonical_id));
+CREATE TABLE IF NOT EXISTS taxonomy_aliases (taxonomy_type TEXT NOT NULL, canonical_id TEXT NOT NULL, alias TEXT NOT NULL, status TEXT NOT NULL, research_origin TEXT NOT NULL, PRIMARY KEY(taxonomy_type,alias));
+CREATE TABLE IF NOT EXISTS intelligence_sources (name TEXT PRIMARY KEY, feed_url TEXT, source_category TEXT, quality_default INTEGER, independence_group TEXT, domain TEXT, vertical_scope TEXT, expected_signal_types TEXT, language TEXT, active INTEGER, research_origin TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS triage_records (id INTEGER PRIMARY KEY, article_guid TEXT NOT NULL, article_link TEXT, title TEXT, source TEXT, classification TEXT NOT NULL, triage_confidence TEXT, signal_type TEXT, vertical_id TEXT, use_case_id TEXT, technology_id TEXT, rationale TEXT, named_organizations TEXT, actor_role TEXT, prompt_version TEXT, model TEXT, classification_method TEXT NOT NULL, research_origin TEXT NOT NULL, review_status TEXT NOT NULL, processed_at TEXT, UNIQUE(article_guid,classification_method,prompt_version));
+CREATE TABLE IF NOT EXISTS coverage_gaps (vertical_id TEXT NOT NULL, signal_type TEXT NOT NULL, available_sources INTEGER, independence_groups INTEGER, raw_articles INTEGER, status TEXT, gap TEXT, next_action TEXT, last_reviewed TEXT, research_origin TEXT NOT NULL, PRIMARY KEY(vertical_id,signal_type));
 """
 
 
@@ -66,6 +71,15 @@ def initialize(path: Path | None = None) -> None:
         library_columns = {row[1] for row in connection.execute("PRAGMA table_info(library_documents)")}
         if "search_text" not in library_columns:
             connection.execute("ALTER TABLE library_documents ADD COLUMN search_text TEXT NOT NULL DEFAULT ''")
+        evidence_columns = {row[1] for row in connection.execute("PRAGMA table_info(evidence)")}
+        for name, definition in {
+            "source_category": "TEXT",
+            "independence_group": "TEXT",
+            "research_origin": "TEXT DEFAULT 'radar_pipeline'",
+            "review_status": "TEXT DEFAULT 'pending_review'",
+        }.items():
+            if name not in evidence_columns:
+                connection.execute(f"ALTER TABLE evidence ADD COLUMN {name} {definition}")
         connection.execute(
             """INSERT OR IGNORE INTO knowledge_settings(id,max_process_documents,max_context_documents,max_context_chars,max_report_documents,max_report_chars,updated_at)
             VALUES(1,5,5,8000,10,60000,?)""",
@@ -108,9 +122,9 @@ def upsert_opportunity(item: dict) -> int:
 def add_evidence(opportunity_id: int, evidence: dict) -> None:
     with connect() as connection:
         connection.execute(
-            """INSERT OR IGNORE INTO evidence(opportunity_id,article_id,source_name,source_url,source_domain,published_at,signal_type,claim,quality)
-            VALUES(?,?,?,?,?,?,?,?,?)""",
-            (opportunity_id, evidence.get("article_id"), evidence.get("source_name"), evidence.get("source_url"), evidence.get("source_domain"), evidence.get("published_at"), evidence.get("signal_type"), evidence["claim"], evidence.get("quality", 0)),
+            """INSERT OR IGNORE INTO evidence(opportunity_id,article_id,source_name,source_url,source_domain,published_at,signal_type,claim,quality,source_category,independence_group,research_origin,review_status)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (opportunity_id, evidence.get("article_id"), evidence.get("source_name"), evidence.get("source_url"), evidence.get("source_domain"), evidence.get("published_at"), evidence.get("signal_type"), evidence["claim"], evidence.get("quality", 0), evidence.get("source_category"), evidence.get("independence_group"), evidence.get("research_origin", "radar_pipeline"), evidence.get("review_status", "pending_review")),
         )
 
 

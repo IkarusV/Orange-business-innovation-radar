@@ -10,6 +10,7 @@ from radar.company import DocumentError, fetch_document_url
 from radar.config import ROOT, ai_settings, load_json
 from radar.db import active_company, connect, initialize, knowledge_settings, rows, save_company, save_knowledge_settings, sync_sources, utcnow
 from radar.library import STAGES, add_document, company_directory, create_report, process_document, refresh_library_index, rename_document, set_stages
+from radar.intelligence import evidence_strength, opportunity_evidence_strength, sync_alec_research, taxonomy_prompt_context
 from radar.pipeline import pipeline_preflight, refresh
 from radar.scoring import publication_checks
 from radar.seed import seed_demo
@@ -56,6 +57,7 @@ st.markdown(CSS, unsafe_allow_html=True)
 def bootstrap() -> None:
     initialize()
     sync_sources(load_json("config/sources.json"))
+    sync_alec_research()
     seed_demo()
 
 
@@ -148,6 +150,9 @@ def radar_page() -> None:
             st.markdown("**Recommended next action**")
             st.info(item["next_action"])
             st.caption(item["score_rationale"])
+            evidence_indicator = opportunity_evidence_strength(item["id"])
+            st.metric("Evidence strength (prototype)", f"{evidence_indicator['score']:.0f}/100")
+            st.caption(f"Log-volume {evidence_indicator['volume']:.0f} · independence {evidence_indicator['independence']:.0f} · high-value signal mix {evidence_indicator['signal_quality']:.0f}. This is evidence support, not market size.")
             left,right = st.columns(2)
             left.markdown("**Attractiveness factors /10**")
             left.json(factors.get("attractiveness", {}), expanded=True)
@@ -460,6 +465,34 @@ def sources_page() -> None:
     st.dataframe(sources, use_container_width=True, hide_index=True, column_config={"url":st.column_config.LinkColumn("Feed")})
 
 
+def intelligence_page() -> None:
+    st.title("Prototype intelligence")
+    st.write("Alec's research layer supplies human-curated source metadata, canonical vocabulary, a high-precision triage pilot, and a manufacturing coverage-gap view. It guides the prototype; it is not presented as official Orange data.")
+    counts = {
+        "Canonical terms": rows("SELECT COUNT(*) count FROM taxonomy_terms")[0]["count"],
+        "Aliases": rows("SELECT COUNT(*) count FROM taxonomy_aliases")[0]["count"],
+        "Registered sources": rows("SELECT COUNT(*) count FROM intelligence_sources")[0]["count"],
+        "Triage records": rows("SELECT COUNT(*) count FROM triage_records")[0]["count"],
+    }
+    cols = st.columns(4)
+    for column, (label, value) in zip(cols, counts.items()):
+        column.metric(label, value)
+    st.caption("Provenance: taxonomy, source registry, coverage matrix, and pilot triage originate from Alec's human research/prototype work. The triage CSV records model gpt-5.6-terra and remains pending_review because those classifications were not independently approved.")
+    triage = rows("SELECT classification,triage_confidence,signal_type,vertical_id,use_case_id,technology_id,source,review_status,classification_method,research_origin FROM triage_records ORDER BY processed_at DESC")
+    st.subheader("Triage pilot")
+    if triage:
+        st.dataframe(triage, use_container_width=True, hide_index=True)
+    coverage = rows("SELECT * FROM coverage_gaps ORDER BY vertical_id,signal_type")
+    st.subheader("Coverage gaps")
+    if coverage:
+        st.dataframe(coverage, use_container_width=True, hide_index=True)
+    terms = rows("SELECT taxonomy_type,canonical_id,display_name,parent_id,description,research_origin FROM taxonomy_terms ORDER BY taxonomy_type,canonical_id")
+    st.subheader("Canonical taxonomy")
+    st.dataframe(terms, use_container_width=True, hide_index=True)
+    st.subheader("Competitor and internal-signal extension")
+    st.write("The triage schema supports named and actor roles. Future competitor/internal analysis should store competitor moves separately from external market attractiveness, then influence momentum, urgency, or recommended action rather than automatically increasing right-to-win.")
+
+
 def settings_page() -> None:
     st.title("AI agents and prompts")
     st.write("Provider settings are session-only and are never written to disk. Prompt edits are versioned manually in `config/prompts.json` and visible here for reproducibility.")
@@ -550,6 +583,6 @@ with st.sidebar.expander("RUN LIMITS", expanded=False):
     st.number_input("Attempts / article", 1, 5, 2, key="quick_retry_limit")
 if st.sidebar.button("RUN FULL PIPELINE", type="primary", use_container_width=True, key="sidebar_run"):
     run_full_pipeline()
-page = st.sidebar.radio("Navigate", ["Radar","Company workspace","Signal inbox","Refresh","Sources","AI settings","Methodology"], label_visibility="collapsed")
+page = st.sidebar.radio("Navigate", ["Radar","Company workspace","Signal inbox","Refresh","Sources","Prototype intelligence","AI settings","Methodology"], label_visibility="collapsed")
 st.sidebar.caption("Student prototype · Evidence must be reviewed")
-{"Radar":radar_page,"Company workspace":company_page,"Signal inbox":inbox_page,"Refresh":refresh_page,"Sources":sources_page,"AI settings":settings_page,"Methodology":methodology_page}[page]()
+{"Radar":radar_page,"Company workspace":company_page,"Signal inbox":inbox_page,"Refresh":refresh_page,"Sources":sources_page,"Prototype intelligence":intelligence_page,"AI settings":settings_page,"Methodology":methodology_page}[page]()
