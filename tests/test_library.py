@@ -49,6 +49,13 @@ def test_duplicate_uploads_do_not_overwrite(monkeypatch, tmp_path):
     assert second["name"] == "strategy_2.txt"
 
 
+def test_zero_document_limit_returns_no_context(monkeypatch, tmp_path):
+    setup_library(monkeypatch, tmp_path)
+    document = library.add_document("Acme", "strategy.txt", b"Cloud strategy", "text/plain")
+    library.process_document(document["id"], FakeClient(), ["all"])
+    assert library.library_context("Acme", "collection", 0, 1000) == ""
+
+
 def test_combined_report_uses_one_call(monkeypatch, tmp_path):
     setup_library(monkeypatch, tmp_path)
     first = library.add_document("Acme", "one.txt", b"Cloud", "text/plain")

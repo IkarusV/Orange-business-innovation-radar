@@ -10,7 +10,7 @@ from radar.company import DocumentError, fetch_document_url
 from radar.config import ROOT, ai_settings, load_json
 from radar.db import active_company, connect, initialize, knowledge_settings, rows, save_company, save_knowledge_settings, sync_sources, utcnow
 from radar.library import STAGES, add_document, company_directory, create_report, process_document, refresh_library_index, rename_document, set_stages
-from radar.intelligence import evidence_strength, opportunity_evidence_strength, sync_alec_research, taxonomy_prompt_context
+from radar.intelligence import evidence_strength, opportunity_evidence_strength, prompt_intelligence_summary, research_prompt_context, sync_alec_research, taxonomy_prompt_context
 from radar.pipeline import pipeline_preflight, refresh
 from radar.scoring import publication_checks
 from radar.seed import seed_demo
@@ -466,8 +466,14 @@ def sources_page() -> None:
 
 
 def intelligence_page() -> None:
-    st.title("Prototype intelligence")
-    st.write("Alec's research layer supplies human-curated source metadata, canonical vocabulary, a high-precision triage pilot, and a manufacturing coverage-gap view. It guides the prototype; it is not presented as official Orange data.")
+    st.title("Prompt intelligence")
+    st.write("This page explains what the research changes in the AI pipeline. Business users do not need to read the underlying tables: the approved rules and vocabulary are injected automatically when the radar analyzes articles.")
+    st.subheader("How the prompt is built")
+    flow = st.columns(3)
+    flow[0].markdown("**1. Company workspace**\n\nSets strategy, capabilities, vocabulary, geography, and partner context from the summaries you selected.")
+    flow[1].markdown("**2. Research guardrails**\n\nApplies consistent B2B relevance, exclusion, taxonomy, source-quality, and evidence rules.")
+    flow[2].markdown("**3. External evidence**\n\nTests each article against both inputs and produces a specific, scored opportunity or rejects it.")
+    st.info("Company documents guide relevance and right-to-win. They never count as independent external market evidence.")
     counts = {
         "Canonical terms": rows("SELECT COUNT(*) count FROM taxonomy_terms")[0]["count"],
         "Aliases": rows("SELECT COUNT(*) count FROM taxonomy_aliases")[0]["count"],
@@ -477,20 +483,24 @@ def intelligence_page() -> None:
     cols = st.columns(4)
     for column, (label, value) in zip(cols, counts.items()):
         column.metric(label, value)
-    st.caption("Provenance: taxonomy, source registry, coverage matrix, and pilot triage originate from Alec's human research/prototype work. The triage CSV records model gpt-5.6-terra and remains pending_review because those classifications were not independently approved.")
-    triage = rows("SELECT classification,triage_confidence,signal_type,vertical_id,use_case_id,technology_id,source,review_status,classification_method,research_origin FROM triage_records ORDER BY processed_at DESC")
-    st.subheader("Triage pilot")
-    if triage:
-        st.dataframe(triage, use_container_width=True, hide_index=True)
-    coverage = rows("SELECT * FROM coverage_gaps ORDER BY vertical_id,signal_type")
-    st.subheader("Coverage gaps")
+    st.subheader("What it improves")
+    st.dataframe(prompt_intelligence_summary(), use_container_width=True, hide_index=True)
+    coverage = rows("SELECT vertical_id,signal_type,status,gap,next_action,last_reviewed FROM coverage_gaps ORDER BY status,vertical_id,signal_type")
+    st.subheader("Research actions")
+    st.write("These are evidence gaps, not reading material. They tell the research team what source or proof to add next.")
     if coverage:
         st.dataframe(coverage, use_container_width=True, hide_index=True)
-    terms = rows("SELECT taxonomy_type,canonical_id,display_name,parent_id,description,research_origin FROM taxonomy_terms ORDER BY taxonomy_type,canonical_id")
-    st.subheader("Canonical taxonomy")
-    st.dataframe(terms, use_container_width=True, hide_index=True)
-    st.subheader("Competitor and internal-signal extension")
-    st.write("The triage schema supports named and actor roles. Future competitor/internal analysis should store competitor moves separately from external market attractiveness, then influence momentum, urgency, or recommended action rather than automatically increasing right-to-win.")
+    with st.expander("Active research rules sent to the AI"):
+        st.code(research_prompt_context(), language="text")
+    with st.expander("Technical audit data"):
+        st.caption("Prototype provenance only. Pilot classifications remain pending_review until independently approved.")
+        triage = rows("SELECT classification,triage_confidence,signal_type,vertical_id,use_case_id,technology_id,source,review_status,classification_method,research_origin FROM triage_records ORDER BY processed_at DESC")
+        if triage:
+            st.markdown("**Pilot triage records**")
+            st.dataframe(triage, use_container_width=True, hide_index=True)
+        terms = rows("SELECT taxonomy_type,canonical_id,display_name,parent_id,description,research_origin FROM taxonomy_terms ORDER BY taxonomy_type,canonical_id")
+        st.markdown("**Canonical taxonomy**")
+        st.dataframe(terms, use_container_width=True, hide_index=True)
 
 
 def settings_page() -> None:
@@ -583,6 +593,6 @@ with st.sidebar.expander("RUN LIMITS", expanded=False):
     st.number_input("Attempts / article", 1, 5, 2, key="quick_retry_limit")
 if st.sidebar.button("RUN FULL PIPELINE", type="primary", use_container_width=True, key="sidebar_run"):
     run_full_pipeline()
-page = st.sidebar.radio("Navigate", ["Radar","Company workspace","Signal inbox","Refresh","Sources","Prototype intelligence","AI settings","Methodology"], label_visibility="collapsed")
+page = st.sidebar.radio("Navigate", ["Radar","Company workspace","Signal inbox","Refresh","Sources","Prompt intelligence","AI settings","Methodology"], label_visibility="collapsed")
 st.sidebar.caption("Student prototype · Evidence must be reviewed")
-{"Radar":radar_page,"Company workspace":company_page,"Signal inbox":inbox_page,"Refresh":refresh_page,"Sources":sources_page,"Prototype intelligence":intelligence_page,"AI settings":settings_page,"Methodology":methodology_page}[page]()
+{"Radar":radar_page,"Company workspace":company_page,"Signal inbox":inbox_page,"Refresh":refresh_page,"Sources":sources_page,"Prompt intelligence":intelligence_page,"AI settings":settings_page,"Methodology":methodology_page}[page]()

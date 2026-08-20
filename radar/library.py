@@ -153,6 +153,8 @@ def rename_document(document_id: int, new_name: str) -> dict:
 
 
 def library_context(company_name: str, stage: str, max_documents: int, max_chars: int, include_all: bool = True) -> str:
+    if max_documents <= 0 or max_chars <= 0:
+        return ""
     documents = rows("SELECT * FROM library_documents WHERE company_name=? AND status='processed' ORDER BY updated_at DESC", (company_name,))
     selected = []
     for document in documents:

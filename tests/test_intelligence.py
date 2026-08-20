@@ -1,4 +1,4 @@
-from radar.intelligence import evidence_strength, normalize_signal
+from radar.intelligence import evidence_strength, normalize_signal, research_prompt_context
 
 
 def test_evidence_strength_log_normalizes_volume():
@@ -13,3 +13,10 @@ def test_alec_signal_names_map_to_radar_names():
     assert normalize_signal("buying") == "buying_signal"
     assert normalize_signal("proof") == "proof_signal"
     assert normalize_signal("maturity") == "technology_maturity"
+
+
+def test_research_context_separates_company_guidance_from_market_evidence():
+    context = research_prompt_context()
+    assert "Never use them as independent proof" in context
+    assert "consumer-only" in context
+    assert "independence group" in context

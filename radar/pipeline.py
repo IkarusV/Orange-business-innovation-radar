@@ -9,7 +9,7 @@ from radar.ai import APIBudgetError, AIClient
 from radar.company import company_context
 from radar.config import load_json
 from radar.db import active_company, add_evidence, add_run_event, connect, knowledge_settings, rows, save_analysis_candidate, update_analysis_candidate, upsert_opportunity, utcnow
-from radar.intelligence import source_metadata, taxonomy_prompt_context
+from radar.intelligence import research_prompt_context, source_metadata, taxonomy_prompt_context
 from radar.library import library_context
 from radar.ingestion import ingest_enabled_sources
 from radar.scoring import horizon_from_signal, horizon_rationale, score_opportunity
@@ -85,10 +85,18 @@ def _save_live_triage(article: dict, result: dict, client: AIClient) -> None:
 
 def analyze_batch(articles: list[dict], client: AIClient) -> dict[int, dict]:
     prompt = load_json("config/prompts.json")["extractor"]["system"]
-    compact_articles = "\n\n".join(
-        f"ARTICLE_ID: {article['id']}\nSource: {article['source_name']}\nPublished: {article.get('published_at') or 'unknown'}\nURL: {article['url']}\nTitle: {article['title']}\nContent: {article.get('content', '')[:3500]}"
-        for article in articles
-    )
+    article_blocks = []
+    for article in articles:
+        metadata = source_metadata(article["source_name"])
+        article_blocks.append(
+            f"ARTICLE_ID: {article['id']}\nSource: {article['source_name']}\n"
+            f"Research source metadata: category={metadata.get('source_category', 'unknown')}; "
+            f"quality_default={metadata.get('quality_default', 'unknown')}; "
+            f"independence_group={metadata.get('independence_group', 'unknown')}\n"
+            f"Published: {article.get('published_at') or 'unknown'}\nURL: {article['url']}\n"
+            f"Title: {article['title']}\nContent: {article.get('content', '')[:3500]}"
+        )
+    compact_articles = "\n\n".join(article_blocks)
     limits = knowledge_settings()
     company_name = active_company().get("name", "")
     stage_budget = max(200, limits["max_context_chars"] // 5)
@@ -102,6 +110,8 @@ def analyze_batch(articles: list[dict], client: AIClient) -> dict[int, dict]:
     instruction = f"""COMPANY AND PARTNER CONTEXT:
 {company_context(2500, "unused", 0)}
 {stage_contexts}
+{research_prompt_context()}
+
 {taxonomy_prompt_context()}
 
 Analyze every external article below independently. Return one JSON object with a `results` array containing exactly one result per ARTICLE_ID. Each result needs:

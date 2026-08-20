@@ -80,6 +80,29 @@ def taxonomy_prompt_context() -> str:
     return "PROTOTYPE CANONICAL TAXONOMY (prefer these IDs when supported; leave blank rather than guess):\n" + "\n".join(term_lines + alias_lines)
 
 
+def research_prompt_context() -> str:
+    """Convert the research artefacts into operational model instructions."""
+    return """RESEARCH-GROUNDED DECISION RULES:
+- Keep an article only when it contains a usable B2B signal that can support a specific Vertical x Use Case x Technology opportunity.
+- Prefer high precision: generic commentary, consumer-only news, tutorials, routine security noise, and vendor promotion without adoption, customer, market, or maturity evidence are irrelevant.
+- A usable signal is regulation, procurement or buyer activity, measured market movement, a consequential partnership or investment, a production-readiness milestone, or a named deployment with results.
+- Treat company documents as strategic guidance for fit, vocabulary, capabilities, and partner logic. Never use them as independent proof of external market attractiveness.
+- Treat vendor sources as supplementary unless the article contains a named customer, measured result, strategic market move, or genuine maturity milestone.
+- Do not reward repeated coverage from the same independence group as source diversity.
+- Use canonical IDs only when the article supports them. Never force an ID or infer a missing fact.
+- For weak or single-source evidence, lower evidence quality/confidence and recommend the exact independent evidence needed next."""
+
+
+def prompt_intelligence_summary() -> list[dict]:
+    """Business-readable description of what each research asset changes."""
+    return [
+        {"input": "Canonical vocabulary", "prompt_job": "Normalizes vertical, use-case, technology, and signal names", "business_result": "Comparable opportunity cards instead of duplicate labels"},
+        {"input": "Triage research", "prompt_job": "Adds strict B2B relevance and exclusion rules", "business_result": "Less generic news and vendor promotion"},
+        {"input": "Source registry", "prompt_job": "Adds source quality and independence metadata", "business_result": "Stronger confidence and evidence-diversity checks"},
+        {"input": "Coverage gaps", "prompt_job": "Identifies missing evidence and collection actions", "business_result": "A prioritized research backlog"},
+    ]
+
+
 def source_metadata(source_name: str) -> dict:
     result = rows("SELECT * FROM intelligence_sources WHERE name=?", (source_name,))
     return result[0] if result else {}
