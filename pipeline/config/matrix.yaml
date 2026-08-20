@@ -1,0 +1,60 @@
+# Vertical x Domain coverage matrix for the discovery search connector.
+# Query generation: for each (vertical, domain) cell, each template is filled
+# with vertical and domain keywords, producing quota_per_cell queries per run.
+
+verticals:
+  manufacturing:
+    keywords: "manufacturing heavy industry process plant"
+  retail:
+    keywords: "retail e-commerce stores"
+  finance:
+    keywords: "banking insurance financial services"
+  public_gov:
+    keywords: "government public sector administration"
+  defense:
+    keywords: "defense military"
+  automotive:
+    keywords: "automotive vehicle OEM"
+  transport_construction:
+    keywords: "transportation logistics construction infrastructure"
+  lifesciences:
+    keywords: "pharmaceutical biotech lifesciences"
+  energy:
+    keywords: "energy utilities grid"
+  wholesale:
+    keywords: "wholesale distribution supply chain"
+  media_entertainment:
+    keywords: "media entertainment broadcasting"
+  healthcare:
+    keywords: "hospital healthcare medical"
+  natural_resources:
+    keywords: "mining forestry paper natural resources"
+  aerospace:
+    keywords: "aerospace aviation space"
+
+domains:
+  smart_industries:
+    keywords: "IoT edge computing industrial automation digital twin"
+  connectivity:
+    keywords: "private 5G SD-WAN network connectivity"
+  cybersecurity:
+    keywords: "cybersecurity zero trust SOC threat detection"
+  cloud:
+    keywords: "cloud sovereign cloud infrastructure migration"
+  cx:
+    keywords: "customer experience contact center CRM"
+  ex:
+    keywords: "employee experience digital workplace collaboration"
+
+# One template per signal family. {v} = vertical keywords, {d} = domain keywords.
+query_templates:
+  regulation: "{v} {d} regulation compliance mandate deadline"
+  buying_signal: "{v} {d} tender procurement RFP contract award"
+  market_move: "{v} {d} funding acquisition partnership deployment case study"
+
+search:
+  quota_per_cell: 3          # one query per template by default
+  boost_quota: 6             # for underrepresented cells
+  coverage_threshold: 5      # below this count, a cell is boosted
+  results_per_query: 5
+  lookback_days: 90
