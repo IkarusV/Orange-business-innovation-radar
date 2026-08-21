@@ -25,6 +25,10 @@ CREATE TABLE IF NOT EXISTS taxonomy_aliases (taxonomy_type TEXT NOT NULL, canoni
 CREATE TABLE IF NOT EXISTS intelligence_sources (name TEXT PRIMARY KEY, feed_url TEXT, source_category TEXT, quality_default INTEGER, independence_group TEXT, domain TEXT, vertical_scope TEXT, expected_signal_types TEXT, language TEXT, active INTEGER, research_origin TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS triage_records (id INTEGER PRIMARY KEY, article_guid TEXT NOT NULL, article_link TEXT, title TEXT, source TEXT, classification TEXT NOT NULL, triage_confidence TEXT, signal_type TEXT, vertical_id TEXT, use_case_id TEXT, technology_id TEXT, rationale TEXT, named_organizations TEXT, actor_role TEXT, prompt_version TEXT, model TEXT, classification_method TEXT NOT NULL, research_origin TEXT NOT NULL, review_status TEXT NOT NULL, processed_at TEXT, UNIQUE(article_guid,classification_method,prompt_version));
 CREATE TABLE IF NOT EXISTS coverage_gaps (vertical_id TEXT NOT NULL, signal_type TEXT NOT NULL, available_sources INTEGER, independence_groups INTEGER, raw_articles INTEGER, status TEXT, gap TEXT, next_action TEXT, last_reviewed TEXT, research_origin TEXT NOT NULL, PRIMARY KEY(vertical_id,signal_type));
+CREATE TABLE IF NOT EXISTS web_search_settings (id INTEGER PRIMARY KEY CHECK(id=1), provider TEXT NOT NULL DEFAULT 'searxng_local', tavily_depth TEXT NOT NULL DEFAULT 'basic', searxng_url TEXT NOT NULL DEFAULT 'http://100.70.65.86:8888', public_searxng_url TEXT NOT NULL DEFAULT '', max_queries INTEGER NOT NULL DEFAULT 3, max_results_per_query INTEGER NOT NULL DEFAULT 5, updated_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS web_search_runs (id INTEGER PRIMARY KEY, purpose TEXT NOT NULL, provider TEXT NOT NULL, opportunity_id INTEGER, started_at TEXT NOT NULL, finished_at TEXT, status TEXT NOT NULL, query_count INTEGER DEFAULT 0, result_count INTEGER DEFAULT 0, error TEXT);
+CREATE TABLE IF NOT EXISTS web_search_results (id INTEGER PRIMARY KEY, run_id INTEGER NOT NULL, query TEXT NOT NULL, provider TEXT NOT NULL, engine TEXT, rank INTEGER, title TEXT, url TEXT NOT NULL, published_at TEXT, retrieved_at TEXT NOT NULL, content TEXT, provider_score REAL, article_id INTEGER, FOREIGN KEY(run_id) REFERENCES web_search_runs(id), FOREIGN KEY(article_id) REFERENCES articles(id), UNIQUE(run_id,query,url));
+CREATE TABLE IF NOT EXISTS opportunity_reports (id INTEGER PRIMARY KEY, opportunity_id INTEGER NOT NULL, company_name TEXT NOT NULL, status TEXT NOT NULL, created_at TEXT NOT NULL, model TEXT, search_provider TEXT, search_run_id INTEGER, query_count INTEGER, source_count INTEGER, report_json TEXT, error TEXT, FOREIGN KEY(opportunity_id) REFERENCES opportunities(id), FOREIGN KEY(search_run_id) REFERENCES web_search_runs(id));
 """
 
 
@@ -80,6 +84,29 @@ def initialize(path: Path | None = None) -> None:
         }.items():
             if name not in evidence_columns:
                 connection.execute(f"ALTER TABLE evidence ADD COLUMN {name} {definition}")
+        search_columns = {row[1] for row in connection.execute("PRAGMA table_info(web_search_settings)")}
+        if "public_searxng_url" not in search_columns:
+            connection.execute("ALTER TABLE web_search_settings ADD COLUMN public_searxng_url TEXT NOT NULL DEFAULT ''")
+        connection.execute("UPDATE web_search_settings SET provider='searxng_local' WHERE provider='searxng'")
+        result_columns = {row[1] for row in connection.execute("PRAGMA table_info(web_search_results)")}
+        for name, definition in {
+            "content_status": "TEXT NOT NULL DEFAULT 'snippet'",
+            "content_source": "TEXT NOT NULL DEFAULT 'search_snippet'",
+            "extraction_error": "TEXT",
+        }.items():
+            if name not in result_columns:
+                connection.execute(f"ALTER TABLE web_search_results ADD COLUMN {name} {definition}")
+        report_columns = {row[1] for row in connection.execute("PRAGMA table_info(opportunity_reports)")}
+        if "search_run_id" not in report_columns:
+            connection.execute("ALTER TABLE opportunity_reports ADD COLUMN search_run_id INTEGER")
+        connection.execute(
+            """UPDATE opportunity_reports SET search_run_id=(
+                SELECT r.id FROM web_search_runs r
+                WHERE r.purpose='opportunity_report' AND r.opportunity_id=opportunity_reports.opportunity_id
+                  AND r.started_at<=opportunity_reports.created_at
+                ORDER BY r.started_at DESC LIMIT 1
+            ) WHERE search_run_id IS NULL"""
+        )
         connection.execute(
             """INSERT OR IGNORE INTO knowledge_settings(id,max_process_documents,max_context_documents,max_context_chars,max_report_documents,max_report_chars,updated_at)
             VALUES(1,5,5,8000,10,60000,?)""",
@@ -89,6 +116,11 @@ def initialize(path: Path | None = None) -> None:
             """INSERT OR IGNORE INTO company_profiles(id,name,geography,website_url,strategic_prompt,updated_at)
             VALUES(1,'Orange Business','Belgium / Europe','https://www.orange-business.com/',
             'Evaluate direct Orange Business opportunities as well as partner-led and ecosystem opportunities. Do not penalize an opportunity only because delivery requires another company.',?)""",
+            (utcnow(),),
+        )
+        connection.execute(
+            """INSERT OR IGNORE INTO web_search_settings(id,provider,tavily_depth,searxng_url,public_searxng_url,max_queries,max_results_per_query,updated_at)
+            VALUES(1,'searxng_local','basic','http://100.70.65.86:8888','',3,5,?)""",
             (utcnow(),),
         )
 
@@ -152,6 +184,18 @@ def save_knowledge_settings(max_process_documents: int, max_context_documents: i
         connection.execute(
             """UPDATE knowledge_settings SET max_process_documents=?,max_context_documents=?,max_context_chars=?,max_report_documents=?,max_report_chars=?,updated_at=? WHERE id=1""",
             (max_process_documents, max_context_documents, max_context_chars, max_report_documents, max_report_chars, utcnow()),
+        )
+
+
+def web_search_settings() -> dict:
+    return rows("SELECT * FROM web_search_settings WHERE id=1")[0]
+
+
+def save_web_search_settings(provider: str, tavily_depth: str, searxng_url: str, public_searxng_url: str, max_queries: int, max_results_per_query: int) -> None:
+    with connect() as connection:
+        connection.execute(
+            """UPDATE web_search_settings SET provider=?,tavily_depth=?,searxng_url=?,public_searxng_url=?,max_queries=?,max_results_per_query=?,updated_at=? WHERE id=1""",
+            (provider, tavily_depth, searxng_url.rstrip("/"), public_searxng_url.rstrip("/"), max_queries, max_results_per_query, utcnow()),
         )
 
 

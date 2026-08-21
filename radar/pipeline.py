@@ -70,13 +70,13 @@ def _validate_result(result: dict) -> dict:
 def _save_live_triage(article: dict, result: dict, client: AIClient) -> None:
     with connect() as connection:
         connection.execute(
-            """INSERT OR REPLACE INTO triage_records(article_guid,article_link,title,source,classification,triage_confidence,signal_type,vertical_id,use_case_id,technology_id,rationale,named_,actor_role,prompt_version,model,classification_method,research_origin,review_status,processed_at)
+            """INSERT OR REPLACE INTO triage_records(article_guid,article_link,title,source,classification,triage_confidence,signal_type,vertical_id,use_case_id,technology_id,rationale,named_organizations,actor_role,prompt_version,model,classification_method,research_origin,review_status,processed_at)
             VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (
                 article["guid"], article["url"], article["title"], article["source_name"], result["triage_classification"], result["triage_confidence"],
                 result.get("signal_type", ""), result.get("vertical_id", ""), result.get("use_case_id", ""), result.get("technology_id", ""),
                 result.get("triage_rationale", result.get("claim", "No evidence value for the active radar scope.")),
-                ", ".join(result.get("named_", [])) if isinstance(result.get("named_"), list) else str(result.get("named_", "")),
+                ", ".join(result.get("named_organizations", [])) if isinstance(result.get("named_organizations"), list) else str(result.get("named_organizations", "")),
                 result.get("actor_role", ""), load_json("config/prompts.json")["extractor"]["version"], client.model,
                 "model-assisted pipeline triage", "radar pipeline", "pending_review", utcnow(),
             ),
@@ -165,7 +165,8 @@ def process_pending(client: AIClient, maximum: int, batch_size: int, retry_limit
     total_batches = math.ceil(len(pending) / batch_size) if pending else 0
     for batch_number, start in enumerate(range(0, len(pending), batch_size), 1):
         batch = pending[start:start + batch_size]
-        _emit(callback, run_id, "ai_analysis", f"AI batch {batch_number}/{total_batches}: analyzing {len(batch)} articles (HTTP request {client.request_count + 1}/{client.max_requests}).", batch_number - 1, total_batches)
+        titles = " | ".join(article["title"][:70] for article in batch)
+        _emit(callback, run_id, "ai_analysis", f"AI batch {batch_number}/{total_batches}: analyzing {len(batch)} article records (HTTP request {client.request_count + 1}/{client.max_requests}). Titles: {titles}", batch_number - 1, total_batches)
         try:
             results = analyze_batch(batch, client)
             for article in batch:

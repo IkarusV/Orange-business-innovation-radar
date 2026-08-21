@@ -66,12 +66,14 @@ Safe defaults: 20 articles, 5 articles per request, 5 requests maximum, 10 RPM, 
 | `radar/db.py` | SQLite schema and persistence |
 | `radar/company.py` | Company context and document extraction |
 | `radar/library.py` | Raw/processed company library, summaries, reports, and stage context |
+| `radar/websearch.py` | Tavily/SearXNG search, source persistence, imports, and opportunity reports |
 | `config/prompts.json` | Versioned agent prompts |
 | `config/scoring.json` | Weights and Radar/Watchlist thresholds |
 | `config/sources.json` | Default feeds |
 | `tests/` | Unit and batching tests |
 | `docs/` | Decisions, process, and classification audit |
 | `Compagnyworkspace.md` | Portable company workspace specification and implementation guide |
+| `prototype_progress/` | Portable implementation records for research, search, and report features |
 | `Aorangeresearch/` | Supplied Orange reference material |
 | `DfluxRss/` | Original RSS research module |
 

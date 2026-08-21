@@ -10,7 +10,7 @@ from radar.config import ROOT
 from radar.db import connect, knowledge_settings, rows, utcnow
 
 LIBRARY_ROOT = ROOT / "Documents"
-STAGES = ("collection", "opportunity_naming", "scoring", "narrative", "all")
+STAGES = ("collection", "opportunity_naming", "scoring", "narrative", "full_report", "all")
 SUPPORTED_SUFFIXES = {".pdf", ".pptx", ".docx", ".txt", ".md", ".csv", ".json", ".html", ".htm"}
 
 

@@ -1,0 +1,464 @@
+INNOVATION RADAR
+================
+
+Opportunity : Manufacturing × Energy optimization × Computer Vision
+Date : 2026-08-21T00:27:32.440304
+
+DATA QUALITY
+------------
+Total sources : 70
+Sources avec date : 0
+Sources sans date : 70
+Sources historiques : 25
+Sources récentes : 45
+
+SIGNAL COVERAGE
+---------------
+market : 10
+technology : 10
+business : 10
+proof : 10
+regulation : 10
+numeric_market_size : 5
+numeric_growth : 5
+numeric_investment : 5
+numeric_adoption : 5
+
+THEME DISTRIBUTION
+------------------
+cybersecurity : 4
+AI : 64
+robotics : 18
+energy : 41
+computer_vision : 51
+
+DATA GAPS
+---------
+- 70 sources n'ont pas de date publiée.
+
+SUGGESTED NEXT SEARCHES
+------------------------
+- Manufacturing Energy optimization Computer Vision historical report market study
+
+SOURCES
+-------
+
+[1] Computer Vision - Artificial Intelligence In Manufacturing ...
+URL: https://www.grandviewresearch.com/horizon/statistics/artificial-intelligence-in-manufacturing-market-outlook/technology/computer-vision/global
+Date: None
+Signal: market
+Period: historical
+
+[2] Computer Vision in Manufacturing Market Size & Competitors
+URL: https://www.researchandmarkets.com/report/manufacturing-computer-vision
+Date: None
+Signal: market
+Period: historical
+
+[3] Computer Vision Market Size, Share, Growth, Analysis, Report, 2034
+URL: https://straitsresearch.com/report/computer-vision-market
+Date: None
+Signal: market
+Period: historical
+
+[4] Computer Vision Market Size And Share Report, 2026-2033
+URL: https://www.grandviewresearch.com/industry-analysis/computer-vision-market
+Date: None
+Signal: market
+Period: historical
+
+[5] Global Computer Vision Market Size, Share, Analysis, Forecast 2030
+URL: https://www.sphericalinsights.com/reports/computer-vision-market
+Date: None
+Signal: market
+Period: historical
+
+[6] The Enterprise Vision AI Adoption Report 2026 | Datature Blog
+URL: https://datature.io/blog/enterprise-vision-ai-adoption-report-2026
+Date: None
+Signal: technology
+Period: historical
+
+[7] Advancing maturity in the adoption of digital technologies for energy ...
+URL: https://www.emerald.com/jmtm/article/36/9/114/1267490/Advancing-maturity-in-the-adoption-of-digital
+Date: None
+Signal: technology
+Period: historical
+
+[8] Advancing the Energy Industry with Computer Vision - Matroid
+URL: https://www.matroid.com/advancing-the-energy-industry-with-computer-vision
+Date: None
+Signal: technology
+Period: historical
+
+[9] Computer Vision Deployment Challenges in Manufacturing | Manufacturing & Industrial Automation | Computer Vision | Visual Grab posted on the topic | LinkedIn
+URL: https://www.linkedin.com/posts/computer-vision-manufacturing-visual-grab_computervision-machinevision-manufacturingai-activity-7474604071744602112-ZeEP
+Date: None
+Signal: technology
+Period: historical
+
+[10] Computer Vision in Manufacturing: Applications and Use Cases
+URL: https://www.bisolusi.com/post/seeing-the-future-how-computer-vision-is-reshaping-modern-manufacturing
+Date: None
+Signal: technology
+Period: historical
+
+[11] Computer Vision Investors: Top 30 Image Recognition VCs
+URL: https://www.ellty.com/blog/computer-vision-investors
+Date: None
+Signal: business
+Period: historical
+
+[12] MFV Partners | Investment Thesis & Preferences | F4
+URL: https://f4.fund/firms/mfv-partners
+Date: None
+Signal: business
+Period: historical
+
+[13] Computer Vision Startups funded by Y Combinator (YC) 2026 | Y Combinator
+URL: https://www.ycombinator.com/companies/industry/computer-vision
+Date: None
+Signal: business
+Period: historical
+
+[14] Computer Vision Applications in Industry for Process ...
+URL: https://www.ripik.ai/computer-vision-applications-in-industry-for-process-optimization
+Date: None
+Signal: business
+Period: historical
+
+[15] DMG MORI - We’re proud to share that DMG MORI Federal...
+URL: https://www.facebook.com/100064319276743/posts/were-proud-to-share-that-dmg-mori-federal-services-has-been-selected-for-funding/1346350264185603
+Date: None
+Signal: business
+Period: historical
+
+[16] 15 AI Use Cases in Manufacturing That Deliver the Highest ROI
+URL: https://ifactoryapp.com/greenfield-consulting/ai-use-cases-manufacturing-highest-roi
+Date: None
+Signal: proof
+Period: historical
+
+[17] Top Computer Vision Applications in Manufacturing
+URL: https://codewave.com/feeds/blog/computer-vision-manufacturing
+Date: None
+Signal: proof
+Period: historical
+
+[18] Deploying Computer Vision in Manufacturing: Business Value and ROI | Raleigh Murch posted on the topic | LinkedIn
+URL: https://www.linkedin.com/posts/rmurch_after-years-deploying-computer-vision-in-activity-7445108876166934528-om0H
+Date: None
+Signal: proof
+Period: historical
+
+[19] 20+ Use Cases for Computer Vision in Manufacturing ...
+URL: https://crunch-is.com/blog/all-use-cases-for-computer-vision-in-manufacturing-across-every-production-stage
+Date: None
+Signal: proof
+Period: historical
+
+[20] Harnessing the Power of Computer Vision in Manufacturing
+URL: https://cogentinfo.com/resources/harnessing-the-power-of-computer-vision-in-manufacturing-10-key-use-cases
+Date: None
+Signal: proof
+Period: historical
+
+[21] Complying with the EU Energy Efficiency Directive | Kalypso
+URL: https://kalypso.com/viewpoints/entry/eu-energy-efficiency-compliance
+Date: None
+Signal: regulation
+Period: historical
+
+[22] From Regulation to Implementation: Mastering the EU AI Act in the Energy Industry in a Practical Way
+URL: https://www.youtube.com/watch?v=BlKj7DEwdGM
+Date: None
+Signal: regulation
+Period: historical
+
+[23] Digital Twins Under EU Law: A Unified Compliance ...
+URL: https://www.mdpi.com/2079-9292/14/24/4881
+Date: None
+Signal: regulation
+Period: historical
+
+[24] Energy efficiency requirements under the EU AI Act | White & Case LLP
+URL: https://www.whitecase.com/insight-alert/energy-efficiency-requirements-under-eu-ai-act
+Date: None
+Signal: regulation
+Period: historical
+
+[25] Manufacturing & Single Market - DIGITALEUROPE
+URL: https://www.digitaleurope.org/policies/manufacturing-single-market
+Date: None
+Signal: regulation
+Period: historical
+
+[26] Computer Vision in Manufacturing Market Size & Competitors
+URL: https://www.researchandmarkets.com/report/manufacturing-computer-vision
+Date: None
+Signal: market
+Period: recent
+
+[27] Computer Vision Market Size, Share, Growth, Analysis, Report, 2034
+URL: https://straitsresearch.com/report/computer-vision-market
+Date: None
+Signal: market
+Period: recent
+
+[28] Global Computer Vision Market Size, Share, Analysis, Forecast 2030
+URL: https://www.sphericalinsights.com/reports/computer-vision-market
+Date: None
+Signal: market
+Period: recent
+
+[29] Computer Vision Market Size, Share | CAGR of 18.4%
+URL: https://market.us/report/computer-vision-market
+Date: None
+Signal: market
+Period: recent
+
+[30] Computer Vision Market Size, Share & Growth Trends, 2031
+URL: https://www.mordorintelligence.com/industry-reports/computer-vision-market
+Date: None
+Signal: market
+Period: recent
+
+[31] Advancing maturity in the adoption of digital technologies ...
+URL: https://www.sciencedirect.com/org/science/article/pii/S1741038X24000087
+Date: None
+Signal: technology
+Period: recent
+
+[32] Advancing the Energy Industry with Computer Vision - Matroid
+URL: https://www.matroid.com/advancing-the-energy-industry-with-computer-vision
+Date: None
+Signal: technology
+Period: recent
+
+[33] The Enterprise Vision AI Adoption Report 2026
+URL: https://datature.com/blog/enterprise-vision-ai-adoption-report-2026
+Date: None
+Signal: technology
+Period: recent
+
+[34] Computer Vision in Manufacturing: Applications and Use ...
+URL: https://www.bisolusi.com/post/seeing-the-future-how-computer-vision-is-reshaping-modern-manufacturing
+Date: None
+Signal: technology
+Period: recent
+
+[35] 10 Use Cases of Computer Vision in Manufacturing - Appinventiv
+URL: https://appinventiv.com/blog/computer-vision-in-manufacturing
+Date: None
+Signal: technology
+Period: recent
+
+[36] Top Computer Vision Companies to Watch in 2026 - SG Analytics
+URL: https://www.sganalytics.com/blog/computer-vision-companies
+Date: None
+Signal: business
+Period: recent
+
+[37] Computer Vision Startups funded by Y Combinator (YC) 2026 | Y Combinator
+URL: https://www.ycombinator.com/companies/industry/computer-vision
+Date: None
+Signal: business
+Period: recent
+
+[38] DMG MORI
+URL: https://www.facebook.com/100064319276743/posts/were-proud-to-share-that-dmg-mori-federal-services-has-been-selected-for-funding/1346350264185603
+Date: None
+Signal: business
+Period: recent
+
+[39] Computer Vision Applications in Industry for Process ...
+URL: https://www.ripik.ai/computer-vision-applications-in-industry-for-process-optimization
+Date: None
+Signal: business
+Period: recent
+
+[40] The AI & ML in Renewable Energy: Computer Vision ...
+URL: https://tech-stack.com/blog/ai-and-ml-in-renewable-energy
+Date: None
+Signal: business
+Period: recent
+
+[41] 15 AI Use Cases in Manufacturing That Deliver the Highest ROI
+URL: https://ifactoryapp.com/greenfield-consulting/ai-use-cases-manufacturing-highest-roi
+Date: None
+Signal: proof
+Period: recent
+
+[42] Deploying Computer Vision in Manufacturing: Business Value and ROI | Raleigh Murch posted on the topic | LinkedIn
+URL: https://www.linkedin.com/posts/rmurch_after-years-deploying-computer-vision-in-activity-7445108876166934528-om0H
+Date: None
+Signal: proof
+Period: recent
+
+[43] 20+ Use Cases for Computer Vision in Manufacturing ...
+URL: https://crunch-is.com/blog/all-use-cases-for-computer-vision-in-manufacturing-across-every-production-stage
+Date: None
+Signal: proof
+Period: recent
+
+[44] Harnessing the Power of Computer Vision in Manufacturing
+URL: https://cogentinfo.com/resources/harnessing-the-power-of-computer-vision-in-manufacturing-10-key-use-cases
+Date: None
+Signal: proof
+Period: recent
+
+[45] AI ROI in Manufacturing — 2026 Guide | The Thinking Company
+URL: https://thinking.inc/en/industry-service/manufacturing-ai-roi
+Date: None
+Signal: proof
+Period: recent
+
+[46] Complying with the EU Energy Efficiency Directive - Kalypso
+URL: https://kalypso.com/viewpoints/entry/eu-energy-efficiency-compliance
+Date: None
+Signal: regulation
+Period: recent
+
+[47] Digital Twins Under EU Law: A Unified Compliance ...
+URL: https://www.mdpi.com/2079-9292/14/24/4881
+Date: None
+Signal: regulation
+Period: recent
+
+[48] Between vision and practice: lack of alignment between AI strategies and energy regulations in the Dutch electricity sector
+URL: https://link.springer.com/article/10.1007/s44163-022-00040-6
+Date: None
+Signal: regulation
+Period: recent
+
+[49] Energy efficiency requirements under the EU AI Act
+URL: https://www.whitecase.com/insight-alert/energy-efficiency-requirements-under-eu-ai-act
+Date: None
+Signal: regulation
+Period: recent
+
+[50] Manufacturing & Single Market - DIGITALEUROPE
+URL: https://www.digitaleurope.org/policies/manufacturing-single-market
+Date: None
+Signal: regulation
+Period: recent
+
+[51] Computer Vision in Manufacturing Market by Product (PC-based Machine Vision Systems, Smart Camera-Based Vision Systems), Component (Hardware, Software), Application - Global Forecast 2024-2030
+URL: https://marketresearch.com/360iResearch-v4164/Computer-Vision-Manufacturing-Product-PC-35858087
+Date: None
+Signal: numeric_market_size
+Period: recent
+
+[52] Computer Vision in Manufacturing Market Size & Competitors
+URL: https://www.researchandmarkets.com/report/manufacturing-computer-vision
+Date: None
+Signal: numeric_market_size
+Period: recent
+
+[53] Computer Vision Market Size to Surpass USD 111.43 Billion
+URL: https://www.globenewswire.com/fr/news-release/2024/10/09/2960731/0/en/computer-vision-market-size-to-surpass-usd-111-43-billion-by-2033-straits-research.html
+Date: None
+Signal: numeric_market_size
+Period: recent
+
+[54] Computer Vision Market Size And Share Report, 2026-2033
+URL: https://www.grandviewresearch.com/industry-analysis/computer-vision-market
+Date: None
+Signal: numeric_market_size
+Period: recent
+
+[55] Computer Vision Market : North America with a Highest ...
+URL: https://www.maximizemarketresearch.com/market-report/computer-vision-market/3034
+Date: None
+Signal: numeric_market_size
+Period: recent
+
+[56] Computer Vision - Artificial Intelligence In Manufacturing ...
+URL: https://www.grandviewresearch.com/horizon/statistics/artificial-intelligence-in-manufacturing-market-outlook/technology/computer-vision/global
+Date: None
+Signal: numeric_growth
+Period: recent
+
+[57] Computer Vision Market to Hit $58.29 Billion by 2030
+URL: https://www.prnewswire.com/news-releases/computer-vision-market-to-hit-58-29-billion-by-2030-grand-view-research-inc-301851530.html
+Date: None
+Signal: numeric_growth
+Period: recent
+
+[58] Global Computer Vision Market Size, Share, Analysis, Forecast 2030
+URL: https://www.sphericalinsights.com/reports/computer-vision-market
+Date: None
+Signal: numeric_growth
+Period: recent
+
+[59] Artificial Intelligence in Manufacturing Market Size, Share & ...
+URL: https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-manufacturing-market-72679105.html
+Date: None
+Signal: numeric_growth
+Period: recent
+
+[60] Computer Vision Market to Grow by 81% and Hit a $47 ...
+URL: https://www.edge-ai-vision.com/2024/05/computer-vision-market-to-grow-by-81-and-hit-a-47-billion-value-by-2030
+Date: None
+Signal: numeric_growth
+Period: recent
+
+[61] Industrial AI Market Size, Trends, Industry Report | 2035
+URL: https://www.marketresearchfuture.com/reports/industrial-ai-market-12213
+Date: None
+Signal: numeric_investment
+Period: recent
+
+[62] Artificial Intelligence in Manufacturing Market Size, Share & ...
+URL: https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-manufacturing-market-72679105.html
+Date: None
+Signal: numeric_investment
+Period: recent
+
+[63] Department of Energy Announces $1 Million in Funding for ...
+URL: https://www.energy.gov/cmei/ammto/articles/department-energy-announces-1-million-funding-five-new-projects-cybersecurity
+Date: None
+Signal: numeric_investment
+Period: recent
+
+[64] TechTimes - Jeff Bezos is reportedly in the process of...
+URL: https://www.facebook.com/techtimespage/posts/jeff-bezos-is-reportedly-in-the-process-of-raising-a-staggering-100-billion-for-/919216570914082
+Date: None
+Signal: numeric_investment
+Period: recent
+
+[65] Computer Vision Market Size, Share, Growth, Analysis, Report, 2034
+URL: https://straitsresearch.com/report/computer-vision-market
+Date: None
+Signal: numeric_investment
+Period: recent
+
+[66] Harnessing the Power of Computer Vision in Manufacturing
+URL: https://cogentinfo.com/resources/harnessing-the-power-of-computer-vision-in-manufacturing-10-key-use-cases
+Date: None
+Signal: numeric_adoption
+Period: recent
+
+[67] Computer Vision in Manufacturing Market Size & Competitors
+URL: https://www.researchandmarkets.com/report/manufacturing-computer-vision
+Date: None
+Signal: numeric_adoption
+Period: recent
+
+[68] How Computer Vision Powers AI-Driven Process Optimization in ...
+URL: https://www.slideshare.net/slideshow/how-computer-vision-powers-ai-driven-process-optimization-in-manufacturing-pdf/275066302
+Date: None
+Signal: numeric_adoption
+Period: recent
+
+[69] Computer Vision Has Potential to Radically Transform ...
+URL: https://investor.insight.com/news-releases/news-release-details/2021/Computer-Vision-Has-Potential-to-Radically-Transform-Industries-Insight-and-IDG-Study-Shows/default.aspx
+Date: None
+Signal: numeric_adoption
+Period: recent
+
+[70] Top Computer Vision Companies to Watch in 2026 - SG Analytics
+URL: https://www.sganalytics.com/blog/computer-vision-companies
+Date: None
+Signal: numeric_adoption
+Period: recent

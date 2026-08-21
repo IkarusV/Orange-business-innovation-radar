@@ -3,17 +3,20 @@ from __future__ import annotations
 import json
 
 import plotly.express as px
+import requests
 import streamlit as st
 
 from radar.ai import AIClient, AIError
 from radar.company import DocumentError, fetch_document_url
 from radar.config import ROOT, ai_settings, load_json
-from radar.db import active_company, connect, initialize, knowledge_settings, rows, save_company, save_knowledge_settings, sync_sources, utcnow
+from radar.db import active_company, connect, initialize, knowledge_settings, rows, save_company, save_knowledge_settings, save_web_search_settings, sync_sources, utcnow, web_search_settings
+from radar.display import table_safe
 from radar.library import STAGES, add_document, company_directory, create_report, process_document, refresh_library_index, rename_document, set_stages
 from radar.intelligence import evidence_strength, opportunity_evidence_strength, prompt_intelligence_summary, research_prompt_context, sync_alec_research, taxonomy_prompt_context
 from radar.pipeline import pipeline_preflight, refresh
 from radar.scoring import publication_checks
 from radar.seed import seed_demo
+from radar.websearch import SearchError, enrich_search_run, generate_opportunity_report, import_search_results, persist_search, test_searxng_instance
 
 st.set_page_config(page_title="Orange Business Innovation Radar", page_icon="◉", layout="wide")
 
@@ -503,6 +506,160 @@ def intelligence_page() -> None:
         st.dataframe(terms, use_container_width=True, hide_index=True)
 
 
+def web_search_page() -> None:
+    st.title("Web search")
+    st.write("Run controlled discovery searches while retaining source URL, returned date, provider, engine, query, rank, snippet, and retrieval time.")
+    settings = web_search_settings()
+    with st.form("web_search_settings_form"):
+        provider_options = ["searxng_local", "searxng_public", "tavily"]
+        provider = st.selectbox("Search provider", provider_options, index=provider_options.index(settings["provider"]), format_func=lambda value: {"searxng_local":"SearXNG local/private","searxng_public":"SearXNG public instance","tavily":"Tavily"}[value])
+        searxng_url = st.text_input("Local/private SearXNG base URL", settings["searxng_url"], help="This machine can use http://100.70.65.86:8888 through Tailscale.")
+        public_searxng_url = st.text_input("Public SearXNG instance URL", settings.get("public_searxng_url", ""), help="Choose an actual instance listed on https://searx.space/. Do not enter searx.space itself.")
+        tavily_depth = st.selectbox("Tavily depth", ["basic", "advanced"], index=["basic", "advanced"].index(settings["tavily_depth"]))
+        max_queries = st.number_input("Maximum queries per action", 1, 10, settings["max_queries"])
+        max_results = st.number_input("Maximum results per query", 1, 20, settings["max_results_per_query"])
+        if st.form_submit_button("Save search settings", type="primary"):
+            save_web_search_settings(provider, tavily_depth, searxng_url, public_searxng_url, int(max_queries), int(max_results))
+            st.success("Search settings saved. Tavily credentials are not persisted here.")
+    tavily_key = st.text_input("Tavily key for this browser session", value=st.session_state.get("tavily_key", ""), type="password")
+    if tavily_key:
+        st.session_state["tavily_key"] = tavily_key
+    st.caption("SearXNG returns source URLs and may return publication dates through its JSON API. Dates depend on the underlying engine and can be missing; missing dates remain blank.")
+    test_url = public_searxng_url if provider == "searxng_public" else searxng_url
+    if provider.startswith("searxng") and st.button("Test SearXNG JSON compatibility"):
+        try:
+            result = test_searxng_instance(test_url)
+            st.success(f"Compatible JSON endpoint. Results: {result['result_count']}; sample URL: {result['sample_url'] or 'none'}; sample date present: {result['dates_supported_in_sample']}.")
+        except SearchError as error:
+            st.error(str(error))
+
+    st.subheader("Keyword discovery")
+    query = st.text_input("Keyword or research query", placeholder="Belgium industrial AI worker safety regulation")
+    if st.button("Search and preview sources", type="primary", disabled=not query.strip()):
+        try:
+            result = persist_search("keyword_discovery", [query.strip()], settings["max_results_per_query"], st.session_state.get("tavily_key", ""))
+            st.session_state["last_search_run"] = result["run_id"]
+            st.success(f"Search run {result['run_id']} returned {len(result['results'])} unique source(s).")
+        except (SearchError, requests.RequestException) as error:
+            st.error(str(error))
+    recent_runs = rows("SELECT id,purpose,provider,status,result_count,started_at FROM web_search_runs ORDER BY id DESC LIMIT 50")
+    run_options = {f"Run {run['id']} · {run['purpose']} · {run['provider']} · {run['result_count']} results · {run['status']}": run["id"] for run in recent_runs}
+    default_run = st.session_state.get("last_search_run")
+    default_label = next((label for label, run_id in run_options.items() if run_id == default_run), "")
+    selected_run_label = st.selectbox("Saved search run", [""] + list(run_options), index=([""] + list(run_options)).index(default_label) if default_label else 0)
+    last_run = run_options.get(selected_run_label) or default_run
+    if last_run:
+        search_rows = rows("SELECT title,url,published_at,retrieved_at,provider,engine,query,rank,content_status,content_source,extraction_error,content FROM web_search_results WHERE run_id=? ORDER BY rank", (last_run,))
+        st.dataframe(search_rows, use_container_width=True, hide_index=True, column_config={"url": st.column_config.LinkColumn("Source URL")})
+        if st.button("Recheck and clean preview content"):
+            cleaned = enrich_search_run(last_run)
+            st.success(f"Checked {cleaned['results']} result(s): {cleaned['usable']} usable snippets, {cleaned['enriched']} enriched pages, {cleaned['blocked']} blocked, {cleaned['thin']} too thin.")
+        if st.button("Add these sources to the signal inbox"):
+            imported = import_search_results(last_run)
+            st.success(f"Added {imported['articles_added']} new usable article record(s); skipped {imported['skipped_unusable']} blocked/thin result(s).")
+
+    st.subheader("Opportunity full report")
+    opportunities = rows("SELECT id,title,status,attractiveness,right_to_win,confidence FROM opportunities ORDER BY attractiveness DESC")
+    choices = {f"#{item['id']} · {item['title']}": item["id"] for item in opportunities}
+    selected = st.selectbox("Opportunity to research", [""] + list(choices))
+    st.warning("On demand only: one AI call plans bounded searches, the selected provider executes them, and one AI call synthesizes the cited report.")
+    if st.button("Generate cited full report", disabled=not selected):
+        ai = st.session_state.get("ai_settings", ai_settings())
+        if not ai.get("api_key"):
+            st.error("Configure the AI provider under AI settings first.")
+        elif ai.get("mode") == "auto":
+            st.error("Choose an explicit `responses` or `chat` endpoint mode in AI settings. This keeps the report budget at exactly two AI HTTP requests without endpoint fallback.")
+        else:
+            try:
+                client = AIClient({**ai, "max_requests": 2, "requests_per_minute": 10})
+                with st.status("Building on-demand report...", expanded=True) as status:
+                    status.write("Reading the opportunity, existing evidence, and full-report company context.")
+                    generated = generate_opportunity_report(choices[selected], client, st.session_state.get("tavily_key", ""))
+                    status.write(f"Retained {len(generated['report'].get('sources', []))} cited web sources.")
+                    status.write("Generated ranges, assumptions, risks, roadmap, recommendation, and next validations.")
+                    status.update(label="Full report completed", state="complete")
+                st.session_state["last_report_id"] = generated["report_id"]
+                st.success(f"Report {generated['report_id']} completed with {generated['api_requests']} AI request(s).")
+            except Exception as error:
+                st.error(str(error))
+
+    saved_reports = rows("""SELECT r.id,r.created_at,r.company_name,r.status,r.model,r.search_provider,r.query_count,r.source_count,o.title
+        FROM opportunity_reports r JOIN opportunities o ON o.id=r.opportunity_id ORDER BY r.id DESC LIMIT 50""")
+    report_choices = {f"Report {item['id']} · {item['title']} · {item['source_count']} sources · {item['created_at']}": item["id"] for item in saved_reports}
+    current_report_id = st.session_state.get("last_report_id")
+    current_report_label = next((label for label, value in report_choices.items() if value == current_report_id), "")
+    selected_report_label = st.selectbox("Saved opportunity report", [""] + list(report_choices), index=([""] + list(report_choices)).index(current_report_label) if current_report_label else 0)
+    report_id = report_choices.get(selected_report_label) or current_report_id
+    if report_id:
+        records = rows("SELECT * FROM opportunity_reports WHERE id=?", (report_id,))
+        if records:
+            report = json.loads(records[0]["report_json"])
+            trace = rows("SELECT * FROM web_search_runs WHERE id=?", (records[0].get("search_run_id"),)) if records[0].get("search_run_id") else []
+            search_run = trace[0] if trace else {}
+            trace_sources = rows("""SELECT query,rank,title,url,published_at,retrieved_at,provider,engine,content_status,content_source,extraction_error
+                FROM web_search_results WHERE run_id=? ORDER BY query,rank""", (search_run.get("id"),)) if search_run else []
+            st.subheader("Research performed")
+            m1,m2,m3,m4 = st.columns(4)
+            m1.metric("Search provider", records[0]["search_provider"])
+            m2.metric("Queries", records[0]["query_count"])
+            m3.metric("Retained sources", records[0]["source_count"])
+            m4.metric("AI model", records[0]["model"])
+            if search_run:
+                st.caption(f"Search run {search_run['id']} · started {search_run['started_at']} · finished {search_run['finished_at']} · status {search_run['status']}")
+            query_counts = []
+            research_plan = report.get("research_plan", {})
+            if research_plan:
+                st.markdown("**How the planning AI interpreted the opportunity**")
+                st.write(research_plan.get("opportunity_interpretation", ""))
+                p1,p2 = st.columns(2)
+                with p1:
+                    st.markdown("**Decision questions and evidence gaps**")
+                    st.write(research_plan.get("decision_questions", []))
+                    st.write(research_plan.get("evidence_gaps", []))
+                with p2:
+                    st.markdown("**Known evidence and naming risks**")
+                    st.write(research_plan.get("known_evidence", []))
+                    st.write(research_plan.get("naming_risks", []))
+                st.markdown("**Planned research tasks**")
+                st.dataframe(table_safe(research_plan.get("research_tasks", [])), use_container_width=True, hide_index=True)
+                if research_plan.get("coverage"):
+                    st.caption("Required report coverage: " + " · ".join(f"{name.replace('_',' ')}={'covered' if covered else 'missing'}" for name, covered in research_plan["coverage"].items()))
+            for query_text in dict.fromkeys(item["query"] for item in trace_sources):
+                query_items = [item for item in trace_sources if item["query"] == query_text]
+                query_counts.append({"query": query_text, "results": len(query_items), "usable/enriched": sum(item["content_status"] in {"usable", "enriched"} for item in query_items), "blocked/thin": sum(item["content_status"] in {"blocked", "thin"} for item in query_items)})
+            st.markdown("**Exact queries selected by the planning AI**")
+            st.dataframe(table_safe(query_counts), use_container_width=True, hide_index=True)
+            with st.expander("All web sources and extraction status", expanded=False):
+                st.dataframe(table_safe(trace_sources), use_container_width=True, hide_index=True, column_config={"url": st.column_config.LinkColumn("Source URL")})
+            st.subheader("Decision report")
+            st.write(report.get("executive_summary", ""))
+            st.markdown("**Confidence and gaps**")
+            st.write(report.get("confidence_and_gaps", ""))
+            scenarios = report.get("financial_scenarios", [])
+            if scenarios:
+                st.markdown("**Financial scenario ranges**")
+                st.dataframe(table_safe(scenarios), use_container_width=True, hide_index=True)
+                chart_rows = [{"scenario": item.get("scenario", "Scenario"), "investment": item.get("investment_high", 0), "value": item.get("value_high", 0)} for item in scenarios]
+                chart = px.bar(chart_rows, x="scenario", y=["investment", "value"], barmode="group", title="Scenario ceiling: investment versus estimated value")
+                chart.update_layout(plot_bgcolor="#151515", paper_bgcolor="#090909", font_color="#f7f7f7")
+                st.plotly_chart(chart, use_container_width=True)
+            risks = report.get("risks", [])
+            if risks:
+                st.markdown("**Risk matrix**")
+                risk_chart = px.scatter(risks, x="likelihood", y="impact", size="impact", hover_name="risk", color="impact", range_x=[0.5, 5.5], range_y=[0.5, 5.5])
+                risk_chart.update_layout(plot_bgcolor="#151515", paper_bgcolor="#090909", font_color="#f7f7f7")
+                st.plotly_chart(risk_chart, use_container_width=True)
+                st.dataframe(table_safe(risks), use_container_width=True, hide_index=True)
+            roadmap = report.get("roadmap", [])
+            if roadmap:
+                st.markdown("**Phased roadmap**")
+                st.dataframe(table_safe(roadmap), use_container_width=True, hide_index=True)
+            st.markdown("**Recommendation**")
+            st.write(report.get("recommendation", ""))
+            st.markdown("**Sources**")
+            st.dataframe(table_safe(report.get("sources", [])), use_container_width=True, hide_index=True, column_config={"url": st.column_config.LinkColumn("Source URL")})
+
+
 def settings_page() -> None:
     st.title("AI agents and prompts")
     st.write("Provider settings are session-only and are never written to disk. Prompt edits are versioned manually in `config/prompts.json` and visible here for reproducibility.")
@@ -593,6 +750,6 @@ with st.sidebar.expander("RUN LIMITS", expanded=False):
     st.number_input("Attempts / article", 1, 5, 2, key="quick_retry_limit")
 if st.sidebar.button("RUN FULL PIPELINE", type="primary", use_container_width=True, key="sidebar_run"):
     run_full_pipeline()
-page = st.sidebar.radio("Navigate", ["Radar","Company workspace","Signal inbox","Refresh","Sources","Prompt intelligence","AI settings","Methodology"], label_visibility="collapsed")
+page = st.sidebar.radio("Navigate", ["Radar","Company workspace","Signal inbox","Refresh","Sources","Web search","Prompt intelligence","AI settings","Methodology"], label_visibility="collapsed")
 st.sidebar.caption("Student prototype · Evidence must be reviewed")
-{"Radar":radar_page,"Company workspace":company_page,"Signal inbox":inbox_page,"Refresh":refresh_page,"Sources":sources_page,"Prompt intelligence":intelligence_page,"AI settings":settings_page,"Methodology":methodology_page}[page]()
+{"Radar":radar_page,"Company workspace":company_page,"Signal inbox":inbox_page,"Refresh":refresh_page,"Sources":sources_page,"Web search":web_search_page,"Prompt intelligence":intelligence_page,"AI settings":settings_page,"Methodology":methodology_page}[page]()
