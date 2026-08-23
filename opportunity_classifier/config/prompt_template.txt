@@ -1,0 +1,23 @@
+You are classifying an article for the Innovation Radar, which maps articles to a fixed taxonomy of business Use Cases and Technologies. This is closed-vocabulary classification: you may only use the exact ids listed below.
+
+TAXONOMY
+
+{taxonomy_block}
+
+ARTICLE
+
+Vertical: {vertical}
+Source: {source_name}
+Title: {title}
+Summary: {summary}
+{client_context_block}
+TASK
+
+Return ONLY a single JSON object, with no markdown code fences and no other text:
+{{"use_case_id": "string or null", "technology_id": "string or null", "confidence": 0.0, "evidence": "short justification grounded in the article text"}}
+
+Rules:
+- Only ids from the taxonomy above are valid values for use_case_id and technology_id.
+- If no taxonomy entry is a good fit for a dimension, use null for that field. Never force a match, never invent an id.
+- Respect the exclusion notes in the definitions when choosing between close entries.
+- confidence is a number between 0.0 and 1.0.

@@ -1,0 +1,246 @@
+{
+  "use_cases": [
+    {
+      "id": "predictive-maintenance",
+      "label": "Predictive maintenance",
+      "definition": "Anticipating equipment failures from operational or sensor data to schedule maintenance before breakdown."
+    },
+    {
+      "id": "asset-tracking",
+      "label": "Asset tracking",
+      "definition": "Locating and monitoring the status of physical assets across sites or supply chains."
+    },
+    {
+      "id": "production-scheduling",
+      "label": "Production scheduling",
+      "definition": "Optimizing the sequencing and allocation of manufacturing or production runs."
+    },
+    {
+      "id": "automated-inspection-defect-detection",
+      "label": "Automated inspection / defect detection",
+      "definition": "Automated visual or physical inspection of products, equipment, or infrastructure to detect defects or damage, including imaging analytics."
+    },
+    {
+      "id": "anomaly-detection",
+      "label": "Anomaly detection",
+      "definition": "Detecting abnormal patterns in system, network, or transactional data streams, including cybersecurity threats. Excludes visual/physical inspection (see automated-inspection-defect-detection)."
+    },
+    {
+      "id": "warehouse-automation",
+      "label": "Warehouse automation",
+      "definition": "Automating storage, picking, and material handling operations in warehouses."
+    },
+    {
+      "id": "business-forecasting",
+      "label": "Business forecasting",
+      "definition": "Predicting future demand, sales, or revenue to support planning decisions."
+    },
+    {
+      "id": "dynamic-pricing",
+      "label": "Dynamic pricing",
+      "definition": "Adjusting prices automatically based on demand, competition, or market conditions."
+    },
+    {
+      "id": "inventory-optimization",
+      "label": "Inventory optimization",
+      "definition": "Determining optimal stock levels and replenishment to reduce cost and stockouts."
+    },
+    {
+      "id": "route-optimization",
+      "label": "Route optimization",
+      "definition": "Computing optimal routes or tours for delivery, transport, or field operations."
+    },
+    {
+      "id": "workforce-scheduling",
+      "label": "Workforce scheduling",
+      "definition": "Optimizing staff shift planning and resource allocation against demand."
+    },
+    {
+      "id": "customer-service-automation",
+      "label": "Customer service automation",
+      "definition": "Automating customer support interactions (chatbots, voice assistants, ticket handling)."
+    },
+    {
+      "id": "personalized-recommendations",
+      "label": "Personalized recommendations",
+      "definition": "Suggesting products, content, or actions tailored to individual users."
+    },
+    {
+      "id": "customer-segmentation",
+      "label": "Customer segmentation",
+      "definition": "Grouping customers by behavior or value for targeting and strategy."
+    },
+    {
+      "id": "churn-prediction",
+      "label": "Churn prediction",
+      "definition": "Identifying customers at risk of leaving to enable retention actions."
+    },
+    {
+      "id": "sentiment-analysis",
+      "label": "Sentiment analysis",
+      "definition": "Extracting opinions and emotional tone from text, reviews, or social media."
+    },
+    {
+      "id": "fraud-detection",
+      "label": "Fraud detection",
+      "definition": "Identifying fraudulent transactions, claims, or behavior in real time or batch."
+    },
+    {
+      "id": "risk-scoring",
+      "label": "Risk scoring",
+      "definition": "Quantifying the risk of counterparties, credit, or operations to support decisions, including credit underwriting."
+    },
+    {
+      "id": "kyc-aml-automation",
+      "label": "KYC/AML automation",
+      "definition": "Automating identity verification and anti-money-laundering checks."
+    },
+    {
+      "id": "compliance-monitoring",
+      "label": "Compliance monitoring",
+      "definition": "Continuously verifying operations against regulatory or internal rules."
+    },
+    {
+      "id": "document-processing-extraction",
+      "label": "Document processing / extraction",
+      "definition": "Extracting and structuring information from documents (contracts, invoices, claims, forms)."
+    },
+    {
+      "id": "it-operations-automation",
+      "label": "IT operations automation",
+      "definition": "Automating IT infrastructure monitoring, incident response, and routine operations (AIOps)."
+    },
+    {
+      "id": "diagnostic-support",
+      "label": "Diagnostic support",
+      "definition": "Assisting clinical diagnosis or patient prioritization/triage with data-driven insight."
+    },
+    {
+      "id": "precision-agriculture",
+      "label": "Precision agriculture",
+      "definition": "Optimizing farming inputs and yields using field-level data."
+    },
+    {
+      "id": "network-optimization",
+      "label": "Network optimization",
+      "definition": "Optimizing capacity, coverage, and performance of telecom or utility networks."
+    },
+    {
+      "id": "energy-optimization",
+      "label": "Energy optimization",
+      "definition": "Reducing or shifting the energy consumption of buildings, industry, or grids."
+    },
+    {
+      "id": "environmental-emissions-monitoring",
+      "label": "Environmental/emissions monitoring",
+      "definition": "Measuring and reporting environmental impact, emissions, or pollution."
+    }
+  ],
+  "technologies": [
+    {
+      "id": "cloud-data-platform",
+      "label": "Cloud Data Platform",
+      "definition": "Cloud-based infrastructure for storing, integrating, and analyzing data at scale, including data lakes and warehouses."
+    },
+    {
+      "id": "edge-computing",
+      "label": "Edge Computing",
+      "definition": "Processing data locally near its source instead of in a central cloud."
+    },
+    {
+      "id": "digital-twin",
+      "label": "Digital Twin",
+      "definition": "Virtual real-time replica of a physical asset, process, or system used for simulation and monitoring."
+    },
+    {
+      "id": "iot-platforms",
+      "label": "IoT Platforms",
+      "definition": "Platforms connecting and managing networks of sensors and devices, including sensor networks and telematics."
+    },
+    {
+      "id": "rfid-asset-tagging",
+      "label": "RFID / Asset Tagging",
+      "definition": "Tag-based identification and tracking of physical items (passive or active tags)."
+    },
+    {
+      "id": "connectivity-5g",
+      "label": "5G Connectivity",
+      "definition": "High-bandwidth, low-latency mobile connectivity enabling real-time industrial use cases."
+    },
+    {
+      "id": "machine-learning",
+      "label": "Machine Learning",
+      "definition": "Statistical or deep learning models trained on data for prediction or classification. Excludes content generation (see generative-ai-llms) and image understanding (see computer-vision)."
+    },
+    {
+      "id": "computer-vision",
+      "label": "Computer Vision",
+      "definition": "Interpreting images or video: recognition, detection, measurement."
+    },
+    {
+      "id": "natural-language-processing",
+      "label": "Natural Language Processing",
+      "definition": "Analyzing and understanding text or language: classification, extraction, translation. Excludes content generation (see generative-ai-llms)."
+    },
+    {
+      "id": "generative-ai-llms",
+      "label": "Generative AI / LLMs",
+      "definition": "Large language and generative models producing text, code, or images, or acting as reasoning agents."
+    },
+    {
+      "id": "speech-recognition",
+      "label": "Speech Recognition",
+      "definition": "Converting spoken audio into text or voice commands."
+    },
+    {
+      "id": "reinforcement-learning",
+      "label": "Reinforcement Learning",
+      "definition": "Agents learning optimal decisions through trial-and-error interaction with an environment."
+    },
+    {
+      "id": "robotic-process-automation",
+      "label": "Robotic Process Automation",
+      "definition": "Software bots automating repetitive, rule-based digital tasks. No physical robots (see industrial-robotics)."
+    },
+    {
+      "id": "industrial-robotics",
+      "label": "Industrial Robotics",
+      "definition": "Physical robots performing manufacturing or industrial tasks."
+    },
+    {
+      "id": "warehouse-automation-systems",
+      "label": "Warehouse Automation Systems",
+      "definition": "Physical automation hardware for warehouses: AS/RS, AGVs, sorters."
+    },
+    {
+      "id": "autonomous-vehicles-drones",
+      "label": "Autonomous Vehicles / Drones",
+      "definition": "Self-navigating vehicles or drones for transport, inspection, or delivery."
+    },
+    {
+      "id": "blockchain-distributed-ledger",
+      "label": "Blockchain / Distributed Ledger",
+      "definition": "Shared tamper-evident ledgers for traceability or decentralized transactions."
+    },
+    {
+      "id": "cybersecurity-platform",
+      "label": "Cybersecurity Platform",
+      "definition": "Security tooling protecting systems and data, including zero trust architectures and biometric authentication."
+    },
+    {
+      "id": "digital-payments-infrastructure",
+      "label": "Digital Payments Infrastructure",
+      "definition": "Systems enabling electronic payment processing and settlement."
+    },
+    {
+      "id": "e-invoicing-peppol-integration",
+      "label": "E-invoicing / Peppol Integration",
+      "definition": "Structured electronic invoicing exchanged via standards such as Peppol."
+    },
+    {
+      "id": "ar-vr-platforms",
+      "label": "AR/VR Platforms",
+      "definition": "Augmented or virtual reality for training, visualization, or remote assistance."
+    }
+  ]
+}
