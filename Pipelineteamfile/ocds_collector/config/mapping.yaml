@@ -1,0 +1,98 @@
+# Innovation Radar - OCDS collector vertical mapping (UK, Australia, Ukraine).
+#
+# CPV reuse: `verticals` below is the SAME 8-digit CPV codes as
+# ted_collector/config/mapping.yaml, copied here (not imported - the two modules
+# stay independent, per the "don't touch ted_collector" instruction). Both UK
+# (Find a Tender + Contracts Finder) and Ukraine (ProZorro) match against these,
+# but NEITHER underlying API supports server-side CPV filtering the way TED
+# does - confirmed live 2026-08-22 (see README "How it queries" section):
+#   - UK Find a Tender's ocdsReleasePackages endpoint only accepts
+#     stages/limit/cursor/updatedFrom/updatedTo - no CPV/classification param.
+#   - UK Contracts Finder's OCDS search DOES accept a `cpvCodes` param, but it's
+#     a silent no-op - a request with cpvCodes=33000000 and one with no cpvCodes
+#     at all returned byte-identical release lists in testing.
+#   - Ukraine ProZorro's public tenders feed is a changes-feed (id +
+#     dateModified only) with no field-expansion (`opt_fields` is also a
+#     no-op) - classification only appears on the full per-tender GET.
+# So this collector fetches date-windowed pages/tenders and matches CPV
+# CLIENT-SIDE, at CPV **division** level (first 2 digits), against whatever
+# classification codes appear on each release/tender - same broad/hierarchical
+# caveat TED's own README already flags for CPV matching in general. Ukraine's
+# ДК021 codes are literally CPV-format codes with a checksum suffix (e.g.
+# "14410000-8"/"03220000-9" where TED would show "14000000"/"03000000") -
+# division-level match handles the suffix cleanly. CONFIRMED LIVE 2026-08-22,
+# and this is the one real deviation from EU CPV the brief asked to check for:
+# ProZorro's classification *scheme label* is not stable "CPV" - an old
+# (2015) tender used scheme "CPV", current tenders use scheme "ДК021"
+# (Ukraine's own name for its national CPV adaptation), same code space
+# either way. The collector accepts both scheme labels - see
+# extract_ua_cpv_codes() in collector/query.py.
+verticals:
+  Manufacturing:
+    cpv: ["42000000", "31000000"]
+  Retail:
+    cpv: ["55000000"]
+  Finance, Banking, Insurance:
+    cpv: ["66000000"]
+  Public/Gov sector:
+    cpv: ["75000000"]
+  Defense:
+    cpv: ["35000000"]
+  Automotive:
+    cpv: ["34000000"]
+  Transportation & Construction:
+    cpv: ["45000000", "60000000"]
+  Lifesciences:
+    cpv: ["33600000", "73000000"]
+  Energy:
+    cpv: ["09000000"]
+  Wholesale:
+    cpv: ["63100000"]
+  Media & Entertainment:
+    cpv: ["92000000"]
+  Healthcare:
+    cpv: ["33000000", "85000000"]
+  Natural Resources:
+    cpv: ["14000000"]
+  Aerospace:
+    cpv: ["34000000"]
+
+# Per-country enable flags + source detail. `verticals` above applies to any
+# country with enabled: true; au is disabled - see the block below for why.
+countries:
+  uk:
+    enabled: true
+    source_type: ocds_uk
+    sources: ["fts", "contracts_finder"]
+  ua:
+    enabled: true
+    source_type: ocds_ua
+    sources: ["prozorro"]
+  au:
+    enabled: false
+    source_type: ocds_au
+    reason: >
+      No live-queryable free API found (confirmed live 2026-08-22). www.tenders.gov.au
+      (AusTender) is a JS SPA behind a CloudFront bot-block (plain requests get a 403;
+      even with a browser User-Agent, no documented public search/REST API endpoint
+      was found - only ASP.NET-style 404s on every guessed /api/Atm/* route). The
+      actual AusTender data product for bulk consumption is a weekly CSV export
+      ("Contract Notice Export") published via data.gov.au
+      (dataset id: austender-contract-notice-export) - a bulk file, not a query API.
+      Per explicit instruction: do not build a scraper, do not pull/research the full
+      UNSPSC codeset externally. Australia contributes 0 rows this run - documented
+      gap, not a bug.
+    # Reference only (not used for querying, since there's no live API to query):
+    # the 3 UNSPSC segments the user pre-confirmed, in case a live API surfaces later.
+    unspsc_segments_reference:
+      "43":
+        label: "Information Technology, Broadcasting and Telecommunications"
+        vertical: "Media & Entertainment"
+      "81":
+        label: "Engineering, Research and Technology Based Services"
+        vertical: "cross-cutting - no single vertical"
+      "80":
+        label: "Management and Business Professional Services"
+        vertical: "Public/Gov sector"
+      # every other vertical: intentionally unmapped for Australia - no confirmed
+      # UNSPSC segment, not guessed.

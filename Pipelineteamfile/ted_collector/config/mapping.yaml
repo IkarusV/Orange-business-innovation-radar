@@ -1,0 +1,92 @@
+# Innovation Radar - TED vertical mapping. Exactly as specified in the brief;
+# do not edit CPV / main-activity / keyword values without sign-off.
+#
+# cpv_mapping_quality: how clean each vertical's CPV/main-activity match is
+# (kept for reference / dark_corner.md context) - NOT written to the DB. Every
+# TED row's actual `confidence` column is a flat "good", same as RSS; see
+# dark_corner.md for the real per-vertical noise/overlap numbers this used to
+# drive.
+
+Manufacturing:
+  cpv: ["42000000", "31000000"]
+  main_activity: []
+  keywords: ["manufacturing"]
+  cpv_mapping_quality: High
+
+Retail:
+  cpv: ["55000000"]
+  main_activity: []
+  keywords: ["retail"]
+  cpv_mapping_quality: Low
+
+Finance, Banking, Insurance:
+  cpv: ["66000000"]
+  main_activity: []
+  keywords: []
+  cpv_mapping_quality: High
+
+Public/Gov sector:
+  cpv: ["75000000"]
+  main_activity: ["gen-pub", "pub-os"]
+  keywords: []
+  cpv_mapping_quality: Medium
+
+Defense:
+  cpv: ["35000000"]
+  main_activity: ["defence"]
+  keywords: []
+  cpv_mapping_quality: Medium-High
+
+Automotive:
+  cpv: ["34000000"]
+  main_activity: []
+  keywords: ["automotive", "vehicle fleet"]
+  cpv_mapping_quality: Low
+
+Transportation & Construction:
+  cpv: ["45000000", "60000000"]
+  main_activity: ["rail", "urttb", "port", "airport"]
+  keywords: []
+  cpv_mapping_quality: High
+
+Lifesciences:
+  cpv: ["33600000", "73000000"]
+  main_activity: []
+  keywords: ["life sciences", "biotech"]
+  cpv_mapping_quality: Low-Medium
+
+Energy:
+  cpv: ["09000000"]
+  main_activity: ["electricity", "gas-heat", "gas-oil", "solid-fuel"]
+  keywords: []
+  cpv_mapping_quality: High
+
+Wholesale:
+  cpv: ["63100000"]
+  main_activity: []
+  keywords: ["wholesale distribution"]
+  cpv_mapping_quality: Low
+
+Media & Entertainment:
+  cpv: ["92000000"]
+  main_activity: []
+  keywords: ["media", "broadcasting"]
+  cpv_mapping_quality: Low-Medium
+
+Healthcare:
+  cpv: ["33000000", "85000000"]
+  main_activity: ["health"]
+  keywords: []
+  cpv_mapping_quality: High
+
+Natural Resources:
+  cpv: ["14000000"]
+  main_activity: ["solid-fuel", "gas-oil"]
+  keywords: []
+  cpv_mapping_quality: High
+
+Aerospace:
+  cpv: ["34000000"]
+  main_activity: ["defence"]
+  keywords: ["aerospace", "aircraft", "satellite"]
+  cpv_mapping_quality: Low
