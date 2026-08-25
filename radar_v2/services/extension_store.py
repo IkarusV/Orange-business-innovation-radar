@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS search_runs (id INTEGER PRIMARY KEY, query TEXT NOT N
 CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY, opportunity_id INTEGER NOT NULL, title TEXT NOT NULL, company TEXT NOT NULL, source_count INTEGER NOT NULL, created_at TEXT NOT NULL, status TEXT NOT NULL, payload_json TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS pipeline_runs (id INTEGER PRIMARY KEY, started_at TEXT NOT NULL, finished_at TEXT, status TEXT NOT NULL, stage TEXT, progress INTEGER NOT NULL DEFAULT 0, message TEXT, summary_json TEXT, error TEXT);
 CREATE TABLE IF NOT EXISTS app_settings (id INTEGER PRIMARY KEY CHECK(id=1), ai_base_url TEXT NOT NULL, ai_model TEXT NOT NULL, ai_mode TEXT NOT NULL, search_provider TEXT NOT NULL, searxng_url TEXT NOT NULL, tavily_depth TEXT NOT NULL, max_search_results INTEGER NOT NULL, max_research_queries INTEGER NOT NULL DEFAULT 5, updated_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS orange_priorities (id INTEGER PRIMARY KEY CHECK(id=1), use_case_ids TEXT NOT NULL DEFAULT '[]', technology_ids TEXT NOT NULL DEFAULT '[]', updated_at TEXT NOT NULL);
 """
 
 
@@ -41,6 +42,10 @@ def connect() -> sqlite3.Connection:
     connection.execute(
         """INSERT OR IGNORE INTO app_settings(id,ai_base_url,ai_model,ai_mode,search_provider,searxng_url,tavily_depth,max_search_results,updated_at)
         VALUES(1,'https://api.navy/v1','gpt-5.6-luna','responses','searxng','http://localhost:8888','basic',8,?)""",
+        (now(),),
+    )
+    connection.execute(
+        "INSERT OR IGNORE INTO orange_priorities(id,use_case_ids,technology_ids,updated_at) VALUES(1,'[]','[]',?)",
         (now(),),
     )
     document_columns = {row[1] for row in connection.execute("PRAGMA table_info(documents)")}
@@ -233,6 +238,27 @@ def save_settings(ai_base_url: str, ai_model: str, ai_mode: str, search_provider
         connection.execute(
             """UPDATE app_settings SET ai_base_url=?,ai_model=?,ai_mode=?,search_provider=?,searxng_url=?,tavily_depth=?,max_search_results=?,max_research_queries=?,updated_at=? WHERE id=1""",
             (ai_base_url.rstrip("/"), ai_model.strip(), ai_mode, search_provider, searxng_url.rstrip("/"), tavily_depth, max_search_results, max(1, min(20, int(max_research_queries))), now()),
+        )
+        connection.commit()
+
+
+def orange_priorities() -> dict:
+    """Orange's own priority use cases/technologies (Strategic relevance
+    scoring input) - distinct from `company_profiles`, which describes the
+    customer/prospect being pitched to, not Orange's own portfolio."""
+    row = _rows("SELECT * FROM orange_priorities WHERE id=1")[0]
+    return {
+        "use_case_ids": json.loads(row["use_case_ids"]),
+        "technology_ids": json.loads(row["technology_ids"]),
+        "updated_at": row["updated_at"],
+    }
+
+
+def save_orange_priorities(use_case_ids: list[str], technology_ids: list[str]) -> None:
+    with connect() as connection:
+        connection.execute(
+            "UPDATE orange_priorities SET use_case_ids=?,technology_ids=?,updated_at=? WHERE id=1",
+            (json.dumps(sorted(set(use_case_ids))), json.dumps(sorted(set(technology_ids))), now()),
         )
         connection.commit()
 

@@ -1,7 +1,7 @@
 import reflex as rx
 
 from radar_v2.components.shell import page_shell
-from radar_v2.components.ui import empty_state, page_header, section_title
+from radar_v2.components.ui import empty_state, page_header, priority_chip, section_title
 from radar_v2.constants import LINE, MUTED, ORANGE
 from radar_v2.state import RadarState
 from radar_v2.styles import BUTTON, CARD, INPUT, SOFT_CARD
@@ -69,6 +69,50 @@ def document_row(item) -> rx.Component:
     )
 
 
+def orange_priorities_section() -> rx.Component:
+    """Orange's OWN priority use cases and technologies - a separate concept from the
+    customer/prospect business profile above. This selection is the strategic
+    relevance component (15%) of every opportunity's attractiveness score."""
+    return rx.box(
+        rx.flex(
+            section_title("Orange priorities", "What Orange itself is pursuing - not the customer profile above"),
+            rx.spacer(),
+            rx.badge(RadarState.orange_priority_count.to_string() + " selected", color_scheme="orange", variant="soft", radius="full"),
+            width="100%", align=rx.breakpoints(initial="start", sm="center"),
+            direction=rx.breakpoints(initial="column", sm="row"), gap="3",
+        ),
+        rx.callout(
+            "These choices drive the strategic relevance component (15%) of every opportunity's attractiveness score. Leave them empty and that component stays unscored rather than counting as zero.",
+            icon="target", color_scheme="orange", size="1", width="100%", margin_top="16px",
+        ),
+        rx.text("Priority use cases", weight="medium", margin_top="22px"),
+        rx.text("The business problems Orange wants to win", color=MUTED, size="1", margin_top="2px"),
+        rx.flex(
+            rx.foreach(RadarState.orange_use_case_options, lambda option: priority_chip(option, RadarState.toggle_orange_use_case)),
+            wrap="wrap", gap="2", margin_top="12px", width="100%",
+        ),
+        rx.text("Priority technologies", weight="medium", margin_top="24px"),
+        rx.text("The capabilities Orange wants to lead with", color=MUTED, size="1", margin_top="2px"),
+        rx.flex(
+            rx.foreach(RadarState.orange_technology_options, lambda option: priority_chip(option, RadarState.toggle_orange_technology)),
+            wrap="wrap", gap="2", margin_top="12px", width="100%",
+        ),
+        rx.flex(
+            rx.button("Save priorities", rx.icon("check", size=17), on_click=RadarState.save_orange_priorities, **BUTTON),
+            rx.button("Clear all", rx.icon("eraser", size=16), on_click=RadarState.clear_orange_priorities, variant="outline", color_scheme="gray"),
+            rx.spacer(),
+            rx.cond(
+                RadarState.orange_priorities_updated != "",
+                rx.text("Last saved " + RadarState.orange_priorities_updated, color=MUTED, size="1"),
+                rx.box(),
+            ),
+            direction=rx.breakpoints(initial="column", sm="row"),
+            gap="3", margin_top="24px", width="100%", align=rx.breakpoints(initial="start", sm="center"),
+        ),
+        **CARD, width="100%",
+    )
+
+
 def company() -> rx.Component:
     return page_shell(
         rx.vstack(
@@ -133,6 +177,7 @@ def company() -> rx.Component:
                 ),
                 columns=rx.breakpoints(initial="1", lg="2"), gap="5", width="100%",
             ),
+            orange_priorities_section(),
             section_title("Company knowledge", "A concise view of the reference material available to the radar"),
             rx.callout(
                 "Each selected document is summarised separately. Select two or more when you want an additional combined company report.",

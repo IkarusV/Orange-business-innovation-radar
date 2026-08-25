@@ -207,6 +207,12 @@ def _run(limit=None, progress=None, client_context_path=None) -> dict:
         (t_before_classify,),
     ).fetchone()[0] or 0
     after_spaces = spaces_snapshot(conn)
+    horizon_distribution = dict(conn.execute(
+        "SELECT horizon, COUNT(*) FROM opportunity_spaces GROUP BY horizon"
+    ))
+    signal_type_distribution = dict(conn.execute(
+        "SELECT signal_type, COUNT(*) FROM article_classifications GROUP BY signal_type"
+    ))
     conn.close()
 
     space_deltas = diff_spaces(before_spaces, after_spaces)
@@ -220,6 +226,8 @@ def _run(limit=None, progress=None, client_context_path=None) -> dict:
         "ml_gate": ml_gate,
         "classified_this_run": status_counts,
         "tokens_this_run": tokens_this_run,
+        "signal_type_distribution": signal_type_distribution,
+        "horizon_distribution": horizon_distribution,
         "new_opportunity_spaces": space_deltas["new_spaces"],
         "grown_opportunity_spaces": space_deltas["grown_spaces"],
     }
@@ -233,6 +241,8 @@ def _run(limit=None, progress=None, client_context_path=None) -> dict:
     log.info("ML filter: kept %d, deleted %d, unscored %d",
               ml_gate["kept"], ml_gate["deleted"], ml_gate["unscored_kept_by_default"])
     log.info("classified this run: %s (%d tokens)", status_counts, tokens_this_run)
+    log.info("signal types: %s", signal_type_distribution)
+    log.info("opportunity spaces by horizon: %s", horizon_distribution)
     log.info("new opportunity spaces: %d, grown opportunity spaces: %d",
               len(space_deltas["new_spaces"]), len(space_deltas["grown_spaces"]))
     log.info("summary written to %s", summary_path)

@@ -1,10 +1,45 @@
 import reflex as rx
 
 from radar_v2.components.shell import page_shell
-from radar_v2.components.ui import evidence_card, page_header, section_title, status_badge
+from radar_v2.components.ui import (
+    attractiveness_row,
+    detail_region,
+    evidence_card,
+    horizon_check_row,
+    page_header,
+    persona_relevance_row,
+    placeholder_region,
+    role_mode_switcher,
+    section_title,
+    signal_type_row,
+    status_badge,
+)
 from radar_v2.constants import LINE, MUTED, ORANGE
 from radar_v2.state import RadarState
 from radar_v2.styles import BUTTON, CARD, SOFT_CARD
+
+
+def _identity_card(item) -> rx.Component:
+    """Always visible, in every mode: what this space actually is. Not part of
+    the mode-switched region set."""
+    return rx.box(
+        section_title("Business direction"),
+        rx.grid(
+            rx.box(rx.text("Opportunity", color=MUTED, size="1"), rx.text(item["use_case"], weight="medium", margin_top="4px"), **SOFT_CARD),
+            rx.box(rx.text("Enabling capability", color=MUTED, size="1"), rx.text(item["technology"], weight="medium", margin_top="4px"), **SOFT_CARD),
+            rx.box(
+                rx.text("Business domain", color=MUTED, size="1"),
+                rx.text(item["primary_domain_label"], weight="medium", margin_top="4px"),
+                rx.text(
+                    "Derived from the technology and use case assignment - the primary always comes from the technology.",
+                    color=MUTED, size="1", line_height="1.5", margin_top="6px",
+                ),
+                **SOFT_CARD,
+            ),
+            columns=rx.breakpoints(initial="1", md="3"), gap="3", width="100%", margin_top="16px",
+        ),
+        **CARD, width="100%",
+    )
 
 
 def opportunity_detail() -> rx.Component:
@@ -16,38 +51,160 @@ def opportunity_detail() -> rx.Component:
                 item["vertical"], item["use_case"], item["summary"],
                 rx.button("Build business report", rx.icon("file-chart-column", size=17), on_click=RadarState.choose_report_opportunity(item["id"]), **BUTTON),
             ),
-            rx.hstack(status_badge(item["horizon"]), rx.badge(item["technology"], variant="surface", color_scheme="gray"), spacing="3"),
+            role_mode_switcher(compact=True),
+            rx.flex(
+                status_badge(item["horizon"]),
+                rx.badge(item["technology"], variant="surface", color_scheme="gray"),
+                rx.foreach(
+                    item["domain_labels"],
+                    lambda label: rx.badge(label, variant="surface", color_scheme="orange", radius="full"),
+                ),
+                rx.cond(item["horizon_reason"], rx.text(item["horizon_reason"], color=MUTED, size="2")),
+                gap="3", align="center", wrap="wrap",
+            ),
             rx.grid(
-                rx.box(rx.text("Strategic fit", color=MUTED), rx.heading(item["relevance"].to_string() + "%", size="8", color=ORANGE), rx.progress(value=item["relevance"], color_scheme="orange", margin_top="12px"), **CARD),
+                rx.box(rx.text("Attractiveness", color=MUTED), rx.heading(item["relevance"].to_string() + " / 100", size="8", color=ORANGE), rx.progress(value=item["relevance"], color_scheme="orange", margin_top="12px"), **CARD),
                 rx.box(rx.text("Evidence confidence", color=MUTED), rx.heading(item["confidence"].to_string() + "%", size="8"), rx.progress(value=item["confidence"], color_scheme="blue", margin_top="12px"), **CARD),
                 rx.box(rx.text("Supporting signals", color=MUTED), rx.heading(item["article_count"], size="8"), rx.text("Institutional records", color=MUTED, margin_top="12px"), **CARD),
-                rx.box(rx.text("Momentum", color=MUTED), rx.heading(item["momentum"], size="8", color="#4bd08b"), rx.text("Current evidence cycle", color=MUTED, margin_top="12px"), **CARD),
+                rx.box(
+                    rx.text("Momentum", color=MUTED),
+                    rx.heading(item["momentum"], size="8", color=rx.match(item["momentum"], ("New", ORANGE), ("—", MUTED), "#4bd08b")),
+                    rx.text(rx.match(item["momentum"], ("New", "No earlier evidence to compare"), ("—", "Not enough dated evidence"), "Against the previous 90 days"), color=MUTED, margin_top="12px"),
+                    **CARD,
+                ),
                 columns=rx.breakpoints(initial="2", lg="4"), gap="4", width="100%",
             ),
-            rx.grid(
-                rx.box(
-                    section_title("Business direction"),
+            _identity_card(item),
+            # Region order and expansion come from the active mode's presentation
+            # profile. CSS ordering is used rather than conditional rendering so
+            # every region is in the page in every mode.
+            rx.flex(
+                detail_region(
+                    "why_hot_now",
+                    rx.box(rx.text(item["why_hot_now"], line_height="1.6"), **SOFT_CARD, width="100%"),
+                    rx.callout(
+                        "One clause per recent signal, strongest evidence type first. A space with a single "
+                        "qualifying signal gets a single clause rather than a padded sentence.",
+                        icon="info", color_scheme="gray", size="1", width="100%", margin_top="12px",
+                    ),
+                ),
+                detail_region(
+                    "why_this_matters",
+                    rx.box(rx.text(item["why_this_matters"], line_height="1.6"), **SOFT_CARD, width="100%"),
+                    rx.callout(
+                        "The second clause lists every right-to-win element on the record. No account, deal, "
+                        "reference case, offering or partner data exists in the radar yet, so it currently states "
+                        "that absence rather than filling it in.",
+                        icon="info", color_scheme="gray", size="1", width="100%", margin_top="12px",
+                    ),
+                ),
+                detail_region(
+                    "recommended_move",
+                    rx.box(rx.text(RadarState.recommended_move_text, line_height="1.6"), **SOFT_CARD, width="100%"),
+                    rx.callout(
+                        "Composed for the active view mode from this space's timing, its strongest persona and its "
+                        "leading signal type - a strategist, a salesperson and a presales engineer get different "
+                        "moves on the same space.",
+                        icon="info", color_scheme="gray", size="1", width="100%", margin_top="12px",
+                    ),
+                ),
+                detail_region(
+                    "score_breakdown",
                     rx.vstack(
-                        rx.box(rx.text("Opportunity", color=MUTED, size="1"), rx.text(item["use_case"], weight="medium", margin_top="4px"), **SOFT_CARD),
-                        rx.box(rx.text("Enabling capability", color=MUTED, size="1"), rx.text(item["technology"], weight="medium", margin_top="4px"), **SOFT_CARD),
-                        rx.box(rx.text("Recommended move", color=MUTED, size="1"), rx.text("Validate with a focused customer conversation and shape a measurable proof of value.", line_height="1.55", margin_top="4px"), **SOFT_CARD),
+                        rx.foreach(item["breakdown"], attractiveness_row),
                         spacing="3", width="100%",
                     ),
-                    **CARD,
-                ),
-                rx.box(
-                    section_title("Signal profile"),
-                    rx.recharts.radial_bar_chart(
-                        rx.recharts.radial_bar(data_key="value", background=True, fill=ORANGE),
-                        data=[{"name": "Strategic fit", "value": item["relevance"]}, {"name": "Confidence", "value": item["confidence"]}],
-                        inner_radius="35%", outer_radius="95%", start_angle=90, end_angle=-270, height=290, width="100%",
+                    rx.callout(
+                        "Components with no data yet are left out of the weighted score and the remaining weights are rescaled - a missing signal is never counted as a zero.",
+                        icon="info", color_scheme="gray", size="1", width="100%", margin_top="16px",
                     ),
-                    **CARD,
+                    rx.box(
+                        section_title("Why this timing", "Derived from what kind of signals this space has and when they landed - not from its score"),
+                        rx.hstack(
+                            status_badge(item["horizon"]),
+                            rx.text(item["horizon_rule"], color=MUTED, size="2"),
+                            spacing="3", align="center", margin_top="14px",
+                        ),
+                        rx.vstack(
+                            rx.foreach(item["horizon_breakdown"], horizon_check_row),
+                            spacing="3", width="100%", margin_top="16px",
+                        ),
+                        rx.callout(
+                            "Now needs converging evidence: several concrete signals, from different sources, at least one of them recent. "
+                            "A single tender, or two records from the same feed, lands in Next.",
+                            icon="info", color_scheme="gray", size="1", width="100%", margin_top="16px",
+                        ),
+                        margin_top="20px", padding_top="20px", border_top=f"1px solid {LINE}", width="100%",
+                    ),
+                    placeholder_region(
+                        "Fit score",
+                        "No right-to-win / fit score exists in the radar yet, so only attractiveness and urgency are broken down here.",
+                    ),
                 ),
-                columns=rx.breakpoints(initial="1", lg="2"), gap="5", width="100%",
+                detail_region(
+                    "signals_evidence",
+                    rx.box(
+                        section_title("Signal types behind it", "Each answered against the article text alone"),
+                        rx.cond(
+                            item["signal_mix"],
+                            rx.vstack(
+                                rx.foreach(item["signal_mix"], signal_type_row),
+                                spacing="3", width="100%", margin_top="16px",
+                            ),
+                            rx.callout(
+                                "No signal types assigned to this evidence yet - run the classifier to populate them.",
+                                icon="info", color_scheme="gray", size="1", width="100%", margin_top="16px",
+                            ),
+                        ),
+                        width="100%",
+                    ),
+                    rx.box(
+                        section_title("Supporting evidence", "Open the original institutional records behind this opportunity"),
+                        rx.grid(rx.foreach(RadarState.evidence, evidence_card), columns=rx.breakpoints(initial="1", md="2"), gap="4", width="100%", margin_top="16px"),
+                        margin_top="20px", padding_top="20px", border_top=f"1px solid {LINE}", width="100%",
+                    ),
+                ),
+                detail_region(
+                    "right_to_win",
+                    placeholder_region(
+                        "Right to win & proof points",
+                        "No right-to-win score or proof point library exists in the radar yet. This region keeps its place in every "
+                        "mode so it can be filled without another layout change.",
+                    ),
+                ),
+                detail_region(
+                    "offering_matches",
+                    placeholder_region(
+                        "Offering & partner matches",
+                        "Offering and partner matching is not part of the radar yet. The space's business domain and enabling "
+                        "capability above are the closest available connection to the catalogue.",
+                    ),
+                ),
+                detail_region(
+                    "persona_relevance",
+                    rx.cond(
+                        RadarState.persona_weighting_available,
+                        rx.cond(
+                            item["persona_weights"].length() > 0,
+                            rx.vstack(
+                                rx.foreach(item["persona_weights"], persona_relevance_row),
+                                spacing="3", width="100%",
+                            ),
+                            placeholder_region(
+                                "Persona relevance",
+                                "No persona clears even the peripheral tier for this space's use case, "
+                                "business domain and vertical combination.",
+                            ),
+                        ),
+                        placeholder_region(
+                            "Persona relevance",
+                            "Persona relevance weighting is not implemented yet, so no persona score is shown. "
+                            "Every persona threshold in the view modes is currently a no-op.",
+                        ),
+                    ),
+                ),
+                direction="row", wrap="wrap", gap="5", width="100%", align="start",
             ),
-            section_title("Supporting evidence", "Open the original institutional records behind this opportunity"),
-            rx.grid(rx.foreach(RadarState.evidence, evidence_card), columns=rx.breakpoints(initial="1", md="2"), gap="4", width="100%"),
             spacing="6", width="100%", align="start",
         )
     )

@@ -1,0 +1,4912 @@
+{
+  "manifest": {
+    "exported_at": "2026-08-25T10:36:40.511617+00:00",
+    "source_project": "C:\\Users\\danuk\\OneDrive\\Pipeline Opportunity",
+    "source_database": "C:\\Users\\danuk\\OneDrive\\Pipeline Opportunity\\data\\articles.db",
+    "opportunity_spaces_exported": 309,
+    "linked_articles_exported": 548,
+    "verticals": {
+      "Finance, Banking, Insurance": 39,
+      "Aerospace": 33,
+      "Automotive": 32,
+      "Defense": 31,
+      "Public/Gov sector": 26,
+      "Healthcare": 25,
+      "Retail": 18,
+      "Manufacturing": 18,
+      "Transportation & Construction": 17,
+      "Wholesale": 16,
+      "Energy": 15,
+      "Natural Resources": 14,
+      "Media & Entertainment": 13,
+      "Lifesciences": 12
+    },
+    "source_types_of_linked_articles": {
+      "cordis": 315,
+      "gnews": 121,
+      "rss": 52,
+      "ted": 48,
+      "ocds_uk": 11,
+      "ocds_ua": 1
+    },
+    "distinct_use_cases": 25,
+    "distinct_technologies": 18,
+    "taxonomy_reference": "Pipelineteamfile/opportunity_classifier/config/taxonomy.json (identical in both projects)"
+  },
+  "opportunity_spaces": [
+    {
+      "source_space_id": 143,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 14,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25013,
+        33066,
+        33232,
+        33345,
+        33415,
+        33557,
+        40795,
+        40829,
+        40839,
+        40854,
+        40952,
+        40967,
+        40969,
+        40994
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 465,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 13,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41765,
+        41777,
+        41780,
+        41801,
+        41808,
+        41820,
+        41824,
+        41834,
+        41844,
+        41846,
+        41847,
+        41848,
+        41932
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 152,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 11,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25934,
+        41759,
+        41763,
+        41787,
+        41794,
+        41800,
+        41851,
+        41855,
+        41930,
+        41936,
+        41979
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 31,
+      "vertical": "Automotive",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 8,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        368,
+        370,
+        377,
+        388,
+        412,
+        435,
+        3465,
+        45827
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 46,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 8,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        648,
+        26568,
+        26631,
+        42422,
+        42474,
+        42573,
+        42594,
+        42596
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 161,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 8,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26550,
+        26561,
+        26592,
+        26606,
+        42396,
+        42402,
+        42488,
+        42491
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 47,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 7,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        698,
+        27225,
+        27250,
+        39675,
+        39693,
+        39738,
+        39835
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 168,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 7,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27076,
+        39618,
+        39621,
+        39656,
+        39661,
+        39817,
+        39825
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 57,
+      "vertical": "Defense",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 7,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3173,
+        10982,
+        11080,
+        11086,
+        40757,
+        40849,
+        40951
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 140,
+      "vertical": "Natural Resources",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 7,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        19528,
+        42614,
+        42646,
+        42685,
+        42693,
+        42789,
+        42802
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 26,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 7,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        288,
+        10628,
+        32602,
+        32869,
+        40699,
+        40701,
+        45356
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 173,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 6,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27191,
+        39665,
+        39691,
+        39720,
+        39820,
+        39821
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 174,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 6,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27193,
+        39652,
+        39670,
+        39699,
+        39792,
+        39804
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 361,
+      "vertical": "Aerospace",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "connectivity-5g",
+      "technology_label": "5G Connectivity",
+      "article_count": 6,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39624,
+        39682,
+        39683,
+        39686,
+        39716,
+        39851
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 41,
+      "vertical": "Lifesciences",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 6,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        498,
+        25793,
+        41502,
+        41734,
+        41738,
+        44043
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 141,
+      "vertical": "Retail",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 6,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        24329,
+        31394,
+        31512,
+        31781,
+        31824,
+        40117
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 177,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 5,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27277,
+        27343,
+        39634,
+        39672,
+        39847
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 170,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 5,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27137,
+        27215,
+        39638,
+        39818,
+        39841
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 197,
+      "vertical": "Automotive",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 5,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34124,
+        34254,
+        41000,
+        41107,
+        45869
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 137,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 5,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        17509,
+        40766,
+        40812,
+        40855,
+        40879
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 150,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 5,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25860,
+        25908,
+        35712,
+        41782,
+        41792
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 185,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 5,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32107,
+        32172,
+        32188,
+        32399,
+        40355
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 362,
+      "vertical": "Aerospace",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39673,
+        39681,
+        39684,
+        39800
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 167,
+      "vertical": "Aerospace",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27068,
+        27078,
+        27238,
+        27278
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 440,
+      "vertical": "Automotive",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41006,
+        41018,
+        41190,
+        41238
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 65,
+      "vertical": "Energy",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        4387,
+        41799,
+        41803,
+        41823
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 16,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        75,
+        170,
+        32432,
+        40494
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 159,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "sentiment-analysis",
+      "use_case_label": "Sentiment analysis",
+      "technology_id": "natural-language-processing",
+      "technology_label": "Natural Language Processing",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26390,
+        26394,
+        26495,
+        26533
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 23,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        274,
+        281,
+        285,
+        32538
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 183,
+      "vertical": "Retail",
+      "use_case_id": "warehouse-automation",
+      "use_case_label": "Warehouse automation",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        31735,
+        40112,
+        40114,
+        40163
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 453,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41247,
+        41251,
+        41252,
+        41354
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 200,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 4,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34440,
+        34449,
+        34463,
+        34464
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 175,
+      "vertical": "Aerospace",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27242,
+        39626,
+        39658
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 374,
+      "vertical": "Aerospace",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39849,
+        39855,
+        39861
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 194,
+      "vertical": "Automotive",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        33801,
+        41176,
+        43564
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 138,
+      "vertical": "Automotive",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        17781,
+        41105,
+        41116
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 429,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40845,
+        40864,
+        45596
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 59,
+      "vertical": "Defense",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3306,
+        43544,
+        43550
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 58,
+      "vertical": "Defense",
+      "use_case_id": "it-operations-automation",
+      "use_case_label": "IT operations automation",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3299,
+        25112,
+        33357
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 463,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41750,
+        41788,
+        41821
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 464,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41761,
+        41793,
+        41850
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 151,
+      "vertical": "Energy",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25887,
+        35647,
+        41826
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 12,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        33,
+        37,
+        24615
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 128,
+      "vertical": "Healthcare",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        4981,
+        19229,
+        26705
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 158,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26387,
+        26447,
+        42179
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 411,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40516,
+        40618,
+        40638
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 51,
+      "vertical": "Retail",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        2511,
+        2637,
+        40172
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 380,
+      "vertical": "Retail",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40169,
+        40300,
+        40307
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 147,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25550,
+        25573,
+        34759
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 456,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41275,
+        41278,
+        41491
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 40,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "warehouse-automation",
+      "use_case_label": "Warehouse automation",
+      "technology_id": "warehouse-automation-systems",
+      "technology_label": "Warehouse Automation Systems",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        463,
+        34424,
+        34478
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 132,
+      "vertical": "Wholesale",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 3,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        12014,
+        42025,
+        42027
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 172,
+      "vertical": "Aerospace",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27174,
+        39713
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 371,
+      "vertical": "Aerospace",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39838,
+        54371
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 145,
+      "vertical": "Automotive",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25214,
+        41112
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 61,
+      "vertical": "Automotive",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3433,
+        11225
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 38,
+      "vertical": "Automotive",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        450,
+        33865
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 34,
+      "vertical": "Automotive",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        386,
+        420
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 443,
+      "vertical": "Automotive",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41024,
+        41115
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 55,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3156,
+        40814
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 435,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40955,
+        40966
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 64,
+      "vertical": "Energy",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        4152,
+        35703
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 42,
+      "vertical": "Energy",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        559,
+        41983
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 18,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        79,
+        24640
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 486,
+      "vertical": "Healthcare",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42379,
+        42459
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 487,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42394,
+        42492
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 495,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42577,
+        42591
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 44,
+      "vertical": "Healthcare",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        631,
+        639
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 489,
+      "vertical": "Healthcare",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42419,
+        42487
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 206,
+      "vertical": "Lifesciences",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34915,
+        41604
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 350,
+      "vertical": "Manufacturing",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39371,
+        39378
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 48,
+      "vertical": "Manufacturing",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        2199,
+        2278
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 9,
+      "vertical": "Manufacturing",
+      "use_case_id": "production-scheduling",
+      "use_case_label": "Production scheduling",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        5,
+        8
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 480,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42190,
+        42203
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 134,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        12234,
+        42174
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 498,
+      "vertical": "Natural Resources",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42613,
+        42679
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 24,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        278,
+        40709
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 54,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3071,
+        40554
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 381,
+      "vertical": "Retail",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40180,
+        40276
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 180,
+      "vertical": "Retail",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        31388,
+        40153
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 385,
+      "vertical": "Retail",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40280,
+        40297
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 457,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41280,
+        41364
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 62,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3826,
+        43900
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 133,
+      "vertical": "Wholesale",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        12016,
+        26301
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 153,
+      "vertical": "Wholesale",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26068,
+        26098
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 475,
+      "vertical": "Wholesale",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 2,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42017,
+        42029
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 171,
+      "vertical": "Aerospace",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27152
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 169,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27109
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 178,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27315
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 370,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39836
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 373,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39848
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 363,
+      "vertical": "Aerospace",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39674
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 367,
+      "vertical": "Aerospace",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39802
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 375,
+      "vertical": "Aerospace",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39856
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 366,
+      "vertical": "Aerospace",
+      "use_case_id": "business-forecasting",
+      "use_case_label": "Business forecasting",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39733
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 369,
+      "vertical": "Aerospace",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "connectivity-5g",
+      "technology_label": "5G Connectivity",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39829
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 823,
+      "vertical": "Aerospace",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        54416
+      ],
+      "first_seen_at": "2026-08-23T19:55:43.412400",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 131,
+      "vertical": "Aerospace",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "e-invoicing-peppol-integration",
+      "technology_label": "E-invoicing / Peppol Integration",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        5582
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 376,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39857
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 372,
+      "vertical": "Aerospace",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39846
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 359,
+      "vertical": "Aerospace",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "edge-computing",
+      "technology_label": "Edge Computing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39620
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 364,
+      "vertical": "Aerospace",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39711
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 176,
+      "vertical": "Aerospace",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "edge-computing",
+      "technology_label": "Edge Computing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        27244
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 360,
+      "vertical": "Aerospace",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39623
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 365,
+      "vertical": "Aerospace",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39714
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 368,
+      "vertical": "Aerospace",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39828
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 441,
+      "vertical": "Automotive",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41010
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 444,
+      "vertical": "Automotive",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41025
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 39,
+      "vertical": "Automotive",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        455
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 445,
+      "vertical": "Automotive",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41029
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 514,
+      "vertical": "Automotive",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43586
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 36,
+      "vertical": "Automotive",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        431
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 196,
+      "vertical": "Automotive",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34002
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 451,
+      "vertical": "Automotive",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41195
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 452,
+      "vertical": "Automotive",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41234
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 33,
+      "vertical": "Automotive",
+      "use_case_id": "customer-service-automation",
+      "use_case_label": "Customer service automation",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        385
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 447,
+      "vertical": "Automotive",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41104
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 448,
+      "vertical": "Automotive",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41109
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 193,
+      "vertical": "Automotive",
+      "use_case_id": "fraud-detection",
+      "use_case_label": "Fraud detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        33753
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 195,
+      "vertical": "Automotive",
+      "use_case_id": "inventory-optimization",
+      "use_case_label": "Inventory optimization",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        33806
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 442,
+      "vertical": "Automotive",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41014
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 450,
+      "vertical": "Automotive",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41193
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 146,
+      "vertical": "Automotive",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25231
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 35,
+      "vertical": "Automotive",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        425
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 449,
+      "vertical": "Automotive",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41187
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 37,
+      "vertical": "Automotive",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        445
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 32,
+      "vertical": "Automotive",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        369
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 446,
+      "vertical": "Automotive",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41100
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 28,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        306
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 29,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        313
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 423,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "natural-language-processing",
+      "technology_label": "Natural Language Processing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40765
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 424,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40768
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 436,
+      "vertical": "Defense",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40956
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 30,
+      "vertical": "Defense",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        328
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 56,
+      "vertical": "Defense",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3157
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 513,
+      "vertical": "Defense",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43536
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 425,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40773
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 428,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40840
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 430,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40846
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 431,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "edge-computing",
+      "technology_label": "Edge Computing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40857
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 439,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40995
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 144,
+      "vertical": "Defense",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25041
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 60,
+      "vertical": "Defense",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3372
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 427,
+      "vertical": "Defense",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40838
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 422,
+      "vertical": "Defense",
+      "use_case_id": "fraud-detection",
+      "use_case_label": "Fraud detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40759
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 438,
+      "vertical": "Defense",
+      "use_case_id": "fraud-detection",
+      "use_case_label": "Fraud detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40968
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 432,
+      "vertical": "Defense",
+      "use_case_id": "kyc-aml-automation",
+      "use_case_label": "KYC/AML automation",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40865
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 437,
+      "vertical": "Defense",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40961
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 433,
+      "vertical": "Defense",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40868
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 434,
+      "vertical": "Defense",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40870
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 426,
+      "vertical": "Defense",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40833
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 469,
+      "vertical": "Energy",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41858
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 208,
+      "vertical": "Energy",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        35662
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 468,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "edge-computing",
+      "technology_label": "Edge Computing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41856
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 467,
+      "vertical": "Energy",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41852
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 470,
+      "vertical": "Energy",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41927
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 466,
+      "vertical": "Energy",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41768
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 19,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        132
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 390,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40340
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 394,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40356
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 395,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40361
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 399,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40387
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 400,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40388
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 402,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40395
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 13,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "business-forecasting",
+      "use_case_label": "Business forecasting",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        35
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 389,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "business-forecasting",
+      "use_case_label": "Business forecasting",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40323
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 52,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        2883
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 396,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "edge-computing",
+      "technology_label": "Edge Computing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40374
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 398,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40385
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 824,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        55194
+      ],
+      "first_seen_at": "2026-08-23T19:55:43.412400",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 190,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32426
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 404,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40485
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 405,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40491
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 406,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40500
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 408,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40508
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 15,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        63
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 388,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40319
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 189,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "fraud-detection",
+      "use_case_label": "Fraud detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32419
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 184,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "it-operations-automation",
+      "use_case_label": "IT operations automation",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        31935
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 17,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "kyc-aml-automation",
+      "use_case_label": "KYC/AML automation",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        76
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 187,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "kyc-aml-automation",
+      "use_case_label": "KYC/AML automation",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32381
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 401,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "kyc-aml-automation",
+      "use_case_label": "KYC/AML automation",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40390
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 407,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "kyc-aml-automation",
+      "use_case_label": "KYC/AML automation",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40504
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 403,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "connectivity-5g",
+      "technology_label": "5G Connectivity",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40397
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 14,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        59
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 20,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        182
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 391,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40345
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 393,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40352
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 186,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32265
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 188,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32387
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 392,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40346
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 397,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "connectivity-5g",
+      "technology_label": "5G Connectivity",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40378
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 129,
+      "vertical": "Healthcare",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        5022
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 135,
+      "vertical": "Healthcare",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        12470
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 493,
+      "vertical": "Healthcare",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42557
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 509,
+      "vertical": "Healthcare",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43216
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 163,
+      "vertical": "Healthcare",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26679
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 497,
+      "vertical": "Healthcare",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42590
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 165,
+      "vertical": "Healthcare",
+      "use_case_id": "business-forecasting",
+      "use_case_label": "Business forecasting",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26707
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 130,
+      "vertical": "Healthcare",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        5058
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 490,
+      "vertical": "Healthcare",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42462
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 164,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "reinforcement-learning",
+      "technology_label": "Reinforcement Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26703
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 488,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42400
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 494,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42564
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 45,
+      "vertical": "Healthcare",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        640
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 492,
+      "vertical": "Healthcare",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42477
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 162,
+      "vertical": "Healthcare",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26581
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 491,
+      "vertical": "Healthcare",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42466
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 496,
+      "vertical": "Healthcare",
+      "use_case_id": "sentiment-analysis",
+      "use_case_label": "Sentiment analysis",
+      "technology_id": "natural-language-processing",
+      "technology_label": "Natural Language Processing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42587
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 63,
+      "vertical": "Lifesciences",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        3951
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 458,
+      "vertical": "Lifesciences",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41506
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 207,
+      "vertical": "Lifesciences",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        35282
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 149,
+      "vertical": "Lifesciences",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25796
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 139,
+      "vertical": "Lifesciences",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        18259
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 515,
+      "vertical": "Lifesciences",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43936
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 461,
+      "vertical": "Lifesciences",
+      "use_case_id": "inventory-optimization",
+      "use_case_label": "Inventory optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41684
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 462,
+      "vertical": "Lifesciences",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41695
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 459,
+      "vertical": "Lifesciences",
+      "use_case_id": "production-scheduling",
+      "use_case_label": "Production scheduling",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41596
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 460,
+      "vertical": "Lifesciences",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41600
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 179,
+      "vertical": "Manufacturing",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        30680
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 358,
+      "vertical": "Manufacturing",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39425
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 510,
+      "vertical": "Manufacturing",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43325
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 351,
+      "vertical": "Manufacturing",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39373
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 354,
+      "vertical": "Manufacturing",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39382
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 356,
+      "vertical": "Manufacturing",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39388
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 352,
+      "vertical": "Manufacturing",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39376
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 353,
+      "vertical": "Manufacturing",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39377
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 357,
+      "vertical": "Manufacturing",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39390
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 355,
+      "vertical": "Manufacturing",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        39387
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 511,
+      "vertical": "Manufacturing",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43365
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 49,
+      "vertical": "Manufacturing",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        2257
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 50,
+      "vertical": "Manufacturing",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        2294
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 10,
+      "vertical": "Manufacturing",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        10
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 8,
+      "vertical": "Manufacturing",
+      "use_case_id": "production-scheduling",
+      "use_case_label": "Production scheduling",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        1
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 481,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42205
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 67,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        4762
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 43,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "customer-segmentation",
+      "use_case_label": "Customer segmentation",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        615
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 484,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "connectivity-5g",
+      "technology_label": "5G Connectivity",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42340
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 157,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "connectivity-5g",
+      "technology_label": "5G Connectivity",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26357
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 483,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "ar-vr-platforms",
+      "technology_label": "AR/VR Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42232
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 485,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42364
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 482,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42214
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 160,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "sentiment-analysis",
+      "use_case_label": "Sentiment analysis",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26428
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 505,
+      "vertical": "Natural Resources",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42808
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 506,
+      "vertical": "Natural Resources",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42822
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 508,
+      "vertical": "Natural Resources",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42857
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 499,
+      "vertical": "Natural Resources",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42634
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 504,
+      "vertical": "Natural Resources",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42801
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 507,
+      "vertical": "Natural Resources",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42825
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 166,
+      "vertical": "Natural Resources",
+      "use_case_id": "it-operations-automation",
+      "use_case_label": "IT operations automation",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26794
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 500,
+      "vertical": "Natural Resources",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42644
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 501,
+      "vertical": "Natural Resources",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42647
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 502,
+      "vertical": "Natural Resources",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42648
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 503,
+      "vertical": "Natural Resources",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42651
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 136,
+      "vertical": "Natural Resources",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        15983
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 27,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        302
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 417,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40704
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 418,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40705
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 25,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        286
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 191,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        32853
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 420,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40708
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 412,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "natural-language-processing",
+      "technology_label": "Natural Language Processing",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40524
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 419,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40706
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 421,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40710
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 21,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        260
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 22,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        268
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 192,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "document-processing-extraction",
+      "use_case_label": "Document processing / extraction",
+      "technology_id": "e-invoicing-peppol-integration",
+      "technology_label": "E-invoicing / Peppol Integration",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        33010
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 409,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40509
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 410,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40514
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 414,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40613
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 512,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        43508
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 142,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "kyc-aml-automation",
+      "use_case_label": "KYC/AML automation",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        24935
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 53,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        2951
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 415,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40682
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 416,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40686
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 413,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "sentiment-analysis",
+      "use_case_label": "Sentiment analysis",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40531
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 384,
+      "vertical": "Retail",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40278
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 181,
+      "vertical": "Retail",
+      "use_case_id": "business-forecasting",
+      "use_case_label": "Business forecasting",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        31511
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 182,
+      "vertical": "Retail",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        31520
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 379,
+      "vertical": "Retail",
+      "use_case_id": "customer-service-automation",
+      "use_case_label": "Customer service automation",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40164
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 378,
+      "vertical": "Retail",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40157
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 382,
+      "vertical": "Retail",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "blockchain-distributed-ledger",
+      "technology_label": "Blockchain / Distributed Ledger",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40197
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 377,
+      "vertical": "Retail",
+      "use_case_id": "inventory-optimization",
+      "use_case_label": "Inventory optimization",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40116
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 386,
+      "vertical": "Retail",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "ar-vr-platforms",
+      "technology_label": "AR/VR Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40302
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 383,
+      "vertical": "Retail",
+      "use_case_id": "production-scheduling",
+      "use_case_label": "Production scheduling",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40204
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 387,
+      "vertical": "Retail",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        40304
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 11,
+      "vertical": "Retail",
+      "use_case_id": "warehouse-automation",
+      "use_case_label": "Warehouse automation",
+      "technology_id": "warehouse-automation-systems",
+      "technology_label": "Warehouse Automation Systems",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        29
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 455,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41272
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 202,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34446
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 204,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34735
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 454,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "network-optimization",
+      "use_case_label": "Network optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41250
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 199,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34432
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 148,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        25595
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 198,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34422
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 201,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "reinforcement-learning",
+      "technology_label": "Reinforcement Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34441
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 203,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34461
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 205,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "workforce-scheduling",
+      "use_case_label": "Workforce scheduling",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        34826
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 154,
+      "vertical": "Wholesale",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26075
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 478,
+      "vertical": "Wholesale",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42036
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 473,
+      "vertical": "Wholesale",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42015
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 471,
+      "vertical": "Wholesale",
+      "use_case_id": "business-forecasting",
+      "use_case_label": "Business forecasting",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        41992
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 477,
+      "vertical": "Wholesale",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42034
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 155,
+      "vertical": "Wholesale",
+      "use_case_id": "inventory-optimization",
+      "use_case_label": "Inventory optimization",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26085
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 156,
+      "vertical": "Wholesale",
+      "use_case_id": "precision-agriculture",
+      "use_case_label": "Precision agriculture",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        26326
+      ],
+      "first_seen_at": "2026-08-22T11:29:42.133715",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 479,
+      "vertical": "Wholesale",
+      "use_case_id": "production-scheduling",
+      "use_case_label": "Production scheduling",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42044
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 472,
+      "vertical": "Wholesale",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42007
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 474,
+      "vertical": "Wholesale",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42016
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 476,
+      "vertical": "Wholesale",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "reinforcement-learning",
+      "technology_label": "Reinforcement Learning",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        42019
+      ],
+      "first_seen_at": "2026-08-23T01:39:36.984902",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    },
+    {
+      "source_space_id": 66,
+      "vertical": "Wholesale",
+      "use_case_id": "warehouse-automation",
+      "use_case_label": "Warehouse automation",
+      "technology_id": "warehouse-automation-systems",
+      "technology_label": "Warehouse Automation Systems",
+      "article_count": 1,
+      "avg_client_relevance": null,
+      "linked_article_ids": [
+        4399
+      ],
+      "first_seen_at": "2026-08-22T09:10:01.207985",
+      "last_updated_at": "2026-08-23T19:55:43.412400"
+    }
+  ]
+}

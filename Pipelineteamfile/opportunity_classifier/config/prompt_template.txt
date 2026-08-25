@@ -1,23 +1,63 @@
-You are classifying an article for the Innovation Radar, which maps articles to a fixed taxonomy of business Use Cases and Technologies. This is closed-vocabulary classification: you may only use the exact ids listed below.
+You are classifying an article for the Innovation Radar, which maps articles to a fixed taxonomy of business Use Cases and Technologies, and assigns each article one signal type. This is closed-vocabulary classification: you may only use the exact ids and slugs listed below.
 
 TAXONOMY
 
 {taxonomy_block}
 
+SIGNAL TYPES (choose exactly one slug)
+
+Answer each distinguishing question against the article text alone. The question is the test — not the type name, not the source it came from.
+
+{signal_type_block}
+
+Tie-break priority (highest first): {signal_type_tie_break}
+When an article plausibly satisfies more than one distinguishing question, assign the highest-priority type in that order. Concreteness and actor-specificity drive urgency, so the more concrete type wins: an article announcing both a funding programme and a market forecast is a buying_signal, not a market_trend. Assign exactly one type. Never hedge between two — that is what the tie-break is for.
+
+BOUNDARY CHECKS — these two pairs collapse more often than any others. Work through both before answering:
+1. competitor_move vs market_trend. Ask who the article is ABOUT. If the named organisation is only quoted, cited as a commentator, or used as an example inside a piece whose subject is a sector-wide question, an advisory, an explainer or a proposal, the answer is market_trend. competitor_move needs the named actor to be the subject AND the announcement to be a concrete thing it did.
+2. proof_signal vs competitor_move. Ask whether the thing is already running somewhere identifiable. Delivered, deployed, live, in production, or in use at a named organisation with any stated outcome → proof_signal. Offered, launched, unveiled, demonstrated, planned, or merely claimed → competitor_move.
+
+GEOGRAPHY
+
+Return the countries the article is about as ISO 3166-1 alpha-2 codes. You are not asked for a region — the country codes are rolled up to regions afterwards. For reference only, the regions they roll up to are:
+
+{region_block}
+
 ARTICLE
 
 Vertical: {vertical}
 Source: {source_name}
+Published: {published_date}
 Title: {title}
 Summary: {summary}
 {client_context_block}
 TASK
 
 Return ONLY a single JSON object, with no markdown code fences and no other text:
-{{"use_case_id": "string or null", "technology_id": "string or null", "confidence": 0.0, "evidence": "short justification grounded in the article text"}}
+{{"use_case_id": "string or null", "technology_id": "string or null", "confidence": 0.0, "evidence": "short justification grounded in the article text", "signal_type": "one of the exact slugs above", "signal_type_confidence": 0.0, "signal_date": "YYYY-MM-DD or null", "event_date": "YYYY-MM-DD or null", "event_date_precision": "exact|month|quarter|year|none", "signal_type_rationale": "one sentence, max 25 words", "countries": [], "region_override": "region id or null", "geography_confidence": 0.0}}
 
 Rules:
 - Only ids from the taxonomy above are valid values for use_case_id and technology_id.
 - If no taxonomy entry is a good fit for a dimension, use null for that field. Never force a match, never invent an id.
 - Respect the exclusion notes in the definitions when choosing between close entries.
-- confidence is a number between 0.0 and 1.0.
+- confidence must follow this rubric — pick the band that matches the evidence, then a specific value within it:
+  - 0.90-1.00: Both use_case_id and technology_id are explicitly and unambiguously named in the article text.
+  - 0.70-0.89: One dimension is explicit in the text; the other is strongly implied by specific contextual detail.
+  - 0.50-0.69: Both dimensions are inferred from general context, not explicitly named — a reasonable reader could plausibly pick a different taxonomy entry instead.
+  - Below 0.50: the match is speculative, relying on analogy or a stretch rather than direct evidence.
+  - Rule: if either use_case_id or technology_id is null, confidence must not exceed 0.60 — a half-match cannot be reported as highly confident.
+- signal_type must be exactly one of the six slugs above, spelled exactly as given. Never invent a seventh type.
+- The Vertical and Source lines are context that may help resolve an ambiguity — a defence-procurement feed and a research-institute feed carry different priors. They are a hint only and never override a distinguishing question. An article on a vendor's own blog that reports a customer's measured deployment result is a proof_signal, not a competitor_move, whatever the source is.
+- signal_type_confidence is 0.0-1.0: how cleanly one distinguishing question is answered "yes" by the article text. Use a value below 0.5 when two questions are both arguably satisfied and the tie-break, not the text, decided it.
+- signal_date is the publication or emission date of the signal itself. Use the Published line above unless the article text states a different emission date for the signal.
+- event_date is the date that makes the signal time-bound: compliance deadline, phase-in date, tender close date, contract start. Use null when the article carries no such date — most articles do not. Never put the publication date here.
+- event_date_precision describes how exactly event_date is stated: "exact" for a full date, "month" for a named month, "quarter" for a quarter, "year" for a bare year, "none" when event_date is null. A vague "sometime in 2028" is precision "year", not a hard deadline.
+- signal_type_rationale is one sentence, max 25 words, quoting or paraphrasing the specific element of the article that triggered the choice.
+- countries is an array of ISO 3166-1 alpha-2 codes, uppercase, for the countries the article is actually about. Rules:
+  - Infer from any explicit anchor: a named country, a named city, a named institution or ministry, a company described as headquartered somewhere ("Brussels-based" -> BE, "the German ministry" -> DE, "Singapore's DBS" -> SG).
+  - Carry context across sentences. If an earlier sentence names a country and a later one says "the ministry", "the operator" or "the regulator" without repeating it, attribute it to that same country.
+  - An article about several countries returns several codes. Do not pick one arbitrarily.
+  - The country the article is ABOUT, not the country the publication is from. A US trade title reporting a German plant rollout is DE, not US.
+  - If the text carries no geographic anchor at all, return an empty array. An empty array is the correct answer, not a failure — never guess a country to avoid returning nothing.
+- region_override is a separate path from countries, for scope that is real but has no single country behind it. Set it to "global" when the article is about EU-wide regulation or a directive with no member state named, a "European" or worldwide market statement, or aggregate statistics spanning many countries — and leave countries empty in that case rather than inventing member states. Use null otherwise. "No geography" and "global scope" are different answers: null with an empty countries array means the text simply has no geography; "global" is a positive claim that the scope is EU-wide or worldwide.
+- geography_confidence is 0.0-1.0: how firmly the article text supports the country/scope you returned. Use 0.9+ when a country is named outright, 0.6-0.8 when it follows from a city, institution or carried-over context, below 0.5 when it rests on a weak or indirect hint. Return 0.0 with an empty array and a null override when there is no geographic signal at all.

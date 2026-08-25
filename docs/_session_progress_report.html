@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Session Progress</title>
+<style>
+  :root {
+    --orange: #ff7900;
+    --ink: #17171a;
+    --muted: #6b6b68;
+    --line: #e3e1dc;
+    --bg: #fafaf8;
+    --peach: #fff1e6;
+    --peach-line: #ffd8b0;
+    --green: #1f8a4c;
+    --amber: #c9862a;
+    --red: #c0392b;
+    --gray: #6b7280;
+    --blue: #2f6fed;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .page {
+    position: relative;
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    padding: 0 0 46px 0;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+  .bar { height: 14px; background: var(--orange); width: 100%; }
+  .content { padding: 34px 46px 0 46px; }
+  .eyebrow {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+  }
+  h1.title { font-size: 40px; font-weight: 800; margin: 6px 0 14px 0; line-height: 1.08; letter-spacing: -.01em; }
+  h2.title { font-size: 25px; font-weight: 800; margin: 4px 0 8px 0; letter-spacing: -.01em; }
+  .subtitle { color: var(--muted); font-size: 14.5px; max-width: 620px; margin: 0 0 20px 0; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
+  .meta-table { width: 100%; border-collapse: collapse; margin: 16px 0 20px 0; }
+  .meta-table td { padding: 7px 0; vertical-align: top; border-bottom: none; }
+  .meta-table td.k { color: var(--muted); font-weight: 700; font-size: 11.5px; width: 170px; text-transform: uppercase; letter-spacing: .04em; }
+  .meta-table td.v { color: var(--ink); font-size: 13px; }
+  .legend { display: flex; gap: 14px; align-items: flex-start; margin-top: 6px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 10px; width: 47%; margin-bottom: 8px; }
+  .pill { display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: .04em; color: #fff; text-transform: uppercase; white-space: nowrap; }
+  .pill-met { background: var(--green); }
+  .pill-partial { background: var(--amber); }
+  .pill-missing { background: var(--red); }
+  .pill-notreq { background: var(--gray); }
+  .legend-text { color: var(--muted); font-size: 12px; }
+  .caption { color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+  .statbar { display: flex; width: 100%; border-radius: 6px; overflow: hidden; margin: 14px 0; }
+  .statbar > div { padding: 16px 0; text-align: center; color: #fff; }
+  .statbar .num { font-size: 26px; font-weight: 800; display: block; }
+  .statbar .lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; opacity: .92; }
+
+  .section-group-title { font-weight: 800; font-size: 15px; margin: 22px 0 2px 0; }
+  .section-group-note { color: var(--muted); font-style: italic; font-size: 12px; margin: 0 0 10px 0; }
+  .barleft { border-left: 3px solid var(--orange); padding-left: 12px; }
+
+  table.scorecard { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  table.scorecard th {
+    text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); font-weight: 700; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line);
+  }
+  table.scorecard td { padding: 11px 10px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 12.3px; }
+  table.scorecard td.req { font-weight: 700; width: 17%; }
+  table.scorecard td.was { color: var(--muted); width: 24%; }
+  table.scorecard td.now { width: 43%; }
+  table.scorecard td.status { width: 16%; text-align: left; }
+  .evidence { color: var(--muted); font-size: 10.6px; font-family: "Consolas", monospace; display: block; margin-top: 5px; }
+
+  .code-box { background: var(--peach); border: 1px solid var(--peach-line); border-radius: 8px; padding: 14px 16px; font-family: Consolas, monospace; font-size: 11.5px; line-height: 1.6; color: #7a3a00; margin: 10px 0; }
+  .callout { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; margin: 12px 0; font-size: 12.3px; }
+  .callout.orange { border-color: var(--peach-line); background: var(--peach); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .card { border: 1px solid var(--line); border-radius: 8px; padding: 13px 15px; }
+  .card .k { display: block; color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; }
+  .card .v { display: block; font-size: 21px; font-weight: 800; margin-top: 4px; }
+  .card .d { display: block; color: var(--muted); font-size: 10.6px; font-family: Consolas, monospace; margin-top: 4px; }
+
+  .num-item { display: flex; gap: 12px; margin: 14px 0; }
+  .num-badge { width: 26px; height: 26px; min-width: 26px; border-radius: 6px; background: var(--red); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .num-badge.amber { background: var(--amber); }
+  .num-badge.gray { background: var(--gray); }
+  .num-title { font-weight: 800; font-size: 13.5px; }
+  .num-tag { color: var(--orange); font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+  .num-body { color: var(--ink); font-size: 12.3px; margin-top: 3px; }
+
+  .footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 46px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--muted); font-size: 10.5px; }
+
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin-bottom: 5px; }
+  b.hl { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: TITLE -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">INNOVATION RADAR V2</p>
+    <h1 class="title">Requirements vs.<br>Implementation — Progress Update</h1>
+    <p class="subtitle">What changed since this morning's gap analysis, measured the same way, against the same
+    briefing and the same 26-requirement scorecard — so it reads as a direct continuation, not a new report.</p>
+    <hr>
+    <table class="meta-table">
+      <tr><td class="k">Baseline document</td><td class="v">"Innovation Radar V2 — Requirements vs. Implementation", sent this morning · 26 requirements assessed, 7 MET / 6 PARTIAL / 8 MISSING / 5 NOT REQUIRED</td></tr>
+      <tr><td class="k">Scope</td><td class="v">radar_v2/ (Reflex app) + Pipelineteamfile/ (data pipeline) — unchanged</td></tr>
+      <tr><td class="k">Method</td><td class="v">Direct source reading; live team database queried read-only; every claim below re-verified against the running app before writing it down</td></tr>
+      <tr><td class="k">Live data</td><td class="v">21 real opportunity spaces, 41 articles, 34 classifications — same corpus as this morning, now scored and typed differently</td></tr>
+      <tr><td class="k">Work product</td><td class="v">207 automated tests passing · 54 changed or new files · nothing committed yet</td></tr>
+      <tr><td class="k">Generated</td><td class="v">25 August 2026, end of day</td></tr>
+    </table>
+    <hr>
+    <p style="font-weight:700; font-size:13px; margin-bottom:8px;">Status labels — same legend as the baseline document</p>
+    <div class="legend">
+      <div class="legend-item"><span class="pill pill-met">Met</span><span class="legend-text">Built and working as the briefing describes.</span></div>
+      <div class="legend-item"><span class="pill pill-partial">Partial</span><span class="legend-text">Something exists, but not in the shape the briefing asks for.</span></div>
+      <div class="legend-item"><span class="pill pill-missing">Missing</span><span class="legend-text">A stated requirement with no implementation.</span></div>
+      <div class="legend-item"><span class="pill pill-notreq">Not required</span><span class="legend-text">The briefing itself marks it next-phase, illustrative or optional.</span></div>
+    </div>
+  </div>
+  <div class="footer"><span>Innovation Radar V2 · Progress update</span><span>1</span></div>
+</div>
+
+<!-- PAGE 2: EXEC SUMMARY -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 1</p>
+    <h2 class="title">Executive summary</h2>
+    <p class="subtitle">Where the application stands now, against the exact gaps the baseline document flagged.</p>
+    <p>The baseline report's single biggest gap — <b class="hl">"the scoring model does not explain itself, and the
+    number it produces is not an attractiveness score"</b> — is closed. The old "Strategic fit" figure
+    (article count ÷ largest space's article count) is gone. In its place is a five-component, weighted
+    Attractiveness score with every component visible, and a fully independent Now/Next/Later timing rule that no
+    longer reads that score at all — enforced by a dedicated test, not just a comment.</p>
+    <p>Of the baseline's <b class="hl">8 MISSING</b> requirements, <b class="hl">all 8 are now MET</b>. Of its
+    <b class="hl">6 PARTIAL</b> requirements, <b class="hl">4 are now MET</b>; the remaining 2 (freshness display,
+    value-driver tagging) were not touched today and are exactly as they were this morning — not attempted, not
+    regressed. The three-way open question the baseline flagged — persona, geography and business-domain filtering,
+    <i>"your call, not a coding decision"</i> — was answered by building all three.</p>
+    <div class="statbar">
+      <div style="background:#c0392b; flex:1;"><span class="num">8 → 0</span><span class="lbl">Missing, this morning → now</span></div>
+      <div style="background:#c9862a; flex:1;"><span class="num">6 → 2</span><span class="lbl">Partial, this morning → now</span></div>
+      <div style="background:#1f8a4c; flex:1;"><span class="num">19 / 26</span><span class="lbl">Requirements now MET</span></div>
+      <div style="background:#6b7280; flex:1;"><span class="num">0</span><span class="lbl">Requirements still Missing</span></div>
+    </div>
+    <p>None of this was free, and it should not be presented as finished — three things are worth saying up front,
+    not discovered later:</p>
+    <ul class="tight">
+      <li><b class="hl">Right-to-win / CRM data still does not exist anywhere in the app.</b> The new "why this
+      matters" field and the Presales sort both have real, tested code paths waiting for it — today they honestly say
+      so instead of inventing a number.</li>
+      <li><b class="hl">The new Next/Later independence is real but the corpus is thin.</b> 2 of 21 spaces land in
+      "Next" today (9.5%) — the rule works, the live evidence base just isn't deep enough yet for more of it to show.
+      Section 3 shows why with a real example.</li>
+      <li><b class="hl">A handful of countries — Greece foremost — don't yet resolve to a geography region.</b> They
+      are reported as gaps, not silently misfiled into the wrong bucket. See Section 4.</li>
+    </ul>
+    <p>Section 2 walks the baseline's own scorecard, row for row, with what changed. Sections 3–5 go deeper on the
+    score, the new dimensions, and the new workflow layer. Section 6 is what's left for tomorrow.</p>
+  </div>
+  <div class="footer"><span>Section 1 · Executive summary</span><span>2</span></div>
+</div>
+
+<!-- PAGE 3: SCORECARD PART 1 -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 2 · PART 1</p>
+    <h2 class="title">Updated scorecard</h2>
+    <p class="subtitle">Same rows as the baseline document. "Status" is where it stands now.</p>
+    <table class="scorecard">
+      <tr><th>Requirement</th><th>Status this morning</th><th>What changed today</th><th>Status</th></tr>
+    </table>
+    <p class="section-group-title barleft">MVP technical scope — slide 19</p>
+    <p class="section-group-note">The briefing's own must-have bar.</p>
+    <table class="scorecard">
+      <tr>
+        <td class="req">An attractiveness scoring system</td>
+        <td class="was">MISSING — the ranking number was a raw volume ratio</td>
+        <td class="now">Five weighted components (market signal strength 30%, source credibility 20%, evidence
+        quality 20%, novelty &amp; momentum 15%, strategic relevance 15%), each independently computed and shown.
+        A component with insufficient data is excluded and the rest rescaled — never silently zeroed.
+        <span class="evidence">services/attractiveness.py — combine()</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+    </table>
+    <p class="section-group-title barleft">Scoring must explain itself — slide 16</p>
+    <p class="section-group-note">Stated as a hard requirement, independent of any formula.</p>
+    <table class="scorecard">
+      <tr>
+        <td class="req">The model must explain the number, not only produce it</td>
+        <td class="was">MISSING — one generated sentence, no breakdown</td>
+        <td class="now">The detail page now carries a full "Why this score" breakdown (all 5 components, their
+        weight, their value), a "Why this timing" breakdown (the exact counts and rule that produced the Now/Next/Later
+        badge), and a "Signal types behind it" panel naming the distinguishing question each signal answered.
+        <span class="evidence">pages/opportunity_detail.py · components/ui.py — attractiveness_row, horizon_check_row, signal_type_row</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Attractiveness score present</td>
+        <td class="was">PARTIAL — present, but measured volume</td>
+        <td class="now">Present and measures what it claims to.</td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Urgency / time horizon</td>
+        <td class="was">PARTIAL — a threshold cut on the volume proxy; "Next" was structurally unreachable (0 of 21 spaces)</td>
+        <td class="now">Fully independent rule: signal type + signal date + source count decide the badge. "Now"
+        requires ≥2 concrete signals from ≥2 distinct sources, one recent; a single tender lands in "Next", not "Now".
+        A dedicated test asserts the calculation never reads the attractiveness score. Live result: 0 Now / 2 Next / 19
+        Later — see Section 3 for why "Next" is still thin.
+        <span class="evidence">services/horizon.py · tests/test_signal_horizon.py</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="footer"><span>Section 2 · Updated scorecard</span><span>3</span></div>
+</div>
+
+<!-- PAGE 4: SCORECARD PART 2 -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 2 · PART 2</p>
+    <h2 class="title">Updated scorecard, continued</h2>
+    <table class="scorecard">
+      <tr><th>Requirement</th><th>Status this morning</th><th>What changed today</th><th>Status</th></tr>
+      <tr>
+        <td class="req">Signal type</td>
+        <td class="was">MISSING — no field existed</td>
+        <td class="now">Six mutually-exclusive types (buying signal, regulation, proof signal, competitor move,
+        market trend, tech maturity), each defined by one distinguishing question embedded in the classification
+        prompt, with a fixed tie-break order. Deterministic for TED/OCDS/CORDIS, LLM-classified for RSS. 34 of 34 live
+        classifications now carry a type.
+        <span class="evidence">Pipelineteamfile/common/signal_types.py · collector/signal_route.py</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">"Why hot now", "why this matters", recommended next action as distinct fields</td>
+        <td class="was">MISSING — one hardcoded constant, identical on every topic</td>
+        <td class="now">Three independently composed, fully deterministic fields — no LLM call generates them. "Why
+        hot now" is one clause per recent signal, strongest type first. "Why this matters" is a domain/vertical clause
+        plus a right-to-win clause (honestly empty today — see Section 6). "Recommended move" is a 9-cell
+        role-mode × horizon matrix, so a Strategist and a Salesperson get different text for the same topic.
+        <span class="evidence">services/explanations.py</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+    </table>
+    <p class="section-group-title barleft">User acceptance criteria — slide 13</p>
+    <table class="scorecard">
+      <tr>
+        <td class="req">Trust</td>
+        <td class="was">PARTIAL — sources yes, explanation no</td>
+        <td class="now">Both present.</td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Freshness</td>
+        <td class="was">PARTIAL — computed, never rendered</td>
+        <td class="now">Not touched today. Still computed in team_repository, still not read by any page.</td>
+        <td class="status"><span class="pill pill-partial">Partial</span></td>
+      </tr>
+      <tr>
+        <td class="req">Filtering by vertical</td>
+        <td class="was">MET</td>
+        <td class="now">Unchanged.</td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="footer"><span>Section 2 · Updated scorecard</span><span>4</span></div>
+</div>
+
+<!-- PAGE 5: SCORECARD PART 3 -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 2 · PART 3</p>
+    <h2 class="title">Updated scorecard, continued</h2>
+    <table class="scorecard">
+      <tr><th>Requirement</th><th>Status this morning</th><th>What changed today</th><th>Status</th></tr>
+      <tr>
+        <td class="req">Filtering by geography</td>
+        <td class="was">MISSING — geography was a free-text company-profile attribute only</td>
+        <td class="now">Deterministic from structured sources (TED buyer country, CORDIS consortium participant
+        countries, OCDS buyer country), LLM-inferred from text for RSS. 14-region taxonomy matching how the business
+        actually segments Europe. Multi-select chip filter on the Opportunities page, OR within, AND across dimensions.
+        <span class="evidence">Pipelineteamfile/common/geography.py · services/geography.py</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Filtering by business domain</td>
+        <td class="was">MISSING — no field anywhere</td>
+        <td class="now">The 6 Orange domains (OX: Smart Industries, Connectivity, Cybersecurity, Cloud, CX, EX),
+        derived deterministically from each space's technology and use case — no LLM call. Multi-select chip filter.
+        <span class="evidence">Pipelineteamfile/common/business_domains.py</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Filtering by persona</td>
+        <td class="was">MISSING — zero matches for "persona" in the codebase</td>
+        <td class="now">8 buyer personas, weighted (not boolean) via a use-case × persona table unioned with a
+        domain × persona overlay, plus a persona × vertical suppression list. Feeds both filtering and ranking
+        (a dampened score multiplier). Selected via a single-select picker in Sales mode rather than the domain/
+        geography chip pattern — a UI inconsistency worth smoothing over, not a missing capability.
+        <span class="evidence">Pipelineteamfile/common/personas.py · services/personas.py</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+    </table>
+    <p class="section-group-title barleft">Topic detail depth — slides 5 and 14</p>
+    <table class="scorecard">
+      <tr>
+        <td class="req">Dated, typed signals mixing qualitative and quantitative evidence</td>
+        <td class="was">PARTIAL — dated yes, typed no</td>
+        <td class="now">Now typed too. See Signal type row above.</td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Use cases and value drivers with value tags</td>
+        <td class="was">PARTIAL — use case named, no value drivers or tags</td>
+        <td class="now">Not touched today.</td>
+        <td class="status"><span class="pill pill-partial">Partial</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="footer"><span>Section 2 · Updated scorecard</span><span>5</span></div>
+</div>
+
+<!-- PAGE 6: SCORECARD PART 4 -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 2 · PART 4</p>
+    <h2 class="title">Updated scorecard, continued</h2>
+    <table class="scorecard">
+      <tr><th>Requirement</th><th>Status this morning</th><th>What changed today</th><th>Status</th></tr>
+      <tr>
+        <td class="req">Numeric score breakdown from sub-criteria bars</td>
+        <td class="was">MISSING — two numbers, no sub-criteria</td>
+        <td class="now">Two real breakdown panels with progress bars: the 5-component Attractiveness breakdown, and
+        the horizon rule's own counts (signals pointing at Now / Next / Later, distinct sources, which rule fired).
+        <span class="evidence">components/ui.py — attractiveness_row, horizon_check_row</span></td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+      <tr>
+        <td class="req">Right-to-win: capabilities, proof points, partner ecosystem</td>
+        <td class="was">NOT REQUIRED — slide 18, explicitly next-phase</td>
+        <td class="now">Still not built, correctly. The new "why this matters" field and the detail page's
+        "Right to win &amp; proof points" region are both wired and tested against this data the moment it exists —
+        today they render an honest absence, not a placeholder number.</td>
+        <td class="status"><span class="pill pill-notreq">Not required</span></td>
+      </tr>
+      <tr>
+        <td class="req">External signal taxonomy (slide 19, extra content)</td>
+        <td class="was">NOT REQUIRED, but flagged as <i>"the enabler for the slide-16 signal-typing gap — worth
+        deciding on together"</i></td>
+        <td class="now"><b class="hl">Built.</b> This is exactly the Signal type work above — the item the baseline
+        report suggested as worth discussing turned out to be the same enabling work the slide-16 fix needed anyway.</td>
+        <td class="status"><span class="pill pill-met">Met</span></td>
+      </tr>
+    </table>
+    <div class="callout orange" style="margin-top:22px;">
+      <b class="hl">The baseline's open question, answered.</b> "The briefing contradicts itself on persona and
+      geography filtering... it is your call, not a coding decision, and it should be made before anyone starts."
+      The call made today was to build all three (domain, persona, geography) rather than wait — they are now
+      real, filterable, tested dimensions. If the MVP slide's narrower scope was actually intended, that's worth
+      confirming, but nothing here needs to be undone either way; all three degrade honestly when their inputs are
+      thin (see Section 4).
+    </div>
+  </div>
+  <div class="footer"><span>Section 2 · Updated scorecard</span><span>6</span></div>
+</div>
+
+<!-- PAGE 7: DEEP DIVE SCORE -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 3</p>
+    <h2 class="title">Deep dive: the Attractiveness score, now real</h2>
+    <p class="subtitle">What the baseline report's Section 3 showed as broken, and what replaced it.</p>
+    <div class="grid2">
+      <div>
+        <p style="font-weight:700; color:var(--blue); margin-bottom:8px;">SPECIFIED (slide 17, illustrative weights)</p>
+        <ul class="tight">
+          <li><b>30% Market signal strength</b> — how visible across external sources</li>
+          <li><b>20% Source diversity</b> — independent-source coverage</li>
+          <li><b>20% Evidence quality</b> — is the signal relevant and credible</li>
+          <li><b>15% Novelty and momentum</b> — is the topic emerging or rising</li>
+          <li><b>15% Strategic relevance</b> — does it fit Orange Business</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-weight:700; color:var(--red); margin-bottom:8px;">IMPLEMENTED TODAY (services/attractiveness.py)</p>
+        <ul class="tight">
+          <li><b>30% Market signal strength</b> — recency-decayed evidence density, ~9-month half-life, normalised
+          against the strongest space this run</li>
+          <li><b>20% Source credibility</b> — mean trust score from a 9-tier publisher-category anchor table
+          (renamed from "diversity"; rejected as the wrong signal given how sources are found)</li>
+          <li><b>20% Evidence quality</b> — mean classifier confidence, now under an anchored rubric instead of an
+          unanchored self-report</li>
+          <li><b>15% Novelty &amp; momentum</b> — percentile rank of recent-vs-prior growth against every other space
+          this run, not a fixed curve (most spaces have 1–2 articles; a fixed curve was pure noise)</li>
+          <li><b>15% Strategic relevance</b> — match against priorities set on the Company page</li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-box">combined_score = Σ(weight × value) / Σ(weight of available components)<br>
+&nbsp;&nbsp;— components with no data are excluded, remaining weights rescale, never counted as zero</div>
+    <p style="font-weight:700; margin-top:16px;">One bug found and fixed along the way</p>
+    <p><code>seed_hardcoded_sources()</code>'s upsert set the trust category but not the audited-at timestamp, so
+    TED and CORDIS — the two highest-trust feeds, backing 18 of 34 classifications — stayed flagged "unaudited" and
+    silently zeroed the Source credibility component on almost every space. Found and fixed before this report was
+    written; verified against live data afterward.</p>
+  </div>
+  <div class="footer"><span>Section 3 · Deep dive: the Attractiveness score</span><span>7</span></div>
+</div>
+
+<!-- PAGE 8: WORKED EXAMPLE -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 3 · CONTINUED</p>
+    <h2 class="title">One real topic, in the app right now</h2>
+    <p class="subtitle">Opportunity space #28 as the interface presents it today.</p>
+    <p><b class="hl">Aerospace · Environmental/emissions monitoring × Machine Learning</b><br>
+    <span style="color:var(--muted); font-size:12px;">opportunity_spaces id = 28 · 1 linked article · domain: Cloud · region: Benelux</span></p>
+    <div class="grid4" style="margin:14px 0;">
+      <div class="card"><span class="k">Attractiveness</span><span class="v" style="color:var(--orange);">75 / 100</span><span class="d">3 of 5 components active, 1 excluded</span></div>
+      <div class="card"><span class="k">Evidence confidence</span><span class="v">86%</span><span class="d">mean classifier confidence</span></div>
+      <div class="card"><span class="k">Horizon</span><span class="v" style="color:var(--gray);">Later</span><span class="d">evidenced only by tech_maturity</span></div>
+      <div class="card"><span class="k">Momentum</span><span class="v" style="color:var(--orange);">New</span><span class="d">no earlier evidence to compare</span></div>
+    </div>
+    <p style="font-weight:700; margin-top:10px;">The breakdown the interface shows for the score above:</p>
+    <table class="scorecard">
+      <tr><th>Component</th><th>Weight</th><th>Value</th><th>Status</th></tr>
+      <tr><td>Market signal strength</td><td>30%</td><td>62 / 100</td><td><span class="pill pill-met">Available</span></td></tr>
+      <tr><td>Source credibility</td><td>20%</td><td>100 / 100</td><td><span class="pill pill-met">Available</span></td></tr>
+      <tr><td>Evidence quality</td><td>20%</td><td>86 / 100</td><td><span class="pill pill-met">Available</span></td></tr>
+      <tr><td>Novelty &amp; momentum</td><td>15%</td><td>50 / 100</td><td><span class="pill pill-met">Available</span></td></tr>
+      <tr><td>Strategic relevance</td><td>15%</td><td>—</td><td><span class="pill pill-notreq">No data yet</span></td></tr>
+    </table>
+    <p class="caption">Strategic relevance is genuinely unavailable here — no priorities are currently set on the
+    Company page (they were cleared during this session's own testing). This is the rescaling rule in action: the
+    75/100 score above is computed from the other four components only, not diluted by a fabricated zero.</p>
+    <p style="font-weight:700; margin-top:14px;">What the interface says about why:</p>
+    <div class="callout orange">
+      <b>Why hot now:</b> "Tech maturity: CORDIS project status SIGNED – funded research still…"<br><br>
+      <b>Why this matters:</b> "A Cloud opportunity for Aerospace — no direct right-to-win evidence yet — early-stage watch."<br><br>
+      <b>Recommended move (Strategist mode):</b> "Add to the watchlist for the safety manager — keep the pitch
+      exploratory, evidence is still building."
+    </div>
+    <p class="caption">Three sentences, three different composition rules, zero LLM calls to produce them — see
+    Section 5.</p>
+  </div>
+  <div class="footer"><span>Section 3 · One real topic, in the app right now</span><span>8</span></div>
+</div>
+
+<!-- PAGE 9: HORIZON FIX -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 3 · CONTINUED</p>
+    <h2 class="title">The horizon fix</h2>
+    <p class="subtitle">The baseline report's chart showed "Next" was structurally unreachable. Here is the same
+    chart, and why it's still thin rather than declared solved.</p>
+    <div class="code-box">
+      This morning: horizon = "Now" if relevance &gt;= 82 else "Next" if relevance &gt;= 68 else "Later"<br>
+      &nbsp;&nbsp;— a threshold cut on the same volume-proxy score. Largest space held 2 articles, so relevance
+      could only be 50 or 100. Nothing could ever land between.<br><br>
+      Now: horizon = f(signal_type, signal_date, event_date, source_count) — never reads the score.<br>
+      &nbsp;&nbsp;— asserted by a test: a high-volume space evidenced only by tech_maturity signals must return
+      Later; a low-volume space with one recent tender must return Next.
+    </div>
+    <div class="grid2" style="margin-top:14px;">
+      <div class="card" style="text-align:center;"><span class="k">This morning</span><br>
+        <span class="v" style="color:var(--red);">0 / 21</span><span class="d">spaces could ever reach "Next"</span></div>
+      <div class="card" style="text-align:center;"><span class="k">Now</span><br>
+        <span class="v" style="color:var(--green);">2 / 21</span><span class="d">spaces genuinely in "Next" (9.5%)</span></div>
+    </div>
+    <p style="font-weight:700; margin-top:18px;">Why still only 2, honestly</p>
+    <p>25 of the 34 live classified signals are CORDIS <code>tech_maturity</code> records — funded research that
+    hasn't reached a buyer yet, which correctly lands in "Later". The rule is not the bottleneck; the live corpus'
+    composition is. One of the two "Next" spaces:</p>
+    <p><b class="hl">Healthcare · Diagnostic support × Machine Learning</b> — 1 proof signal + 1 tech-maturity signal,
+    but only 1 of 2 sources and 1 of 2 concrete signals needed for "Now" — the interface literally states:
+    <i>"concrete evidence exists but does not converge: only 1 of 2 concrete signals, only 1 of 2 distinct sources."</i>
+    That sentence is the rule explaining itself on a real space, not a summary written after the fact.</p>
+    <p class="caption">Recommendation: re-measure this distribution after the next real collection run rather than
+    loosening the convergence thresholds now — narrowing them to force more "Next" results would defeat the reason
+    this was rebuilt.</p>
+  </div>
+  <div class="footer"><span>Section 3 · The horizon fix</span><span>9</span></div>
+</div>
+
+<!-- PAGE 10: NEW DIMENSIONS -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 4</p>
+    <h2 class="title">Three new dimensions, and their honest gaps</h2>
+    <p class="subtitle">All three were MISSING in the baseline report. Each is real, tested, and each has a
+    reported — not hidden — limitation.</p>
+
+    <p class="section-group-title barleft">Business domain</p>
+    <p>6 domains, derived deterministically as the union of a space's technology-domain mapping and its
+    use-case-domain mapping (technology always wins for the single-value "primary" badge). Live distribution:
+    OX: Smart Industries 11, Cloud 6, CX 2, Cybersecurity 2. No domain fell under the 5% coverage floor.
+    <span class="evidence">Pipelineteamfile/common/business_domains.py</span></p>
+
+    <p class="section-group-title barleft">Target persona</p>
+    <p>8 buyer personas (CIO, CISO, CDO, COO, CMO/CX, IT &amp; Network, Quality Manager, Industrial Safety Manager),
+    weighted Primary/Secondary/Peripheral rather than boolean — the weight is what makes ranking possible, not just
+    filtering. All 21 live spaces resolve at least one persona. A persona × vertical suppression list zeroes out
+    implausible pairs (e.g. Industrial Safety Manager × Retail).
+    <span class="evidence">Pipelineteamfile/common/personas.py</span></p>
+    <p class="caption">Gap: persona selection is currently a single-select picker inside Sales mode, not a
+    standalone multi-select chip filter like domain and geography — same underlying capability, different UI
+    treatment. Worth unifying.</p>
+
+    <p class="section-group-title barleft">Geography</p>
+    <p>14 regions matching how the business actually segments Europe (France and Germany each standalone, DACH
+    meaning Switzerland+Austria only — deliberate, not a mistake to "fix"). Deterministic for TED/CORDIS/OCDS,
+    LLM-inferred for RSS. 16 of 21 spaces resolve a region; 5 render honestly as "Global / unspecified" rather than
+    being excluded.
+    <span class="evidence">Pipelineteamfile/common/geography.py</span></p>
+    <div class="callout" style="border-color:#f3c6c0; background:#fdf1ef;">
+      <b class="hl">Reported gap, not silently misfiled:</b> Greece appears in 12 of the 21 live spaces and has no
+      home in the region table — it doesn't fall under Southern Europe (Italy/Spain/Portugal/Israel only), and the
+      code deliberately refuses to push it into "Asia" via a naive continent fallback or bury it in "Global". It
+      returns unresolved and is flagged. Cyprus, Malta, Turkey, Russia, the Western Balkans, Moldova and Belarus sit
+      in the same hole. Fix is a one-line taxonomy edit plus a backfill rerun, once someone decides where Greece
+      belongs.
+    </div>
+  </div>
+  <div class="footer"><span>Section 4 · Three new dimensions</span><span>10</span></div>
+</div>
+
+<!-- PAGE 11: ROLE MODE + EXPLANATIONS -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 5</p>
+    <h2 class="title">A new workflow layer: Role Mode</h2>
+    <p class="subtitle">Not in the baseline scorecard at all — a new capability, not a gap fix.</p>
+    <p>Three view modes — <b class="hl">Strategist, Sales, Presales</b> — implemented as a pure view configuration,
+    never written to the opportunity record. Switching mode changes three things at once: the default filters
+    (Sales asks for a persona before showing results), the sort key (Sales sorts by a persona-weighted score —
+    base score × a dampened multiplier that reorders without letting a weak-fit topic outrank a strong one), and
+    which parts of the detail page lead, sit standard, or start collapsed. No region is ever fully hidden in any
+    mode — asserted by a test rendering all three modes and checking every region is still in the page.</p>
+    <p>Mode only re-seeds filters if the user hasn't touched them — changing a filter is a normal action, never
+    silently discarded by switching mode. Sales mode also switches the list view from a card grid to one wide card
+    per topic, since the brief describes it being used live in front of a customer.
+    <span class="evidence">services/role_modes.py · config/role_modes.json</span></p>
+
+    <p class="section-group-title barleft">Deterministic explanation fields</p>
+    <p>The baseline report's "Recommended move" — a single hardcoded constant, identical on every topic — is
+    replaced by three composed fields built from typed clauses, not sentence templates with slots:</p>
+    <ul class="tight">
+      <li><b>Why hot now</b> — one clause per recent qualifying signal, capped at 3, strongest signal type first.</li>
+      <li><b>Why this matters</b> — always exactly 2 clauses: a domain/vertical framing sentence, then a
+      right-to-win sentence (today, always the honest fallback — see Section 6).</li>
+      <li><b>Recommended move</b> — a 9-cell role-mode × horizon matrix plus an action clause keyed to the
+      dominant signal type; genuinely different text per mode for the same topic, closing the exact bug the
+      baseline report called out by file and line number.</li>
+    </ul>
+    <p class="caption">No structured "entity" field exists on a signal record (only free-text rationale) — clauses
+    lean on a type lead-in plus a truncated rationale rather than guessing at extraction. Deliberately rejected using
+    the article's source name as a stand-in actor (e.g. "Defense Daily committed...") since that names the publisher,
+    not the actor, which would read as confidently false.</p>
+  </div>
+  <div class="footer"><span>Section 5 · Role Mode and explanation fields</span><span>11</span></div>
+</div>
+
+<!-- PAGE 12: RECOMMENDATIONS -->
+<div class="page">
+  <div class="bar"></div>
+  <div class="content">
+    <p class="eyebrow">SECTION 6</p>
+    <h2 class="title">What's left for tomorrow</h2>
+    <p class="subtitle">Ordered by value returned per unit of work, same convention as the baseline report.</p>
+
+    <div class="num-item"><div class="num-badge">1</div><div>
+      <div class="num-title">Decide where Greece (and its neighbours) belong in the region table</div>
+      <div class="num-tag">Small · a decision, then a one-line config edit + backfill</div>
+      <div class="num-body">12 of 21 live spaces touch Greece and it currently resolves to nothing. Also affects
+      Cyprus, Malta, Turkey, Russia, the Western Balkans, Moldova, Belarus.</div>
+    </div></div>
+
+    <div class="num-item"><div class="num-badge amber">2</div><div>
+      <div class="num-title">Unify the persona filter into the domain/geography chip pattern</div>
+      <div class="num-tag">Small · UI consistency, no new logic</div>
+      <div class="num-body">The weighting and threshold logic already exists and is tested — this is purely
+      presentational.</div>
+    </div></div>
+
+    <div class="num-item"><div class="num-badge amber">3</div><div>
+      <div class="num-title">Close the client_relevance dead path from the baseline report</div>
+      <div class="num-tag">Small · one line of prompt, or remove the columns</div>
+      <div class="num-body">Still unaddressed — the baseline report's recommendation 4. Strategic relevance now
+      works through a different, real mechanism (Company-page priorities), which makes the old dead columns even
+      more worth removing rather than leaving as a trap for a future reader.</div>
+    </div></div>
+
+    <div class="num-item"><div class="num-badge gray">4</div><div>
+      <div class="num-title">Right-to-win / CRM data — the one remaining structural gap</div>
+      <div class="num-tag">Medium/large · needs a data source decision first</div>
+      <div class="num-body">Affects "why this matters", the Presales sort (still falls back to Attractiveness with
+      a visible note), and the "Right to win &amp; proof points" region. Every consuming code path is already built
+      and tested against synthetic data — this is a data-sourcing decision, not further engineering design.</div>
+    </div></div>
+
+    <div class="num-item"><div class="num-badge gray">5</div><div>
+      <div class="num-title">Render "last updated" and decide on value-driver tagging</div>
+      <div class="num-tag">Small each · untouched since the baseline report</div>
+      <div class="num-body">Freshness data is computed but not shown anywhere; value drivers/tags were never
+      part of today's scope.</div>
+    </div></div>
+
+    <hr style="margin-top:24px;">
+    <p class="caption">Nothing described in this report has been committed. 54 changed or new files sit in the
+    working tree, all verified against 207 passing automated tests and the running local app before this document
+    was written.</p>
+  </div>
+  <div class="footer"><span>Section 6 · What's left for tomorrow</span><span>12</span></div>
+</div>
+
+</body>
+</html>

@@ -1,246 +1,896 @@
 {
+  "business_domains": [
+    {
+      "id": "ox-smart-industries",
+      "label": "OX: Smart Industries",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 0.6
+        },
+        {
+          "persona": "quality-manager",
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "connectivity-solutions",
+      "label": "Connectivity Solutions",
+      "personas": [
+        {
+          "persona": "it-network-executive",
+          "weight": 0.6
+        },
+        {
+          "persona": "cio",
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cybersecurity",
+      "label": "Cybersecurity",
+      "personas": [
+        {
+          "persona": "cyber-executive",
+          "weight": 0.6
+        },
+        {
+          "persona": "cio",
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud",
+      "personas": [
+        {
+          "persona": "cio",
+          "weight": 0.6
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
+    },
+    {
+      "id": "cx-customer-experience",
+      "label": "CX: Customer Experience",
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 0.6
+        }
+      ]
+    },
+    {
+      "id": "ex-employee-experience",
+      "label": "EX: Employee Experience",
+      "personas": [
+        {
+          "persona": "cio",
+          "weight": 0.3
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "cio",
+      "label": "CIO"
+    },
+    {
+      "id": "it-network-executive",
+      "label": "IT & Network Executive"
+    },
+    {
+      "id": "cyber-executive",
+      "label": "Security Executive / CISO"
+    },
+    {
+      "id": "cdo",
+      "label": "Chief Data Officer"
+    },
+    {
+      "id": "coo-production-executive",
+      "label": "COO & Production Executive"
+    },
+    {
+      "id": "cmo-cx-executive",
+      "label": "CMO & CX Executive"
+    },
+    {
+      "id": "quality-manager",
+      "label": "Quality Manager"
+    },
+    {
+      "id": "industrial-safety-manager",
+      "label": "Industrial Safety Manager"
+    }
+  ],
+  "regions": [
+    {
+      "id": "benelux",
+      "label": "Benelux",
+      "countries": ["NL", "BE", "LU"]
+    },
+    {
+      "id": "germany",
+      "label": "Germany",
+      "countries": ["DE"],
+      "note": "Standalone by business grouping - deliberately not merged into DACH."
+    },
+    {
+      "id": "france",
+      "label": "France",
+      "countries": ["FR"],
+      "note": "Standalone by business grouping - not part of Benelux, Southern Europe or DACH."
+    },
+    {
+      "id": "southern-europe",
+      "label": "Southern Europe",
+      "countries": ["IT", "ES", "PT", "IL"]
+    },
+    {
+      "id": "dach",
+      "label": "DACH",
+      "countries": ["CH", "AT"],
+      "note": "Switzerland and Austria only - Germany is its own region by business grouping."
+    },
+    {
+      "id": "uk-ireland",
+      "label": "UK & Ireland",
+      "countries": ["GB", "IE"]
+    },
+    {
+      "id": "nordics",
+      "label": "Nordics",
+      "countries": ["NO", "SE", "DK", "FI", "IS"]
+    },
+    {
+      "id": "eastern-europe",
+      "label": "Eastern Europe",
+      "countries": ["PL", "CZ", "SK", "HU", "RO", "BG", "SI", "HR", "EE", "LV", "LT", "UA", "RS"],
+      "note": "Working list - extend here when a live signal names an Eastern European country not listed."
+    },
+    {
+      "id": "north-america",
+      "label": "North America",
+      "countries": ["US", "CA", "MX"],
+      "note": "Simplified to continent - any other North American ISO code falls back here."
+    },
+    {
+      "id": "south-america",
+      "label": "South America",
+      "countries": [],
+      "note": "Simplified to continent - resolved by the ISO continent fallback."
+    },
+    {
+      "id": "africa",
+      "label": "Africa",
+      "countries": [],
+      "note": "Simplified to continent - resolved by the ISO continent fallback."
+    },
+    {
+      "id": "asia",
+      "label": "Asia",
+      "countries": [],
+      "note": "Simplified to continent - resolved by the ISO continent fallback."
+    },
+    {
+      "id": "oceania",
+      "label": "Oceania",
+      "countries": [],
+      "note": "Simplified to continent - resolved by the ISO continent fallback."
+    },
+    {
+      "id": "global",
+      "label": "Global / Cross-region",
+      "countries": [],
+      "note": "EU-wide regulation, worldwide statements, or signals spanning several regions with no dominant one. Set explicitly, never inferred from an absent country."
+    }
+  ],
+  "persona_suppressions": [
+    {
+      "persona": "industrial-safety-manager",
+      "vertical": "Retail",
+      "reason": "No industrial safety context"
+    },
+    {
+      "persona": "industrial-safety-manager",
+      "vertical": "Finance, Banking, Insurance",
+      "reason": "No industrial safety context"
+    },
+    {
+      "persona": "industrial-safety-manager",
+      "vertical": "Media & Entertainment",
+      "reason": "No industrial safety context"
+    },
+    {
+      "persona": "industrial-safety-manager",
+      "vertical": "Wholesale",
+      "reason": "No industrial safety context"
+    },
+    {
+      "persona": "quality-manager",
+      "vertical": "Public/Gov sector",
+      "reason": "No product/manufacturing quality context"
+    },
+    {
+      "persona": "quality-manager",
+      "vertical": "Media & Entertainment",
+      "reason": "No product/manufacturing quality context"
+    },
+    {
+      "persona": "quality-manager",
+      "vertical": "Finance, Banking, Insurance",
+      "reason": "No product/manufacturing quality context"
+    },
+    {
+      "persona": "coo-production-executive",
+      "vertical": "Media & Entertainment",
+      "reason": "No production context"
+    },
+    {
+      "persona": "cmo-cx-executive",
+      "vertical": "Defense",
+      "reason": "No consumer-facing CX context"
+    }
+  ],
   "use_cases": [
     {
       "id": "predictive-maintenance",
       "label": "Predictive maintenance",
-      "definition": "Anticipating equipment failures from operational or sensor data to schedule maintenance before breakdown."
+      "definition": "Anticipating equipment failures from operational or sensor data to schedule maintenance before breakdown.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "quality-manager",
+          "weight": 0.6
+        },
+        {
+          "persona": "industrial-safety-manager",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "asset-tracking",
       "label": "Asset tracking",
-      "definition": "Locating and monitoring the status of physical assets across sites or supply chains."
+      "definition": "Locating and monitoring the status of physical assets across sites or supply chains.",
+      "domains": [
+        "connectivity-solutions"
+      ],
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "it-network-executive",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "production-scheduling",
       "label": "Production scheduling",
-      "definition": "Optimizing the sequencing and allocation of manufacturing or production runs."
+      "definition": "Optimizing the sequencing and allocation of manufacturing or production runs.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "automated-inspection-defect-detection",
       "label": "Automated inspection / defect detection",
-      "definition": "Automated visual or physical inspection of products, equipment, or infrastructure to detect defects or damage, including imaging analytics."
+      "definition": "Automated visual or physical inspection of products, equipment, or infrastructure to detect defects or damage, including imaging analytics.",
+      "personas": [
+        {
+          "persona": "quality-manager",
+          "weight": 1.0
+        },
+        {
+          "persona": "coo-production-executive",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "anomaly-detection",
       "label": "Anomaly detection",
-      "definition": "Detecting abnormal patterns in system, network, or transactional data streams, including cybersecurity threats. Excludes visual/physical inspection (see automated-inspection-defect-detection)."
+      "definition": "Detecting abnormal patterns in system, network, or transactional data streams, including cybersecurity threats. Excludes visual/physical inspection (see automated-inspection-defect-detection).",
+      "domains": [
+        "cybersecurity"
+      ],
+      "personas": [
+        {
+          "persona": "cyber-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cio",
+          "weight": 0.6
+        },
+        {
+          "persona": "coo-production-executive",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "warehouse-automation",
       "label": "Warehouse automation",
-      "definition": "Automating storage, picking, and material handling operations in warehouses."
+      "definition": "Automating storage, picking, and material handling operations in warehouses.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "it-network-executive",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "business-forecasting",
       "label": "Business forecasting",
-      "definition": "Predicting future demand, sales, or revenue to support planning decisions."
+      "definition": "Predicting future demand, sales, or revenue to support planning decisions.",
+      "personas": [
+        {
+          "persona": "cdo",
+          "weight": 1.0
+        },
+        {
+          "persona": "coo-production-executive",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "dynamic-pricing",
       "label": "Dynamic pricing",
-      "definition": "Adjusting prices automatically based on demand, competition, or market conditions."
+      "definition": "Adjusting prices automatically based on demand, competition, or market conditions.",
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "inventory-optimization",
       "label": "Inventory optimization",
-      "definition": "Determining optimal stock levels and replenishment to reduce cost and stockouts."
+      "definition": "Determining optimal stock levels and replenishment to reduce cost and stockouts.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "route-optimization",
       "label": "Route optimization",
-      "definition": "Computing optimal routes or tours for delivery, transport, or field operations."
+      "definition": "Computing optimal routes or tours for delivery, transport, or field operations.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "it-network-executive",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "workforce-scheduling",
       "label": "Workforce scheduling",
-      "definition": "Optimizing staff shift planning and resource allocation against demand."
+      "definition": "Optimizing staff shift planning and resource allocation against demand.",
+      "domains": [
+        "ex-employee-experience"
+      ],
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "customer-service-automation",
       "label": "Customer service automation",
-      "definition": "Automating customer support interactions (chatbots, voice assistants, ticket handling)."
+      "definition": "Automating customer support interactions (chatbots, voice assistants, ticket handling).",
+      "domains": [
+        "cx-customer-experience"
+      ],
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cio",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "personalized-recommendations",
       "label": "Personalized recommendations",
-      "definition": "Suggesting products, content, or actions tailored to individual users."
+      "definition": "Suggesting products, content, or actions tailored to individual users.",
+      "domains": [
+        "cx-customer-experience"
+      ],
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "customer-segmentation",
       "label": "Customer segmentation",
-      "definition": "Grouping customers by behavior or value for targeting and strategy."
+      "definition": "Grouping customers by behavior or value for targeting and strategy.",
+      "domains": [
+        "cx-customer-experience"
+      ],
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "churn-prediction",
       "label": "Churn prediction",
-      "definition": "Identifying customers at risk of leaving to enable retention actions."
+      "definition": "Identifying customers at risk of leaving to enable retention actions.",
+      "domains": [
+        "cx-customer-experience"
+      ],
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "sentiment-analysis",
       "label": "Sentiment analysis",
-      "definition": "Extracting opinions and emotional tone from text, reviews, or social media."
+      "definition": "Extracting opinions and emotional tone from text, reviews, or social media.",
+      "domains": [
+        "cx-customer-experience"
+      ],
+      "personas": [
+        {
+          "persona": "cmo-cx-executive",
+          "weight": 1.0
+        }
+      ]
     },
     {
       "id": "fraud-detection",
       "label": "Fraud detection",
-      "definition": "Identifying fraudulent transactions, claims, or behavior in real time or batch."
+      "definition": "Identifying fraudulent transactions, claims, or behavior in real time or batch.",
+      "domains": [
+        "cybersecurity"
+      ],
+      "personas": [
+        {
+          "persona": "cyber-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cio",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "risk-scoring",
       "label": "Risk scoring",
-      "definition": "Quantifying the risk of counterparties, credit, or operations to support decisions, including credit underwriting."
+      "definition": "Quantifying the risk of counterparties, credit, or operations to support decisions, including credit underwriting.",
+      "domains": [
+        "cybersecurity"
+      ],
+      "personas": [
+        {
+          "persona": "cyber-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "kyc-aml-automation",
       "label": "KYC/AML automation",
-      "definition": "Automating identity verification and anti-money-laundering checks."
+      "definition": "Automating identity verification and anti-money-laundering checks.",
+      "domains": [
+        "cybersecurity"
+      ],
+      "personas": [
+        {
+          "persona": "cyber-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cio",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "compliance-monitoring",
       "label": "Compliance monitoring",
-      "definition": "Continuously verifying operations against regulatory or internal rules."
+      "definition": "Continuously verifying operations against regulatory or internal rules.",
+      "domains": [
+        "cybersecurity"
+      ],
+      "personas": [
+        {
+          "persona": "cyber-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "quality-manager",
+          "weight": 0.6
+        },
+        {
+          "persona": "industrial-safety-manager",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "document-processing-extraction",
       "label": "Document processing / extraction",
-      "definition": "Extracting and structuring information from documents (contracts, invoices, claims, forms)."
+      "definition": "Extracting and structuring information from documents (contracts, invoices, claims, forms).",
+      "domains": [
+        "ex-employee-experience"
+      ],
+      "personas": [
+        {
+          "persona": "cio",
+          "weight": 1.0
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "it-operations-automation",
       "label": "IT operations automation",
-      "definition": "Automating IT infrastructure monitoring, incident response, and routine operations (AIOps)."
+      "definition": "Automating IT infrastructure monitoring, incident response, and routine operations (AIOps).",
+      "domains": [
+        "cloud"
+      ],
+      "personas": [
+        {
+          "persona": "cio",
+          "weight": 1.0
+        },
+        {
+          "persona": "it-network-executive",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "diagnostic-support",
       "label": "Diagnostic support",
-      "definition": "Assisting clinical diagnosis or patient prioritization/triage with data-driven insight."
+      "definition": "Assisting clinical diagnosis or patient prioritization/triage with data-driven insight.",
+      "personas": [
+        {
+          "persona": "quality-manager",
+          "weight": 1.0
+        },
+        {
+          "persona": "coo-production-executive",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "precision-agriculture",
       "label": "Precision agriculture",
-      "definition": "Optimizing farming inputs and yields using field-level data."
+      "definition": "Optimizing farming inputs and yields using field-level data.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "industrial-safety-manager",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "network-optimization",
       "label": "Network optimization",
-      "definition": "Optimizing capacity, coverage, and performance of telecom or utility networks."
+      "definition": "Optimizing capacity, coverage, and performance of telecom or utility networks.",
+      "domains": [
+        "connectivity-solutions"
+      ],
+      "personas": [
+        {
+          "persona": "it-network-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "cio",
+          "weight": 0.6
+        }
+      ]
     },
     {
       "id": "energy-optimization",
       "label": "Energy optimization",
-      "definition": "Reducing or shifting the energy consumption of buildings, industry, or grids."
+      "definition": "Reducing or shifting the energy consumption of buildings, industry, or grids.",
+      "personas": [
+        {
+          "persona": "coo-production-executive",
+          "weight": 1.0
+        },
+        {
+          "persona": "industrial-safety-manager",
+          "weight": 0.3
+        },
+        {
+          "persona": "cdo",
+          "weight": 0.3
+        }
+      ]
     },
     {
       "id": "environmental-emissions-monitoring",
       "label": "Environmental/emissions monitoring",
-      "definition": "Measuring and reporting environmental impact, emissions, or pollution."
+      "definition": "Measuring and reporting environmental impact, emissions, or pollution.",
+      "domains": [
+        "ox-smart-industries"
+      ],
+      "personas": [
+        {
+          "persona": "industrial-safety-manager",
+          "weight": 1.0
+        },
+        {
+          "persona": "coo-production-executive",
+          "weight": 0.6
+        },
+        {
+          "persona": "quality-manager",
+          "weight": 0.3
+        }
+      ]
     }
   ],
   "technologies": [
     {
       "id": "cloud-data-platform",
       "label": "Cloud Data Platform",
-      "definition": "Cloud-based infrastructure for storing, integrating, and analyzing data at scale, including data lakes and warehouses."
+      "definition": "Cloud-based infrastructure for storing, integrating, and analyzing data at scale, including data lakes and warehouses.",
+      "domains": [
+        "cloud"
+      ]
     },
     {
       "id": "edge-computing",
       "label": "Edge Computing",
-      "definition": "Processing data locally near its source instead of in a central cloud."
+      "definition": "Processing data locally near its source instead of in a central cloud.",
+      "domains": [
+        "cloud",
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "digital-twin",
       "label": "Digital Twin",
-      "definition": "Virtual real-time replica of a physical asset, process, or system used for simulation and monitoring."
+      "definition": "Virtual real-time replica of a physical asset, process, or system used for simulation and monitoring.",
+      "domains": [
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "iot-platforms",
       "label": "IoT Platforms",
-      "definition": "Platforms connecting and managing networks of sensors and devices, including sensor networks and telematics."
+      "definition": "Platforms connecting and managing networks of sensors and devices, including sensor networks and telematics.",
+      "domains": [
+        "ox-smart-industries",
+        "connectivity-solutions"
+      ]
     },
     {
       "id": "rfid-asset-tagging",
       "label": "RFID / Asset Tagging",
-      "definition": "Tag-based identification and tracking of physical items (passive or active tags)."
+      "definition": "Tag-based identification and tracking of physical items (passive or active tags).",
+      "domains": [
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "connectivity-5g",
       "label": "5G Connectivity",
-      "definition": "High-bandwidth, low-latency mobile connectivity enabling real-time industrial use cases."
+      "definition": "High-bandwidth, low-latency mobile connectivity enabling real-time industrial use cases.",
+      "domains": [
+        "connectivity-solutions",
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "machine-learning",
       "label": "Machine Learning",
-      "definition": "Statistical or deep learning models trained on data for prediction or classification. Excludes content generation (see generative-ai-llms) and image understanding (see computer-vision)."
+      "definition": "Statistical or deep learning models trained on data for prediction or classification. Excludes content generation (see generative-ai-llms) and image understanding (see computer-vision).",
+      "domains": [
+        "cloud",
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "computer-vision",
       "label": "Computer Vision",
-      "definition": "Interpreting images or video: recognition, detection, measurement."
+      "definition": "Interpreting images or video: recognition, detection, measurement.",
+      "domains": [
+        "ox-smart-industries",
+        "cx-customer-experience"
+      ]
     },
     {
       "id": "natural-language-processing",
       "label": "Natural Language Processing",
-      "definition": "Analyzing and understanding text or language: classification, extraction, translation. Excludes content generation (see generative-ai-llms)."
+      "definition": "Analyzing and understanding text or language: classification, extraction, translation. Excludes content generation (see generative-ai-llms).",
+      "domains": [
+        "cx-customer-experience",
+        "ex-employee-experience"
+      ]
     },
     {
       "id": "generative-ai-llms",
       "label": "Generative AI / LLMs",
-      "definition": "Large language and generative models producing text, code, or images, or acting as reasoning agents."
+      "definition": "Large language and generative models producing text, code, or images, or acting as reasoning agents.",
+      "domains": [
+        "cx-customer-experience",
+        "ex-employee-experience"
+      ]
     },
     {
       "id": "speech-recognition",
       "label": "Speech Recognition",
-      "definition": "Converting spoken audio into text or voice commands."
+      "definition": "Converting spoken audio into text or voice commands.",
+      "domains": [
+        "cx-customer-experience"
+      ]
     },
     {
       "id": "reinforcement-learning",
       "label": "Reinforcement Learning",
-      "definition": "Agents learning optimal decisions through trial-and-error interaction with an environment."
+      "definition": "Agents learning optimal decisions through trial-and-error interaction with an environment.",
+      "domains": [
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "robotic-process-automation",
       "label": "Robotic Process Automation",
-      "definition": "Software bots automating repetitive, rule-based digital tasks. No physical robots (see industrial-robotics)."
+      "definition": "Software bots automating repetitive, rule-based digital tasks. No physical robots (see industrial-robotics).",
+      "domains": [
+        "ex-employee-experience"
+      ]
     },
     {
       "id": "industrial-robotics",
       "label": "Industrial Robotics",
-      "definition": "Physical robots performing manufacturing or industrial tasks."
+      "definition": "Physical robots performing manufacturing or industrial tasks.",
+      "domains": [
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "warehouse-automation-systems",
       "label": "Warehouse Automation Systems",
-      "definition": "Physical automation hardware for warehouses: AS/RS, AGVs, sorters."
+      "definition": "Physical automation hardware for warehouses: AS/RS, AGVs, sorters.",
+      "domains": [
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "autonomous-vehicles-drones",
       "label": "Autonomous Vehicles / Drones",
-      "definition": "Self-navigating vehicles or drones for transport, inspection, or delivery."
+      "definition": "Self-navigating vehicles or drones for transport, inspection, or delivery.",
+      "domains": [
+        "ox-smart-industries",
+        "connectivity-solutions"
+      ]
     },
     {
       "id": "blockchain-distributed-ledger",
       "label": "Blockchain / Distributed Ledger",
-      "definition": "Shared tamper-evident ledgers for traceability or decentralized transactions."
+      "definition": "Shared tamper-evident ledgers for traceability or decentralized transactions.",
+      "domains": [
+        "cloud",
+        "ox-smart-industries"
+      ]
     },
     {
       "id": "cybersecurity-platform",
       "label": "Cybersecurity Platform",
-      "definition": "Security tooling protecting systems and data, including zero trust architectures and biometric authentication."
+      "definition": "Security tooling protecting systems and data, including zero trust architectures and biometric authentication.",
+      "domains": [
+        "cybersecurity"
+      ]
     },
     {
       "id": "digital-payments-infrastructure",
       "label": "Digital Payments Infrastructure",
-      "definition": "Systems enabling electronic payment processing and settlement."
+      "definition": "Systems enabling electronic payment processing and settlement.",
+      "domains": [
+        "cloud",
+        "cybersecurity"
+      ]
     },
     {
       "id": "e-invoicing-peppol-integration",
       "label": "E-invoicing / Peppol Integration",
-      "definition": "Structured electronic invoicing exchanged via standards such as Peppol."
+      "definition": "Structured electronic invoicing exchanged via standards such as Peppol.",
+      "domains": [
+        "cloud",
+        "ex-employee-experience"
+      ]
     },
     {
       "id": "ar-vr-platforms",
       "label": "AR/VR Platforms",
-      "definition": "Augmented or virtual reality for training, visualization, or remote assistance."
+      "definition": "Augmented or virtual reality for training, visualization, or remote assistance.",
+      "domains": [
+        "ex-employee-experience",
+        "ox-smart-industries"
+      ]
     }
   ]
 }

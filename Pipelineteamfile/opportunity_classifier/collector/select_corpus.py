@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .prefilter_blocklist import passes_blocklist
+from common.trust import compute_trust
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 DB_PATH = REPO_ROOT / "data" / "articles.db"
@@ -61,14 +62,18 @@ def bucket_for_age(age_days):
 def load_candidates(conn, vertical):
     now = datetime.now(timezone.utc)
     rows = conn.execute(
-        "SELECT id, source_type, title, summary, published_date, collected_at "
-        "FROM articles WHERE vertical = ?",
+        "SELECT a.id, a.source_type, a.title, a.summary, a.published_date, a.collected_at, "
+        "s.audited_at, s.category "
+        "FROM articles a LEFT JOIN sources s ON s.source_name = a.source_name "
+        "WHERE a.vertical = ?",
         (vertical,),
     ).fetchall()
 
     candidates = []
-    for article_id, source_type, title, summary, published_date, collected_at in rows:
+    for article_id, source_type, title, summary, published_date, collected_at, audited_at, category in rows:
         if source_type in EXCLUDED_SOURCES:
+            continue
+        if compute_trust({"audited_at": audited_at, "category": category}).status == "fail":
             continue
         date_str = published_date or collected_at
         age_days = None

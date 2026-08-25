@@ -7,6 +7,9 @@ TEAM_DB = TEAM_PIPELINE / "data" / "articles.db"
 EXTENSION_DB = ROOT / "data" / "product.db"
 DOCUMENTS = ROOT / "Documents"
 TAXONOMY = TEAM_PIPELINE / "opportunity_classifier" / "config" / "taxonomy.json"
+# Role mode is a pure view concept with no pipeline involvement, so it lives with
+# the app rather than in the classifier config directory.
+ROLE_MODES = Path(__file__).resolve().parent / "config" / "role_modes.json"
 
 ORANGE = "#ff7900"
 INK = "#090909"

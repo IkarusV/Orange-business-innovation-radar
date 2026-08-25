@@ -144,12 +144,26 @@ want that computed.
   - `needs_review`: either malformed JSON / invalid id twice in a row, or a
     proposed match with confidence below 0.5 — genuinely ambiguous content,
     flagged rather than force-classified.
+  - Signal type, on the same row and from the same single call:
+    `signal_type` (one of the six slugs in `common/signal_types.py`),
+    `signal_type_confidence`, `signal_date`, `event_date`,
+    `event_date_precision`, `signal_type_rationale`, and
+    `signal_type_assigned_by` (`deterministic` for TED/OCDS/CORDIS/SAM.gov,
+    `llm` for RSS). A response whose `signal_type` fails the enum after retry
+    leaves the column NULL and is logged — never coerced to a plausible value.
 - `opportunity_spaces` — one row per `(vertical, use_case_id, technology_id)`
   triple with at least one `status='classified'` article: `article_count`,
   `linked_article_ids` (JSON array), `avg_client_relevance` (when active),
   `first_seen_at`/`last_updated_at`. Only rows where **both** use_case_id and
   technology_id are non-null form a real triple; partial matches don't
   aggregate into a space but stay in `article_classifications` for reference.
+  - Time horizon, recomputed with the space: `horizon` (`Now`/`Next`/`Later`),
+    `horizon_rule` (which rule fired), `horizon_reason`, and the counts the
+    rules acted on — `horizon_now_count`, `horizon_next_count`,
+    `horizon_later_count`, `horizon_distinct_sources`, `horizon_gated_count`,
+    `horizon_out_of_window_count`, `horizon_untyped_count`. Horizon reads only
+    signal types, dates, source identities and per-signal confidences; it never
+    reads the attractiveness score or any volume proxy.
 
 Read directly from SQLite — no JSON export (user's choice; revisit if a
 downstream consumer specifically needs one).

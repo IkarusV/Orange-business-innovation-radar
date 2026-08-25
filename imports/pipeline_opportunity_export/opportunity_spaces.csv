@@ -1,0 +1,310 @@
+source_space_id,vertical,use_case_id,use_case_label,technology_id,technology_label,article_count,avg_client_relevance,linked_article_ids,first_seen_at,last_updated_at
+143,Defense,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,14,,25013 33066 33232 33345 33415 33557 40795 40829 40839 40854 40952 40967 40969 40994,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+465,Energy,energy-optimization,Energy optimization,digital-twin,Digital Twin,13,,41765 41777 41780 41801 41808 41820 41824 41834 41844 41846 41847 41848 41932,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+152,Energy,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,11,,25934 41759 41763 41787 41794 41800 41851 41855 41930 41936 41979,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+31,Automotive,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,8,,368 370 377 388 412 435 3465 45827,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+46,Healthcare,diagnostic-support,Diagnostic support,machine-learning,Machine Learning,8,,648 26568 26631 42422 42474 42573 42594 42596,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+161,Healthcare,diagnostic-support,Diagnostic support,generative-ai-llms,Generative AI / LLMs,8,,26550 26561 26592 26606 42396 42402 42488 42491,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+47,Aerospace,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,7,,698 27225 27250 39675 39693 39738 39835,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+168,Aerospace,environmental-emissions-monitoring,Environmental/emissions monitoring,machine-learning,Machine Learning,7,,27076 39618 39621 39656 39661 39817 39825,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+57,Defense,asset-tracking,Asset tracking,autonomous-vehicles-drones,Autonomous Vehicles / Drones,7,,3173 10982 11080 11086 40757 40849 40951,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+140,Natural Resources,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,7,,19528 42614 42646 42685 42693 42789 42802,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+26,Public/Gov sector,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,7,,288 10628 32602 32869 40699 40701 45356,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+173,Aerospace,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,6,,27191 39665 39691 39720 39820 39821,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+174,Aerospace,environmental-emissions-monitoring,Environmental/emissions monitoring,cloud-data-platform,Cloud Data Platform,6,,27193 39652 39670 39699 39792 39804,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+361,Aerospace,network-optimization,Network optimization,connectivity-5g,5G Connectivity,6,,39624 39682 39683 39686 39716 39851,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+41,Lifesciences,diagnostic-support,Diagnostic support,machine-learning,Machine Learning,6,,498 25793 41502 41734 41738 44043,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+141,Retail,personalized-recommendations,Personalized recommendations,generative-ai-llms,Generative AI / LLMs,6,,24329 31394 31512 31781 31824 40117,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+177,Aerospace,asset-tracking,Asset tracking,autonomous-vehicles-drones,Autonomous Vehicles / Drones,5,,27277 27343 39634 39672 39847,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+170,Aerospace,environmental-emissions-monitoring,Environmental/emissions monitoring,computer-vision,Computer Vision,5,,27137 27215 39638 39818 39841,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+197,Automotive,route-optimization,Route optimization,autonomous-vehicles-drones,Autonomous Vehicles / Drones,5,,34124 34254 41000 41107 45869,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+137,Defense,anomaly-detection,Anomaly detection,iot-platforms,IoT Platforms,5,,17509 40766 40812 40855 40879,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+150,Energy,energy-optimization,Energy optimization,machine-learning,Machine Learning,5,,25860 25908 35712 41782 41792,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+185,"Finance, Banking, Insurance",compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,5,,32107 32172 32188 32399 40355,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+362,Aerospace,precision-agriculture,Precision agriculture,iot-platforms,IoT Platforms,4,,39673 39681 39684 39800,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+167,Aerospace,route-optimization,Route optimization,autonomous-vehicles-drones,Autonomous Vehicles / Drones,4,,27068 27078 27238 27278,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+440,Automotive,predictive-maintenance,Predictive maintenance,digital-twin,Digital Twin,4,,41006 41018 41190 41238,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+65,Energy,predictive-maintenance,Predictive maintenance,iot-platforms,IoT Platforms,4,,4387 41799 41803 41823,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+16,"Finance, Banking, Insurance",risk-scoring,Risk scoring,machine-learning,Machine Learning,4,,75 170 32432 40494,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+159,Media & Entertainment,sentiment-analysis,Sentiment analysis,natural-language-processing,Natural Language Processing,4,,26390 26394 26495 26533,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+23,Public/Gov sector,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,4,,274 281 285 32538,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+183,Retail,warehouse-automation,Warehouse automation,industrial-robotics,Industrial Robotics,4,,31735 40112 40114 40163,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+453,Transportation & Construction,environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,4,,41247 41251 41252 41354,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+200,Transportation & Construction,route-optimization,Route optimization,machine-learning,Machine Learning,4,,34440 34449 34463 34464,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+175,Aerospace,anomaly-detection,Anomaly detection,machine-learning,Machine Learning,3,,27242 39626 39658,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+374,Aerospace,predictive-maintenance,Predictive maintenance,iot-platforms,IoT Platforms,3,,39849 39855 39861,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+194,Automotive,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,3,,33801 41176 43564,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+138,Automotive,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,3,,17781 41105 41116,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+429,Defense,compliance-monitoring,Compliance monitoring,iot-platforms,IoT Platforms,3,,40845 40864 45596,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+59,Defense,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,3,,3306 43544 43550,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+58,Defense,it-operations-automation,IT operations automation,cybersecurity-platform,Cybersecurity Platform,3,,3299 25112 33357,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+463,Energy,energy-optimization,Energy optimization,blockchain-distributed-ledger,Blockchain / Distributed Ledger,3,,41750 41788 41821,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+464,Energy,energy-optimization,Energy optimization,cloud-data-platform,Cloud Data Platform,3,,41761 41793 41850,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+151,Energy,network-optimization,Network optimization,iot-platforms,IoT Platforms,3,,25887 35647 41826,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+12,"Finance, Banking, Insurance",risk-scoring,Risk scoring,generative-ai-llms,Generative AI / LLMs,3,,33 37 24615,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+128,Healthcare,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,3,,4981 19229 26705,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+158,Media & Entertainment,personalized-recommendations,Personalized recommendations,generative-ai-llms,Generative AI / LLMs,3,,26387 26447 42179,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+411,Public/Gov sector,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,3,,40516 40618 40638,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+51,Retail,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,3,,2511 2637 40172,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+380,Retail,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,3,,40169 40300 40307,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+147,Transportation & Construction,asset-tracking,Asset tracking,rfid-asset-tagging,RFID / Asset Tagging,3,,25550 25573 34759,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+456,Transportation & Construction,energy-optimization,Energy optimization,digital-twin,Digital Twin,3,,41275 41278 41491,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+40,Transportation & Construction,warehouse-automation,Warehouse automation,warehouse-automation-systems,Warehouse Automation Systems,3,,463 34424 34478,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+132,Wholesale,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,3,,12014 42025 42027,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+172,Aerospace,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,2,,27174 39713,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+371,Aerospace,precision-agriculture,Precision agriculture,autonomous-vehicles-drones,Autonomous Vehicles / Drones,2,,39838 54371,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+145,Automotive,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,2,,25214 41112,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+61,Automotive,asset-tracking,Asset tracking,rfid-asset-tagging,RFID / Asset Tagging,2,,3433 11225,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+38,Automotive,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,2,,450 33865,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+34,Automotive,predictive-maintenance,Predictive maintenance,machine-learning,Machine Learning,2,,386 420,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+443,Automotive,route-optimization,Route optimization,digital-twin,Digital Twin,2,,41024 41115,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+55,Defense,anomaly-detection,Anomaly detection,computer-vision,Computer Vision,2,,3156 40814,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+435,Defense,anomaly-detection,Anomaly detection,machine-learning,Machine Learning,2,,40955 40966,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+64,Energy,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,2,,4152 35703,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+42,Energy,predictive-maintenance,Predictive maintenance,digital-twin,Digital Twin,2,,559 41983,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+18,"Finance, Banking, Insurance",compliance-monitoring,Compliance monitoring,generative-ai-llms,Generative AI / LLMs,2,,79 24640,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+486,Healthcare,automated-inspection-defect-detection,Automated inspection / defect detection,industrial-robotics,Industrial Robotics,2,,42379 42459,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+487,Healthcare,diagnostic-support,Diagnostic support,digital-twin,Digital Twin,2,,42394 42492,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+495,Healthcare,diagnostic-support,Diagnostic support,iot-platforms,IoT Platforms,2,,42577 42591,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+44,Healthcare,document-processing-extraction,Document processing / extraction,generative-ai-llms,Generative AI / LLMs,2,,631 639,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+489,Healthcare,environmental-emissions-monitoring,Environmental/emissions monitoring,machine-learning,Machine Learning,2,,42419 42487,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+206,Lifesciences,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,2,,34915 41604,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+350,Manufacturing,automated-inspection-defect-detection,Automated inspection / defect detection,digital-twin,Digital Twin,2,,39371 39378,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+48,Manufacturing,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,2,,2199 2278,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+9,Manufacturing,production-scheduling,Production scheduling,iot-platforms,IoT Platforms,2,,5 8,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+480,Media & Entertainment,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,2,,42190 42203,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+134,Media & Entertainment,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,2,,12234 42174,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+498,Natural Resources,compliance-monitoring,Compliance monitoring,iot-platforms,IoT Platforms,2,,42613 42679,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+24,Public/Gov sector,anomaly-detection,Anomaly detection,machine-learning,Machine Learning,2,,278 40709,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+54,Public/Gov sector,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,2,,3071 40554,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+381,Retail,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,2,,40180 40276,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+180,Retail,personalized-recommendations,Personalized recommendations,machine-learning,Machine Learning,2,,31388 40153,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+385,Retail,route-optimization,Route optimization,autonomous-vehicles-drones,Autonomous Vehicles / Drones,2,,40280 40297,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+457,Transportation & Construction,automated-inspection-defect-detection,Automated inspection / defect detection,industrial-robotics,Industrial Robotics,2,,41280 41364,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+62,Transportation & Construction,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,2,,3826 43900,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+133,Wholesale,asset-tracking,Asset tracking,rfid-asset-tagging,RFID / Asset Tagging,2,,12016 26301,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+153,Wholesale,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,2,,26068 26098,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+475,Wholesale,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,2,,42017 42029,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+171,Aerospace,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,1,,27152,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+169,Aerospace,asset-tracking,Asset tracking,industrial-robotics,Industrial Robotics,1,,27109,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+178,Aerospace,asset-tracking,Asset tracking,computer-vision,Computer Vision,1,,27315,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+370,Aerospace,asset-tracking,Asset tracking,digital-twin,Digital Twin,1,,39836,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+373,Aerospace,asset-tracking,Asset tracking,blockchain-distributed-ledger,Blockchain / Distributed Ledger,1,,39848,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+363,Aerospace,automated-inspection-defect-detection,Automated inspection / defect detection,iot-platforms,IoT Platforms,1,,39674,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+367,Aerospace,automated-inspection-defect-detection,Automated inspection / defect detection,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,39802,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+375,Aerospace,automated-inspection-defect-detection,Automated inspection / defect detection,industrial-robotics,Industrial Robotics,1,,39856,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+366,Aerospace,business-forecasting,Business forecasting,machine-learning,Machine Learning,1,,39733,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+369,Aerospace,compliance-monitoring,Compliance monitoring,connectivity-5g,5G Connectivity,1,,39829,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+823,Aerospace,diagnostic-support,Diagnostic support,computer-vision,Computer Vision,1,,54416,2026-08-23T19:55:43.412400,2026-08-23T19:55:43.412400
+131,Aerospace,document-processing-extraction,Document processing / extraction,e-invoicing-peppol-integration,E-invoicing / Peppol Integration,1,,5582,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+376,Aerospace,environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,1,,39857,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+372,Aerospace,network-optimization,Network optimization,iot-platforms,IoT Platforms,1,,39846,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+359,Aerospace,precision-agriculture,Precision agriculture,edge-computing,Edge Computing,1,,39620,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+364,Aerospace,precision-agriculture,Precision agriculture,computer-vision,Computer Vision,1,,39711,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+176,Aerospace,predictive-maintenance,Predictive maintenance,edge-computing,Edge Computing,1,,27244,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+360,Aerospace,predictive-maintenance,Predictive maintenance,digital-twin,Digital Twin,1,,39623,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+365,Aerospace,predictive-maintenance,Predictive maintenance,industrial-robotics,Industrial Robotics,1,,39714,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+368,Aerospace,predictive-maintenance,Predictive maintenance,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,39828,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+441,Automotive,anomaly-detection,Anomaly detection,computer-vision,Computer Vision,1,,41010,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+444,Automotive,anomaly-detection,Anomaly detection,machine-learning,Machine Learning,1,,41025,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+39,Automotive,asset-tracking,Asset tracking,cloud-data-platform,Cloud Data Platform,1,,455,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+445,Automotive,asset-tracking,Asset tracking,digital-twin,Digital Twin,1,,41029,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+514,Automotive,asset-tracking,Asset tracking,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,43586,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+36,Automotive,compliance-monitoring,Compliance monitoring,iot-platforms,IoT Platforms,1,,431,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+196,Automotive,compliance-monitoring,Compliance monitoring,computer-vision,Computer Vision,1,,34002,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+451,Automotive,compliance-monitoring,Compliance monitoring,cloud-data-platform,Cloud Data Platform,1,,41195,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+452,Automotive,compliance-monitoring,Compliance monitoring,machine-learning,Machine Learning,1,,41234,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+33,Automotive,customer-service-automation,Customer service automation,generative-ai-llms,Generative AI / LLMs,1,,385,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+447,Automotive,energy-optimization,Energy optimization,machine-learning,Machine Learning,1,,41104,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+448,Automotive,environmental-emissions-monitoring,Environmental/emissions monitoring,machine-learning,Machine Learning,1,,41109,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+193,Automotive,fraud-detection,Fraud detection,machine-learning,Machine Learning,1,,33753,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+195,Automotive,inventory-optimization,Inventory optimization,generative-ai-llms,Generative AI / LLMs,1,,33806,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+442,Automotive,network-optimization,Network optimization,digital-twin,Digital Twin,1,,41014,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+450,Automotive,network-optimization,Network optimization,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,41193,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+146,Automotive,personalized-recommendations,Personalized recommendations,generative-ai-llms,Generative AI / LLMs,1,,25231,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+35,Automotive,predictive-maintenance,Predictive maintenance,generative-ai-llms,Generative AI / LLMs,1,,425,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+449,Automotive,predictive-maintenance,Predictive maintenance,industrial-robotics,Industrial Robotics,1,,41187,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+37,Automotive,risk-scoring,Risk scoring,computer-vision,Computer Vision,1,,445,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+32,Automotive,route-optimization,Route optimization,machine-learning,Machine Learning,1,,369,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+446,Automotive,route-optimization,Route optimization,iot-platforms,IoT Platforms,1,,41100,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+28,Defense,anomaly-detection,Anomaly detection,digital-twin,Digital Twin,1,,306,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+29,Defense,anomaly-detection,Anomaly detection,generative-ai-llms,Generative AI / LLMs,1,,313,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+423,Defense,anomaly-detection,Anomaly detection,natural-language-processing,Natural Language Processing,1,,40765,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+424,Defense,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,1,,40768,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+436,Defense,anomaly-detection,Anomaly detection,cloud-data-platform,Cloud Data Platform,1,,40956,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+30,Defense,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,1,,328,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+56,Defense,asset-tracking,Asset tracking,computer-vision,Computer Vision,1,,3157,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+513,Defense,automated-inspection-defect-detection,Automated inspection / defect detection,iot-platforms,IoT Platforms,1,,43536,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+425,Defense,compliance-monitoring,Compliance monitoring,digital-twin,Digital Twin,1,,40773,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+428,Defense,compliance-monitoring,Compliance monitoring,cloud-data-platform,Cloud Data Platform,1,,40840,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+430,Defense,compliance-monitoring,Compliance monitoring,machine-learning,Machine Learning,1,,40846,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+431,Defense,compliance-monitoring,Compliance monitoring,edge-computing,Edge Computing,1,,40857,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+439,Defense,compliance-monitoring,Compliance monitoring,blockchain-distributed-ledger,Blockchain / Distributed Ledger,1,,40995,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+144,Defense,energy-optimization,Energy optimization,digital-twin,Digital Twin,1,,25041,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+60,Defense,environmental-emissions-monitoring,Environmental/emissions monitoring,cloud-data-platform,Cloud Data Platform,1,,3372,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+427,Defense,environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,1,,40838,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+422,Defense,fraud-detection,Fraud detection,machine-learning,Machine Learning,1,,40759,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+438,Defense,fraud-detection,Fraud detection,computer-vision,Computer Vision,1,,40968,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+432,Defense,kyc-aml-automation,KYC/AML automation,blockchain-distributed-ledger,Blockchain / Distributed Ledger,1,,40865,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+437,Defense,network-optimization,Network optimization,cybersecurity-platform,Cybersecurity Platform,1,,40961,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+433,Defense,predictive-maintenance,Predictive maintenance,iot-platforms,IoT Platforms,1,,40868,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+434,Defense,risk-scoring,Risk scoring,iot-platforms,IoT Platforms,1,,40870,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+426,Defense,route-optimization,Route optimization,machine-learning,Machine Learning,1,,40833,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+469,Energy,automated-inspection-defect-detection,Automated inspection / defect detection,industrial-robotics,Industrial Robotics,1,,41858,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+208,Energy,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,1,,35662,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+468,Energy,energy-optimization,Energy optimization,edge-computing,Edge Computing,1,,41856,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+467,Energy,environmental-emissions-monitoring,Environmental/emissions monitoring,cloud-data-platform,Cloud Data Platform,1,,41852,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+470,Energy,environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,1,,41927,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+466,Energy,route-optimization,Route optimization,machine-learning,Machine Learning,1,,41768,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+19,"Finance, Banking, Insurance",anomaly-detection,Anomaly detection,generative-ai-llms,Generative AI / LLMs,1,,132,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+390,"Finance, Banking, Insurance",anomaly-detection,Anomaly detection,iot-platforms,IoT Platforms,1,,40340,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+394,"Finance, Banking, Insurance",anomaly-detection,Anomaly detection,machine-learning,Machine Learning,1,,40356,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+395,"Finance, Banking, Insurance",asset-tracking,Asset tracking,digital-twin,Digital Twin,1,,40361,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+399,"Finance, Banking, Insurance",asset-tracking,Asset tracking,iot-platforms,IoT Platforms,1,,40387,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+400,"Finance, Banking, Insurance",asset-tracking,Asset tracking,rfid-asset-tagging,RFID / Asset Tagging,1,,40388,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+402,"Finance, Banking, Insurance",automated-inspection-defect-detection,Automated inspection / defect detection,digital-twin,Digital Twin,1,,40395,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+13,"Finance, Banking, Insurance",business-forecasting,Business forecasting,machine-learning,Machine Learning,1,,35,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+389,"Finance, Banking, Insurance",business-forecasting,Business forecasting,generative-ai-llms,Generative AI / LLMs,1,,40323,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+52,"Finance, Banking, Insurance",compliance-monitoring,Compliance monitoring,computer-vision,Computer Vision,1,,2883,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+396,"Finance, Banking, Insurance",compliance-monitoring,Compliance monitoring,edge-computing,Edge Computing,1,,40374,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+398,"Finance, Banking, Insurance",compliance-monitoring,Compliance monitoring,machine-learning,Machine Learning,1,,40385,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+824,"Finance, Banking, Insurance",diagnostic-support,Diagnostic support,machine-learning,Machine Learning,1,,55194,2026-08-23T19:55:43.412400,2026-08-23T19:55:43.412400
+190,"Finance, Banking, Insurance",document-processing-extraction,Document processing / extraction,generative-ai-llms,Generative AI / LLMs,1,,32426,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+404,"Finance, Banking, Insurance",energy-optimization,Energy optimization,machine-learning,Machine Learning,1,,40485,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+405,"Finance, Banking, Insurance",energy-optimization,Energy optimization,cloud-data-platform,Cloud Data Platform,1,,40491,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+406,"Finance, Banking, Insurance",energy-optimization,Energy optimization,iot-platforms,IoT Platforms,1,,40500,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+408,"Finance, Banking, Insurance",energy-optimization,Energy optimization,digital-twin,Digital Twin,1,,40508,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+15,"Finance, Banking, Insurance",environmental-emissions-monitoring,Environmental/emissions monitoring,machine-learning,Machine Learning,1,,63,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+388,"Finance, Banking, Insurance",environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,1,,40319,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+189,"Finance, Banking, Insurance",fraud-detection,Fraud detection,machine-learning,Machine Learning,1,,32419,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+184,"Finance, Banking, Insurance",it-operations-automation,IT operations automation,generative-ai-llms,Generative AI / LLMs,1,,31935,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+17,"Finance, Banking, Insurance",kyc-aml-automation,KYC/AML automation,machine-learning,Machine Learning,1,,76,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+187,"Finance, Banking, Insurance",kyc-aml-automation,KYC/AML automation,blockchain-distributed-ledger,Blockchain / Distributed Ledger,1,,32381,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+401,"Finance, Banking, Insurance",kyc-aml-automation,KYC/AML automation,cloud-data-platform,Cloud Data Platform,1,,40390,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+407,"Finance, Banking, Insurance",kyc-aml-automation,KYC/AML automation,computer-vision,Computer Vision,1,,40504,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+403,"Finance, Banking, Insurance",network-optimization,Network optimization,connectivity-5g,5G Connectivity,1,,40397,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+14,"Finance, Banking, Insurance",personalized-recommendations,Personalized recommendations,machine-learning,Machine Learning,1,,59,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+20,"Finance, Banking, Insurance",personalized-recommendations,Personalized recommendations,generative-ai-llms,Generative AI / LLMs,1,,182,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+391,"Finance, Banking, Insurance",precision-agriculture,Precision agriculture,cloud-data-platform,Cloud Data Platform,1,,40345,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+393,"Finance, Banking, Insurance",predictive-maintenance,Predictive maintenance,iot-platforms,IoT Platforms,1,,40352,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+186,"Finance, Banking, Insurance",risk-scoring,Risk scoring,cybersecurity-platform,Cybersecurity Platform,1,,32265,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+188,"Finance, Banking, Insurance",risk-scoring,Risk scoring,cloud-data-platform,Cloud Data Platform,1,,32387,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+392,"Finance, Banking, Insurance",risk-scoring,Risk scoring,digital-twin,Digital Twin,1,,40346,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+397,"Finance, Banking, Insurance",route-optimization,Route optimization,connectivity-5g,5G Connectivity,1,,40378,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+129,Healthcare,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,1,,5022,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+135,Healthcare,asset-tracking,Asset tracking,industrial-robotics,Industrial Robotics,1,,12470,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+493,Healthcare,asset-tracking,Asset tracking,rfid-asset-tagging,RFID / Asset Tagging,1,,42557,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+509,Healthcare,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,1,,43216,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+163,Healthcare,automated-inspection-defect-detection,Automated inspection / defect detection,machine-learning,Machine Learning,1,,26679,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+497,Healthcare,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,1,,42590,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+165,Healthcare,business-forecasting,Business forecasting,machine-learning,Machine Learning,1,,26707,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+130,Healthcare,compliance-monitoring,Compliance monitoring,iot-platforms,IoT Platforms,1,,5058,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+490,Healthcare,compliance-monitoring,Compliance monitoring,cloud-data-platform,Cloud Data Platform,1,,42462,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+164,Healthcare,diagnostic-support,Diagnostic support,reinforcement-learning,Reinforcement Learning,1,,26703,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+488,Healthcare,diagnostic-support,Diagnostic support,computer-vision,Computer Vision,1,,42400,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+494,Healthcare,diagnostic-support,Diagnostic support,cloud-data-platform,Cloud Data Platform,1,,42564,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+45,Healthcare,document-processing-extraction,Document processing / extraction,machine-learning,Machine Learning,1,,640,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+492,Healthcare,energy-optimization,Energy optimization,digital-twin,Digital Twin,1,,42477,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+162,Healthcare,network-optimization,Network optimization,iot-platforms,IoT Platforms,1,,26581,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+491,Healthcare,personalized-recommendations,Personalized recommendations,machine-learning,Machine Learning,1,,42466,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+496,Healthcare,sentiment-analysis,Sentiment analysis,natural-language-processing,Natural Language Processing,1,,42587,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+63,Lifesciences,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,1,,3951,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+458,Lifesciences,anomaly-detection,Anomaly detection,generative-ai-llms,Generative AI / LLMs,1,,41506,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+207,Lifesciences,compliance-monitoring,Compliance monitoring,iot-platforms,IoT Platforms,1,,35282,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+149,Lifesciences,diagnostic-support,Diagnostic support,cloud-data-platform,Cloud Data Platform,1,,25796,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+139,Lifesciences,environmental-emissions-monitoring,Environmental/emissions monitoring,computer-vision,Computer Vision,1,,18259,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+515,Lifesciences,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,1,,43936,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+461,Lifesciences,inventory-optimization,Inventory optimization,digital-twin,Digital Twin,1,,41684,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+462,Lifesciences,precision-agriculture,Precision agriculture,machine-learning,Machine Learning,1,,41695,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+459,Lifesciences,production-scheduling,Production scheduling,digital-twin,Digital Twin,1,,41596,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+460,Lifesciences,risk-scoring,Risk scoring,machine-learning,Machine Learning,1,,41600,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+179,Manufacturing,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,1,,30680,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+358,Manufacturing,asset-tracking,Asset tracking,machine-learning,Machine Learning,1,,39425,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+510,Manufacturing,asset-tracking,Asset tracking,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,43325,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+351,Manufacturing,automated-inspection-defect-detection,Automated inspection / defect detection,industrial-robotics,Industrial Robotics,1,,39373,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+354,Manufacturing,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,1,,39382,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+356,Manufacturing,compliance-monitoring,Compliance monitoring,generative-ai-llms,Generative AI / LLMs,1,,39388,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+352,Manufacturing,energy-optimization,Energy optimization,digital-twin,Digital Twin,1,,39376,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+353,Manufacturing,energy-optimization,Energy optimization,generative-ai-llms,Generative AI / LLMs,1,,39377,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+357,Manufacturing,energy-optimization,Energy optimization,machine-learning,Machine Learning,1,,39390,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+355,Manufacturing,environmental-emissions-monitoring,Environmental/emissions monitoring,cloud-data-platform,Cloud Data Platform,1,,39387,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+511,Manufacturing,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,1,,43365,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+49,Manufacturing,network-optimization,Network optimization,iot-platforms,IoT Platforms,1,,2257,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+50,Manufacturing,precision-agriculture,Precision agriculture,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,2294,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+10,Manufacturing,predictive-maintenance,Predictive maintenance,machine-learning,Machine Learning,1,,10,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+8,Manufacturing,production-scheduling,Production scheduling,machine-learning,Machine Learning,1,,1,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+481,Media & Entertainment,asset-tracking,Asset tracking,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,42205,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+67,Media & Entertainment,compliance-monitoring,Compliance monitoring,cybersecurity-platform,Cybersecurity Platform,1,,4762,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+43,Media & Entertainment,customer-segmentation,Customer segmentation,cloud-data-platform,Cloud Data Platform,1,,615,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+484,Media & Entertainment,energy-optimization,Energy optimization,connectivity-5g,5G Connectivity,1,,42340,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+157,Media & Entertainment,personalized-recommendations,Personalized recommendations,connectivity-5g,5G Connectivity,1,,26357,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+483,Media & Entertainment,personalized-recommendations,Personalized recommendations,ar-vr-platforms,AR/VR Platforms,1,,42232,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+485,Media & Entertainment,personalized-recommendations,Personalized recommendations,machine-learning,Machine Learning,1,,42364,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+482,Media & Entertainment,predictive-maintenance,Predictive maintenance,digital-twin,Digital Twin,1,,42214,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+160,Media & Entertainment,sentiment-analysis,Sentiment analysis,generative-ai-llms,Generative AI / LLMs,1,,26428,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+505,Natural Resources,automated-inspection-defect-detection,Automated inspection / defect detection,rfid-asset-tagging,RFID / Asset Tagging,1,,42808,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+506,Natural Resources,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,1,,42822,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+508,Natural Resources,energy-optimization,Energy optimization,iot-platforms,IoT Platforms,1,,42857,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+499,Natural Resources,environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,1,,42634,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+504,Natural Resources,environmental-emissions-monitoring,Environmental/emissions monitoring,machine-learning,Machine Learning,1,,42801,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+507,Natural Resources,environmental-emissions-monitoring,Environmental/emissions monitoring,cloud-data-platform,Cloud Data Platform,1,,42825,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+166,Natural Resources,it-operations-automation,IT operations automation,generative-ai-llms,Generative AI / LLMs,1,,26794,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+500,Natural Resources,precision-agriculture,Precision agriculture,machine-learning,Machine Learning,1,,42644,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+501,Natural Resources,precision-agriculture,Precision agriculture,cloud-data-platform,Cloud Data Platform,1,,42647,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+502,Natural Resources,precision-agriculture,Precision agriculture,iot-platforms,IoT Platforms,1,,42648,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+503,Natural Resources,precision-agriculture,Precision agriculture,digital-twin,Digital Twin,1,,42651,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+136,Natural Resources,predictive-maintenance,Predictive maintenance,iot-platforms,IoT Platforms,1,,15983,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+27,Public/Gov sector,anomaly-detection,Anomaly detection,generative-ai-llms,Generative AI / LLMs,1,,302,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+417,Public/Gov sector,anomaly-detection,Anomaly detection,computer-vision,Computer Vision,1,,40704,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+418,Public/Gov sector,anomaly-detection,Anomaly detection,iot-platforms,IoT Platforms,1,,40705,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+25,Public/Gov sector,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,1,,286,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+191,Public/Gov sector,asset-tracking,Asset tracking,blockchain-distributed-ledger,Blockchain / Distributed Ledger,1,,32853,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+420,Public/Gov sector,automated-inspection-defect-detection,Automated inspection / defect detection,computer-vision,Computer Vision,1,,40708,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+412,Public/Gov sector,compliance-monitoring,Compliance monitoring,natural-language-processing,Natural Language Processing,1,,40524,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+419,Public/Gov sector,compliance-monitoring,Compliance monitoring,iot-platforms,IoT Platforms,1,,40706,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+421,Public/Gov sector,compliance-monitoring,Compliance monitoring,machine-learning,Machine Learning,1,,40710,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+21,Public/Gov sector,document-processing-extraction,Document processing / extraction,cloud-data-platform,Cloud Data Platform,1,,260,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+22,Public/Gov sector,document-processing-extraction,Document processing / extraction,machine-learning,Machine Learning,1,,268,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+192,Public/Gov sector,document-processing-extraction,Document processing / extraction,e-invoicing-peppol-integration,E-invoicing / Peppol Integration,1,,33010,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+409,Public/Gov sector,environmental-emissions-monitoring,Environmental/emissions monitoring,cloud-data-platform,Cloud Data Platform,1,,40509,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+410,Public/Gov sector,environmental-emissions-monitoring,Environmental/emissions monitoring,digital-twin,Digital Twin,1,,40514,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+414,Public/Gov sector,environmental-emissions-monitoring,Environmental/emissions monitoring,machine-learning,Machine Learning,1,,40613,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+512,Public/Gov sector,environmental-emissions-monitoring,Environmental/emissions monitoring,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,43508,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+142,Public/Gov sector,kyc-aml-automation,KYC/AML automation,computer-vision,Computer Vision,1,,24935,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+53,Public/Gov sector,network-optimization,Network optimization,iot-platforms,IoT Platforms,1,,2951,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+415,Public/Gov sector,route-optimization,Route optimization,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,40682,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+416,Public/Gov sector,route-optimization,Route optimization,iot-platforms,IoT Platforms,1,,40686,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+413,Public/Gov sector,sentiment-analysis,Sentiment analysis,computer-vision,Computer Vision,1,,40531,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+384,Retail,automated-inspection-defect-detection,Automated inspection / defect detection,iot-platforms,IoT Platforms,1,,40278,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+181,Retail,business-forecasting,Business forecasting,generative-ai-llms,Generative AI / LLMs,1,,31511,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+182,Retail,compliance-monitoring,Compliance monitoring,computer-vision,Computer Vision,1,,31520,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+379,Retail,customer-service-automation,Customer service automation,generative-ai-llms,Generative AI / LLMs,1,,40164,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+378,Retail,energy-optimization,Energy optimization,cloud-data-platform,Cloud Data Platform,1,,40157,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+382,Retail,energy-optimization,Energy optimization,blockchain-distributed-ledger,Blockchain / Distributed Ledger,1,,40197,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+377,Retail,inventory-optimization,Inventory optimization,generative-ai-llms,Generative AI / LLMs,1,,40116,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+386,Retail,personalized-recommendations,Personalized recommendations,ar-vr-platforms,AR/VR Platforms,1,,40302,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+383,Retail,production-scheduling,Production scheduling,iot-platforms,IoT Platforms,1,,40204,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+387,Retail,route-optimization,Route optimization,cloud-data-platform,Cloud Data Platform,1,,40304,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+11,Retail,warehouse-automation,Warehouse automation,warehouse-automation-systems,Warehouse Automation Systems,1,,29,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400
+455,Transportation & Construction,anomaly-detection,Anomaly detection,iot-platforms,IoT Platforms,1,,41272,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+202,Transportation & Construction,asset-tracking,Asset tracking,machine-learning,Machine Learning,1,,34446,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+204,Transportation & Construction,asset-tracking,Asset tracking,iot-platforms,IoT Platforms,1,,34735,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+454,Transportation & Construction,network-optimization,Network optimization,digital-twin,Digital Twin,1,,41250,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+199,Transportation & Construction,predictive-maintenance,Predictive maintenance,machine-learning,Machine Learning,1,,34432,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+148,Transportation & Construction,route-optimization,Route optimization,cloud-data-platform,Cloud Data Platform,1,,25595,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+198,Transportation & Construction,route-optimization,Route optimization,generative-ai-llms,Generative AI / LLMs,1,,34422,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+201,Transportation & Construction,route-optimization,Route optimization,reinforcement-learning,Reinforcement Learning,1,,34441,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+203,Transportation & Construction,route-optimization,Route optimization,autonomous-vehicles-drones,Autonomous Vehicles / Drones,1,,34461,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+205,Transportation & Construction,workforce-scheduling,Workforce scheduling,machine-learning,Machine Learning,1,,34826,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+154,Wholesale,anomaly-detection,Anomaly detection,cybersecurity-platform,Cybersecurity Platform,1,,26075,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+478,Wholesale,asset-tracking,Asset tracking,cloud-data-platform,Cloud Data Platform,1,,42036,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+473,Wholesale,automated-inspection-defect-detection,Automated inspection / defect detection,iot-platforms,IoT Platforms,1,,42015,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+471,Wholesale,business-forecasting,Business forecasting,machine-learning,Machine Learning,1,,41992,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+477,Wholesale,environmental-emissions-monitoring,Environmental/emissions monitoring,iot-platforms,IoT Platforms,1,,42034,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+155,Wholesale,inventory-optimization,Inventory optimization,machine-learning,Machine Learning,1,,26085,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+156,Wholesale,precision-agriculture,Precision agriculture,machine-learning,Machine Learning,1,,26326,2026-08-22T11:29:42.133715,2026-08-23T19:55:43.412400
+479,Wholesale,production-scheduling,Production scheduling,cloud-data-platform,Cloud Data Platform,1,,42044,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+472,Wholesale,route-optimization,Route optimization,cloud-data-platform,Cloud Data Platform,1,,42007,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+474,Wholesale,route-optimization,Route optimization,digital-twin,Digital Twin,1,,42016,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+476,Wholesale,route-optimization,Route optimization,reinforcement-learning,Reinforcement Learning,1,,42019,2026-08-23T01:39:36.984902,2026-08-23T19:55:43.412400
+66,Wholesale,warehouse-automation,Warehouse automation,warehouse-automation-systems,Warehouse Automation Systems,1,,4399,2026-08-22T09:10:01.207985,2026-08-23T19:55:43.412400

@@ -1,0 +1,34 @@
+{
+  "exported_at": "2026-08-25T10:36:40.511617+00:00",
+  "source_project": "C:\\Users\\danuk\\OneDrive\\Pipeline Opportunity",
+  "source_database": "C:\\Users\\danuk\\OneDrive\\Pipeline Opportunity\\data\\articles.db",
+  "opportunity_spaces_exported": 309,
+  "linked_articles_exported": 548,
+  "verticals": {
+    "Finance, Banking, Insurance": 39,
+    "Aerospace": 33,
+    "Automotive": 32,
+    "Defense": 31,
+    "Public/Gov sector": 26,
+    "Healthcare": 25,
+    "Retail": 18,
+    "Manufacturing": 18,
+    "Transportation & Construction": 17,
+    "Wholesale": 16,
+    "Energy": 15,
+    "Natural Resources": 14,
+    "Media & Entertainment": 13,
+    "Lifesciences": 12
+  },
+  "source_types_of_linked_articles": {
+    "cordis": 315,
+    "gnews": 121,
+    "rss": 52,
+    "ted": 48,
+    "ocds_uk": 11,
+    "ocds_ua": 1
+  },
+  "distinct_use_cases": 25,
+  "distinct_technologies": 18,
+  "taxonomy_reference": "Pipelineteamfile/opportunity_classifier/config/taxonomy.json (identical in both projects)"
+}

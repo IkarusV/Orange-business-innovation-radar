@@ -9,9 +9,9 @@ from radar_v2.styles import CARD
 ITEMS = [
     ("Opportunity space", "A focused combination of sector, business use case and enabling technology."),
     ("Signal", "A procurement, research, investment or market record that points to activity around an opportunity."),
-    ("Strategic fit", "How closely an opportunity aligns with the active company's priorities and capabilities."),
+    ("Attractiveness", "A 0-100 score combining market signal strength (30%), source credibility (20%), evidence quality (20%), novelty and momentum (15%) and strategic relevance (15%). Open any opportunity to see the five components behind its number."),
     ("Confidence", "How consistently the available evidence supports the opportunity classification."),
-    ("Now · Next · Later", "A simple planning horizon: act now, prepare next, or continue watching."),
+    ("Now · Next · Later", "Deadline-driven urgency, not a score threshold: the nearest real tender close date or funded-project end date behind an opportunity's evidence. Now = within 6 months or already in force, Next = 6-18 months out, Later = 18+ months out or no concrete date found in the evidence yet."),
 ]
 
 

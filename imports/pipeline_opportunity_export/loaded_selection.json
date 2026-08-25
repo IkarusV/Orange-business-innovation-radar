@@ -1,0 +1,625 @@
+{
+  "selected_at": "2026-08-25T10:38:21.461926+00:00",
+  "target_spaces_selected": 30,
+  "candidate_articles": 41,
+  "articles_inserted": 41,
+  "articles_in_team_db": 41,
+  "verticals_covered": [
+    "Aerospace",
+    "Automotive",
+    "Defense",
+    "Energy",
+    "Finance, Banking, Insurance",
+    "Healthcare",
+    "Lifesciences",
+    "Manufacturing",
+    "Media & Entertainment",
+    "Natural Resources",
+    "Public/Gov sector",
+    "Retail",
+    "Transportation & Construction",
+    "Wholesale"
+  ],
+  "target_spaces": [
+    {
+      "source_space_id": 47,
+      "vertical": "Aerospace",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "source_article_count": 7
+    },
+    {
+      "source_space_id": 197,
+      "vertical": "Automotive",
+      "use_case_id": "route-optimization",
+      "use_case_label": "Route optimization",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "source_article_count": 5
+    },
+    {
+      "source_space_id": 143,
+      "vertical": "Defense",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "source_article_count": 14
+    },
+    {
+      "source_space_id": 465,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "source_article_count": 13
+    },
+    {
+      "source_space_id": 16,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "source_article_count": 4
+    },
+    {
+      "source_space_id": 46,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "source_article_count": 8
+    },
+    {
+      "source_space_id": 206,
+      "vertical": "Lifesciences",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "computer-vision",
+      "technology_label": "Computer Vision",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 350,
+      "vertical": "Manufacturing",
+      "use_case_id": "automated-inspection-defect-detection",
+      "use_case_label": "Automated inspection / defect detection",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 158,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "source_article_count": 3
+    },
+    {
+      "source_space_id": 140,
+      "vertical": "Natural Resources",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "source_article_count": 7
+    },
+    {
+      "source_space_id": 23,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "cybersecurity-platform",
+      "technology_label": "Cybersecurity Platform",
+      "source_article_count": 4
+    },
+    {
+      "source_space_id": 183,
+      "vertical": "Retail",
+      "use_case_id": "warehouse-automation",
+      "use_case_label": "Warehouse automation",
+      "technology_id": "industrial-robotics",
+      "technology_label": "Industrial Robotics",
+      "source_article_count": 4
+    },
+    {
+      "source_space_id": 453,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "source_article_count": 4
+    },
+    {
+      "source_space_id": 133,
+      "vertical": "Wholesale",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "rfid-asset-tagging",
+      "technology_label": "RFID / Asset Tagging",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 168,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "source_article_count": 7
+    },
+    {
+      "source_space_id": 440,
+      "vertical": "Automotive",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "digital-twin",
+      "technology_label": "Digital Twin",
+      "source_article_count": 4
+    },
+    {
+      "source_space_id": 57,
+      "vertical": "Defense",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "autonomous-vehicles-drones",
+      "technology_label": "Autonomous Vehicles / Drones",
+      "source_article_count": 7
+    },
+    {
+      "source_space_id": 152,
+      "vertical": "Energy",
+      "use_case_id": "energy-optimization",
+      "use_case_label": "Energy optimization",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "source_article_count": 11
+    },
+    {
+      "source_space_id": 12,
+      "vertical": "Finance, Banking, Insurance",
+      "use_case_id": "risk-scoring",
+      "use_case_label": "Risk scoring",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "source_article_count": 3
+    },
+    {
+      "source_space_id": 161,
+      "vertical": "Healthcare",
+      "use_case_id": "diagnostic-support",
+      "use_case_label": "Diagnostic support",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "source_article_count": 8
+    },
+    {
+      "source_space_id": 458,
+      "vertical": "Lifesciences",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "generative-ai-llms",
+      "technology_label": "Generative AI / LLMs",
+      "source_article_count": 1
+    },
+    {
+      "source_space_id": 9,
+      "vertical": "Manufacturing",
+      "use_case_id": "production-scheduling",
+      "use_case_label": "Production scheduling",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 43,
+      "vertical": "Media & Entertainment",
+      "use_case_id": "customer-segmentation",
+      "use_case_label": "Customer segmentation",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "source_article_count": 1
+    },
+    {
+      "source_space_id": 498,
+      "vertical": "Natural Resources",
+      "use_case_id": "compliance-monitoring",
+      "use_case_label": "Compliance monitoring",
+      "technology_id": "iot-platforms",
+      "technology_label": "IoT Platforms",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 24,
+      "vertical": "Public/Gov sector",
+      "use_case_id": "anomaly-detection",
+      "use_case_label": "Anomaly detection",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 180,
+      "vertical": "Retail",
+      "use_case_id": "personalized-recommendations",
+      "use_case_label": "Personalized recommendations",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "source_article_count": 2
+    },
+    {
+      "source_space_id": 40,
+      "vertical": "Transportation & Construction",
+      "use_case_id": "warehouse-automation",
+      "use_case_label": "Warehouse automation",
+      "technology_id": "warehouse-automation-systems",
+      "technology_label": "Warehouse Automation Systems",
+      "source_article_count": 3
+    },
+    {
+      "source_space_id": 478,
+      "vertical": "Wholesale",
+      "use_case_id": "asset-tracking",
+      "use_case_label": "Asset tracking",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "source_article_count": 1
+    },
+    {
+      "source_space_id": 174,
+      "vertical": "Aerospace",
+      "use_case_id": "environmental-emissions-monitoring",
+      "use_case_label": "Environmental/emissions monitoring",
+      "technology_id": "cloud-data-platform",
+      "technology_label": "Cloud Data Platform",
+      "source_article_count": 6
+    },
+    {
+      "source_space_id": 34,
+      "vertical": "Automotive",
+      "use_case_id": "predictive-maintenance",
+      "use_case_label": "Predictive maintenance",
+      "technology_id": "machine-learning",
+      "technology_label": "Machine Learning",
+      "source_article_count": 2
+    }
+  ],
+  "candidate_articles_detail": [
+    {
+      "source_article_id": 698,
+      "vertical": "Aerospace",
+      "source_type": "rss",
+      "title": "Lockheed Martin Demonstrates Airspace Awareness System For Drones With Commercial Partners",
+      "url": "https://www.defensedaily.com/lockheed-martin-demonstrates-airspace-awareness-system-for-drones-with-commercial-partners/unmanned-systems/",
+      "from_source_space_id": 47
+    },
+    {
+      "source_article_id": 39675,
+      "vertical": "Aerospace",
+      "source_type": "cordis",
+      "title": "Solution for body kinematics monitoring",
+      "url": "https://cordis.europa.eu/project/id/101180173",
+      "from_source_space_id": 47
+    },
+    {
+      "source_article_id": 41000,
+      "vertical": "Automotive",
+      "source_type": "cordis",
+      "title": "PILOTING EUROPEAN GREEN AIR MOBILITY AND SERVICES FOR URBAN SOCIETAL READINESS",
+      "url": "https://cordis.europa.eu/project/id/101270568",
+      "from_source_space_id": 197
+    },
+    {
+      "source_article_id": 41107,
+      "vertical": "Automotive",
+      "source_type": "cordis",
+      "title": "Advancing Technical and Societal Readiness of Remote Operation in Connected, Cooperative, and Automated Mobility (CCAM) Services for People and Goods",
+      "url": "https://cordis.europa.eu/project/id/101268666",
+      "from_source_space_id": 197
+    },
+    {
+      "source_article_id": 40829,
+      "vertical": "Defense",
+      "source_type": "cordis",
+      "title": "Cybersecurity Certification and Assessment Tools",
+      "url": "https://cordis.europa.eu/project/id/101225878",
+      "from_source_space_id": 143
+    },
+    {
+      "source_article_id": 40795,
+      "vertical": "Defense",
+      "source_type": "cordis",
+      "title": "Leveraging Cybersecurity and NGS Protocols for the Detection of Illegal Vegetable Varieties and Microbiological Hazards to Strengthen EU Customs Security",
+      "url": "https://cordis.europa.eu/project/id/101308873",
+      "from_source_space_id": 143
+    },
+    {
+      "source_article_id": 41820,
+      "vertical": "Energy",
+      "source_type": "cordis",
+      "title": "leveraging the energy transition by gamified learning and AI, guided by cross sectoral integrated services and digital twin models to foster accessible and human-centered energy saving experiences",
+      "url": "https://cordis.europa.eu/project/id/101160720",
+      "from_source_space_id": 465
+    },
+    {
+      "source_article_id": 41846,
+      "vertical": "Energy",
+      "source_type": "cordis",
+      "title": "Maximizing Grid Integration and Optimization of Long Duration Energy Storage to synergize Revenue Streams",
+      "url": "https://cordis.europa.eu/project/id/101268626",
+      "from_source_space_id": 465
+    },
+    {
+      "source_article_id": 170,
+      "vertical": "Finance, Banking, Insurance",
+      "source_type": "rss",
+      "title": "Why your carrier's storm model vintage matters at renewal",
+      "url": "https://www.insurancebusinessmag.com/us/news/catastrophe/why-your-carriers-storm-model-vintage-matters-at-renewal-586665.aspx",
+      "from_source_space_id": 16
+    },
+    {
+      "source_article_id": 648,
+      "vertical": "Healthcare",
+      "source_type": "rss",
+      "title": "Epic targets outpatient visits with new AI tool",
+      "url": "https://www.healthcaredive.com/news/epic-targets-outpatient-visits-with-new-ai-tool/828230/",
+      "from_source_space_id": 46
+    },
+    {
+      "source_article_id": 42422,
+      "vertical": "Healthcare",
+      "source_type": "cordis",
+      "title": "Personalized disease prediction and prevention in chronic inflammatory disorders",
+      "url": "https://cordis.europa.eu/project/id/101156542",
+      "from_source_space_id": 46
+    },
+    {
+      "source_article_id": 41604,
+      "vertical": "Lifesciences",
+      "source_type": "cordis",
+      "title": "Atomic-resolution cryo-electron ptychography for structural biology",
+      "url": "https://cordis.europa.eu/project/id/101279800",
+      "from_source_space_id": 206
+    },
+    {
+      "source_article_id": 39371,
+      "vertical": "Manufacturing",
+      "source_type": "cordis",
+      "title": "Remanufacturing Upscaling via Semantic and interoperable digital Twins towards circuLar, AI-driven, standardized and Industry 5.0-ready manuFacturing Ecosystems",
+      "url": "https://cordis.europa.eu/project/id/101295335",
+      "from_source_space_id": 350
+    },
+    {
+      "source_article_id": 42179,
+      "vertical": "Media & Entertainment",
+      "source_type": "cordis",
+      "title": "Reframing European Gastronomy Legacy through Innovation Sustainability and Heritage",
+      "url": "https://cordis.europa.eu/project/id/101177427",
+      "from_source_space_id": 158
+    },
+    {
+      "source_article_id": 42614,
+      "vertical": "Natural Resources",
+      "source_type": "cordis",
+      "title": "Next Generation Biodiversity Observation Network",
+      "url": "https://cordis.europa.eu/project/id/101287608",
+      "from_source_space_id": 140
+    },
+    {
+      "source_article_id": 42693,
+      "vertical": "Natural Resources",
+      "source_type": "cordis",
+      "title": "Intergenerational Open Geospatial Carbon Registry - Open-Source Tools for Connecting EU Agricultural Policies (CAP) and Carbon Removals and Carbon Farming (CRCF) Regulation to national inventories and carbon markets",
+      "url": "https://cordis.europa.eu/project/id/101218854",
+      "from_source_space_id": 140
+    },
+    {
+      "source_article_id": 285,
+      "vertical": "Public/Gov sector",
+      "source_type": "rss",
+      "title": "Darktrace completes IRAP assessments for key products",
+      "url": "https://www.govtechreview.com.au/content/gov-security/news/darktrace-completes-irap-assessments-for-key-products-333133244?utm_source=rss",
+      "from_source_space_id": 23
+    },
+    {
+      "source_article_id": 40114,
+      "vertical": "Retail",
+      "source_type": "cordis",
+      "title": "AI-driven Robotic Assistant for Logistics",
+      "url": "https://cordis.europa.eu/project/id/101329116",
+      "from_source_space_id": 183
+    },
+    {
+      "source_article_id": 41247,
+      "vertical": "Transportation & Construction",
+      "source_type": "cordis",
+      "title": "Generative Agentic AI and Explainable Digital Twins for Climate-Neutral Cities",
+      "url": "https://cordis.europa.eu/project/id/101270173",
+      "from_source_space_id": 453
+    },
+    {
+      "source_article_id": 12016,
+      "vertical": "Wholesale",
+      "source_type": "ted",
+      "title": "Sweden – Miscellaneous fabricated products and related items – Ramavtal för rullcontainrar",
+      "url": "https://ted.europa.eu/bg/notice/-/detail/551468-2025",
+      "from_source_space_id": 133
+    },
+    {
+      "source_article_id": 39621,
+      "vertical": "Aerospace",
+      "source_type": "cordis",
+      "title": "PROTEUS: The Copernicus Agent for Next-Generation Environmental Intelligence",
+      "url": "https://cordis.europa.eu/project/id/101296397",
+      "from_source_space_id": 168
+    },
+    {
+      "source_article_id": 39661,
+      "vertical": "Aerospace",
+      "source_type": "cordis",
+      "title": "Geospatial Artificial Intelligence Analysis for Tailings Storage Facilities",
+      "url": "https://cordis.europa.eu/project/id/101180263",
+      "from_source_space_id": 168
+    },
+    {
+      "source_article_id": 41238,
+      "vertical": "Automotive",
+      "source_type": "cordis",
+      "title": "AI powered Digital twin for lighting infrastructure in the context of front-end Industry 4.0",
+      "url": "https://cordis.europa.eu/project/id/101007319",
+      "from_source_space_id": 440
+    },
+    {
+      "source_article_id": 40849,
+      "vertical": "Defense",
+      "source_type": "cordis",
+      "title": "Multi-purpose unmanned vehicle swarm patrol intelligence platform for port security and resilience.",
+      "url": "https://cordis.europa.eu/project/id/101225980",
+      "from_source_space_id": 57
+    },
+    {
+      "source_article_id": 40757,
+      "vertical": "Defense",
+      "source_type": "cordis",
+      "title": "reinforcing EU Maritime security through the integration of Autonomous Real-time Surveillance platforms and Enhanced response and Coordination tools",
+      "url": "https://cordis.europa.eu/project/id/101308878",
+      "from_source_space_id": 57
+    },
+    {
+      "source_article_id": 41930,
+      "vertical": "Energy",
+      "source_type": "cordis",
+      "title": "Sustainable energy system for achieving novel carbon neutral energy communities",
+      "url": "https://cordis.europa.eu/project/id/101022587",
+      "from_source_space_id": 152
+    },
+    {
+      "source_article_id": 41851,
+      "vertical": "Energy",
+      "source_type": "cordis",
+      "title": "Photovoltaic inverter for Virtualised operation and transformation",
+      "url": "https://cordis.europa.eu/project/id/101269972",
+      "from_source_space_id": 152
+    },
+    {
+      "source_article_id": 33,
+      "vertical": "Finance, Banking, Insurance",
+      "source_type": "rss",
+      "title": "Singapore’s DBS deploys specialist AI agents for 1,500 employees",
+      "url": "https://www.finextra.com/newsarticle/48281/singapores-dbs-deploys-specialist-ai-agents-for-1500-employees?utm_medium=rssfinextra&utm_source=finextrafeed",
+      "from_source_space_id": 12
+    },
+    {
+      "source_article_id": 42402,
+      "vertical": "Healthcare",
+      "source_type": "cordis",
+      "title": "Mechanism-Informed Multimodal Generative AI for Causal and Dynamical Modelling in Biomedical Research",
+      "url": "https://cordis.europa.eu/project/id/101289094",
+      "from_source_space_id": 161
+    },
+    {
+      "source_article_id": 42396,
+      "vertical": "Healthcare",
+      "source_type": "cordis",
+      "title": "A Multi-Agent Framework for Safe, Specialised, and Adaptive Clinical Reasoning",
+      "url": "https://cordis.europa.eu/project/id/101287214",
+      "from_source_space_id": 161
+    },
+    {
+      "source_article_id": 41506,
+      "vertical": "Lifesciences",
+      "source_type": "cordis",
+      "title": "ADVANCING PANDEMIC PREPAREDNESS AND RESPONSE THROUGH HIGH-QUALITY DATA AND AI",
+      "url": "https://cordis.europa.eu/project/id/101290677",
+      "from_source_space_id": 458
+    },
+    {
+      "source_article_id": 8,
+      "vertical": "Manufacturing",
+      "source_type": "rss",
+      "title": "How Harvey Performance Closed the Execution Gap with Intelligent MES",
+      "url": "https://www.machinemetrics.com/blog/how-harvey-performance-closed-the-execution-gap-with-intelligent-mes",
+      "from_source_space_id": 9
+    },
+    {
+      "source_article_id": 615,
+      "vertical": "Media & Entertainment",
+      "source_type": "rss",
+      "title": "Why fragmented buyer signals are holding back B2B marketing",
+      "url": "https://digiday.com/sponsored/why-fragmented-buyer-signals-are-holding-back-b2b-marketing/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss",
+      "from_source_space_id": 43
+    },
+    {
+      "source_article_id": 42679,
+      "vertical": "Natural Resources",
+      "source_type": "cordis",
+      "title": "A ground-breaking Framework for Integrated Data-Driven IntelligEnce in Fisheries Monitoring, ControL and Surveillance",
+      "url": "https://cordis.europa.eu/project/id/101286574",
+      "from_source_space_id": 498
+    },
+    {
+      "source_article_id": 278,
+      "vertical": "Public/Gov sector",
+      "source_type": "rss",
+      "title": "Why AI Resilience Is Becoming a Critical Priority for Government Cybersecurity",
+      "url": "https://statetechmagazine.com/article/2026/08/why-ai-resilience-becoming-critical-priority-government-cybersecurity",
+      "from_source_space_id": 24
+    },
+    {
+      "source_article_id": 40153,
+      "vertical": "Retail",
+      "source_type": "cordis",
+      "title": "Fairness and Explanations in Group Recommender Systems. Towards Trustworthiness and transparency",
+      "url": "https://cordis.europa.eu/project/id/101106164",
+      "from_source_space_id": 180
+    },
+    {
+      "source_article_id": 463,
+      "vertical": "Transportation & Construction",
+      "source_type": "rss",
+      "title": "Amazon, fulfillment tech company AutoStore ink global supply deal",
+      "url": "https://www.supplychaindive.com/news/amazon-fulfillment-tech-company-autostore-ink-global-supply-deal/827978/",
+      "from_source_space_id": 40
+    },
+    {
+      "source_article_id": 42036,
+      "vertical": "Wholesale",
+      "source_type": "cordis",
+      "title": "Towards a Shared European Logistics Intelligent Information Space",
+      "url": "https://cordis.europa.eu/project/id/690588",
+      "from_source_space_id": 478
+    },
+    {
+      "source_article_id": 39699,
+      "vertical": "Aerospace",
+      "source_type": "cordis",
+      "title": "Earth Observation & Weather Data Federation with AI Embeddings",
+      "url": "https://cordis.europa.eu/project/id/101131841",
+      "from_source_space_id": 174
+    },
+    {
+      "source_article_id": 39792,
+      "vertical": "Aerospace",
+      "source_type": "cordis",
+      "title": "CLimate change, Extreme weather and Air quality anomalies Resilience through novel Earth Observation advanced data analytics",
+      "url": "https://cordis.europa.eu/project/id/101182722",
+      "from_source_space_id": 174
+    },
+    {
+      "source_article_id": 420,
+      "vertical": "Automotive",
+      "source_type": "rss",
+      "title": "How Stellantis Plans to Get Ahead of Fleet Downtime",
+      "url": "https://www.automotive-fleet.com/videos/can-stellantis-fix-fleet-vehicles-before-they-fail",
+      "from_source_space_id": 34
+    }
+  ]
+}

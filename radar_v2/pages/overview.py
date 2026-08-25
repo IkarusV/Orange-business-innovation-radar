@@ -25,7 +25,7 @@ def overview() -> rx.Component:
             ),
             rx.grid(
                 rx.box(
-                    section_title("Portfolio pulse", "Relative strategic fit across the current opportunity set"),
+                    section_title("Portfolio pulse", "Attractiveness across the current opportunity set"),
                     rx.recharts.bar_chart(
                         rx.recharts.cartesian_grid(stroke="#292929", vertical=False),
                         rx.recharts.x_axis(data_key="name", stroke=MUTED, font_size=10),
@@ -64,6 +64,9 @@ def overview() -> rx.Component:
             ),
             rx.hstack(
                 section_title("Opportunities gaining momentum", "A focused selection from the current radar"),
+                # This selection follows the active view mode's filters and sort,
+                # so the mode has to be named here too.
+                rx.badge(RadarState.role_mode_label + " view", color_scheme="orange", variant="soft", radius="full"),
                 rx.spacer(),
                 rx.link("View all", href="/opportunities", color=ORANGE, weight="medium"),
                 width="100%", align="end",

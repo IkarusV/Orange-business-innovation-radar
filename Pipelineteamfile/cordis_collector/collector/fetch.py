@@ -10,9 +10,18 @@ from .query import TIER_CONFIDENCE, build_query, build_tier_queries
 
 CORDIS_SEARCH_URL = "https://cordis.europa.eu/api/search/results"
 PROJECT_URL_TEMPLATE = "https://cordis.europa.eu/project/id/{}"
+PROJECT_JSON_URL_TEMPLATE = "https://cordis.europa.eu/project/id/{}?format=json"
 REQUEST_TIMEOUT = 60
 MAX_RETRIES = 4
 REQUEST_SPACING_SECONDS = 1.0
+
+# Verified live against the search API: `status` is a filterable field whose
+# three values partition the project corpus exactly (SIGNED 24015 + CLOSED
+# 31979 + TERMINATED 2978 = 58972 total). There is no "ONGOING" value - SIGNED
+# covers both signed-not-yet-started and running projects. The search RESULTS
+# payload does not carry the field, so status has to come from the per-project
+# JSON view instead (see fetch_project_status).
+PROJECT_STATUSES = ("SIGNED", "CLOSED", "TERMINATED")
 
 # num>50 is silently ignored by the API and falls back to 10, so anything
 # larger than one page has to be walked with p=1,2,3...
@@ -133,6 +142,75 @@ def _request_page(query: str, page: int, page_size: int) -> dict:
         response.raise_for_status()
         return response.json()
     return {}  # unreachable: last loop iteration always returns or raises
+
+
+def _participant_countries(associations: list) -> List[str]:
+    """Country codes of every organization on the project, in first-seen order.
+
+    Verified against the live per-project JSON: each `organization` association
+    carries `address.country` as a two-letter code and repeats it under
+    `relations.regions[].isoCode`. The address is read first and the region
+    block is the fallback, since only the latter exists for an organization with
+    no postal address on record. Codes are returned exactly as CORDIS emits them
+    - it uses the EU variants (EL for Greece, UK for the United Kingdom), which
+    common.geography normalises rather than this collector.
+    """
+    countries = []
+    for association in associations:
+        if association.get("contenttype") != "organization":
+            continue
+        code = (association.get("address") or {}).get("country")
+        if not code:
+            regions = (association.get("relations") or {}).get("regions") or []
+            code = next((r.get("isoCode") for r in regions if r.get("isoCode")), None)
+        if code and code not in countries:
+            countries.append(code)
+    return countries
+
+
+def fetch_project_status(project_id: str) -> Optional[dict]:
+    """Project status, published-result count and participant countries for one
+    project, from the per-project JSON view. Not folded into fetch_vertical():
+    that would add one request per project (250 per vertical), so it is called
+    on demand for the far smaller set of projects that actually reach
+    classification.
+
+    Returns {"status": SIGNED|CLOSED|TERMINATED, "result_count": int,
+    "end_date": ISO date, "participant_countries": [...]} or None if the project
+    cannot be read. result_count is the number of `result` associations -
+    CORDIS's published deliverables and results for the project - which is what
+    separates a closed project that actually reported something from one that
+    just ended. participant_countries is multi-valued: a consortium project
+    genuinely spans several countries and all of them are geography for it.
+    """
+    if not project_id:
+        return None
+    url = PROJECT_JSON_URL_TEMPLATE.format(project_id)
+    for attempt in range(MAX_RETRIES):
+        try:
+            response = requests.get(url, timeout=REQUEST_TIMEOUT, headers={"Accept": "application/json"})
+        except requests.RequestException:
+            if attempt == MAX_RETRIES - 1:
+                return None
+            time.sleep(2 ** attempt)
+            continue
+        if response.status_code in (429, 500, 502, 503, 504) and attempt < MAX_RETRIES - 1:
+            time.sleep(float(response.headers.get("Retry-After", 2 ** attempt)))
+            continue
+        if response.status_code != 200:
+            return None
+        try:
+            record = response.json()
+        except ValueError:
+            return None
+        associations = (record.get("relations") or {}).get("associations") or []
+        return {
+            "status": record.get("status"),
+            "result_count": sum(1 for a in associations if a.get("contenttype") == "result"),
+            "end_date": record.get("endDate"),
+            "participant_countries": _participant_countries(associations),
+        }
+    return None
 
 
 def _run_search(query: str, limit: int) -> list:

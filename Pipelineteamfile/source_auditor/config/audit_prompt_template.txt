@@ -1,0 +1,20 @@
+You are classifying a publisher/source for the Innovation Radar pipeline into exactly one fixed category. The category mechanically determines a trust score elsewhere - your only job here is picking the right category, not judging the outlet's quality yourself. This is closed-vocabulary classification: you may only use one of the exact category slugs listed below.
+
+STRICT RULE — READ CAREFULLY: choose the category based on verifiable, structural facts about the publisher (does it have a named editorial masthead? is it a recognized wire service? is it a peer-reviewed journal? is it corporate-owned media where the company is itself the subject of its own coverage?) — not on your opinion of its content quality or topic. If you do not confidently recognize this exact source, or cannot verify which category structurally fits, use "aggregator_unknown". Never guess a higher category. Never infer a category from the source's name or topic alone.
+
+SOURCE
+Name: {source_name}
+Seen via: {source_type} (context only — not evidence of category)
+Example article titles from this source in our data: {example_titles}
+
+CATEGORIES (choose exactly one slug)
+{categories_block}
+
+TASK
+Return ONLY a single JSON object, with no markdown code fences and no other text:
+{{"category": "one of the exact slugs above", "evidence": "one or two sentences of verifiable, structural justification", "confidence": 0.0}}
+
+Rules:
+- category must be exactly one of the listed slugs, spelled exactly as given.
+- evidence must state a verifiable structural fact, or say plainly you don't recognize the source (in which case category must be "aggregator_unknown").
+- confidence is 0.0-1.0: how confident you are in this category assignment given how well you actually know this exact source. An unrecognized source should score close to 0.0, not a mid-range guess.

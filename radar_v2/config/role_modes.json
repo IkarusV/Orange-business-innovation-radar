@@ -1,0 +1,137 @@
+{
+  "default_mode": "strategist",
+  "regions": [
+    {
+      "key": "signals_evidence",
+      "label": "Signals & evidence",
+      "hint": "The institutional records behind this space and the signal types they carry"
+    },
+    {
+      "key": "score_breakdown",
+      "label": "Attractiveness, urgency & fit",
+      "hint": "The weighted components behind the score and the rules behind the timing badge"
+    },
+    {
+      "key": "why_hot_now",
+      "label": "Why hot now",
+      "hint": "What changed recently enough to put this space on the radar"
+    },
+    {
+      "key": "why_this_matters",
+      "label": "Why this matters",
+      "hint": "The business consequence for the customer"
+    },
+    {
+      "key": "recommended_move",
+      "label": "Recommended move",
+      "hint": "The next concrete step to take on this space"
+    },
+    {
+      "key": "right_to_win",
+      "label": "Right to win & proof points",
+      "hint": "Why Orange is credible here and what evidence supports that"
+    },
+    {
+      "key": "offering_matches",
+      "label": "Offering & partner matches",
+      "hint": "Which offerings and partners this space connects to"
+    },
+    {
+      "key": "persona_relevance",
+      "label": "Persona relevance",
+      "hint": "How strongly this space speaks to the selected persona"
+    }
+  ],
+  "modes": [
+    {
+      "id": "strategist",
+      "label": "Strategist",
+      "icon": "compass",
+      "description": "Scan the whole portfolio and judge which spaces deserve investment.",
+      "filters": {
+        "vertical": "All sectors",
+        "horizon": "All horizons",
+        "domains": [],
+        "persona": "",
+        "persona_required": false,
+        "persona_weight_threshold": null
+      },
+      "sort": {
+        "key": "attractiveness",
+        "direction": "desc",
+        "label": "Attractiveness score"
+      },
+      "list_density": "grid",
+      "presentation": {
+        "signals_evidence": "lead",
+        "score_breakdown": "lead",
+        "why_hot_now": "standard",
+        "why_this_matters": "standard",
+        "recommended_move": "standard",
+        "right_to_win": "standard",
+        "offering_matches": "collapsed",
+        "persona_relevance": "collapsed"
+      }
+    },
+    {
+      "id": "sales",
+      "label": "Sales",
+      "icon": "handshake",
+      "description": "Walk into a named meeting with one or two topics and a hook that lands.",
+      "filters": {
+        "vertical": "All sectors",
+        "horizon": "All horizons",
+        "domains": [],
+        "persona": "",
+        "persona_required": true,
+        "persona_weight_threshold": 0.6
+      },
+      "sort": {
+        "key": "persona_weighted",
+        "direction": "desc",
+        "label": "Persona-weighted score"
+      },
+      "list_density": "single_column",
+      "presentation": {
+        "signals_evidence": "collapsed",
+        "score_breakdown": "collapsed",
+        "why_hot_now": "standard",
+        "why_this_matters": "lead",
+        "recommended_move": "lead",
+        "right_to_win": "standard",
+        "offering_matches": "standard",
+        "persona_relevance": "lead"
+      }
+    },
+    {
+      "id": "presales",
+      "label": "Presales",
+      "icon": "wrench",
+      "description": "Find the differentiating space and connect it to offerings, partners and proof.",
+      "filters": {
+        "vertical": "All sectors",
+        "horizon": "All horizons",
+        "domains": [],
+        "persona": "",
+        "persona_required": false,
+        "persona_weight_threshold": 0.3
+      },
+      "sort": {
+        "key": "fit_score",
+        "direction": "desc",
+        "label": "Right-to-win / fit score"
+      },
+      "list_density": "grid",
+      "presentation": {
+        "signals_evidence": "standard",
+        "score_breakdown": "standard",
+        "why_hot_now": "standard",
+        "why_this_matters": "standard",
+        "recommended_move": "lead",
+        "right_to_win": "lead",
+        "offering_matches": "lead",
+        "persona_relevance": "standard"
+      }
+    }
+  ]
+}

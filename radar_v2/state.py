@@ -9,8 +9,8 @@ import reflex as rx
 import requests
 
 from radar_v2.constants import TEAM_PIPELINE
-from radar_v2.models import DocumentItem, Evidence, Opportunity, ReportBullet, ReportItem, ReportMetric, ReportRange, ReportRisk, SearchResult, SourceSummary
-from radar_v2.services import extension_store, team_repository
+from radar_v2.models import DocumentItem, Evidence, Opportunity, ReportBullet, ReportItem, ReportMetric, ReportRange, ReportRisk, RoleModeOption, SearchResult, SourceSummary, TaxonomyOption
+from radar_v2.services import domains, extension_store, geography, role_modes, team_repository
 from radar_v2.services import knowledge
 from radar_v2.services.reporting import create_focused_report
 from radar_v2.services.pipeline_runner import company_context_file, stream_run
@@ -21,8 +21,15 @@ class RadarState(rx.State):
     evidence: list[Evidence] = []
     selected_opportunity: Opportunity = {
         "id": 0, "vertical": "", "use_case_id": "", "use_case": "", "technology_id": "",
-        "technology": "", "article_count": 0, "relevance": 0, "confidence": 0,
-        "horizon": "Next", "momentum": "", "summary": "", "updated": "",
+        "technology": "", "primary_domain": "", "primary_domain_label": "", "domains": [],
+        "domain_labels": [], "article_count": 0, "relevance": 0, "confidence": 0,
+        "horizon": "Next", "horizon_reason": None, "horizon_rule": "", "horizon_breakdown": [],
+        "signal_mix": [], "momentum": "", "summary": "", "updated": "", "breakdown": [],
+        "persona_weights": [], "persona_ids": [],
+        "primary_region": "", "primary_region_label": geography.UNSPECIFIED_LABEL,
+        "regions": [], "region_labels": [], "countries": [],
+        "why_hot_now": "", "why_this_matters": "",
+        "recommended_moves": {}, "recommended_move": "",
     }
     metrics: dict[str, int] = {}
     source_mix: list[SourceSummary] = []
@@ -34,11 +41,32 @@ class RadarState(rx.State):
 
     vertical_filter: str = "All sectors"
     horizon_filter: str = "All horizons"
+    # Business domains are multi-select: an empty list is no constraint, and
+    # several selected domains widen the result rather than narrowing it.
+    domain_filter: list[str] = []
+    # Geography is multi-select on the same terms. Selecting `global` matches
+    # only spaces explicitly resolved there - it never also returns the spaces
+    # that simply have no geography, which stay a distinct state.
+    region_filter: list[str] = []
     search_filter: str = ""
+    # Role mode is view configuration only - filter seeds, a sort key and a
+    # presentation profile. It is never written to an opportunity space, and it
+    # is not a stored user preference (this app has no preferences mechanism):
+    # it lives in view state and can be seeded from a ?mode= query parameter.
+    role_mode: str = role_modes.DEFAULT_MODE
+    # Selected persona's label - empty means no persona constraint. Same
+    # value-is-the-label convention as every other filter select in this app.
+    persona_filter: str = ""
     company_name: str = "Orange Business"
     company_geography: str = "Belgium & Europe"
     company_website: str = "https://www.orange-business.com"
     company_focus: str = "Trusted digital services, secure connectivity, cloud, data and AI"
+    # Orange's OWN priority taxonomy selection - the strategic relevance input for the
+    # attractiveness score. Distinct from the company profile above, which describes the
+    # customer/prospect being pitched to.
+    orange_use_case_ids: list[str] = []
+    orange_technology_ids: list[str] = []
+    orange_priorities_updated: str = ""
     source_name: str = ""
     source_url: str = ""
     source_category: str = "Industry source"
@@ -111,6 +139,10 @@ class RadarState(rx.State):
         self.company_geography = self.active_company["geography"]
         self.company_website = self.active_company["website"]
         self.company_focus = self.active_company["focus"]
+        priorities = extension_store.orange_priorities()
+        self.orange_use_case_ids = priorities["use_case_ids"]
+        self.orange_technology_ids = priorities["technology_ids"]
+        self.orange_priorities_updated = (priorities["updated_at"] or "")[:10]
         self.documents = extension_store.documents()
         self.custom_sources = extension_store.custom_sources()
         self.reports = extension_store.reports()
@@ -134,16 +166,97 @@ class RadarState(rx.State):
 
     @rx.var
     def visible_opportunities(self) -> list[Opportunity]:
+        """OR within each of the domain and geography filters, AND across
+        dimensions. A space matches a selected domain or region if it appears
+        anywhere in its set, not only as primary.
+
+        Filtering stays in memory rather than being pushed into the SQL query
+        because two attractiveness components (market signal strength, novelty
+        & momentum) are normalized against the whole run - re-querying a subset
+        would silently rescore every remaining space.
+        """
         query = self.search_filter.strip().lower()
-        return [
+        selected_domains = set(self.domain_filter)
+        selected_regions = set(self.region_filter)
+        matched = [
             item for item in self.opportunities
             if (self.vertical_filter == "All sectors" or item["vertical"] == self.vertical_filter)
             and (self.horizon_filter == "All horizons" or item["horizon"] == self.horizon_filter)
+            and (not selected_domains or selected_domains.intersection(item["domains"]))
+            and (not selected_regions or selected_regions.intersection(item.get("regions") or []))
             and (not query or query in " ".join(str(value) for value in item.values()).lower())
+            and role_modes.persona_threshold_passes(item, self.role_mode, self.persona_filter)
+        ]
+        ordered = role_modes.sort_opportunities(matched, self.role_mode, self.persona_filter)
+        # Every space carries a move for all three modes; the list cards render
+        # one, so the active mode's is resolved here rather than in the card.
+        return [
+            {**item, "recommended_move": (item.get("recommended_moves") or {}).get(
+                self.role_mode, item.get("recommended_move", ""),
+            )}
+            for item in ordered
         ]
 
     def set_search_filter(self, value: str):
         self.search_filter = value
+
+    def _filters_match_defaults(self, mode_id: str) -> bool:
+        """Whether the filter panel is still exactly as a mode seeded it."""
+        defaults = role_modes.filter_defaults(mode_id)
+        return (
+            self.vertical_filter == defaults["vertical"]
+            and self.horizon_filter == defaults["horizon"]
+            and sorted(self.domain_filter) == sorted(defaults["domains"])
+            and self.persona_filter == defaults["persona"]
+        )
+
+    def _seed_filter_defaults(self, mode_id: str):
+        defaults = role_modes.filter_defaults(mode_id)
+        self.vertical_filter = defaults["vertical"]
+        self.horizon_filter = defaults["horizon"]
+        self.domain_filter = list(defaults["domains"])
+        self.persona_filter = defaults["persona"]
+
+    def set_role_mode(self, mode_id: str):
+        """Switching mode always changes sort and presentation. Filters are only
+        re-seeded when the user has not touched them since the current mode
+        seeded them - customised filters are the user's, not the mode's."""
+        if mode_id not in role_modes.MODE_IDS or mode_id == self.role_mode:
+            return
+        if self._filters_match_defaults(self.role_mode):
+            self._seed_filter_defaults(mode_id)
+        self.role_mode = mode_id
+
+    def load_role_mode(self):
+        """Seed the mode from ?mode= so a shared link opens in the same view.
+        A missing or unknown value leaves the current selection untouched."""
+        try:
+            requested = dict(self.router.url.query_parameters).get("mode", "")
+        except Exception:
+            requested = ""
+        if requested in role_modes.MODE_IDS:
+            self.set_role_mode(requested)
+
+    def set_persona_filter(self, value: str):
+        self.persona_filter = value
+
+    def toggle_domain_filter(self, domain_id: str):
+        if domain_id in self.domain_filter:
+            self.domain_filter = [item for item in self.domain_filter if item != domain_id]
+        else:
+            self.domain_filter = self.domain_filter + [domain_id]
+
+    def clear_domain_filter(self):
+        self.domain_filter = []
+
+    def toggle_region_filter(self, region_id: str):
+        if region_id in self.region_filter:
+            self.region_filter = [item for item in self.region_filter if item != region_id]
+        else:
+            self.region_filter = self.region_filter + [region_id]
+
+    def clear_region_filter(self):
+        self.region_filter = []
 
     def set_vertical_filter(self, value: str):
         self.vertical_filter = value
@@ -491,6 +604,34 @@ class RadarState(rx.State):
         self.load()
         return rx.toast.success("Company workspace updated")
 
+    def toggle_orange_use_case(self, use_case_id: str):
+        if use_case_id in self.orange_use_case_ids:
+            self.orange_use_case_ids = [item for item in self.orange_use_case_ids if item != use_case_id]
+        else:
+            self.orange_use_case_ids = self.orange_use_case_ids + [use_case_id]
+
+    def toggle_orange_technology(self, technology_id: str):
+        if technology_id in self.orange_technology_ids:
+            self.orange_technology_ids = [item for item in self.orange_technology_ids if item != technology_id]
+        else:
+            self.orange_technology_ids = self.orange_technology_ids + [technology_id]
+
+    def clear_orange_priorities(self):
+        self.orange_use_case_ids = []
+        self.orange_technology_ids = []
+
+    def save_orange_priorities(self):
+        extension_store.save_orange_priorities(self.orange_use_case_ids, self.orange_technology_ids)
+        # Strategic relevance is 15% of every opportunity's score, so the portfolio
+        # is rescored immediately. Only the derived data is refreshed (not a full
+        # load()), so unsaved edits in the company profile form above are kept.
+        self.opportunities = team_repository.list_opportunities()
+        self.metrics = team_repository.dashboard_metrics()
+        self.orange_priorities_updated = extension_store.orange_priorities()["updated_at"][:10]
+        if not self.orange_use_case_ids and not self.orange_technology_ids:
+            return rx.toast.success("Orange priorities cleared - strategic relevance is now unscored")
+        return rx.toast.success("Orange priorities saved - opportunities rescored")
+
     async def upload_documents(self, files: list[rx.UploadFile]):
         if not files:
             yield rx.toast.error("Choose at least one document")
@@ -617,8 +758,116 @@ class RadarState(rx.State):
         return ["All sectors"] + sorted({item["vertical"] for item in self.opportunities})
 
     @rx.var
+    def domain_filter_options(self) -> list[TaxonomyOption]:
+        """Read from taxonomy.json, never hardcoded here - the domain
+        vocabulary is closed and owned by configuration."""
+        return [
+            {"id": option["id"], "label": option["label"], "selected": option["id"] in self.domain_filter}
+            for option in domains.options()
+        ]
+
+    @rx.var
+    def domain_filter_count(self) -> int:
+        return len(self.domain_filter)
+
+    @rx.var
+    def region_filter_options(self) -> list[TaxonomyOption]:
+        """Read from taxonomy.json, never hardcoded here - the region grouping
+        is a business decision owned by configuration, including the deliberate
+        standalone Germany and France and the Switzerland+Austria-only DACH."""
+        return [
+            {"id": option["id"], "label": option["label"], "selected": option["id"] in self.region_filter}
+            for option in geography.options()
+        ]
+
+    @rx.var
+    def region_filter_count(self) -> int:
+        return len(self.region_filter)
+
+    @rx.var
+    def role_mode_options(self) -> list[RoleModeOption]:
+        return [
+            {
+                "id": item["id"], "label": item["label"],
+                "description": item.get("description", ""), "icon": item.get("icon", "circle"),
+                "selected": item["id"] == self.role_mode,
+            }
+            for item in role_modes.MODES
+        ]
+
+    @rx.var
+    def role_mode_label(self) -> str:
+        return role_modes.label(self.role_mode)
+
+    @rx.var
+    def role_mode_description(self) -> str:
+        return role_modes.description(self.role_mode)
+
+    @rx.var
+    def role_mode_sort_label(self) -> str:
+        return role_modes.sort_plan(self.role_mode)["effective_label"]
+
+    @rx.var
+    def role_mode_sort_note(self) -> str:
+        """Empty unless the configured sort fell back to attractiveness because
+        its underlying feature does not exist yet."""
+        return role_modes.sort_plan(self.role_mode)["note"]
+
+    @rx.var
+    def role_mode_is_single_column(self) -> bool:
+        return role_modes.list_density(self.role_mode) == "single_column"
+
+    @rx.var
+    def region_emphasis(self) -> dict[str, str]:
+        """lead / standard / collapsed per detail page region. No value is ever
+        'hidden' - collapsed regions stay in the page behind one click."""
+        return role_modes.presentation(self.role_mode)
+
+    @rx.var
+    def persona_prompt_visible(self) -> bool:
+        """Sales mode asks for a persona before the topic list. It is a prompt,
+        not a gate - clearing it is a normal user action, not overriding a
+        constraint, so the list stays reachable either way."""
+        return role_modes.persona_required(self.role_mode) and not self.persona_filter
+
+    @rx.var
+    def persona_options(self) -> list[str]:
+        return role_modes.persona_options()
+
+    @rx.var
+    def persona_weighting_available(self) -> bool:
+        return role_modes.PERSONA_WEIGHTING_AVAILABLE
+
+    @rx.var
+    def recommended_move_text(self) -> str:
+        """The selected space's move for the mode currently in view. The space
+        carries all three; picking one is a view decision, so it happens here
+        rather than being baked into the record."""
+        moves = self.selected_opportunity.get("recommended_moves") or {}
+        return moves.get(self.role_mode, moves.get(role_modes.DEFAULT_MODE, ""))
+
+    @rx.var
     def discovery_vertical_options(self) -> list[str]:
         return team_repository.all_verticals()
+
+    @rx.var
+    def orange_use_case_options(self) -> list[TaxonomyOption]:
+        """The closed classifier taxonomy - same source the pipeline classifies against."""
+        return [
+            {"id": key, "label": label, "selected": key in self.orange_use_case_ids}
+            for key, label in sorted(team_repository.USE_CASES.items(), key=lambda pair: pair[1])
+        ]
+
+    @rx.var
+    def orange_technology_options(self) -> list[TaxonomyOption]:
+        return [
+            {"id": key, "label": label, "selected": key in self.orange_technology_ids}
+            for key, label in sorted(team_repository.TECHNOLOGIES.items(), key=lambda pair: pair[1])
+        ]
+
+    @rx.var
+    def orange_priority_count(self) -> int:
+        return len(self.orange_use_case_ids) + len(self.orange_technology_ids)
 
     @rx.var
     def report_opportunity_options(self) -> list[str]:
