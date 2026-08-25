@@ -1,0 +1,2 @@
+evaluation_rows,accuracy,relevant_precision,relevant_recall,relevant_f1,needs_review_count,human_ambiguous_count
+25,0.92,0.846,1.0,0.917,14,7
