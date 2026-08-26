@@ -103,6 +103,11 @@ CLASSIFICATION_COLUMNS = {
     "event_date": "TEXT",
     "event_date_precision": "TEXT",
     "signal_type_rationale": "TEXT",
+    # Same fact as signal_type_rationale, in plain language for a non-technical
+    # reader - radar_v2/services/explanations.py's hot_now_clause() prefers
+    # this when present, falling back to a truncation of the rationale above
+    # for any row this hasn't been backfilled onto yet.
+    "signal_type_plain_summary": "TEXT",
     "signal_type_assigned_by": "TEXT",
     # Geography, per signal. countries/regions/unresolved_countries are JSON
     # arrays because a signal is legitimately multi-country (a CORDIS consortium
@@ -198,10 +203,10 @@ def upsert_classification(
             (article_id, use_case_id, technology_id, confidence, evidence, status,
              client_relevance, client_relevance_reason, client_context_ref, tokens_used, classified_at,
              signal_type, signal_type_confidence, signal_date, event_date, event_date_precision,
-             signal_type_rationale, signal_type_assigned_by,
+             signal_type_rationale, signal_type_plain_summary, signal_type_assigned_by,
              countries, regions, region_override, geography_confidence,
              geography_assigned_by, unresolved_countries)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             article_id,
@@ -221,6 +226,7 @@ def upsert_classification(
             result.event_date,
             result.event_date_precision,
             result.signal_type_rationale,
+            result.signal_type_plain_summary,
             result.signal_type_assigned_by,
             _json_list(result.countries),
             _json_list(result.regions),
@@ -276,6 +282,21 @@ def already_geotagged_ids(conn: sqlite3.Connection) -> set:
     }
 
 
+def update_plain_summary(conn: sqlite3.Connection, article_id: int, plain_summary: str, tokens: int = 0) -> None:
+    """Write only signal_type_plain_summary onto an existing classification
+    row. Used by the plain-summary backfill for rows classified before this
+    field existed - the signal_type, rationale and every taxonomy field the
+    row already carries are untouched and not re-spent on."""
+    conn.execute(
+        """
+        UPDATE article_classifications
+        SET signal_type_plain_summary = ?, tokens_used = COALESCE(tokens_used, 0) + ?
+        WHERE article_id = ?
+        """,
+        (plain_summary, tokens, article_id),
+    )
+
+
 def update_signal_type(conn: sqlite3.Connection, article_id: int, result) -> None:
     """Write only the signal-type fields onto an existing classification row.
     Used when an article was classified before these fields existed - the
@@ -284,13 +305,14 @@ def update_signal_type(conn: sqlite3.Connection, article_id: int, result) -> Non
         """
         UPDATE article_classifications
         SET signal_type = ?, signal_type_confidence = ?, signal_date = ?, event_date = ?,
-            event_date_precision = ?, signal_type_rationale = ?, signal_type_assigned_by = ?,
-            tokens_used = COALESCE(tokens_used, 0) + ?
+            event_date_precision = ?, signal_type_rationale = ?, signal_type_plain_summary = ?,
+            signal_type_assigned_by = ?, tokens_used = COALESCE(tokens_used, 0) + ?
         WHERE article_id = ?
         """,
         (
             result.signal_type, result.signal_type_confidence, result.signal_date,
             result.event_date, result.event_date_precision, result.signal_type_rationale,
+            result.signal_type_plain_summary,
             result.signal_type_assigned_by, result.total_tokens, article_id,
         ),
     )

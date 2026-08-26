@@ -243,9 +243,11 @@ def save_settings(ai_base_url: str, ai_model: str, ai_mode: str, search_provider
 
 
 def orange_priorities() -> dict:
-    """Orange's own priority use cases/technologies (Strategic relevance
-    scoring input) - distinct from `company_profiles`, which describes the
-    customer/prospect being pitched to, not Orange's own portfolio."""
+    """Orange's own priority use cases/technologies - the strategic relevance
+    input to the standalone Orange Fit / right-to-win score (never the
+    weighted Attractiveness score - see attractiveness.py's orange_fit()) -
+    distinct from `company_profiles`, which describes the customer/prospect
+    being pitched to, not Orange's own portfolio."""
     row = _rows("SELECT * FROM orange_priorities WHERE id=1")[0]
     return {
         "use_case_ids": json.loads(row["use_case_ids"]),

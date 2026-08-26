@@ -59,11 +59,28 @@ HIGH_TRUST_MIN = 75
 TRUSTED_MIN = 60
 STALE_AFTER_DAYS = 365  # ~12 months
 
+# Fallback for a source with no category audit yet: a fixed prior by feed
+# type rather than dropping it from every trust-weighted average entirely.
+# Ported from the team's Analysis/04_enrich_candidates.py SOURCE_PRIORS table
+# (feature/alec-scoring) - same institutional-feeds-trusted-more ordering as
+# the category anchors above, just coarser. Only ever used when the per-outlet
+# category audit hasn't reached this source yet; an audited source's score is
+# never overridden by its type prior.
+SOURCE_TYPE_PRIORS = {
+    "ted": 90,
+    "ocds_uk": 90,
+    "ocds_ua": 90,
+    "cordis": 80,
+    "rss": 55,
+    "gnews": 45,
+}
+DEFAULT_SOURCE_TYPE_PRIOR = 30
+
 
 @dataclass
 class TrustResult:
-    score: Optional[float]   # None when unaudited
-    status: str              # unaudited | high_trust | trusted | fail
+    score: Optional[float]   # None when unaudited and no source_type prior applies
+    status: str              # unaudited | type_prior | high_trust | trusted | fail
     category: Optional[str]
     stale: bool
 
@@ -77,17 +94,28 @@ def is_stale(audited_at: Optional[str]) -> bool:
     return datetime.now(timezone.utc) - audited > timedelta(days=STALE_AFTER_DAYS)
 
 
-def compute_trust(source_row: Optional[dict]) -> TrustResult:
+def compute_trust(source_row: Optional[dict], source_type: Optional[str] = None) -> TrustResult:
     """source_row: mapping with 'category' and 'audited_at' (e.g. a sqlite3.Row
-    from the `sources` table). None, a missing audited_at, or an unrecognized
-    category slug are all treated as unaudited - never guessed.
+    from the `sources` table). A missing audited_at or an unrecognized category
+    slug are treated as unaudited - never guessed.
+
+    When the source is unaudited and `source_type` is given, falls back to
+    `SOURCE_TYPE_PRIORS` (status="type_prior") instead of returning no score at
+    all. Callers that don't pass `source_type` (existing audit tooling) keep
+    the original unaudited-is-None behavior unchanged.
     """
     if source_row is None or source_row["audited_at"] is None or source_row["category"] is None:
+        if source_type is not None:
+            prior = SOURCE_TYPE_PRIORS.get(source_type, DEFAULT_SOURCE_TYPE_PRIOR)
+            return TrustResult(score=float(prior), status="type_prior", category=None, stale=False)
         return TrustResult(score=None, status="unaudited", category=None, stale=False)
 
     category = source_row["category"]
     anchor = ANCHOR_BY_SLUG.get(category)
     if anchor is None:
+        if source_type is not None:
+            prior = SOURCE_TYPE_PRIORS.get(source_type, DEFAULT_SOURCE_TYPE_PRIOR)
+            return TrustResult(score=float(prior), status="type_prior", category=category, stale=False)
         return TrustResult(score=None, status="unaudited", category=category, stale=False)
 
     if anchor >= HIGH_TRUST_MIN:

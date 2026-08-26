@@ -43,6 +43,11 @@ class SignalTypeAssignment:
     event_date: Optional[str]
     event_date_precision: str
     signal_type_rationale: str
+    # Plain-language counterpart to signal_type_rationale, hand-authored per
+    # branch below since a deterministic source never calls the LLM. Mirrors
+    # client.py's signal_type_plain_summary field for the same downstream
+    # consumer (explanations.py's hot_now_clause()).
+    signal_type_plain_summary: str
     assigned_by: str  # deterministic | llm
 
 
@@ -118,6 +123,7 @@ def route(
             event_date=event_date,
             event_date_precision=precision,
             signal_type_rationale=f"{source_type} publishes only procurement notices - a named body committing money{note}",
+            signal_type_plain_summary=f"A government or public body opened a formal purchase process{note}.",
             assigned_by="deterministic",
         )
 
@@ -131,17 +137,24 @@ def route(
         if status == "CLOSED" and result_count > 0:
             signal_type = "proof_signal"
             rationale = f"CORDIS project closed with {result_count} published results"
+            plain_summary = (
+                f"A publicly funded research project has finished and published {result_count} "
+                f"result{'' if result_count == 1 else 's'}."
+            )
         elif status == "CLOSED":
             # Ended, but nothing published to point at - there is no measurable
             # reported result, so this is not proof of anything yet.
             signal_type = "tech_maturity"
             rationale = "CORDIS project closed with no published results"
+            plain_summary = "A publicly funded research project has finished, but hasn't published results yet."
         elif status == "TERMINATED":
             signal_type = "tech_maturity"
             rationale = "CORDIS project terminated - funded research, no reported outcome"
+            plain_summary = "A publicly funded research project was stopped before completion, with no reported outcome."
         else:  # SIGNED - signed and/or running; CORDIS has no separate ONGOING value
             signal_type = "tech_maturity"
             rationale = f"CORDIS project status {status} - funded research still running"
+            plain_summary = "A publicly funded research project is underway and hasn't concluded yet."
         return SignalTypeAssignment(
             signal_type=signal_type,
             signal_type_confidence=CORDIS_CONFIDENCE,
@@ -149,6 +162,7 @@ def route(
             event_date=end_date,
             event_date_precision="exact" if end_date else "none",
             signal_type_rationale=rationale,
+            signal_type_plain_summary=plain_summary,
             assigned_by="deterministic",
         )
 

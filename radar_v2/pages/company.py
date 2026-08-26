@@ -71,8 +71,9 @@ def document_row(item) -> rx.Component:
 
 def orange_priorities_section() -> rx.Component:
     """Orange's OWN priority use cases and technologies - a separate concept from the
-    customer/prospect business profile above. This selection is the strategic
-    relevance component (15%) of every opportunity's attractiveness score."""
+    customer/prospect business profile above. This selection drives the Orange Fit /
+    right-to-win score (radar_v2/services/attractiveness.py's orange_fit()), which is
+    standalone from the weighted Attractiveness score - it never enters that sum."""
     return rx.box(
         rx.flex(
             section_title("Orange priorities", "What Orange itself is pursuing - not the customer profile above"),
@@ -82,7 +83,9 @@ def orange_priorities_section() -> rx.Component:
             direction=rx.breakpoints(initial="column", sm="row"), gap="3",
         ),
         rx.callout(
-            "These choices drive the strategic relevance component (15%) of every opportunity's attractiveness score. Leave them empty and that component stays unscored rather than counting as zero.",
+            "These choices drive each opportunity's Orange Fit score (shown on its detail page, and used to sort "
+            "the Presales view) - not the Attractiveness score above, which never includes them. Leave them empty "
+            "and Orange Fit falls back to a business-domain coverage estimate instead of a priority match.",
             icon="target", color_scheme="orange", size="1", width="100%", margin_top="16px",
         ),
         rx.text("Priority use cases", weight="medium", margin_top="22px"),

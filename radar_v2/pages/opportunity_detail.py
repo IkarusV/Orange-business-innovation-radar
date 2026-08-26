@@ -9,6 +9,7 @@ from radar_v2.components.ui import (
     page_header,
     persona_relevance_row,
     placeholder_region,
+    publication_badge,
     role_mode_switcher,
     section_title,
     signal_type_row,
@@ -54,6 +55,7 @@ def opportunity_detail() -> rx.Component:
             role_mode_switcher(compact=True),
             rx.flex(
                 status_badge(item["horizon"]),
+                publication_badge(item["publication_status"]),
                 rx.badge(item["technology"], variant="surface", color_scheme="gray"),
                 rx.foreach(
                     item["domain_labels"],
@@ -64,6 +66,12 @@ def opportunity_detail() -> rx.Component:
             ),
             rx.grid(
                 rx.box(rx.text("Attractiveness", color=MUTED), rx.heading(item["relevance"].to_string() + " / 100", size="8", color=ORANGE), rx.progress(value=item["relevance"], color_scheme="orange", margin_top="12px"), **CARD),
+                rx.box(
+                    rx.text("Orange fit", color=MUTED),
+                    rx.heading(item["orange_fit_score"].to_string() + " / 100", size="8"),
+                    rx.progress(value=item["orange_fit_score"], color_scheme="gray", margin_top="12px"),
+                    **CARD,
+                ),
                 rx.box(rx.text("Evidence confidence", color=MUTED), rx.heading(item["confidence"].to_string() + "%", size="8"), rx.progress(value=item["confidence"], color_scheme="blue", margin_top="12px"), **CARD),
                 rx.box(rx.text("Supporting signals", color=MUTED), rx.heading(item["article_count"], size="8"), rx.text("Institutional records", color=MUTED, margin_top="12px"), **CARD),
                 rx.box(
@@ -72,7 +80,7 @@ def opportunity_detail() -> rx.Component:
                     rx.text(rx.match(item["momentum"], ("New", "No earlier evidence to compare"), ("—", "Not enough dated evidence"), "Against the previous 90 days"), color=MUTED, margin_top="12px"),
                     **CARD,
                 ),
-                columns=rx.breakpoints(initial="2", lg="4"), gap="4", width="100%",
+                columns=rx.breakpoints(initial="2", lg="5"), gap="4", width="100%",
             ),
             _identity_card(item),
             # Region order and expansion come from the active mode's presentation
@@ -136,9 +144,38 @@ def opportunity_detail() -> rx.Component:
                         ),
                         margin_top="20px", padding_top="20px", border_top=f"1px solid {LINE}", width="100%",
                     ),
-                    placeholder_region(
-                        "Fit score",
-                        "No right-to-win / fit score exists in the radar yet, so only attractiveness and urgency are broken down here.",
+                    rx.box(
+                        section_title("Why Radar or Watchlist", "Evidence independence, not timing or attractiveness - see the badge next to the horizon badge above"),
+                        rx.hstack(
+                            publication_badge(item["publication_status"]),
+                            rx.text(
+                                rx.cond(
+                                    item["publication_status"] == "RADAR",
+                                    "Clears the independent-evidence bar for a curated Radar pick.",
+                                    "Does not yet clear the independent-evidence bar - still worth tracking as a Watchlist item.",
+                                ),
+                                color=MUTED, size="2",
+                            ),
+                            spacing="3", align="center", margin_top="14px",
+                        ),
+                        rx.vstack(
+                            rx.foreach(item["gate_breakdown"], horizon_check_row),
+                            spacing="3", width="100%", margin_top="16px",
+                        ),
+                        margin_top="20px", padding_top="20px", border_top=f"1px solid {LINE}", width="100%",
+                    ),
+                    rx.box(
+                        section_title("Orange Fit", "Orange Business fit / right-to-win - standalone from attractiveness, never one of its weighted components"),
+                        rx.hstack(
+                            rx.heading(item["orange_fit_score"].to_string() + " / 100", size="6"),
+                            spacing="3", align="center", margin_top="14px",
+                        ),
+                        rx.text(
+                            "Matched against the priority use cases and technologies set in Company when configured; "
+                            "otherwise a fallback based on how many Orange Business domains this space touches.",
+                            color=MUTED, size="2", line_height="1.5", margin_top="8px",
+                        ),
+                        margin_top="20px", padding_top="20px", border_top=f"1px solid {LINE}", width="100%",
                     ),
                 ),
                 detail_region(
@@ -162,14 +199,6 @@ def opportunity_detail() -> rx.Component:
                         section_title("Supporting evidence", "Open the original institutional records behind this opportunity"),
                         rx.grid(rx.foreach(RadarState.evidence, evidence_card), columns=rx.breakpoints(initial="1", md="2"), gap="4", width="100%", margin_top="16px"),
                         margin_top="20px", padding_top="20px", border_top=f"1px solid {LINE}", width="100%",
-                    ),
-                ),
-                detail_region(
-                    "right_to_win",
-                    placeholder_region(
-                        "Right to win & proof points",
-                        "No right-to-win score or proof point library exists in the radar yet. This region keeps its place in every "
-                        "mode so it can be filled without another layout change.",
                     ),
                 ),
                 detail_region(

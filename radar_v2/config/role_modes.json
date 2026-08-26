@@ -27,11 +27,6 @@
       "hint": "The next concrete step to take on this space"
     },
     {
-      "key": "right_to_win",
-      "label": "Right to win & proof points",
-      "hint": "Why Orange is credible here and what evidence supports that"
-    },
-    {
       "key": "offering_matches",
       "label": "Offering & partner matches",
       "hint": "Which offerings and partners this space connects to"
@@ -68,7 +63,6 @@
         "why_hot_now": "standard",
         "why_this_matters": "standard",
         "recommended_move": "standard",
-        "right_to_win": "standard",
         "offering_matches": "collapsed",
         "persona_relevance": "collapsed"
       }
@@ -98,7 +92,6 @@
         "why_hot_now": "standard",
         "why_this_matters": "lead",
         "recommended_move": "lead",
-        "right_to_win": "standard",
         "offering_matches": "standard",
         "persona_relevance": "lead"
       }
@@ -128,7 +121,6 @@
         "why_hot_now": "standard",
         "why_this_matters": "standard",
         "recommended_move": "lead",
-        "right_to_win": "lead",
         "offering_matches": "lead",
         "persona_relevance": "standard"
       }

@@ -91,6 +91,20 @@ class Opportunity(TypedDict):
     summary: str
     updated: str
     breakdown: list[AttractivenessComponent]
+    # Orange Business fit / right-to-win: standalone from Attractiveness (see
+    # radar_v2/services/attractiveness.py's orange_fit()), never one of the
+    # weighted components above.
+    orange_fit_score: int
+    # Whether Orange has configured ANY priority use case/technology at all
+    # (company-wide, not per-space). Read by explanations.py's
+    # orange_fit_clause() so a space's Orange Fit score is only described as a
+    # real priorities match when one was actually possible.
+    orange_priorities_configured: bool
+    # Radar/Watchlist publication gate: independent of the Attractiveness
+    # score, purely about evidence independence. Nothing is hidden by either
+    # value - see radar_v2/services/attractiveness.py's radar_watchlist_gate().
+    publication_status: str
+    gate_breakdown: list[HorizonCheck]
     # The three composed explanation fields. "recommended move" is a map keyed by
     # role mode, because the same space is deliberately meant to produce a
     # different move for a strategist and for a salesperson; recommended_move is

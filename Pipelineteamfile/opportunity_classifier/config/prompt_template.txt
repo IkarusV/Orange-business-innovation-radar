@@ -34,7 +34,7 @@ Summary: {summary}
 TASK
 
 Return ONLY a single JSON object, with no markdown code fences and no other text:
-{{"use_case_id": "string or null", "technology_id": "string or null", "confidence": 0.0, "evidence": "short justification grounded in the article text", "signal_type": "one of the exact slugs above", "signal_type_confidence": 0.0, "signal_date": "YYYY-MM-DD or null", "event_date": "YYYY-MM-DD or null", "event_date_precision": "exact|month|quarter|year|none", "signal_type_rationale": "one sentence, max 25 words", "countries": [], "region_override": "region id or null", "geography_confidence": 0.0}}
+{{"use_case_id": "string or null", "technology_id": "string or null", "confidence": 0.0, "evidence": "short justification grounded in the article text", "signal_type": "one of the exact slugs above", "signal_type_confidence": 0.0, "signal_date": "YYYY-MM-DD or null", "event_date": "YYYY-MM-DD or null", "event_date_precision": "exact|month|quarter|year|none", "signal_type_rationale": "one sentence, max 25 words", "signal_type_plain_summary": "one sentence, max 20 words, plain language", "countries": [], "region_override": "region id or null", "geography_confidence": 0.0}}
 
 Rules:
 - Only ids from the taxonomy above are valid values for use_case_id and technology_id.
@@ -53,6 +53,7 @@ Rules:
 - event_date is the date that makes the signal time-bound: compliance deadline, phase-in date, tender close date, contract start. Use null when the article carries no such date — most articles do not. Never put the publication date here.
 - event_date_precision describes how exactly event_date is stated: "exact" for a full date, "month" for a named month, "quarter" for a quarter, "year" for a bare year, "none" when event_date is null. A vague "sometime in 2028" is precision "year", not a hard deadline.
 - signal_type_rationale is one sentence, max 25 words, quoting or paraphrasing the specific element of the article that triggered the choice.
+- signal_type_plain_summary is a second, separate sentence, max 20 words, saying the same underlying fact in plain language for a non-technical business reader: no jargon, no analyst phrasing, no naming the signal type or the taxonomy. State what actually happened (who did what, or what changed), not why it was classified that way - that is what signal_type_rationale is for. Write it as a complete, natural sentence, not a fragment.
 - countries is an array of ISO 3166-1 alpha-2 codes, uppercase, for the countries the article is actually about. Rules:
   - Infer from any explicit anchor: a named country, a named city, a named institution or ministry, a company described as headquartered somewhere ("Brussels-based" -> BE, "the German ministry" -> DE, "Singapore's DBS" -> SG).
   - Carry context across sentences. If an earlier sentence names a country and a later one says "the ministry", "the operator" or "the regulator" without repeating it, attribute it to that same country.

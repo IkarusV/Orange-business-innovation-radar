@@ -11,12 +11,14 @@ from radar_v2.services import explanations, role_modes  # noqa: E402
 from radar_v2.state import RadarState  # noqa: E402
 
 
-def _space(space_id: int, vertical: str, domain_ids: list, relevance: int, articles: int = 1) -> dict:
+def _space(space_id: int, vertical: str, domain_ids: list, relevance: int, articles: int = 1,
+           orange_fit_score: int = 0) -> dict:
     space = {
         "id": space_id, "vertical": vertical, "horizon": "Now", "domains": domain_ids,
         "primary_domain": domain_ids[0] if domain_ids else "",
         "use_case": f"Use case {space_id}", "technology": "", "summary": "",
         "relevance": relevance, "article_count": articles,
+        "orange_fit_score": orange_fit_score,
     }
     # Composed through the live path so the mode-switched card renders the same
     # per-space, per-mode move the app does, rather than a fixture string.
@@ -25,12 +27,15 @@ def _space(space_id: int, vertical: str, domain_ids: list, relevance: int, artic
 
 
 def _portfolio() -> list:
+    # orange_fit_score deliberately does not track relevance - it's a
+    # different question (fit to Orange's priorities vs. market
+    # attractiveness) and tests need to tell the two sorts apart.
     return [
-        _space(1, "Financial services", ["cloud", "cybersecurity"], 88, 12),
-        _space(2, "Financial services", ["cybersecurity"], 74, 9),
-        _space(3, "Financial services", ["cloud"], 61, 4),
-        _space(4, "Financial services", ["cx-customer-experience"], 52, 3),
-        _space(5, "Manufacturing", ["ox-smart-industries"], 80, 7),
+        _space(1, "Financial services", ["cloud", "cybersecurity"], 88, 12, orange_fit_score=50),
+        _space(2, "Financial services", ["cybersecurity"], 74, 9, orange_fit_score=100),
+        _space(3, "Financial services", ["cloud"], 61, 4, orange_fit_score=0),
+        _space(4, "Financial services", ["cx-customer-experience"], 52, 3, orange_fit_score=0),
+        _space(5, "Manufacturing", ["ox-smart-industries"], 80, 7, orange_fit_score=75),
     ]
 
 
@@ -133,9 +138,9 @@ def test_unknown_mode_is_ignored():
 
 def test_sort_falls_back_with_a_visible_note_not_silently():
     """Part 2.2: a configured sort whose feature does not exist yet falls back
-    to attractiveness and says so. Persona weighting has since landed, so
-    sales now runs its real configured sort with no fallback note; presales
-    still falls back since no fit score exists."""
+    to attractiveness and says so. Persona weighting and the fit score (Orange
+    fit / right-to-win, orange_fit_score) have both since landed, so sales and
+    presales now run their real configured sorts with no fallback note."""
     strategist = role_modes.sort_plan("strategist")
     assert strategist["key"] == "attractiveness"
     assert strategist["note"] == ""
@@ -147,16 +152,26 @@ def test_sort_falls_back_with_a_visible_note_not_silently():
 
     presales = role_modes.sort_plan("presales")
     assert presales["configured_key"] == "fit_score"
-    assert presales["key"] == "attractiveness"
-    assert "fit score" in presales["note"]
+    assert presales["key"] == "fit_score"
+    assert presales["note"] == ""
 
 
 def test_every_mode_sorts_by_score_descending():
+    """Each mode's own effective sort field (not always relevance - presales
+    sorts by orange_fit_score, its right-to-win / fit score) is descending."""
+    field_by_sort_key = {
+        "attractiveness": "relevance",
+        # No persona selected here, and persona_adjusted_score() returns the
+        # base score unadjusted in that case - see radar_v2/services/personas.py.
+        "persona_weighted": "relevance",
+        "fit_score": "orange_fit_score",
+    }
     state = RadarState()
     state.opportunities = list(reversed(_portfolio()))
     for mode_id in role_modes.MODE_IDS:
         state.set_role_mode(mode_id)
-        scores = [item["relevance"] for item in state.visible_opportunities]
+        field = field_by_sort_key[role_modes.sort_plan(mode_id)["key"]]
+        scores = [item[field] for item in state.visible_opportunities]
         assert scores == sorted(scores, reverse=True), mode_id
 
 
@@ -248,7 +263,7 @@ def test_sales_acceptance_one_or_two_topics_with_a_hook():
 
 def test_presales_acceptance_surfaces_a_differentiating_topic():
     """Part 4.1: Presales reaches a single leading topic, with the
-    right-to-win and offering regions leading its detail page."""
+    recommended-move and offering regions leading its detail page."""
     state = RadarState()
     state.opportunities = _portfolio()
     state.set_role_mode("presales")
@@ -257,7 +272,6 @@ def test_presales_acceptance_surfaces_a_differentiating_topic():
     assert len(results) >= 1
     assert results[0]["id"] == 5
     profile = state.region_emphasis
-    assert profile["right_to_win"] == role_modes.LEAD
     assert profile["offering_matches"] == role_modes.LEAD
     assert profile["recommended_move"] == role_modes.LEAD
     assert profile["signals_evidence"] == role_modes.STANDARD
@@ -268,19 +282,19 @@ def test_presentation_profiles_match_the_specification():
         "strategist": {
             "signals_evidence": "lead", "score_breakdown": "lead", "why_hot_now": "standard",
             "why_this_matters": "standard", "recommended_move": "standard",
-            "right_to_win": "standard", "offering_matches": "collapsed",
+            "offering_matches": "collapsed",
             "persona_relevance": "collapsed",
         },
         "sales": {
             "signals_evidence": "collapsed", "score_breakdown": "collapsed", "why_hot_now": "standard",
             "why_this_matters": "lead", "recommended_move": "lead",
-            "right_to_win": "standard", "offering_matches": "standard",
+            "offering_matches": "standard",
             "persona_relevance": "lead",
         },
         "presales": {
             "signals_evidence": "standard", "score_breakdown": "standard", "why_hot_now": "standard",
             "why_this_matters": "standard", "recommended_move": "lead",
-            "right_to_win": "lead", "offering_matches": "lead",
+            "offering_matches": "lead",
             "persona_relevance": "standard",
         },
     }

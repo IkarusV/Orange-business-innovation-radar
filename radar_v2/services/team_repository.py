@@ -41,6 +41,16 @@ def _demo_horizon(now: int, sources: int, next_count: int, later: int) -> dict:
     return {"horizon_breakdown": horizon_service.breakdown_rows(verdict)}
 
 
+def _demo_gate(independent_sources: int, independent_events: int, confidence: int) -> dict:
+    """Demo counterpart of the real Radar/Watchlist gate, built through the
+    same functions the live path uses so the placeholder can never show a gate
+    outcome or breakdown shape the real one wouldn't produce."""
+    return {
+        "publication_status": attractiveness.radar_watchlist_gate(independent_sources, independent_events, confidence),
+        "gate_breakdown": attractiveness.gate_breakdown_rows(independent_sources, independent_events, confidence),
+    }
+
+
 def _domain_fields(primary: str, domain_ids: list[str]) -> dict:
     """The four UI-facing domain fields: ids drive filtering, labels drive
     display, and the primary drives single-value badges."""
@@ -93,8 +103,8 @@ DEMO_OPPORTUNITIES = [
         "horizon_reason": "4 concrete signals across 3 sources, 2 within 90 days",
         "horizon_rule": "Converging concrete evidence", "momentum": "+12%",
         "summary": "Industrial operators are joining asset telemetry, simulation and maintenance planning to reduce unplanned downtime.",
-        "updated": "Today", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX,
-        **_demo_horizon(4, 3, 6, 8),
+        "updated": "Today", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX, "orange_fit_score": 72,
+        **_demo_horizon(4, 3, 6, 8), **_demo_gate(3, 4, 84),
     },
     {
         "id": 2, "vertical": "Financial services", "use_case_id": "anomaly-detection",
@@ -103,8 +113,8 @@ DEMO_OPPORTUNITIES = [
         "horizon_reason": "concrete evidence exists but does not converge: only 1 of 2 distinct sources",
         "horizon_rule": "Concrete but not yet converging", "momentum": "+8%",
         "summary": "Banks are strengthening network-level visibility as operational resilience requirements move into execution.",
-        "updated": "Today", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX,
-        **_demo_horizon(2, 1, 5, 4),
+        "updated": "Today", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX, "orange_fit_score": 54,
+        **_demo_horizon(2, 1, 5, 4), **_demo_gate(1, 2, 76),
     },
     {
         "id": 3, "vertical": "Public sector", "use_case_id": "document-processing-extraction",
@@ -113,8 +123,8 @@ DEMO_OPPORTUNITIES = [
         "horizon_reason": "3 competitor/market signals within 180 days, no committed spend or deployment yet",
         "horizon_rule": "Forming market", "momentum": "+19%",
         "summary": "Public services are testing governed language systems for high-volume citizen and administrative workflows.",
-        "updated": "Yesterday", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX,
-        **_demo_horizon(0, 0, 3, 6),
+        "updated": "Yesterday", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX, "orange_fit_score": 0,
+        **_demo_horizon(0, 0, 3, 6), **_demo_gate(2, 3, 72),
     },
     {
         "id": 4, "vertical": "Energy & utilities", "use_case_id": "energy-optimization",
@@ -123,8 +133,8 @@ DEMO_OPPORTUNITIES = [
         "horizon_reason": "evidenced only by tech_maturity - viability, not demand",
         "horizon_rule": "Not yet actionable", "momentum": "+6%",
         "summary": "Distributed control and local intelligence are emerging as grid flexibility becomes more valuable.",
-        "updated": "2 days ago", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX,
-        **_demo_horizon(0, 0, 0, 7),
+        "updated": "2 days ago", "breakdown": [], "signal_mix": DEMO_SIGNAL_MIX, "orange_fit_score": 25,
+        **_demo_horizon(0, 0, 0, 7), **_demo_gate(1, 1, 68),
     },
 ]
 
@@ -203,7 +213,7 @@ def database_ready() -> bool:
 _ARTICLE_BASE_COLUMNS = "a.id,a.source_name,a.source_type,a.extra,a.published_date,a.collected_at"
 _CLASSIFICATION_COLUMNS = (
     "c.confidence,c.signal_type,c.signal_type_confidence,c.signal_date,"
-    "c.event_date,c.event_date_precision,c.signal_type_rationale"
+    "c.event_date,c.event_date_precision,c.signal_type_rationale,c.signal_type_plain_summary"
 )
 
 
@@ -320,6 +330,12 @@ def list_opportunities() -> list[dict]:
     priorities = extension_store.orange_priorities()
     priority_use_cases = set(priorities["use_case_ids"])
     priority_technologies = set(priorities["technology_ids"])
+    # Whether Orange has configured ANY priority at all - company-wide, not
+    # per-space. Read by explanations.py's orange_fit_clause() so it only
+    # phrases a space's Orange Fit score as a real priorities match when one
+    # was actually possible; otherwise orange_fit_score is the domain-coverage
+    # fallback (a weaker proxy), which reads differently on purpose.
+    orange_priorities_configured = bool(priority_use_cases or priority_technologies)
 
     parsed = []
     for row in rows:
@@ -327,16 +343,13 @@ def list_opportunities() -> list[dict]:
         article_rows = [articles_by_id[aid] for aid in linked_ids if aid in articles_by_id]
         raw_market = attractiveness.market_signal_strength_raw(article_rows)
         source_cred = attractiveness.source_credibility(article_rows, sources_by_name)
-        evid_qual = attractiveness.evidence_quality(article_rows)
+        evid_qual = attractiveness.evidence_quality(article_rows, sources_by_name)
         raw_novelty, momentum_pct, momentum_is_new = attractiveness.novelty_momentum_raw(article_rows)
-        strat_rel = attractiveness.strategic_relevance(
-            row["use_case_id"], row["technology_id"], priority_use_cases, priority_technologies,
-        )
         verdict = horizon_service.compute(article_rows)
         parsed.append({
             "row": row, "raw_market": raw_market, "source_cred": source_cred,
             "evid_qual": evid_qual, "raw_novelty": raw_novelty, "momentum_pct": momentum_pct,
-            "momentum_is_new": momentum_is_new, "strat_rel": strat_rel,
+            "momentum_is_new": momentum_is_new,
             "verdict": verdict, "signal_mix": horizon_service.type_mix(article_rows),
             # Kept for the explanation fields, which need the individual signals
             # (type, dates, rationale) rather than the aggregated counts.
@@ -354,7 +367,6 @@ def list_opportunities() -> list[dict]:
             "source_credibility": item["source_cred"],
             "evidence_quality": item["evid_qual"],
             "novelty_momentum": novelty_scores.get(row["id"]),
-            "strategic_relevance": item["strat_rel"],
         }
         score, _ = attractiveness.combine(components)
         breakdown = [{
@@ -384,6 +396,11 @@ def list_opportunities() -> list[dict]:
             persona_weights = persona_service.derive(
                 row["use_case_id"], primary_domain, row["vertical"],
             )
+        orange_fit_score = round(attractiveness.orange_fit(
+            row["use_case_id"], row["technology_id"], priority_use_cases, priority_technologies, domain_ids,
+        ))
+        independent_sources = attractiveness.independent_source_count(item["article_rows"])
+        independent_events = attractiveness.independent_event_count(item["article_rows"])
         space = {
             "id": row["id"], "vertical": row["vertical"], "use_case_id": row["use_case_id"],
             "use_case": USE_CASES.get(row["use_case_id"], row["use_case_id"].replace("-", " ").title()),
@@ -401,6 +418,10 @@ def list_opportunities() -> list[dict]:
             "summary": f"{row['article_count']} institutional signals connect {USE_CASES.get(row['use_case_id'], row['use_case_id'])} with {TECHNOLOGIES.get(row['technology_id'], row['technology_id'])} in {row['vertical']}.",
             "updated": (row["last_updated_at"] or "Recently")[:10],
             "breakdown": breakdown,
+            "orange_fit_score": orange_fit_score,
+            "orange_priorities_configured": orange_priorities_configured,
+            "publication_status": attractiveness.radar_watchlist_gate(independent_sources, independent_events, confidence),
+            "gate_breakdown": attractiveness.gate_breakdown_rows(independent_sources, independent_events, confidence),
         }
         # Composed last: the three explanation fields read the domain, persona
         # and horizon values assembled above rather than re-deriving them.

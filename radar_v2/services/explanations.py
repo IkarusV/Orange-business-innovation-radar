@@ -118,10 +118,19 @@ DOMAIN_CLAUSES = {
 GENERIC_DOMAIN_CLAUSE = "An opportunity for {vertical}"
 UNKNOWN_VERTICAL = "this sector"
 
-# No right-to-win data source exists yet, so every space takes this branch. It
-# states the gap rather than omitting clause 2 or filling it with something
-# positive-sounding - the strategist mode needs the absence to be visible.
-NO_RIGHT_TO_WIN = "no direct right-to-win evidence yet — early-stage watch"
+# No account/deal/reference-case/offering/partner data source exists yet, so
+# right_to_win_phrases() is empty for every space today and clause 2 falls
+# back to the space's own Orange Fit score instead (right-to-win IS Orange Fit
+# for this app - see attractiveness.py's orange_fit()). Only phrased as an
+# actual priorities match when Orange has configured priorities at all -
+# orange_fit_score's domain-coverage fallback (used while none are configured)
+# is a weaker capability proxy and is named as such rather than dressed up as
+# a real match.
+ORANGE_FIT_STRONG_THRESHOLD = 75   # >= this reads as a strong match, not just "some" overlap
+ORANGE_FIT_NOT_CONFIGURED = "no Orange priorities configured yet — fit shown is a business-domain estimate"
+ORANGE_FIT_STRONG = "strong fit with Orange's priorities"
+ORANGE_FIT_PARTIAL = "partial fit with Orange's priorities"
+ORANGE_FIT_NONE = "no match with Orange's current priorities"
 MAX_RIGHT_TO_WIN_ELEMENTS = 3
 
 # The five element kinds and their micro-phrases. Counting elements carry an
@@ -268,7 +277,11 @@ def qualifying_signals(article_rows: list[dict], now: Optional[datetime] = None)
 
 def hot_now_clause(signal: dict) -> str:
     """One clause for one signal. The date slots are real persisted values; the
-    descriptive half is the truncated rationale (see _snippet)."""
+    descriptive half prefers signal_type_plain_summary - a sentence the
+    classifier (or, for a deterministic source, a hand-authored template in
+    signal_route.py) wrote specifically for a non-technical reader - and falls
+    back to a truncation of signal_type_rationale (see _snippet) for any row
+    that predates that field."""
     signal_type = signal.get("signal_type")
     lead_in = HOT_NOW_LEAD_INS.get(signal_type, "Signal")
     if signal_type == "buying_signal":
@@ -279,7 +292,8 @@ def hot_now_clause(signal: dict) -> str:
         # is the fallback the spec names when the classifier found no event.
         when = _year(signal.get("event_date")) or _year(signal.get("signal_date"))
         lead_in = f"{lead_in} from {when}" if when else lead_in
-    detail = _snippet(signal.get("signal_type_rationale"))
+    plain_summary = str(signal.get("signal_type_plain_summary") or "").strip()
+    detail = plain_summary or _snippet(signal.get("signal_type_rationale"))
     return f"{lead_in}: {detail}" if detail else lead_in
 
 
@@ -339,6 +353,20 @@ def right_to_win_phrases(item: dict) -> list[str]:
     return [phrase for _, _, phrase in scored[:MAX_RIGHT_TO_WIN_ELEMENTS]]
 
 
+def orange_fit_clause(item: dict) -> str:
+    """Clause 2's fallback when right_to_win_phrases() is empty (every space
+    today): the space's own Orange Fit score, tiered into a short phrase,
+    rather than one static sentence that never changes between spaces."""
+    if not item.get("orange_priorities_configured"):
+        return ORANGE_FIT_NOT_CONFIGURED
+    score = item.get("orange_fit_score") or 0
+    if score >= ORANGE_FIT_STRONG_THRESHOLD:
+        return ORANGE_FIT_STRONG
+    if score > 0:
+        return ORANGE_FIT_PARTIAL
+    return ORANGE_FIT_NONE
+
+
 def why_this_matters(item: dict) -> str:
     """Field 2. Always exactly two clauses."""
     vertical = str(item.get("vertical") or UNKNOWN_VERTICAL)
@@ -346,7 +374,7 @@ def why_this_matters(item: dict) -> str:
     phrases = right_to_win_phrases(item)
     return CLAUSE_JOIN.join([
         template.format(vertical=vertical),
-        ", ".join(phrases) if phrases else NO_RIGHT_TO_WIN,
+        ", ".join(phrases) if phrases else orange_fit_clause(item),
     ])
 
 
@@ -406,10 +434,12 @@ def compose(article_rows: list[dict], item: dict, now: Optional[datetime] = None
 __all__ = [
     "ACTION_CLAUSES", "BASE_CLAUSES", "CLAUSE_JOIN", "DOMAIN_CLAUSES", "GENERIC_DOMAIN_CLAUSE",
     "GENERIC_PERSONA", "HOT_NOW_JOIN", "HOT_NOW_LEAD_INS", "MAX_HOT_NOW_CLAUSES",
-    "MAX_RIGHT_TO_WIN_ELEMENTS", "NO_RECENT_SIGNAL", "NO_RIGHT_TO_WIN", "PERSONA_SHORT_FORMS",
+    "MAX_RIGHT_TO_WIN_ELEMENTS", "NO_RECENT_SIGNAL", "PERSONA_SHORT_FORMS",
+    "ORANGE_FIT_STRONG_THRESHOLD", "ORANGE_FIT_NOT_CONFIGURED", "ORANGE_FIT_STRONG",
+    "ORANGE_FIT_PARTIAL", "ORANGE_FIT_NONE",
     "RECENCY_WINDOW_DAYS", "RIGHT_TO_WIN_AVAILABLE", "RIGHT_TO_WIN_ELEMENTS",
     "ExplanationConfigError", "compose", "hot_now_clause", "hot_now_clauses",
-    "normalise_horizon", "persona_phrase",
+    "normalise_horizon", "orange_fit_clause", "persona_phrase",
     "qualifying_signals", "recommended_move", "recommended_moves", "right_to_win_phrases",
     "why_hot_now", "why_this_matters",
 ]

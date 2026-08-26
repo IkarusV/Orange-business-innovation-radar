@@ -46,11 +46,25 @@ def status_badge(horizon) -> rx.Component:
     )
 
 
+def publication_badge(publication_status) -> rx.Component:
+    """Radar/Watchlist gate badge. A separate signal from the horizon badge -
+    this is about evidence independence, not timing - shown next to it rather
+    than merged into it."""
+    return rx.badge(
+        publication_status,
+        variant="surface",
+        color_scheme=rx.match(publication_status, ("RADAR", "orange"), "gray"),
+        radius="full",
+        padding="5px 9px",
+    )
+
+
 def opportunity_card(item) -> rx.Component:
     return rx.box(
         rx.hstack(
             rx.badge(item["vertical"], color_scheme="gray", variant="soft", radius="full"),
             rx.spacer(),
+            publication_badge(item["publication_status"]),
             status_badge(item["horizon"]),
             width="100%",
         ),
@@ -64,9 +78,10 @@ def opportunity_card(item) -> rx.Component:
         rx.text(item["summary"], color=MUTED, line_height="1.55", margin_top="13px", min_height="72px"),
         rx.grid(
             rx.vstack(rx.text("Attractiveness", color=MUTED, size="1"), rx.text(item["relevance"].to_string() + " / 100", weight="bold", color=ORANGE), spacing="1", align="start"),
+            rx.vstack(rx.text("Orange fit", color=MUTED, size="1"), rx.text(item["orange_fit_score"].to_string() + " / 100", weight="bold"), spacing="1", align="start"),
             rx.vstack(rx.text("Momentum", color=MUTED, size="1"), rx.text(item["momentum"], weight="bold"), spacing="1", align="start"),
             rx.vstack(rx.text("Signals", color=MUTED, size="1"), rx.text(item["article_count"], weight="bold"), spacing="1", align="start"),
-            columns="3", gap="3", margin_top="18px",
+            columns="4", gap="3", margin_top="18px",
         ),
         rx.button(
             "Open opportunity", rx.icon("arrow-right", size=16),
@@ -95,6 +110,7 @@ def sales_opportunity_card(item) -> rx.Component:
                 spacing="2", align="center", wrap="wrap",
             ),
             rx.spacer(),
+            publication_badge(item["publication_status"]),
             status_badge(item["horizon"]),
             width="100%", align="center", gap="3", wrap="wrap",
         ),
@@ -140,6 +156,11 @@ def sales_opportunity_card(item) -> rx.Component:
             rx.hstack(
                 rx.text("Attractiveness", color=MUTED, size="1"),
                 rx.text(item["relevance"].to_string() + " / 100", weight="bold", color=ORANGE),
+                spacing="2", align="center",
+            ),
+            rx.hstack(
+                rx.text("Orange fit", color=MUTED, size="1"),
+                rx.text(item["orange_fit_score"].to_string() + " / 100", weight="bold"),
                 spacing="2", align="center",
             ),
             rx.hstack(rx.text("Signals", color=MUTED, size="1"), rx.text(item["article_count"], weight="bold"), spacing="2", align="center"),
@@ -332,16 +353,13 @@ def attractiveness_row(item) -> rx.Component:
                     item["key"],
                     ("market_signal_strength", "Recency-weighted volume of linked institutional evidence, relative to the strongest space on the radar."),
                     ("source_credibility", "Average publisher trust of the sources behind this evidence."),
-                    ("evidence_quality", "Average classifier confidence across the linked records."),
+                    ("evidence_quality", "Classifier confidence where it exists, blended with evidence count, source independence and trust where it doesn't."),
                     ("novelty_momentum", "Growth over the last 90 days vs. the 90 before, ranked against every other space on the radar this run."),
-                    ("strategic_relevance", "Match against the priority use cases and technologies set in Company."),
                     "Contributes to the attractiveness score.",
                 ),
                 rx.match(
                     item["key"],
-                    ("source_credibility", "None of the publishers behind this evidence have been audited yet."),
                     ("novelty_momentum", "Not enough dated evidence to compare two periods."),
-                    ("strategic_relevance", "No Orange priorities selected yet - set them in the Company tab."),
                     "Not enough data yet - excluded from the score rather than counted as zero."
                 ),
             ),

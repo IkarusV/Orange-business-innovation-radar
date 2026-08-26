@@ -51,6 +51,12 @@ class ClassificationResult:
     event_date: Optional[str] = None
     event_date_precision: str = "none"
     signal_type_rationale: Optional[str] = None
+    # Same underlying fact as signal_type_rationale, in plain language for a
+    # non-technical reader - see radar_v2/services/explanations.py's
+    # hot_now_clause(), the only consumer. Never invented for a deterministic
+    # source's SignalTypeAssignment; those are backfilled with a hand-authored
+    # template instead (see signal_route.py) since they never call the LLM.
+    signal_type_plain_summary: Optional[str] = None
     signal_type_assigned_by: Optional[str] = None  # deterministic | llm
     # Geography. countries/regions are lists; an empty countries list is a valid
     # answer ("no geographic anchor in the text"), distinct from region_override
@@ -92,6 +98,30 @@ def build_prompt(
         summary=(summary or "")[:1000],
         client_context_block=client_block,
     )
+
+
+PLAIN_SUMMARY_REWRITE_PROMPT = (
+    "Explain the following sentence as you would to a colleague with no industry background, "
+    "in a quick conversation - not a rewrite with fancier synonyms swapped for simpler ones. "
+    "Use short, everyday words. Avoid formal or analyst phrasing such as 'concrete', 'named "
+    "actor(s)', 'strategic', 'framework', 'entity', 'stakeholder', 'leverage'. Say plainly who "
+    "did what, or what changed. Keep exactly the same underlying fact - do not add, remove or "
+    "invent any detail. One natural sentence, max 20 words. Return ONLY that sentence, no "
+    "quotes, no markdown, no other text.\n\nSentence: {rationale}"
+)
+MAX_PLAIN_SUMMARY_WORDS = 30  # a soft cap on what gets accepted, not enforced on the model
+
+
+def rewrite_plain_summary(client: OpenAI, rationale: str, token_counter: Optional[list] = None) -> str:
+    """A one-off, cheap rewrite of an already-produced signal_type_rationale
+    into plain language - used only to backfill rows classified before
+    signal_type_plain_summary existed. Deliberately NOT a call to classify():
+    no taxonomy, no article text, no retry-on-invalid-id machinery - just the
+    rationale sentence in, a plain sentence out, at a fraction of a full
+    classification call's cost."""
+    prompt = PLAIN_SUMMARY_REWRITE_PROMPT.format(rationale=rationale)
+    raw = _call_with_backoff(client, prompt, token_counter)
+    return _strip_fences(raw).strip().strip('"')
 
 
 def _call_with_backoff(client: OpenAI, prompt: str, token_counter: Optional[list] = None) -> str:
@@ -137,6 +167,7 @@ def _signal_type_fields(parsed: dict, published_date: Optional[str]) -> dict:
         "event_date": event_date,
         "event_date_precision": parsed["event_date_precision"] if event_date else "none",
         "signal_type_rationale": str(parsed.get("signal_type_rationale") or "")[:300],
+        "signal_type_plain_summary": str(parsed.get("signal_type_plain_summary") or "")[:300] or None,
     }
 
 

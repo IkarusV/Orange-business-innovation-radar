@@ -14,13 +14,15 @@ from radar_v2.services import role_modes  # noqa: E402
 NOW = datetime(2027, 6, 1, tzinfo=timezone.utc)
 
 
-def _signal(signal_type: str, days_ago: int = 30, rationale: str = "", event_date=None) -> dict:
+def _signal(signal_type: str, days_ago: int = 30, rationale: str = "", event_date=None,
+            plain_summary: str = "") -> dict:
     return {
         "signal_type": signal_type,
         "signal_date": (NOW - timedelta(days=days_ago)).date().isoformat(),
         "event_date": event_date,
         "event_date_precision": "exact" if event_date else "none",
         "signal_type_rationale": rationale,
+        "signal_type_plain_summary": plain_summary,
     }
 
 
@@ -79,6 +81,26 @@ def test_a_signal_with_no_rationale_still_produces_a_typed_clause():
     assert explanations.hot_now_clause(_signal("proof_signal")) == "Reported result"
 
 
+def test_plain_summary_is_preferred_over_the_truncated_rationale():
+    """A non-technical reader gets the sentence written for them, not a
+    truncation of the classifier's analyst-facing rationale, when both exist."""
+    signal = _signal(
+        "proof_signal",
+        rationale="Plant reports 18% downtime reduction after 12-month predictive maintenance rollout",
+        plain_summary="A factory cut unplanned downtime by 18% after a year using predictive maintenance.",
+    )
+    clause = explanations.hot_now_clause(signal)
+    assert clause == "Reported result: A factory cut unplanned downtime by 18% after a year using predictive maintenance."
+
+
+def test_blank_plain_summary_falls_back_to_the_truncated_rationale():
+    """A row written before signal_type_plain_summary existed (or with it
+    still blank) degrades to today's truncation, never an empty detail."""
+    signal = _signal("proof_signal", rationale="Plant reports 18% downtime reduction", plain_summary="")
+    clause = explanations.hot_now_clause(signal)
+    assert clause == "Reported result: Plant reports 18% downtime reduction"
+
+
 # Part 7.1 - right-to-win micro-phrases ---------------------------------------
 
 @pytest.mark.parametrize("elements,expected", [
@@ -104,15 +126,35 @@ def test_zero_valued_elements_are_never_rendered():
     assert explanations.right_to_win_phrases(_space(right_to_win={"accounts": 0, "recent_deals": 0})) == []
 
 
-def test_no_right_to_win_data_source_exists_so_every_live_space_hits_the_fallback():
+def test_no_right_to_win_data_source_exists_so_every_live_space_falls_back_to_orange_fit():
     """A total gap, not a partial one: no accounts, deals, reference cases,
-    offering catalogue or partner ecosystem exists anywhere in this codebase."""
+    offering catalogue or partner ecosystem exists anywhere in this codebase -
+    clause 2 always falls back to the space's own Orange Fit tier instead."""
     from radar_v2.services import team_repository
 
+    known_fallbacks = {
+        explanations.ORANGE_FIT_NOT_CONFIGURED, explanations.ORANGE_FIT_STRONG,
+        explanations.ORANGE_FIT_PARTIAL, explanations.ORANGE_FIT_NONE,
+    }
     assert explanations.RIGHT_TO_WIN_AVAILABLE is False
     for space in team_repository.list_opportunities():
         assert space.get("right_to_win") is None
-        assert space["why_this_matters"].endswith(explanations.NO_RIGHT_TO_WIN)
+        assert space["why_this_matters"].endswith(explanations.orange_fit_clause(space))
+        assert space["why_this_matters"].rsplit(explanations.CLAUSE_JOIN, 1)[1] in known_fallbacks
+
+
+@pytest.mark.parametrize("score,configured,expected", [
+    (10, False, explanations.ORANGE_FIT_NOT_CONFIGURED),
+    (100, False, explanations.ORANGE_FIT_NOT_CONFIGURED),
+    (100, True, explanations.ORANGE_FIT_STRONG),
+    (75, True, explanations.ORANGE_FIT_STRONG),
+    (74, True, explanations.ORANGE_FIT_PARTIAL),
+    (1, True, explanations.ORANGE_FIT_PARTIAL),
+    (0, True, explanations.ORANGE_FIT_NONE),
+])
+def test_orange_fit_clause_tiers_the_score(score, configured, expected):
+    item = {"orange_fit_score": score, "orange_priorities_configured": configured}
+    assert explanations.orange_fit_clause(item) == expected
 
 
 # Part 7.1 - field 2 ----------------------------------------------------------
@@ -143,12 +185,13 @@ def test_why_this_matters_is_always_exactly_two_clauses():
         assert text.split(explanations.CLAUSE_JOIN, 1)[0].startswith("An Industrial/OX opportunity")
 
 
-def test_no_right_to_win_data_states_the_absence_rather_than_omitting_the_clause():
-    """The all-zero case every space hits today - no CRM data source exists."""
+def test_no_right_to_win_data_falls_back_to_orange_fit_rather_than_omitting_the_clause():
+    """No CRM data source exists, so this always falls back to the Orange Fit
+    tier - never an omitted clause, never a positive-sounding invention."""
     text = explanations.why_this_matters(_space())
     assert text == (
         "An Industrial/OX opportunity for Natural Resources"
-        + explanations.CLAUSE_JOIN + explanations.NO_RIGHT_TO_WIN
+        + explanations.CLAUSE_JOIN + explanations.ORANGE_FIT_NOT_CONFIGURED
     )
 
 

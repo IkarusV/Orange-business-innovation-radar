@@ -19,10 +19,15 @@ first built; one has since landed:
       defaults, never a gate the user can't clear), and the persona-weighted
       sort ranks by the dampened multiplier.
 
-  FIT_SCORE_AVAILABLE - a right-to-win / fit score per space. Still absent:
-      while False, the presales sort falls back to attractiveness with a
-      visible note. A fit score is deliberately not synthesised from
-      unrelated fields.
+  FIT_SCORE_AVAILABLE - a right-to-win / fit score per space. This now
+      exists: orange_fit_score (radar_v2/services/attractiveness.py's
+      orange_fit()) - match against Orange's own selected priority use cases
+      and technologies - is this app's answer to "right to win", so the
+      presales sort runs it directly instead of falling back to
+      attractiveness. There is still no separate CRM/account/proof-point
+      data source; that remains the honest gap the "Right to win & proof
+      points" detail region and explanations.py's right-to-win clause
+      describe - a different question from fit-to-priorities.
 
   EXPLANATION_FIELDS_AVAILABLE - "why hot now", "why this matters" and
       "recommended move" as three independent per-space fields. These now exist:
@@ -42,7 +47,7 @@ from radar_v2.constants import ROLE_MODES
 from radar_v2.services import personas
 
 PERSONA_WEIGHTING_AVAILABLE = True
-FIT_SCORE_AVAILABLE = False
+FIT_SCORE_AVAILABLE = True
 EXPLANATION_FIELDS_AVAILABLE = True
 
 LEAD = "lead"
@@ -188,6 +193,8 @@ def sort_opportunities(items: list[dict], mode_id: str, persona: str = "") -> li
         return sorted(items, key=lambda item: (-item.get("relevance", 0), -item.get("article_count", 0)))
     if key == "persona_weighted":
         return personas.sort_by_persona(items, personas.id_for_label(persona))
+    if key == "fit_score":
+        return sorted(items, key=lambda item: (-item.get("orange_fit_score", 0), -item.get("article_count", 0)))
     # Any other key implies a feature that reached availability without a sort
     # implementation here - fail visibly in tests rather than reorder silently.
     raise RoleModeConfigError(f"no sort implementation for key: {key}")

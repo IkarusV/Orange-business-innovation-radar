@@ -239,6 +239,7 @@ def _apply_deterministic_type(conn: sqlite3.Connection, row, result, log) -> Non
     result.event_date = assignment.event_date
     result.event_date_precision = assignment.event_date_precision
     result.signal_type_rationale = assignment.signal_type_rationale
+    result.signal_type_plain_summary = assignment.signal_type_plain_summary
     result.signal_type_assigned_by = assignment.assigned_by
 
 
@@ -356,6 +357,7 @@ def assignment_as_result(assignment):
         event_date=assignment.event_date,
         event_date_precision=assignment.event_date_precision,
         signal_type_rationale=assignment.signal_type_rationale,
+        signal_type_plain_summary=assignment.signal_type_plain_summary,
         signal_type_assigned_by=assignment.assigned_by,
         total_tokens=0,
     )

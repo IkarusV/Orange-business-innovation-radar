@@ -25,6 +25,7 @@ class RadarState(rx.State):
         "domain_labels": [], "article_count": 0, "relevance": 0, "confidence": 0,
         "horizon": "Next", "horizon_reason": None, "horizon_rule": "", "horizon_breakdown": [],
         "signal_mix": [], "momentum": "", "summary": "", "updated": "", "breakdown": [],
+        "orange_fit_score": 0, "publication_status": "WATCHLIST", "gate_breakdown": [],
         "persona_weights": [], "persona_ids": [],
         "primary_region": "", "primary_region_label": geography.UNSPECIFIED_LABEL,
         "regions": [], "region_labels": [], "countries": [],
@@ -41,6 +42,9 @@ class RadarState(rx.State):
 
     vertical_filter: str = "All sectors"
     horizon_filter: str = "All horizons"
+    # Radar/Watchlist gate filter - a chip like horizon_filter, never hides a
+    # space by itself (the default "All" shows both).
+    publication_status_filter: str = "All"
     # Business domains are multi-select: an empty list is no constraint, and
     # several selected domains widen the result rather than narrowing it.
     domain_filter: list[str] = []
@@ -62,8 +66,10 @@ class RadarState(rx.State):
     company_website: str = "https://www.orange-business.com"
     company_focus: str = "Trusted digital services, secure connectivity, cloud, data and AI"
     # Orange's OWN priority taxonomy selection - the strategic relevance input for the
-    # attractiveness score. Distinct from the company profile above, which describes the
-    # customer/prospect being pitched to.
+    # Orange Fit / right-to-win score (standalone from the weighted Attractiveness score,
+    # never part of that sum - see radar_v2/services/attractiveness.py's orange_fit()).
+    # Distinct from the company profile above, which describes the customer/prospect
+    # being pitched to.
     orange_use_case_ids: list[str] = []
     orange_technology_ids: list[str] = []
     orange_priorities_updated: str = ""
@@ -182,6 +188,7 @@ class RadarState(rx.State):
             item for item in self.opportunities
             if (self.vertical_filter == "All sectors" or item["vertical"] == self.vertical_filter)
             and (self.horizon_filter == "All horizons" or item["horizon"] == self.horizon_filter)
+            and (self.publication_status_filter == "All" or item["publication_status"] == self.publication_status_filter)
             and (not selected_domains or selected_domains.intersection(item["domains"]))
             and (not selected_regions or selected_regions.intersection(item.get("regions") or []))
             and (not query or query in " ".join(str(value) for value in item.values()).lower())
@@ -263,6 +270,9 @@ class RadarState(rx.State):
 
     def set_horizon_filter(self, value: str):
         self.horizon_filter = value
+
+    def set_publication_status_filter(self, value: str):
+        self.publication_status_filter = value
 
     def set_company_name(self, value: str):
         self.company_name = value
@@ -622,15 +632,16 @@ class RadarState(rx.State):
 
     def save_orange_priorities(self):
         extension_store.save_orange_priorities(self.orange_use_case_ids, self.orange_technology_ids)
-        # Strategic relevance is 15% of every opportunity's score, so the portfolio
-        # is rescored immediately. Only the derived data is refreshed (not a full
-        # load()), so unsaved edits in the company profile form above are kept.
+        # Orange priorities drive the standalone Orange Fit score (not
+        # Attractiveness), so the portfolio's fit scores are recomputed
+        # immediately. Only the derived data is refreshed (not a full load()),
+        # so unsaved edits in the company profile form above are kept.
         self.opportunities = team_repository.list_opportunities()
         self.metrics = team_repository.dashboard_metrics()
         self.orange_priorities_updated = extension_store.orange_priorities()["updated_at"][:10]
         if not self.orange_use_case_ids and not self.orange_technology_ids:
-            return rx.toast.success("Orange priorities cleared - strategic relevance is now unscored")
-        return rx.toast.success("Orange priorities saved - opportunities rescored")
+            return rx.toast.success("Orange priorities cleared - Orange Fit now falls back to domain coverage")
+        return rx.toast.success("Orange priorities saved - Orange Fit rescored")
 
     async def upload_documents(self, files: list[rx.UploadFile]):
         if not files:

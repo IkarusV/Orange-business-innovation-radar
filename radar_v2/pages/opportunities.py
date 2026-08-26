@@ -45,6 +45,12 @@ def opportunities() -> rx.Component:
                         on_change=RadarState.set_horizon_filter,
                         width="180px",
                     ),
+                    rx.select(
+                        ["All", "RADAR", "WATCHLIST"],
+                        value=RadarState.publication_status_filter,
+                        on_change=RadarState.set_publication_status_filter,
+                        width="160px",
+                    ),
                     gap="3", direction=rx.breakpoints(initial="column", sm="row"), width="100%",
                 ),
                 rx.flex(
