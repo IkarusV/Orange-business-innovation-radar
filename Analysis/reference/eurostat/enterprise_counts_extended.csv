@@ -1,0 +1,35 @@
+﻿source_dataset,purpose,year,country,nace_code,region,size_class,indic_sbs,observed_value,status_flag,raw_value
+sbs_ovw_smc,optional_large_enterprise_detail,2024,BG,C,eastern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,BG,C,eastern_europe,50-249,ENT_NR,1419.0,p,1419 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,BG,C,eastern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,CZ,C,eastern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,CZ,C,eastern_europe,50-249,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,CZ,C,eastern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,DE,C,germany,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,DE,C,germany,50-249,ENT_NR,14980.0,p,14980 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,DE,C,germany,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,ES,C,southern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,ES,C,southern_europe,50-249,ENT_NR,4952.0,p,4952 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,ES,C,southern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,FI,C,nordics,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,FI,C,nordics,50-249,ENT_NR,791.0,p,791 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,FI,C,nordics,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,HR,C,eastern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,HR,C,eastern_europe,50-249,ENT_NR,656.0,p,656 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,HR,C,eastern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,IE,C,uk_ireland,50-249,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,IT,C,southern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,IT,C,southern_europe,50-249,ENT_NR,9543.0,p,9543 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,LT,C,eastern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,LT,C,eastern_europe,50-249,ENT_NR,657.0,p,657 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,LT,C,eastern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,LV,C,eastern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,LV,C,eastern_europe,50-249,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,LV,C,eastern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,PL,C,eastern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,PL,C,eastern_europe,50-249,ENT_NR,5582.0,p,5582 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,PL,C,eastern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,PT,C,southern_europe,250-499,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,PT,C,southern_europe,50-249,ENT_NR,2377.0,p,2377 p
+sbs_ovw_smc,optional_large_enterprise_detail,2024,PT,C,southern_europe,GE500,ENT_NR,,,:
+sbs_ovw_smc,optional_large_enterprise_detail,2024,SE,C,nordics,50-249,ENT_NR,,,:

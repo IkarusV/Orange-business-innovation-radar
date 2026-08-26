@@ -1,0 +1,206 @@
+﻿opportunity_key,vertical,use_case_id,technology_id,market_size_status,europe_low_eur,europe_central_eur,europe_high_eur,countries_covered,countries_expected,coverage_ratio,coverage_status
+Aerospace|anomaly-detection|cybersecurity-platform,Aerospace,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|anomaly-detection|machine-learning,Aerospace,anomaly-detection,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|asset-tracking|autonomous-vehicles-drones,Aerospace,asset-tracking,autonomous-vehicles-drones,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|asset-tracking|blockchain-distributed-ledger,Aerospace,asset-tracking,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|asset-tracking|computer-vision,Aerospace,asset-tracking,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|asset-tracking|industrial-robotics,Aerospace,asset-tracking,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|asset-tracking|iot-platforms,Aerospace,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|automated-inspection-defect-detection|computer-vision,Aerospace,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|automated-inspection-defect-detection|industrial-robotics,Aerospace,automated-inspection-defect-detection,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|automated-inspection-defect-detection|iot-platforms,Aerospace,automated-inspection-defect-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|compliance-monitoring|connectivity-5g,Aerospace,compliance-monitoring,connectivity-5g,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|diagnostic-support|computer-vision,Aerospace,diagnostic-support,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|environmental-emissions-monitoring|cloud-data-platform,Aerospace,environmental-emissions-monitoring,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|environmental-emissions-monitoring|computer-vision,Aerospace,environmental-emissions-monitoring,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|environmental-emissions-monitoring|digital-twin,Aerospace,environmental-emissions-monitoring,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|environmental-emissions-monitoring|iot-platforms,Aerospace,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|environmental-emissions-monitoring|machine-learning,Aerospace,environmental-emissions-monitoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|network-optimization|connectivity-5g,Aerospace,network-optimization,connectivity-5g,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|network-optimization|iot-platforms,Aerospace,network-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|precision-agriculture|computer-vision,Aerospace,precision-agriculture,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|precision-agriculture|iot-platforms,Aerospace,precision-agriculture,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|predictive-maintenance|autonomous-vehicles-drones,Aerospace,predictive-maintenance,autonomous-vehicles-drones,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|predictive-maintenance|digital-twin,Aerospace,predictive-maintenance,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|predictive-maintenance|edge-computing,Aerospace,predictive-maintenance,edge-computing,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|predictive-maintenance|industrial-robotics,Aerospace,predictive-maintenance,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|predictive-maintenance|iot-platforms,Aerospace,predictive-maintenance,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Aerospace|route-optimization|autonomous-vehicles-drones,Aerospace,route-optimization,autonomous-vehicles-drones,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Automotive|anomaly-detection|computer-vision,Automotive,anomaly-detection,computer-vision,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|anomaly-detection|cybersecurity-platform,Automotive,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|anomaly-detection|machine-learning,Automotive,anomaly-detection,machine-learning,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|asset-tracking|autonomous-vehicles-drones,Automotive,asset-tracking,autonomous-vehicles-drones,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|asset-tracking|cloud-data-platform,Automotive,asset-tracking,cloud-data-platform,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|asset-tracking|digital-twin,Automotive,asset-tracking,digital-twin,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|asset-tracking|iot-platforms,Automotive,asset-tracking,iot-platforms,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|asset-tracking|rfid-asset-tagging,Automotive,asset-tracking,rfid-asset-tagging,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|automated-inspection-defect-detection|computer-vision,Automotive,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|compliance-monitoring|cloud-data-platform,Automotive,compliance-monitoring,cloud-data-platform,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|compliance-monitoring|computer-vision,Automotive,compliance-monitoring,computer-vision,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|compliance-monitoring|cybersecurity-platform,Automotive,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|compliance-monitoring|iot-platforms,Automotive,compliance-monitoring,iot-platforms,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|energy-optimization|iot-platforms,Automotive,energy-optimization,iot-platforms,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|energy-optimization|machine-learning,Automotive,energy-optimization,machine-learning,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|environmental-emissions-monitoring|machine-learning,Automotive,environmental-emissions-monitoring,machine-learning,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|fraud-detection|machine-learning,Automotive,fraud-detection,machine-learning,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|network-optimization|digital-twin,Automotive,network-optimization,digital-twin,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|predictive-maintenance|digital-twin,Automotive,predictive-maintenance,digital-twin,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|predictive-maintenance|industrial-robotics,Automotive,predictive-maintenance,industrial-robotics,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|predictive-maintenance|machine-learning,Automotive,predictive-maintenance,machine-learning,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|risk-scoring|computer-vision,Automotive,risk-scoring,computer-vision,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|route-optimization|autonomous-vehicles-drones,Automotive,route-optimization,autonomous-vehicles-drones,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|route-optimization|digital-twin,Automotive,route-optimization,digital-twin,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Automotive|route-optimization|machine-learning,Automotive,route-optimization,machine-learning,pending_or_unavailable,,,,24,29,0.8275862068965517,partial
+Defense|anomaly-detection|cloud-data-platform,Defense,anomaly-detection,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|anomaly-detection|computer-vision,Defense,anomaly-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|anomaly-detection|digital-twin,Defense,anomaly-detection,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|anomaly-detection|iot-platforms,Defense,anomaly-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|anomaly-detection|machine-learning,Defense,anomaly-detection,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|asset-tracking|autonomous-vehicles-drones,Defense,asset-tracking,autonomous-vehicles-drones,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|asset-tracking|computer-vision,Defense,asset-tracking,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|asset-tracking|iot-platforms,Defense,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|automated-inspection-defect-detection|iot-platforms,Defense,automated-inspection-defect-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|compliance-monitoring|blockchain-distributed-ledger,Defense,compliance-monitoring,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|compliance-monitoring|cloud-data-platform,Defense,compliance-monitoring,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|compliance-monitoring|cybersecurity-platform,Defense,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|compliance-monitoring|edge-computing,Defense,compliance-monitoring,edge-computing,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|compliance-monitoring|iot-platforms,Defense,compliance-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|compliance-monitoring|machine-learning,Defense,compliance-monitoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|energy-optimization|digital-twin,Defense,energy-optimization,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|environmental-emissions-monitoring|cloud-data-platform,Defense,environmental-emissions-monitoring,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|environmental-emissions-monitoring|iot-platforms,Defense,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|fraud-detection|computer-vision,Defense,fraud-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|it-operations-automation|cybersecurity-platform,Defense,it-operations-automation,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|kyc-aml-automation|blockchain-distributed-ledger,Defense,kyc-aml-automation,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|network-optimization|cybersecurity-platform,Defense,network-optimization,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Defense|route-optimization|machine-learning,Defense,route-optimization,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|anomaly-detection|cybersecurity-platform,Energy,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|automated-inspection-defect-detection|industrial-robotics,Energy,automated-inspection-defect-detection,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|compliance-monitoring|cybersecurity-platform,Energy,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|energy-optimization|blockchain-distributed-ledger,Energy,energy-optimization,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|energy-optimization|cloud-data-platform,Energy,energy-optimization,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|energy-optimization|digital-twin,Energy,energy-optimization,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|energy-optimization|iot-platforms,Energy,energy-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|energy-optimization|machine-learning,Energy,energy-optimization,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|environmental-emissions-monitoring|cloud-data-platform,Energy,environmental-emissions-monitoring,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|network-optimization|iot-platforms,Energy,network-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|predictive-maintenance|digital-twin,Energy,predictive-maintenance,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|predictive-maintenance|iot-platforms,Energy,predictive-maintenance,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Energy|route-optimization|machine-learning,Energy,route-optimization,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|anomaly-detection|iot-platforms","Finance, Banking, Insurance",anomaly-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|asset-tracking|digital-twin","Finance, Banking, Insurance",asset-tracking,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|asset-tracking|iot-platforms","Finance, Banking, Insurance",asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|automated-inspection-defect-detection|digital-twin","Finance, Banking, Insurance",automated-inspection-defect-detection,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|business-forecasting|machine-learning","Finance, Banking, Insurance",business-forecasting,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|compliance-monitoring|computer-vision","Finance, Banking, Insurance",compliance-monitoring,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|compliance-monitoring|cybersecurity-platform","Finance, Banking, Insurance",compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|compliance-monitoring|machine-learning","Finance, Banking, Insurance",compliance-monitoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|energy-optimization|cloud-data-platform","Finance, Banking, Insurance",energy-optimization,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|energy-optimization|digital-twin","Finance, Banking, Insurance",energy-optimization,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|energy-optimization|iot-platforms","Finance, Banking, Insurance",energy-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|fraud-detection|machine-learning","Finance, Banking, Insurance",fraud-detection,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|kyc-aml-automation|blockchain-distributed-ledger","Finance, Banking, Insurance",kyc-aml-automation,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|kyc-aml-automation|cloud-data-platform","Finance, Banking, Insurance",kyc-aml-automation,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|kyc-aml-automation|computer-vision","Finance, Banking, Insurance",kyc-aml-automation,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|personalized-recommendations|machine-learning","Finance, Banking, Insurance",personalized-recommendations,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|precision-agriculture|cloud-data-platform","Finance, Banking, Insurance",precision-agriculture,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|risk-scoring|cloud-data-platform","Finance, Banking, Insurance",risk-scoring,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|risk-scoring|cybersecurity-platform","Finance, Banking, Insurance",risk-scoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+"Finance, Banking, Insurance|risk-scoring|machine-learning","Finance, Banking, Insurance",risk-scoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|anomaly-detection|cybersecurity-platform,Healthcare,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|asset-tracking|industrial-robotics,Healthcare,asset-tracking,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|asset-tracking|iot-platforms,Healthcare,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|automated-inspection-defect-detection|machine-learning,Healthcare,automated-inspection-defect-detection,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|compliance-monitoring|cybersecurity-platform,Healthcare,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|compliance-monitoring|iot-platforms,Healthcare,compliance-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|diagnostic-support|iot-platforms,Healthcare,diagnostic-support,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|diagnostic-support|machine-learning,Healthcare,diagnostic-support,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|document-processing-extraction|machine-learning,Healthcare,document-processing-extraction,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|environmental-emissions-monitoring|machine-learning,Healthcare,environmental-emissions-monitoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|network-optimization|iot-platforms,Healthcare,network-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|personalized-recommendations|machine-learning,Healthcare,personalized-recommendations,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Healthcare|sentiment-analysis|natural-language-processing,Healthcare,sentiment-analysis,natural-language-processing,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|anomaly-detection|cybersecurity-platform,Lifesciences,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|compliance-monitoring|iot-platforms,Lifesciences,compliance-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|diagnostic-support|cloud-data-platform,Lifesciences,diagnostic-support,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|diagnostic-support|machine-learning,Lifesciences,diagnostic-support,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|environmental-emissions-monitoring|iot-platforms,Lifesciences,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|inventory-optimization|digital-twin,Lifesciences,inventory-optimization,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Lifesciences|precision-agriculture|machine-learning,Lifesciences,precision-agriculture,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Manufacturing|anomaly-detection|cybersecurity-platform,Manufacturing,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|asset-tracking|autonomous-vehicles-drones,Manufacturing,asset-tracking,autonomous-vehicles-drones,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|asset-tracking|machine-learning,Manufacturing,asset-tracking,machine-learning,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|automated-inspection-defect-detection|computer-vision,Manufacturing,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|energy-optimization|iot-platforms,Manufacturing,energy-optimization,iot-platforms,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|energy-optimization|machine-learning,Manufacturing,energy-optimization,machine-learning,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|environmental-emissions-monitoring|cloud-data-platform,Manufacturing,environmental-emissions-monitoring,cloud-data-platform,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|environmental-emissions-monitoring|iot-platforms,Manufacturing,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|network-optimization|iot-platforms,Manufacturing,network-optimization,iot-platforms,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|predictive-maintenance|machine-learning,Manufacturing,predictive-maintenance,machine-learning,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|production-scheduling|iot-platforms,Manufacturing,production-scheduling,iot-platforms,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Manufacturing|production-scheduling|machine-learning,Manufacturing,production-scheduling,machine-learning,pending_or_unavailable,,,,25,29,0.8620689655172413,partial
+Media & Entertainment|automated-inspection-defect-detection|computer-vision,Media & Entertainment,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|compliance-monitoring|cybersecurity-platform,Media & Entertainment,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|customer-segmentation|cloud-data-platform,Media & Entertainment,customer-segmentation,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|energy-optimization|connectivity-5g,Media & Entertainment,energy-optimization,connectivity-5g,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|energy-optimization|iot-platforms,Media & Entertainment,energy-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|personalized-recommendations|connectivity-5g,Media & Entertainment,personalized-recommendations,connectivity-5g,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|predictive-maintenance|digital-twin,Media & Entertainment,predictive-maintenance,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Media & Entertainment|sentiment-analysis|natural-language-processing,Media & Entertainment,sentiment-analysis,natural-language-processing,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Natural Resources|automated-inspection-defect-detection|computer-vision,Natural Resources,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Natural Resources|compliance-monitoring|iot-platforms,Natural Resources,compliance-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Natural Resources|environmental-emissions-monitoring|cloud-data-platform,Natural Resources,environmental-emissions-monitoring,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Natural Resources|environmental-emissions-monitoring|iot-platforms,Natural Resources,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Natural Resources|environmental-emissions-monitoring|machine-learning,Natural Resources,environmental-emissions-monitoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Natural Resources|predictive-maintenance|iot-platforms,Natural Resources,predictive-maintenance,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|anomaly-detection|computer-vision,Public/Gov sector,anomaly-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|anomaly-detection|cybersecurity-platform,Public/Gov sector,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|anomaly-detection|iot-platforms,Public/Gov sector,anomaly-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|anomaly-detection|machine-learning,Public/Gov sector,anomaly-detection,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|asset-tracking|blockchain-distributed-ledger,Public/Gov sector,asset-tracking,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|asset-tracking|iot-platforms,Public/Gov sector,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|automated-inspection-defect-detection|computer-vision,Public/Gov sector,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|compliance-monitoring|cybersecurity-platform,Public/Gov sector,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|compliance-monitoring|iot-platforms,Public/Gov sector,compliance-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|compliance-monitoring|machine-learning,Public/Gov sector,compliance-monitoring,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|document-processing-extraction|cloud-data-platform,Public/Gov sector,document-processing-extraction,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|document-processing-extraction|machine-learning,Public/Gov sector,document-processing-extraction,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|energy-optimization|iot-platforms,Public/Gov sector,energy-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|environmental-emissions-monitoring|autonomous-vehicles-drones,Public/Gov sector,environmental-emissions-monitoring,autonomous-vehicles-drones,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|kyc-aml-automation|computer-vision,Public/Gov sector,kyc-aml-automation,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|network-optimization|iot-platforms,Public/Gov sector,network-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Public/Gov sector|route-optimization|iot-platforms,Public/Gov sector,route-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|asset-tracking|iot-platforms,Retail,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|automated-inspection-defect-detection|computer-vision,Retail,automated-inspection-defect-detection,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|automated-inspection-defect-detection|iot-platforms,Retail,automated-inspection-defect-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|compliance-monitoring|computer-vision,Retail,compliance-monitoring,computer-vision,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|energy-optimization|blockchain-distributed-ledger,Retail,energy-optimization,blockchain-distributed-ledger,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|energy-optimization|cloud-data-platform,Retail,energy-optimization,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|environmental-emissions-monitoring|iot-platforms,Retail,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|personalized-recommendations|machine-learning,Retail,personalized-recommendations,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|production-scheduling|iot-platforms,Retail,production-scheduling,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|route-optimization|cloud-data-platform,Retail,route-optimization,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|warehouse-automation|industrial-robotics,Retail,warehouse-automation,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Retail|warehouse-automation|warehouse-automation-systems,Retail,warehouse-automation,warehouse-automation-systems,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|anomaly-detection|iot-platforms,Transportation & Construction,anomaly-detection,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|asset-tracking|iot-platforms,Transportation & Construction,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|asset-tracking|machine-learning,Transportation & Construction,asset-tracking,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|automated-inspection-defect-detection|industrial-robotics,Transportation & Construction,automated-inspection-defect-detection,industrial-robotics,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|energy-optimization|iot-platforms,Transportation & Construction,energy-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|environmental-emissions-monitoring|digital-twin,Transportation & Construction,environmental-emissions-monitoring,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|network-optimization|digital-twin,Transportation & Construction,network-optimization,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|predictive-maintenance|machine-learning,Transportation & Construction,predictive-maintenance,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|route-optimization|cloud-data-platform,Transportation & Construction,route-optimization,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|route-optimization|machine-learning,Transportation & Construction,route-optimization,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Transportation & Construction|warehouse-automation|warehouse-automation-systems,Transportation & Construction,warehouse-automation,warehouse-automation-systems,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|anomaly-detection|cybersecurity-platform,Wholesale,anomaly-detection,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|asset-tracking|cloud-data-platform,Wholesale,asset-tracking,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|asset-tracking|iot-platforms,Wholesale,asset-tracking,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|asset-tracking|rfid-asset-tagging,Wholesale,asset-tracking,rfid-asset-tagging,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|compliance-monitoring|cybersecurity-platform,Wholesale,compliance-monitoring,cybersecurity-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|energy-optimization|iot-platforms,Wholesale,energy-optimization,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|environmental-emissions-monitoring|iot-platforms,Wholesale,environmental-emissions-monitoring,iot-platforms,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|inventory-optimization|machine-learning,Wholesale,inventory-optimization,machine-learning,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|production-scheduling|cloud-data-platform,Wholesale,production-scheduling,cloud-data-platform,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|route-optimization|digital-twin,Wholesale,route-optimization,digital-twin,pending_or_unavailable,,,,0,29,0.0,no_country_data
+Wholesale|warehouse-automation|warehouse-automation-systems,Wholesale,warehouse-automation,warehouse-automation-systems,pending_or_unavailable,,,,0,29,0.0,no_country_data

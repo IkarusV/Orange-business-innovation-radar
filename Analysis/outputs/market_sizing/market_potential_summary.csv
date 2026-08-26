@@ -1,0 +1,6 @@
+﻿geography_level,market_potential_status,scenario_rows,distinct_opportunity_spaces
+country,not_estimable_missing_validated_annual_value,1800,37
+europe,not_estimable_missing_validated_annual_value,74,37
+europe,not_estimable_technology_proxy_gap,28,14
+europe,not_estimable_vertical_mapping_gap,308,154
+region,not_estimable_missing_validated_annual_value,542,37

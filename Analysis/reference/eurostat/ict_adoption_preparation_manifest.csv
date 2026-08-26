@@ -1,0 +1,5 @@
+﻿technology_proxy,year,expected_rows,rows_found,numeric_values,missing_or_suppressed,countries_present
+ai,2025,58,50,50,0,AT; BE; BG; CZ; DE; DK; EE; ES; FI; FR; HR; HU; IE; IT; LT; LU; LV; NL; NO; PL; PT; RO; SE; SI; SK
+cloud,2025,58,50,49,1,AT; BE; BG; CZ; DE; DK; EE; ES; FI; FR; HR; HU; IE; IT; LT; LU; LV; NL; NO; PL; PT; RO; SE; SI; SK
+cybersecurity,2024,58,50,50,0,AT; BE; BG; CZ; DE; DK; EE; ES; FI; FR; HR; HU; IE; IT; LT; LU; LV; NL; NO; PL; PT; RO; SE; SI; SK
+iot,2021,58,50,49,1,AT; BE; BG; CZ; DE; DK; EE; ES; FI; FR; HR; HU; IE; IT; LT; LU; LV; NL; NO; PL; PT; RO; SE; SI; SK

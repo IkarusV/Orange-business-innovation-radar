@@ -1,0 +1,43 @@
+﻿source_dataset,purpose,year,country,nace_code,region,indic_sbs,observed_value,status_flag,raw_value
+sbs_ovw_iep,market_size_plausibility_context,2021,AT,C,dach,INV_SOFT_MEUR,368.81,,368.81
+sbs_ovw_iep,market_size_plausibility_context,2021,AT,C29,dach,INV_SOFT_MEUR,12.95,,12.95
+sbs_ovw_iep,market_size_plausibility_context,2021,BE,C,benelux,INV_SOFT_MEUR,180.57,,180.57
+sbs_ovw_iep,market_size_plausibility_context,2021,BE,C29,benelux,INV_SOFT_MEUR,0.67,,0.67
+sbs_ovw_iep,market_size_plausibility_context,2021,BG,C,eastern_europe,INV_SOFT_MEUR,18.44,,18.44
+sbs_ovw_iep,market_size_plausibility_context,2021,BG,C29,eastern_europe,INV_SOFT_MEUR,0.81,,0.81
+sbs_ovw_iep,market_size_plausibility_context,2021,CZ,C,eastern_europe,INV_SOFT_MEUR,162.57,,162.57
+sbs_ovw_iep,market_size_plausibility_context,2021,CZ,C29,eastern_europe,INV_SOFT_MEUR,27.41,,27.41
+sbs_ovw_iep,market_size_plausibility_context,2021,DE,C,germany,INV_SOFT_MEUR,3278.9,,3278.90
+sbs_ovw_iep,market_size_plausibility_context,2021,DE,C29,germany,INV_SOFT_MEUR,667.88,,667.88
+sbs_ovw_iep,market_size_plausibility_context,2021,DK,C,nordics,INV_SOFT_MEUR,170.1,,170.10
+sbs_ovw_iep,market_size_plausibility_context,2021,DK,C29,nordics,INV_SOFT_MEUR,0.15,,0.15
+sbs_ovw_iep,market_size_plausibility_context,2021,ES,C,southern_europe,INV_SOFT_MEUR,428.26,,428.26
+sbs_ovw_iep,market_size_plausibility_context,2021,ES,C29,southern_europe,INV_SOFT_MEUR,22.93,,22.93
+sbs_ovw_iep,market_size_plausibility_context,2021,FI,C,nordics,INV_SOFT_MEUR,173.41,,173.41
+sbs_ovw_iep,market_size_plausibility_context,2021,FI,C29,nordics,INV_SOFT_MEUR,2.34,,2.34
+sbs_ovw_iep,market_size_plausibility_context,2021,HR,C,eastern_europe,INV_SOFT_MEUR,23.93,,23.93
+sbs_ovw_iep,market_size_plausibility_context,2021,HR,C29,eastern_europe,INV_SOFT_MEUR,0.06,,0.06
+sbs_ovw_iep,market_size_plausibility_context,2021,HU,C,eastern_europe,INV_SOFT_MEUR,152.25,,152.25
+sbs_ovw_iep,market_size_plausibility_context,2021,HU,C29,eastern_europe,INV_SOFT_MEUR,20.29,,20.29
+sbs_ovw_iep,market_size_plausibility_context,2021,IE,C,uk_ireland,INV_SOFT_MEUR,830.03,,830.03
+sbs_ovw_iep,market_size_plausibility_context,2021,IE,C29,uk_ireland,INV_SOFT_MEUR,0.71,,0.71
+sbs_ovw_iep,market_size_plausibility_context,2021,IT,C,southern_europe,INV_SOFT_MEUR,1018.76,,1018.76
+sbs_ovw_iep,market_size_plausibility_context,2021,IT,C29,southern_europe,INV_SOFT_MEUR,50.86,,50.86
+sbs_ovw_iep,market_size_plausibility_context,2021,LT,C,eastern_europe,INV_SOFT_MEUR,38.27,,38.27
+sbs_ovw_iep,market_size_plausibility_context,2021,LT,C29,eastern_europe,INV_SOFT_MEUR,0.43,,0.43
+sbs_ovw_iep,market_size_plausibility_context,2021,LU,C,benelux,INV_SOFT_MEUR,21.29,,21.29
+sbs_ovw_iep,market_size_plausibility_context,2021,LU,C29,benelux,INV_SOFT_MEUR,,,: @C
+sbs_ovw_iep,market_size_plausibility_context,2021,NL,C,benelux,INV_SOFT_MEUR,482.42,,482.42
+sbs_ovw_iep,market_size_plausibility_context,2021,NL,C29,benelux,INV_SOFT_MEUR,9.41,,9.41
+sbs_ovw_iep,market_size_plausibility_context,2021,NO,C,nordics,INV_SOFT_MEUR,40.21,,40.21
+sbs_ovw_iep,market_size_plausibility_context,2021,NO,C29,nordics,INV_SOFT_MEUR,0.18,,0.18
+sbs_ovw_iep,market_size_plausibility_context,2021,PL,C,eastern_europe,INV_SOFT_MEUR,237.0,,237.00
+sbs_ovw_iep,market_size_plausibility_context,2021,PL,C29,eastern_europe,INV_SOFT_MEUR,12.05,,12.05
+sbs_ovw_iep,market_size_plausibility_context,2021,PT,C,southern_europe,INV_SOFT_MEUR,78.42,b,78.42 b
+sbs_ovw_iep,market_size_plausibility_context,2021,PT,C29,southern_europe,INV_SOFT_MEUR,5.69,b,5.69 b
+sbs_ovw_iep,market_size_plausibility_context,2021,RO,C,eastern_europe,INV_SOFT_MEUR,46.14,,46.14
+sbs_ovw_iep,market_size_plausibility_context,2021,RO,C29,eastern_europe,INV_SOFT_MEUR,4.52,,4.52
+sbs_ovw_iep,market_size_plausibility_context,2021,SE,C,nordics,INV_SOFT_MEUR,0.0,,0.00
+sbs_ovw_iep,market_size_plausibility_context,2021,SE,C29,nordics,INV_SOFT_MEUR,0.0,,0.00
+sbs_ovw_iep,market_size_plausibility_context,2021,SK,C,eastern_europe,INV_SOFT_MEUR,42.22,,42.22
+sbs_ovw_iep,market_size_plausibility_context,2021,SK,C29,eastern_europe,INV_SOFT_MEUR,6.68,,6.68

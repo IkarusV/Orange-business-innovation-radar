@@ -1,0 +1,5 @@
+﻿source_dataset,year,indicator,purpose,expected_rows,rows_found,numeric_values,missing_or_suppressed,countries_present
+sbs_sc_ovw,2024,ENT_NR,primary_enterprise_denominator,116,108,105,3,AT; BE; BG; CH; CZ; DE; DK; EE; ES; FI; FR; HR; HU; IE; IS; IT; LT; LU; LV; NL; NO; PL; PT; RO; SE; SI; SK
+sbs_ovw_smc,2024,ENT_NR,optional_large_enterprise_detail,174,34,9,25,BG; CZ; DE; ES; FI; HR; IE; IT; LT; LV; PL; PT; SE
+sbs_ovw_act,2024,ENT_NR,vertical_nace_crosswalk_validation,58,54,54,0,AT; BE; BG; CH; CZ; DE; DK; EE; ES; FI; FR; HR; HU; IE; IS; IT; LT; LU; LV; NL; NO; PL; PT; RO; SE; SI; SK
+sbs_ovw_iep,2021,INV_SOFT_MEUR,market_size_plausibility_context,58,42,41,1,AT; BE; BG; CZ; DE; DK; ES; FI; HR; HU; IE; IT; LT; LU; NL; NO; PL; PT; RO; SE; SK

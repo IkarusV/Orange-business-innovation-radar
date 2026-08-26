@@ -692,3 +692,461 @@ explaining a score to the team or client.
    weights (for example, attractiveness 35–45% and Orange fit 30–40%). If the
    top opportunities change radically, report that the ranking is sensitive to
    the chosen weights.
+
+---
+
+## Eurostat reference-data preparation for market potential
+
+### Why collect Eurostat data
+
+Opportunity scoring ranks evidence and Orange Business fit; it does not measure commercial value in euros. Eurostat is used as a free, official and reproducible source for the enterprise denominator behind a later market-potential estimate.
+
+It can establish how many medium and large manufacturing enterprises operate in the selected countries, how many operate in detailed activities such as automotive manufacturing, and the observed software-investment context in those industries.
+
+Eurostat cannot directly report the euro market size of generative AI, cybersecurity, cloud, private 5G, or a specific Orange Business offer. A later model must therefore combine the enterprise denominator with an explicit technology-adoption proxy and a transparent annual engagement-value assumption.
+
+```text
+Market potential = addressable enterprise base × demand/adoption scenario × annual engagement-value assumption
+```
+
+This is a modelled estimate, not observed market revenue. A user interface must label it `estimated addressable annual potential`.
+
+### Dataset roles
+
+Four local Eurostat Structural Business Statistics downloads are prepared by one script. They must not be summed together because they describe different views of the same business population.
+
+| Dataset | Relevant field | Role | Not for |
+|---|---|---|---|
+| `sbs_sc_ovw` | `ENT_NR` | Primary enterprise count by NACE and size class. | Direct technology market size. |
+| `sbs_ovw_smc` | `ENT_NR` | Optional finer segmentation of large enterprises. | Primary total; current coverage is incomplete. |
+| `sbs_ovw_act` | `ENT_NR` | Detailed vertical-to-NACE crosswalk validation. | Size-class denominator. |
+| `sbs_ovw_iep` | `INV_SOFT_MEUR` | Older software-investment context and plausibility check. | Direct TAM/SAM. |
+
+The geographic scope is now configured in `Analysis/market_geography_config.json`, not hardcoded in a script. It contains 29 countries grouped as France, Benelux, Germany, Southern Europe, DACH, UK & Ireland, Nordics and provisional Eastern Europe. Manufacturing is NACE `C`; Automotive is NACE `C29`; primary company sizes are `50-249` and `GE250`.
+
+`C29` is a subset of `C`. Never add `C` and `C29` into one denominator. Use `C` for Manufacturing and `C29` for a separate Automotive vertical.
+
+### `07a_prepare_eurostat_sbs.py`
+
+Path: `Analysis/07a_prepare_eurostat_sbs.py`.
+
+Purpose: read the four already-downloaded TSVs once and create small, normalised reference CSVs. It does not call an LLM, does not call an API, and does not change original Eurostat downloads.
+
+Run from the project root:
+
+```powershell
+.\.venv\Scripts\python.exe .\Analysis\07a_prepare_eurostat_sbs.py
+```
+
+| Function | What it does |
+|---|---|
+| `find_year_column()` | Reads only the header and finds the requested year despite Eurostat header whitespace. |
+| `read_and_normalise_dataset()` | Reads the compact dimension column plus one year, splits dimensions, extracts numeric values and preserves status flags. |
+| `filter_relevant_rows()` | Keeps annual configured-country, NACE and indicator rows and attaches the configured Orange region. |
+| `validate_coverage()` | Reports expected/found/numeric/missing rows and countries present. |
+| `write_reference_table()` | Writes a compact standardised CSV while leaving raw downloads unchanged. |
+| `main()` | Processes all four sources sequentially and writes a manifest. |
+
+Eurostat stores multiple dimensions in its first column. Example: `A,ENT_NR,C,50-249,DE    14980 p` means annual number of enterprises in Manufacturing, 50-249 employees, Germany, numeric value `14980`, provisional flag `p`.
+
+The script separates values from status flags. `p` means provisional, `e` estimated, `b` break in time series, and `:` missing or suppressed. Missing values remain missing and must never become zero.
+
+### Outputs and current coverage
+
+```text
+Analysis/reference/eurostat/enterprise_counts_standard.csv
+Analysis/reference/eurostat/enterprise_counts_extended.csv
+Analysis/reference/eurostat/enterprise_counts_activity_validation.csv
+Analysis/reference/eurostat/software_investment_context.csv
+Analysis/reference/eurostat/preparation_manifest.csv
+```
+
+| Source | Year used | Numeric coverage | Decision |
+|---|---:|---:|---|
+| `sbs_sc_ovw` | 2024 | 105/108 | Primary enterprise denominator; 27 of 29 configured countries have rows. |
+| `sbs_ovw_smc` | 2024 | 9/34 | Optional detail only; not primary. |
+| `sbs_ovw_act` | 2024 | 54/54 | Validate detailed NACE mapping; 27 countries have rows. |
+| `sbs_ovw_iep` | 2021 | 41/42 | Older software-investment context; not used in the denominator. |
+
+`sbs_ovw_iep` uses 2021 because its selected `INV_SOFT_MEUR` values are suppressed in the 2022 and 2023 columns. Its older vintage must remain visible in any client output.
+
+### Next market-sizing steps
+
+1. Prepare Eurostat ICT-adoption data for AI, cloud, IoT and cybersecurity. **Completed by `07b_prepare_eurostat_ict_adoption.py`.**
+2. Add an explicit technology-to-adoption-proxy crosswalk and flag proxy use.
+3. Add annual engagement values from comparable contracts or declared assumptions, retaining low/base/high values and sources.
+4. Calculate TAM/SAM ranges only for spaces with sufficient mapping coverage.
+5. Keep observed public-procurement values as a separate floor, not as the same quantity as bottom-up market potential.
+6. ECB enterprise-financing data may become an investment-context badge; do not multiply it directly into euro market-potential arithmetic.
+
+### Comparable-contract preparation (Step 3)
+
+Path: `Analysis/07c_prepare_comparable_contract_values.py`.
+
+Purpose: create a public, auditable evidence layer for annual engagement-value assumptions. It links the already taxonomy-classified and scoring-ready articles to TED procurement notices in the local research database. It never writes to that database; it opens SQLite with `mode=ro`.
+
+The database contains 6,957 TED notices and 4,125 notices with a positive stored `total_value` (59.3%). There are 368 Manufacturing notices with a stored positive value. This is useful comparable-contract evidence, but it is **not automatically Orange Business revenue, market size, or an annual value**.
+
+#### What the script extracts
+
+For each scoring-ready TED record, it writes `comparable_contract_observations.csv` with the opportunity taxonomy, raw notice value, CPV codes, buyer country, notice type, publication date, and the following safeguards:
+
+- `is_award_notice`: true only for `can-*` contract-award notices.
+- `value_observation_status`: separates an awarded observation from a contract notice that is only a demand signal.
+- `currency_status`: records that the current TED collector did not store a currency.
+- `annualisation_status`: records that the current collector did not store contract duration.
+
+The current pipeline collected `total-value`, but did not preserve the currency or contract duration. Therefore the script labels the extracted number `total_contract_value_raw`, never `EUR`, and does not annualise it. This prevents an unsupported euro amount being displayed to Orange Business.
+
+#### Statistical method
+
+For an opportunity space with validated comparable awarded contracts, the future manual value estimate should use a distribution rather than one cherry-picked tender:
+
+\[
+Q_{25},\; Q_{50}=\operatorname{median}(x_1,\ldots,x_n),\; Q_{75}
+\]
+
+where each \(x_i\) is a validated, comparable contract value in the same currency and scope. The reported low, central and high comparable values are respectively the 25th percentile, median and 75th percentile. The median is preferred to the arithmetic mean because public-procurement values are highly right-skewed: a small number of very large frameworks would otherwise dominate the result.
+
+The script requires at least five awarded observations before it creates a row in `annual_engagement_value_assumptions_template.csv`. Five is a minimum screening threshold, not proof of a stable market distribution; the sample size must remain visible in the UX and in client material. Spaces below the threshold remain evidence gaps rather than receiving invented values.
+
+Once currency and duration have been validated from the original TED notice, annualisation is:
+
+\[
+\text{annual contract value}_i =
+\frac{\text{validated total contract value}_i\;[EUR]}
+     {\text{validated contract duration}_i\;[years]}
+\]
+
+Only then may the P25 / median / P75 range be stored as `low_annual_value_eur`, `central_annual_value_eur`, and `high_annual_value_eur`.
+
+#### Economic interpretation
+
+Comparable contracts are an **observed procurement benchmark**: evidence of what selected public buyers contracted for a sufficiently similar solution. They are not the same quantity as total addressable market (TAM), serviceable addressable market (SAM), an Orange revenue forecast, or a procurement floor across all countries.
+
+The later bottom-up annual-potential calculation is kept separate:
+
+\[
+\text{estimated annual addressable potential} =
+\text{addressable enterprise base} \times
+\text{demand scenario} \times
+\text{annual engagement-value assumption}
+\]
+
+TED comparables inform the final factor only after validation. Eurostat enterprise counts inform the first factor; ICT adoption data informs the scenario, with its sector-proxy limitation clearly stated. This separation avoids double-counting market evidence already present in the opportunity-attractiveness score.
+
+Run from the project root:
+
+```powershell
+.\.venv\Scripts\python.exe .\Analysis\07c_prepare_comparable_contract_values.py
+```
+
+Outputs:
+
+```text
+Analysis/reference/market_sizing/comparable_contract_observations.csv
+Analysis/reference/market_sizing/comparable_contract_summary.csv
+Analysis/reference/market_sizing/annual_engagement_value_assumptions_template.csv
+```
+
+First local run against the current scoring-ready corpus produced 67 taxonomy-complete TED observations, of which 22 were awarded notices with a positive raw value, across 21 opportunity spaces. No space reached the minimum five comparable awarded observations. This is a valid result: the annual-assumptions template is intentionally empty rather than populated with weak estimates. The raw observations and their explicit evidence gaps remain available for future accumulation or targeted validation.
+
+### Market-potential scenarios (Step 4)
+
+Path: `Analysis/07d_calculate_market_potential.py`.
+
+Purpose: combine the Step 1 enterprise denominator, Step 2 technology-adoption proxy, and Step 3 *reviewed* annual engagement value into an evidence-bounded euro scenario. It does not modify the database, scoring files or source evidence.
+
+#### Inputs and crosswalks
+
+The script reads:
+
+| Input | Role in the calculation |
+|---|---|
+| `enterprise_counts_standard.csv` | Number of medium and large enterprises by country, NACE code and size class. |
+| `technology_adoption_rates.csv` | Country/size ICT adoption rates; always marked as all-business proxy data. |
+| `annual_engagement_value_assumptions_template.csv` | Human-reviewed low/central/high annual EUR assumptions only. |
+| `opportunity_scores.csv` | The scored Vertical × Use Case × Technology spaces to which the model applies. |
+
+Two deliberately narrow crosswalks are in the script. `Manufacturing -> C` and `Automotive -> C29` are the currently defensible vertical mappings. AI, cloud, cybersecurity and IoT-related technology IDs receive the corresponding adoption proxy. Technologies such as 5G, blockchain and warehouse automation are left unmapped because the available Eurostat data does not measure a defensible proxy for them. An unmapped item is a visible data gap, not a zero market.
+
+#### Demand scenarios and formula
+
+The script produces two scenarios for each mapped opportunity space and selected country/size cell:
+
+\[
+\text{greenfield buyer base} = N \times (1-a)
+\]
+
+\[
+\text{expansion / managed-service buyer base} = N \times a
+\]
+
+where \(N\) is the Eurostat enterprise count and \(a\) is the relevant adoption rate. The first estimates enterprises that may not yet use the measured technology; the second estimates existing users that may buy integration, security, managed service, upgrade, or scale-out work. Adoption is not automatically demand, so these are scenarios rather than observations of sales intent.
+
+For each scenario, potential is calculated only with an approved annual value:
+
+\[
+\text{low / central / high annual potential} =
+\left(\sum \text{addressable enterprise base}\right) \times
+\text{low / central / high annual engagement value [EUR]}
+\]
+
+The output uses low, central and high values rather than a single precise number so its uncertainty is visible. The user must set all three annual values and change `review_status` to `approved` in the Step 3 template before any euro estimate is emitted.
+
+#### Geography, Europe totals and coverage safeguard
+
+The model now calculates country-level cells first, then aggregates them into the configured Orange Business regions and a Europe-total row:
+
+\[
+\text{regional potential} = \sum_{c \in region}
+\left(N_c \times d_c \times V\right)
+\]
+
+The outputs carry `geography_level` (`country`, `region`, or `europe`), `geography_id`, `geography_label`, `countries_with_source_data`, `expected_country_count`, and `country_coverage_status`. A partial regional or Europe total must be labelled with its coverage, rather than described as the whole of Europe.
+
+The configured scope contains 29 countries. The local 2024 SBS denominator currently has source rows for 27; ICT adoption data currently has rows for 25. In practice, UK, Israel, Switzerland and Iceland require particular availability checks depending on the source. Missing source rows are treated as coverage gaps, never as zero enterprises or zero adoption.
+
+This is an Orange Business Europe scope and still not a universal global TAM. It becomes a client-specific SAM when Orange confirms the exact countries, customer sizes and eligibility criteria. Rest-of-world continent estimates should be added only with separate, comparable denominators and adoption data.
+
+Every output row has a `market_potential_status`:
+
+- `estimated_proxy_based`: all mappings and a reviewed annual value exist.
+- `not_estimable_missing_validated_annual_value`: evidence exists but the value assumption is not approved.
+- `not_estimable_vertical_mapping_gap` or `not_estimable_technology_proxy_gap`: the available official data does not support the mapping.
+
+This is the intended behaviour. A blank euro figure tells the stakeholder precisely what evidence needs improving, instead of presenting a misleading market-size number.
+
+#### Market-size validation gate
+
+Before a value is eligible for display as EUR, `07d_calculate_market_potential.py` applies these non-negotiable checks:
+
+\[
+N \geq 0,\quad 0 \leq a \leq 1,\quad 0 \leq V_{low} \leq V_{central} \leq V_{high}
+\]
+
+`N` is the enterprise count, `a` the adoption/demand rate, and `V` the annual engagement value. Currency must be explicitly `EUR`, and the annual-value row must have `review_status = approved`. Because all multiplication inputs are non-negative, a valid market-potential result cannot be negative.
+
+An invalid value is never converted into a negative market-size display. The script assigns a `not_estimable_*` status, clears any invalid calculated value, and writes `market_sizing_validation_report.csv`. This report records the opportunity key, scenario, assumption status, currency, invalid enterprise/adoption-cell counts, and calculated values. The Beta-app should display a EUR figure only when `validation_status = passed` and `market_potential_status = estimated_proxy_based`.
+
+Run from the project root:
+
+```powershell
+.\.venv\Scripts\python.exe .\Analysis\07d_calculate_market_potential.py
+```
+
+Outputs:
+
+```text
+Analysis/outputs/market_sizing/market_potential_scenarios.csv
+Analysis/outputs/market_sizing/market_potential_summary.csv
+Analysis/outputs/market_sizing/market_sizing_validation_report.csv
+```
+
+### Observed procurement benchmark (Step 5)
+
+Path: `Analysis/07e_calculate_procurement_benchmark.py`.
+
+Purpose: report what has been observed in the taxonomy-linked TED procurement evidence without confusing it with the Step 4 bottom-up annual-potential scenario. The script reads the Step 3 contract-observation file and the opportunity-score output; it does not call an API and does not change the database.
+
+For every scored opportunity space, it reports the number of linked TED notices, awarded notices, notices with a positive stored raw value, awarded notices with a positive raw value, recency over the last 730 days, and—where possible—P25, median and P75 of awarded raw values.
+
+\[
+Q_{25},\; Q_{50},\; Q_{75}
+= \operatorname{quantile}(\text{positive values of linked award notices})
+\]
+
+These statistics describe the distribution of observed comparable procurement values. They are not summed across notices, because notices may overlap, be frameworks, use different scopes, or cover multiple lots. They are not multiplied by the enterprise base, because that would double-count the separate economic concept measured in Step 4.
+
+The raw benchmark has two binding limitations: the current TED collector did not retain currency, and it did not retain contract duration. Therefore the file uses `raw_award_value_*`, `currency_status`, and `annualisation_status`; it must not be displayed as euro market size or annual value. Its correct initial UX label is **“Observed comparable public-procurement evidence — currency validation pending.”**
+
+The output status makes absence and quality explicit:
+
+- `raw_award_values_currency_and_duration_unvalidated`: observed award values exist but need validation.
+- `observed_notices_no_awarded_positive_value`: related notices exist, but no usable awarded raw value is stored.
+- `no_taxonomy_linked_ted_observation`: no linked TED notice is currently in the scoring-ready corpus.
+
+Run from the project root:
+
+```powershell
+.\.venv\Scripts\python.exe .\Analysis\07e_calculate_procurement_benchmark.py
+```
+
+Outputs:
+
+```text
+Analysis/outputs/market_sizing/procurement_benchmark.csv
+Analysis/outputs/market_sizing/procurement_benchmark_summary.csv
+```
+
+### Eurostat ICT-adoption preparation (completed Step 2)
+
+Path: `Analysis/07b_prepare_eurostat_ict_adoption.py`.
+
+Purpose: normalise free, official Eurostat enterprise ICT-use data into rates that can later be matched to the prepared enterprise counts. This is required because the SBS files answer *how many potential buyers exist*, while ICT data answers *how widely a technology is already used*.
+
+```text
+Enterprise base × demand/adoption scenario × annual engagement value
+```
+
+The script does not call an LLM or an API. It reads the four downloaded, cached TSV archives under `Analysis/raw/eurostat/`, reads only one required year column from each, and writes one small reusable table. Downloading/caching the source files means rerunning the preparation requires no token usage and no network request.
+
+| Technology proxy | Downloaded Eurostat source | Selected indicator | Year | Why this indicator is used |
+|---|---|---|---:|---|
+| AI | `isoc_eb_ai` | `E_AI_TANY` | 2025 | Enterprises using any AI technology; a broad AI proxy, including but not limited to generative AI. |
+| Cloud | `isoc_cicce_use` | `E_CC1_SI` | 2025 | Enterprises using intermediate or sophisticated paid cloud services; more Orange-addressable than basic cloud use. |
+| Cybersecurity | `isoc_cisce_ra` | `E_SECMGE1` | 2024 | Enterprises using at least one ICT security measure; an existing-security-maturity proxy, not a count of cyber incidents. |
+| IoT | `isoc_eb_iot` | `E_IOT1` | 2021 | Enterprise IoT use proxy. It is the latest complete selected rate, but its older vintage requires a wider uncertainty band later. |
+
+All sources are public Eurostat enterprise datasets. They were downloaded because they give country- and size-class-specific adoption rates for the selected Orange-relevant markets without using paid research or LLM-generated figures.
+
+### Important proxy limitation
+
+All four downloaded ICT datasets have `C10-S951_X_K` as the available NACE aggregate in the selected records: all non-financial business activities, rather than Manufacturing alone. Therefore the values are observed Eurostat rates for the all-business aggregate but must be labelled `basis = proxy` when applied to Manufacturing, Automotive, or another specific vertical.
+
+Do not describe them as Manufacturing adoption rates. The output records the exact source NACE code and a `proxy_reason` for every row. A proxy should widen uncertainty; it must not silently change a market-potential base estimate.
+
+### Normalisation details
+
+`07b_prepare_eurostat_ict_adoption.py` uses:
+
+| Function | What it does |
+|---|---|
+| `find_year_column()` | Reads the TSV header and resolves a requested year despite trailing whitespace. |
+| `read_indicator()` | Reads the compact dimensions plus one year from a gzip TSV, extracts a numeric percentage and preserves Eurostat status flags. |
+| `filter_and_standardise()` | Keeps annual `PC_ENT` rows for BE, DE, ES, FR, NL; size classes `50-249` and `GE250`; and the selected technology indicator. It converts percentages to a 0–1 `adoption_rate` and attaches source/proxy metadata. |
+| `validate_coverage()` | Reports expected, found, numeric and missing rows so missing data is never mistaken for zero adoption. |
+| `main()` | Combines the four technology proxies into a single reference table and manifest. |
+
+Run from the project root:
+
+```powershell
+.\.venv\Scripts\python.exe .\Analysis\07b_prepare_eurostat_ict_adoption.py
+```
+
+Outputs:
+
+```text
+Analysis/reference/eurostat/technology_adoption_rates.csv
+Analysis/reference/eurostat/ict_adoption_preparation_manifest.csv
+```
+
+### Geographic-scope update: Orange Business Europe
+
+The earlier five-country reference below is a completed technical pilot and is superseded by `Analysis/market_geography_config.json`. The configuration contains 29 countries grouped as France, Benelux, Germany, Southern Europe, DACH, UK & Ireland, Nordics and provisional Eastern Europe. France is its own region because it is the home market and headquarters location of Orange. `Analysis/market_geography.py` loads this configuration for `07a`, `07b` and `07d`; editing the JSON changes country membership without changing calculation code.
+
+The current expanded local-data coverage is:
+
+| Data layer | Configured country/size cells | Rows found | Numeric values | Interpretation |
+|---|---:|---:|---:|---|
+| SBS enterprise denominator | 116 | 108 | 105 | Source rows for 27 of 29 configured countries. |
+| AI adoption proxy | 58 | 50 | 50 | 25 countries x two size classes. |
+| Cloud adoption proxy | 58 | 50 | 49 | One available row has no numeric value. |
+| Cybersecurity adoption proxy | 58 | 50 | 50 | 25 countries x two size classes. |
+| IoT adoption proxy | 58 | 50 | 49 | One available row has no numeric value. |
+
+The revised `07d_calculate_market_potential.py` produces country, Orange-region and Europe-total rows. It calculates country cells first and then aggregates:
+
+\[
+\text{regional potential} = \sum_{c \in region} (N_c \times d_c \times V)
+\]
+
+Every row includes `geography_level`, `geography_id`, `geography_label`, `countries_with_source_data`, `expected_country_count`, `country_coverage_ratio`, and `country_coverage_status`. Missing source data is excluded from arithmetic and reported as `partial` or `no_country_data`; it is never converted to zero. The Beta-app should display Europe totals only together with this coverage information.
+
+### Opportunity-space-first market size and Beta-app export
+
+The primary commercial object is now the opportunity space:
+
+\[
+O = \text{Vertical} \times \text{Use Case} \times \text{Technology}
+\]
+
+Geography is calculated underneath that object. A country is a calculation cell, an Orange region is an optional drill-down, and the configured Europe total is the headline scope for the opportunity-space page. Regions must not become separate opportunity spaces.
+
+#### Separate greenfield and expansion economics
+
+`07c_prepare_comparable_contract_values.py` now creates six annual-value fields instead of one shared range:
+
+```text
+greenfield_low_annual_value_eur
+greenfield_central_annual_value_eur
+greenfield_high_annual_value_eur
+expansion_low_annual_value_eur
+expansion_central_annual_value_eur
+expansion_high_annual_value_eur
+```
+
+This avoids assuming that a new implementation and an expansion or managed-service engagement have the same annual contract value. The row also requires explicit `currency = EUR` and `review_status = approved`.
+
+For country \(c\), enterprise count \(N_c\), and adoption proxy \(a_c\):
+
+\[
+G_c = N_c(1-a_c)
+\]
+
+\[
+E_c = N_ca_c
+\]
+
+where \(G_c\) is the greenfield enterprise base and \(E_c\) the expansion/managed-service enterprise base. Europe segment estimates are:
+
+\[
+M_G = \sum_c G_c \times V_G
+\]
+
+\[
+M_E = \sum_c E_c \times V_E
+\]
+
+The opportunity-space headline range is emitted only when both non-overlapping segments pass validation:
+
+\[
+M_O = M_G + M_E
+\]
+
+Low, central and high totals are added like-for-like. If only one segment is valid, the export says `partial_estimate` and does not publish a total EUR headline. If neither is valid, it says `pending_or_unavailable` and all headline EUR values remain null.
+
+#### Statistical validation
+
+For each segment:
+
+\[
+0 \leq V_{low} \leq V_{central} \leq V_{high}
+\]
+
+Enterprise counts must be non-negative, adoption rates must be between zero and one, currency must be EUR, and the assumption must be approved. A negative or non-passing result is cleared before export. Missing Eurostat cells reduce `country_coverage_ratio`; they never become zero observations.
+
+#### `07f_build_opportunity_market_size_export.py`
+
+Path: `Analysis/07f_build_opportunity_market_size_export.py`.
+
+The script reads the validated Step 4 scenario output and writes one record per opportunity space. The stable Beta-app join key is:
+
+```text
+vertical|use_case_id|technology_id
+```
+
+Each JSON record contains the Europe headline, both demand segments, country coverage, regional drill-downs and a display rule. The AI does not calculate values in this step; it receives deterministic, validated facts.
+
+Run:
+
+```powershell
+.\.venv\Scripts\python.exe .\Analysis\07f_build_opportunity_market_size_export.py
+```
+
+Outputs:
+
+```text
+Analysis/outputs/market_sizing/beta_opportunity_market_sizes.json
+Analysis/outputs/market_sizing/beta_opportunity_market_sizes.csv
+```
+
+Current run produced 205 opportunity-space records. All currently have `pending_or_unavailable` because no annual engagement-value assumption has yet passed the approval gate. This is expected and prevents the Beta-app or its report-generating AI from inventing an EUR value.
+
+#### Beta-app and report-AI contract
+
+The Beta-app should load the JSON through a market-size service and join it to an opportunity by the stable taxonomy key. It may show the Europe low/central/high EUR range only when `market_size.status = estimated`. Otherwise it should show the segment status, enterprise base, country coverage and missing-evidence reason.
+
+The same structured record should be passed to report generation. When status is not `estimated`, the report context must include the instruction `Do not infer or invent a monetary market-size value`. The AI may explain validated data; it must not replace the deterministic calculation or validation gate.
+
+Current coverage is complete: 10 numeric rows per technology proxy (five countries × two size classes), or 40 rows total. The output keeps `technology_proxy`, `source_dataset`, `indicator`, `year`, `country`, `source_nace_code`, `size_class`, `adoption_rate_percent`, `adoption_rate`, `basis`, `proxy_reason`, `status_flag`, and `raw_value`.
