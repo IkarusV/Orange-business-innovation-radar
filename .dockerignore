@@ -1,0 +1,37 @@
+# Keep the Docker build context small and free of secrets.
+
+# Secrets - NAVY_API_KEY lives here locally; it must reach the image only as a
+# Fly.io secret (runtime env var), never baked into a layer.
+.env
+
+# Local virtualenv and Reflex/node build artifacts (rebuilt inside the image).
+.venv/
+.web/
+reflex.lock
+.states/
+
+# VCS / caches / editor cruft
+.git/
+.gitignore
+.gitattributes
+.claude/
+.pytest_cache/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local runtime output not needed to serve the app
+*.log
+reflex_run.log
+uploaded_files/
+Pipelineteamfile/logs/
+Pipelineteamfile/reports/*.pdf
+
+# Local launcher scripts
+start.bat
+start.sh
+start.command

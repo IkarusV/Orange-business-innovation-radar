@@ -20,8 +20,7 @@ def overview() -> rx.Component:
                 metric_card("Opportunity spaces", RadarState.metrics["opportunities"], "Prioritised business themes", "radar"),
                 metric_card("Market signals", RadarState.metrics["signals"], "Procurement and research evidence", "radio-tower"),
                 metric_card("Sectors covered", RadarState.metrics["verticals"], "Across the active portfolio", "layers-3"),
-                metric_card("Needs attention", RadarState.metrics["review"], "Items ready for expert review", "sparkles"),
-                columns=rx.breakpoints(initial="1", sm="2", lg="4"), gap="4", width="100%",
+                columns=rx.breakpoints(initial="1", sm="2", lg="3"), gap="4", width="100%",
             ),
             rx.grid(
                 rx.box(

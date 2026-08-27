@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import re
@@ -13,7 +14,10 @@ from radar_v2.models import DocumentItem, Evidence, Opportunity, ReportBullet, R
 from radar_v2.services import domains, extension_store, geography, role_modes, team_repository
 from radar_v2.services import knowledge
 from radar_v2.services.reporting import create_focused_report
-from radar_v2.services.pipeline_runner import company_context_file, stream_run
+from radar_v2.services import pipeline_runner
+from radar_v2.services.pipeline_runner import company_context_file
+
+PIPELINE_POLL_SECONDS = 3
 
 
 class RadarState(rx.State):
@@ -168,6 +172,18 @@ class RadarState(rx.State):
         self.tavily_depth = settings["tavily_depth"]
         self.max_search_results = settings["max_search_results"]
         self.max_research_queries = settings["max_research_queries"]
+
+        # A detached radar run (see pipeline_runner.launch_detached) survives
+        # independent of any Reflex session, so a fresh page load - a reload,
+        # a new tab, coming back after closing the browser entirely - has no
+        # memory of one being active unless this checks the lock file itself.
+        # Without this, the page would always show "Ready" even while a run
+        # already in progress from an earlier session keeps going untouched.
+        if not self.pipeline_running and pipeline_runner.pipeline_lock_active():
+            self.pipeline_running = True
+            self.pipeline_stage = "Running"
+            self.pipeline_message = "A radar update is already running in the background"
+            return RadarState.poll_pipeline_status
 
     @rx.var
     def visible_opportunities(self) -> list[Opportunity]:
@@ -720,33 +736,76 @@ class RadarState(rx.State):
         return rx.toast.success(f"{inserted} source(s) added to the next radar update")
 
     def run_pipeline(self):
-        if self.pipeline_running:
-            return
+        """Starts a full radar update as a fully OS-detached process (see
+        pipeline_runner.launch_detached) and returns immediately - nothing
+        here waits on it. That's deliberate: a run takes many minutes
+        (TED+CORDIS+OCDS collection, then classifying the entire pending
+        pool, uncapped), and tying it to this session - even via a
+        background=True task that stayed attached to the subprocess - meant
+        a dropped websocket or a page reload could abandon or restart it, or
+        the whole thing died if the Reflex backend itself hot-reloaded. Once
+        launched, the run survives all of that; poll_pipeline_status() below
+        is only a viewer of its progress, never load-bearing for it.
+        """
+        if self.pipeline_running or pipeline_runner.pipeline_lock_active():
+            self.pipeline_running = True
+            return rx.toast.error("A radar update is already running")
         key = self.ai_api_key or os.getenv("NAVY_API_KEY", "")
         if not self.provider_session_active or not key:
-            yield rx.toast.error("Activate the intelligence provider in Settings before running the radar")
-            return
+            return rx.toast.error("Activate the intelligence provider in Settings before running the radar")
+
+        context_path = company_context_file()
+        pipeline_runner.launch_detached(None, context_path, key, self.ai_base_url, self.ai_model)
+
         self.pipeline_running = True
         self.pipeline_progress = 2
         self.pipeline_stage = "Starting"
-        self.pipeline_message = "Preparing the evidence workspace"
+        self.pipeline_message = "Radar update started - it will keep running even if you close this page"
         self.pipeline_preflight = team_repository.pipeline_preflight()
-        yield
-        try:
-            context_path = company_context_file()
-            for event in stream_run(None, context_path, key, self.ai_base_url, self.ai_model):
-                self.pipeline_progress = event["progress"]
-                self.pipeline_stage = event["stage"].replace("_", " ").title()
-                self.pipeline_message = event["message"]
-                yield
-            self.pipeline_running = False
-            self.load()
-            yield rx.toast.success("Innovation radar updated")
-        except Exception:
-            self.pipeline_running = False
-            self.pipeline_stage = "Update paused"
-            self.pipeline_message = "The radar could not complete this update"
-            yield rx.toast.error("The radar update could not be completed")
+        return [rx.toast.success("Radar update started in the background"), RadarState.poll_pipeline_status]
+
+    @rx.event(background=True)
+    async def poll_pipeline_status(self):
+        """Watches a detached run from the outside, polling the lock file and
+        its log every few seconds - never piping its output or awaiting it
+        directly. If this session drops mid-run, only this live view stops
+        updating; the run itself was never depending on it (see
+        run_pipeline() above and pipeline_runner.launch_detached())."""
+        async with self:
+            started_at = pipeline_runner.lock_started_at_iso()
+        if started_at is None:
+            # The lock was already gone by the time we got here - nothing
+            # left to watch, just make sure the UI isn't stuck on "running".
+            async with self:
+                self.pipeline_running = pipeline_runner.pipeline_lock_active()
+            return
+
+        while True:
+            await asyncio.sleep(PIPELINE_POLL_SECONDS)
+            async with self:
+                if pipeline_runner.pipeline_lock_active():
+                    progress = pipeline_runner.latest_progress_line()
+                    if progress:
+                        self.pipeline_progress = progress.get("progress", self.pipeline_progress)
+                        stage = str(progress.get("stage", "")).replace("_", " ").title()
+                        self.pipeline_stage = stage or self.pipeline_stage
+                        self.pipeline_message = progress.get("message", self.pipeline_message)
+                    continue
+
+                # The lock cleared - the run ended, one way or another.
+                summary = pipeline_runner.latest_run_summary_after(started_at)
+                self.pipeline_running = False
+                if summary is not None:
+                    self.pipeline_progress = 100
+                    self.pipeline_stage = "Complete"
+                    self.pipeline_message = "Radar update complete"
+                    self.load()
+                    yield rx.toast.success("Innovation radar updated")
+                else:
+                    self.pipeline_stage = "Update paused"
+                    self.pipeline_message = "The radar update could not be completed - check Pipelineteamfile/logs for details"
+                    yield rx.toast.error("The radar update could not be completed")
+                return
 
     def generate_team_reports(self):
         import subprocess
