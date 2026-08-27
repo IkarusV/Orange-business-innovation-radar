@@ -487,8 +487,11 @@ def latest_run() -> dict:
     return json.loads(files[0].read_text(encoding="utf-8"))
 
 
-def pipeline_preflight(limit: int) -> dict:
-    """Estimate the classifier work without starting collection or API calls."""
+def pipeline_preflight() -> dict:
+    """Preview the classifier work a run would do right now, without starting
+    collection or API calls. No cap: a run always classifies the entire
+    pending pool, so this reports that full count rather than one clipped to
+    a user-chosen limit."""
     if not TEAM_DB.exists() or not database_ready():
         return {"articles": 0, "classification_calls": 0, "pool": 0, "ml_scored": 0, "spaces": 0}
     with _connect() as connection:
@@ -498,8 +501,7 @@ def pipeline_preflight(limit: int) -> dict:
         pending = max(pool - classified, 0)
         ml_scored = connection.execute("SELECT COUNT(*) FROM ml_noise_scores").fetchone()[0] if "ml_noise_scores" in tables else 0
         spaces = connection.execute("SELECT COUNT(*) FROM opportunity_spaces").fetchone()[0] if "opportunity_spaces" in tables else 0
-    selected = min(max(int(limit), 1), pending) if pending else 0
-    return {"articles": selected, "classification_calls": selected, "pool": pool, "ml_scored": ml_scored, "spaces": spaces}
+    return {"articles": pending, "classification_calls": pending, "pool": pool, "ml_scored": ml_scored, "spaces": spaces}
 
 
 def all_verticals() -> list[str]:

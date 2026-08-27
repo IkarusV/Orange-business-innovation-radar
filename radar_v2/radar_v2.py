@@ -15,7 +15,7 @@ from radar_v2.state import RadarState
 
 app = rx.App()
 app.add_page(opportunity_detail, route="/opportunities/[opportunity_id]", title="Opportunity · Innovation Radar", on_load=[RadarState.load_detail, RadarState.load_role_mode])
-app.add_page(overview, route="/", title="Orange Business Innovation Radar", on_load=RadarState.load)
+app.add_page(overview, route="/", title="Cobalt Data Society Innovation Radar", on_load=RadarState.load)
 app.add_page(opportunities, route="/opportunities", title="Opportunities · Innovation Radar", on_load=[RadarState.load, RadarState.load_role_mode])
 app.add_page(company, route="/company", title="Company Workspace · Innovation Radar", on_load=RadarState.load)
 app.add_page(sources, route="/sources", title="Sources · Innovation Radar", on_load=RadarState.load)

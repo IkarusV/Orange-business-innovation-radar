@@ -24,14 +24,14 @@ def refresh() -> rx.Component:
                         rx.icon("circle-play", color=ORANGE, size=22),
                     rx.vstack(
                         rx.heading("Quick start", size="5"),
-                        rx.text("Adjust the classification cap, then start the complete team pipeline.", color=MUTED, size="2"),
+                        rx.text("Start the complete team pipeline - it classifies the entire pending evidence pool, no cap.", color=MUTED, size="2"),
                         spacing="1", align="start",
                     ),
                     rx.spacer(),
                     rx.badge("Team pipeline", color_scheme="orange", variant="soft"),
                     width="100%", align="center",
                 ),
-                    rx.text("The team classifier sends one article per AI request. The cap below limits classifier requests for this run; collection and corpus selection still use the team pipeline's configured source rules.", color=MUTED, line_height="1.55", margin_top="16px"),
+                    rx.text("The team classifier sends one article per AI request, uncapped - every pending article is classified each run. Collection and corpus selection use the team pipeline's configured source rules.", color=MUTED, line_height="1.55", margin_top="16px"),
                     rx.hstack(
                         rx.cond(RadarState.provider_session_active, rx.badge("Provider ready", color_scheme="green", variant="soft"), rx.badge("Provider not active", color_scheme="gray", variant="soft")),
                         rx.cond(RadarState.provider_session_active, rx.text("The configured intelligence provider can run this update.", color=MUTED, size="2"), rx.text("Activate the provider in Settings before starting.", color="#ffb0b0", size="2")),
@@ -42,11 +42,9 @@ def refresh() -> rx.Component:
             rx.grid(
                 rx.box(
                     section_title("Update scope"),
-                    rx.text("Maximum articles sent to the classifier", color=MUTED, margin_top="20px"),
-                    rx.slider(default_value=[20], min=5, max=100, step=5, on_value_commit=RadarState.set_pipeline_limit, margin_top="15px"),
-                    rx.hstack(rx.text("Classifier cap", color=MUTED), rx.spacer(), rx.heading(RadarState.pipeline_limit, size="6", color=ORANGE), width="100%", margin_top="9px"),
+                    rx.text("No cap - every pending article is sent to the classifier each run.", color=MUTED, margin_top="20px"),
                     rx.vstack(
-                        rx.hstack(rx.text("Estimated AI requests", color=MUTED, size="2"), rx.spacer(), rx.text(RadarState.pipeline_preflight["classification_calls"], color=ORANGE, weight="bold"), width="100%"),
+                        rx.hstack(rx.text("Articles to classify this run", color=MUTED, size="2"), rx.spacer(), rx.text(RadarState.pipeline_preflight["classification_calls"], color=ORANGE, weight="bold"), width="100%"),
                         rx.hstack(rx.text("Current corpus", color=MUTED, size="2"), rx.spacer(), rx.text(RadarState.pipeline_preflight["pool"], color=TEXT, weight="bold"), width="100%"),
                         rx.hstack(rx.text("ML-scored records", color=MUTED, size="2"), rx.spacer(), rx.text(RadarState.pipeline_preflight["ml_scored"], color=TEXT, weight="bold"), width="100%"),
                         spacing="2", width="100%", margin_top="18px",

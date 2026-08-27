@@ -84,7 +84,6 @@ class RadarState(rx.State):
     discovery_running: bool = False
     discovery_error: str = ""
 
-    pipeline_limit: int = 20
     pipeline_running: bool = False
     pipeline_progress: int = 0
     pipeline_stage: str = "Ready"
@@ -153,7 +152,7 @@ class RadarState(rx.State):
         self.custom_sources = extension_store.custom_sources()
         self.reports = extension_store.reports()
         self.last_run = team_repository.latest_run()
-        self.pipeline_preflight = team_repository.pipeline_preflight(self.pipeline_limit)
+        self.pipeline_preflight = team_repository.pipeline_preflight()
         saved_search = extension_store.latest_search()
         if saved_search:
             self.discovery_results = saved_search["results"]
@@ -720,10 +719,6 @@ class RadarState(rx.State):
         inserted = team_repository.import_external_signals(self.discovery_results, self.discovery_vertical)
         return rx.toast.success(f"{inserted} source(s) added to the next radar update")
 
-    def set_pipeline_limit(self, value: list[float]):
-        self.pipeline_limit = int(value[0])
-        self.pipeline_preflight = team_repository.pipeline_preflight(self.pipeline_limit)
-
     def run_pipeline(self):
         if self.pipeline_running:
             return
@@ -735,11 +730,11 @@ class RadarState(rx.State):
         self.pipeline_progress = 2
         self.pipeline_stage = "Starting"
         self.pipeline_message = "Preparing the evidence workspace"
-        self.pipeline_preflight = team_repository.pipeline_preflight(self.pipeline_limit)
+        self.pipeline_preflight = team_repository.pipeline_preflight()
         yield
         try:
             context_path = company_context_file()
-            for event in stream_run(self.pipeline_limit, context_path, key, self.ai_base_url, self.ai_model):
+            for event in stream_run(None, context_path, key, self.ai_base_url, self.ai_model):
                 self.pipeline_progress = event["progress"]
                 self.pipeline_stage = event["stage"].replace("_", " ").title()
                 self.pipeline_message = event["message"]

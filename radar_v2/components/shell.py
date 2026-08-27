@@ -41,7 +41,7 @@ def sidebar() -> rx.Component:
             rx.hstack(
                 rx.box(width="12px", height="34px", background=ORANGE, border_radius="3px"),
                 rx.vstack(
-                    rx.text("ORANGE BUSINESS", font_size="10px", letter_spacing=".18em", color=ORANGE, weight="bold"),
+                    rx.text("COBALT DATA SOCIETY", font_size="10px", letter_spacing=".18em", color=ORANGE, weight="bold"),
                     rx.heading("Innovation Radar", size="5", color=TEXT),
                     spacing="0",
                     align="start",

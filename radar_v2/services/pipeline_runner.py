@@ -9,8 +9,12 @@ from collections.abc import Iterator
 from radar_v2.constants import TEAM_PIPELINE
 from radar_v2.services import extension_store
 
-def stream_run(limit: int, context_path: str = "", api_key: str = "", base_url: str = "", model: str = "") -> Iterator[dict]:
-    command = [sys.executable, "run_radar.py", "--limit", str(max(1, limit))]
+def stream_run(limit: int | None, context_path: str = "", api_key: str = "", base_url: str = "", model: str = "") -> Iterator[dict]:
+    """limit=None runs uncapped - run_radar.py's own --limit default is None,
+    which classify() reads as "no slice, process the entire pending pool"."""
+    command = [sys.executable, "run_radar.py"]
+    if limit is not None:
+        command.extend(["--limit", str(max(1, limit))])
     if context_path:
         command.extend(["--client-context", context_path])
     environment = os.environ.copy()
