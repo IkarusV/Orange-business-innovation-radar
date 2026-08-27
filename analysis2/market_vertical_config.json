@@ -1,0 +1,120 @@
+{
+  "version": "2.0",
+  "scope_note": "Eurostat SBS enterprise-denominator crosswalk for the radar verticals. Composite mappings use non-overlapping NACE components within the same vertical. Values from different radar verticals must never be added together because their NACE scopes can overlap.",
+  "verticals": [
+    {
+      "vertical": "Aerospace",
+      "enabled": true,
+      "nace_codes": ["C303"],
+      "mapping_quality": "narrow_proxy",
+      "statistical_scope": "Manufacture of air and spacecraft and related machinery",
+      "limitation": "Does not include airlines, airports, space research or the wider aerospace supply chain."
+    },
+    {
+      "vertical": "Automotive",
+      "enabled": true,
+      "nace_codes": ["C29"],
+      "mapping_quality": "direct_sector_proxy",
+      "statistical_scope": "Manufacture of motor vehicles, trailers and semi-trailers",
+      "limitation": "Does not include vehicle retail, repair, mobility services or all upstream suppliers."
+    },
+    {
+      "vertical": "Defense",
+      "enabled": true,
+      "nace_codes": ["C254"],
+      "mapping_quality": "narrow_proxy",
+      "statistical_scope": "Manufacture of weapons and ammunition",
+      "limitation": "A narrow industrial proxy; it excludes armed forces, most defense services, aerospace defense and dual-use suppliers."
+    },
+    {
+      "vertical": "Energy",
+      "enabled": true,
+      "nace_codes": ["D35"],
+      "mapping_quality": "sector_proxy",
+      "statistical_scope": "Electricity, gas, steam and air-conditioning supply",
+      "limitation": "Does not include all extraction, fuel retail or energy-equipment manufacturing."
+    },
+    {
+      "vertical": "Finance, Banking, Insurance",
+      "enabled": true,
+      "nace_codes": ["K"],
+      "mapping_quality": "broad_sector_proxy",
+      "statistical_scope": "Financial and insurance activities",
+      "limitation": "A broad financial-sector denominator; country coverage may vary in Structural Business Statistics."
+    },
+    {
+      "vertical": "Healthcare",
+      "enabled": true,
+      "nace_codes": ["Q86"],
+      "mapping_quality": "sector_proxy",
+      "statistical_scope": "Human health activities",
+      "limitation": "Excludes residential care, social work, pharmaceuticals and some public-sector units outside the business population."
+    },
+    {
+      "vertical": "Lifesciences",
+      "enabled": true,
+      "nace_codes": ["C21"],
+      "mapping_quality": "narrow_proxy",
+      "statistical_scope": "Manufacture of basic pharmaceutical products and pharmaceutical preparations",
+      "limitation": "Does not include the complete biotechnology, medical-device, research or healthcare ecosystem."
+    },
+    {
+      "vertical": "Manufacturing",
+      "enabled": true,
+      "nace_codes": ["C"],
+      "mapping_quality": "direct_broad_sector",
+      "statistical_scope": "Manufacturing",
+      "limitation": "Includes Automotive, Aerospace, pharmaceutical and defense-manufacturing subsectors; never add those vertical totals to Manufacturing."
+    },
+    {
+      "vertical": "Media & Entertainment",
+      "enabled": true,
+      "nace_codes": ["J58", "J59", "J60"],
+      "mapping_quality": "composite_sector_proxy",
+      "statistical_scope": "Publishing, audiovisual production and programming/broadcasting",
+      "limitation": "Excludes parts of live entertainment, arts, sports and platform activity classified elsewhere."
+    },
+    {
+      "vertical": "Natural Resources",
+      "enabled": true,
+      "nace_codes": ["B"],
+      "mapping_quality": "narrow_proxy",
+      "statistical_scope": "Mining and quarrying",
+      "limitation": "Does not cover agriculture, forestry, fishing or the full natural-resources value chain."
+    },
+    {
+      "vertical": "Public/Gov sector",
+      "enabled": false,
+      "nace_codes": [],
+      "denominator_method": "public_buyer_count",
+      "public_context_nace_code": "O",
+      "mapping_quality": "alternative_public_buyer_denominator",
+      "statistical_scope": "Public administration and defence; compulsory social security, with NACE O employment and COFOG expenditure as context",
+      "limitation": "NACE O is outside SBS. The calculation uses deduplicated opportunity-linked TED buyers as an observed procurement-active lower bound, not the total public-authority population."
+    },
+    {
+      "vertical": "Retail",
+      "enabled": true,
+      "nace_codes": ["G47"],
+      "mapping_quality": "direct_sector_proxy",
+      "statistical_scope": "Retail trade, except motor vehicles and motorcycles",
+      "limitation": "Excludes motor retail and some platform activity classified outside retail."
+    },
+    {
+      "vertical": "Transportation & Construction",
+      "enabled": true,
+      "nace_codes": ["F", "H"],
+      "mapping_quality": "composite_sector_proxy",
+      "statistical_scope": "Construction plus transportation and storage",
+      "limitation": "A combined denominator reflecting the radar's combined vertical; the two component sectors should also be available as drill-downs."
+    },
+    {
+      "vertical": "Wholesale",
+      "enabled": true,
+      "nace_codes": ["G46"],
+      "mapping_quality": "direct_sector_proxy",
+      "statistical_scope": "Wholesale trade, except motor vehicles and motorcycles",
+      "limitation": "Excludes motor-vehicle wholesale and retail activity."
+    }
+  ]
+}

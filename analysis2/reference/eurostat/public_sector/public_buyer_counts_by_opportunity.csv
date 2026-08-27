@@ -1,0 +1,6 @@
+﻿vertical,use_case_id,technology_id,country,unique_public_buyer_count,linked_ted_notice_count
+Public/Gov sector,compliance-monitoring,cybersecurity-platform,HR,1,1
+Public/Gov sector,compliance-monitoring,cybersecurity-platform,PL,1,1
+Public/Gov sector,energy-optimization,iot-platforms,RO,1,1
+Public/Gov sector,network-optimization,connectivity-5g,FR,1,1
+Public/Gov sector,network-optimization,iot-platforms,RO,9,1

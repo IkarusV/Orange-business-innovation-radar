@@ -1,0 +1,4 @@
+﻿dataset,role,countries_with_data,reference_year
+nama_10_a64_e,NACE O employment context,27,2024
+gov_10a_exp,GF01/GF02 expenditure context,27,2024
+TED articles_analysis.db,Opportunity-linked unique public-buyer denominator,4,latest observation minus 730 days

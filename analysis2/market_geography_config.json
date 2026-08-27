@@ -1,0 +1,14 @@
+{
+  "scope_name": "Orange Business Europe market-sizing scope",
+  "scope_note": "Country-level calculations aggregate to Orange Business regions. Eastern Europe is a provisional analytical grouping and can be edited without code changes.",
+  "regions": [
+    {"id": "benelux", "label": "Benelux", "countries": ["NL", "BE", "LU"]},
+    {"id": "france", "label": "France", "countries": ["FR"]},
+    {"id": "germany", "label": "Germany", "countries": ["DE"]},
+    {"id": "southern_europe", "label": "Southern Europe", "countries": ["IT", "ES", "PT", "IL"]},
+    {"id": "dach", "label": "DACH", "countries": ["CH", "AT"]},
+    {"id": "uk_ireland", "label": "UK & Ireland", "countries": ["GB", "IE"]},
+    {"id": "nordics", "label": "Nordics", "countries": ["NO", "SE", "DK", "FI", "IS"]},
+    {"id": "eastern_europe", "label": "Eastern Europe (provisional)", "countries": ["BG", "HR", "CZ", "EE", "HU", "LV", "LT", "PL", "RO", "SK", "SI"]}
+  ]
+}

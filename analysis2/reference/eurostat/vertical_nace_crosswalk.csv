@@ -1,0 +1,18 @@
+﻿vertical,enabled_for_sbs_estimation,nace_code,mapping_quality,statistical_scope,limitation,config_version
+Aerospace,True,C303,narrow_proxy,Manufacture of air and spacecraft and related machinery,"Does not include airlines, airports, space research or the wider aerospace supply chain.",2.0
+Automotive,True,C29,direct_sector_proxy,"Manufacture of motor vehicles, trailers and semi-trailers","Does not include vehicle retail, repair, mobility services or all upstream suppliers.",2.0
+Defense,True,C254,narrow_proxy,Manufacture of weapons and ammunition,"A narrow industrial proxy; it excludes armed forces, most defense services, aerospace defense and dual-use suppliers.",2.0
+Energy,True,D35,sector_proxy,"Electricity, gas, steam and air-conditioning supply","Does not include all extraction, fuel retail or energy-equipment manufacturing.",2.0
+"Finance, Banking, Insurance",True,K,broad_sector_proxy,Financial and insurance activities,A broad financial-sector denominator; country coverage may vary in Structural Business Statistics.,2.0
+Healthcare,True,Q86,sector_proxy,Human health activities,"Excludes residential care, social work, pharmaceuticals and some public-sector units outside the business population.",2.0
+Lifesciences,True,C21,narrow_proxy,Manufacture of basic pharmaceutical products and pharmaceutical preparations,"Does not include the complete biotechnology, medical-device, research or healthcare ecosystem.",2.0
+Manufacturing,True,C,direct_broad_sector,Manufacturing,"Includes Automotive, Aerospace, pharmaceutical and defense-manufacturing subsectors; never add those vertical totals to Manufacturing.",2.0
+Media & Entertainment,True,J58,composite_sector_proxy,"Publishing, audiovisual production and programming/broadcasting","Excludes parts of live entertainment, arts, sports and platform activity classified elsewhere.",2.0
+Media & Entertainment,True,J59,composite_sector_proxy,"Publishing, audiovisual production and programming/broadcasting","Excludes parts of live entertainment, arts, sports and platform activity classified elsewhere.",2.0
+Media & Entertainment,True,J60,composite_sector_proxy,"Publishing, audiovisual production and programming/broadcasting","Excludes parts of live entertainment, arts, sports and platform activity classified elsewhere.",2.0
+Natural Resources,True,B,narrow_proxy,Mining and quarrying,"Does not cover agriculture, forestry, fishing or the full natural-resources value chain.",2.0
+Public/Gov sector,False,,unsupported_by_current_sbs_denominator,Public administration and defence would normally relate to NACE O,NACE O is outside the downloaded SBS business-population denominator. A government-entity or public-expenditure dataset is required.,2.0
+Retail,True,G47,direct_sector_proxy,"Retail trade, except motor vehicles and motorcycles",Excludes motor retail and some platform activity classified outside retail.,2.0
+Transportation & Construction,True,F,composite_sector_proxy,Construction plus transportation and storage,A combined denominator reflecting the radar's combined vertical; the two component sectors should also be available as drill-downs.,2.0
+Transportation & Construction,True,H,composite_sector_proxy,Construction plus transportation and storage,A combined denominator reflecting the radar's combined vertical; the two component sectors should also be available as drill-downs.,2.0
+Wholesale,True,G46,direct_sector_proxy,"Wholesale trade, except motor vehicles and motorcycles",Excludes motor-vehicle wholesale and retail activity.,2.0

@@ -1,0 +1,30 @@
+RANDOM_SEED = 20260824
+
+REQUIRED_STATUSES = [
+    "classified",
+    "needs_review",
+    "no_match",
+]
+
+SAMPLES_PER_STRATUM = 1
+
+{
+  "target_verticals": [
+    "*"
+  ],
+  "candidate_statuses": [
+    "classified",
+    "needs_review"
+  ],
+  "source_types": [
+    "ted",
+    "cordis",
+    "ocds_uk",
+    "ocds_ua",
+    "rss",
+    "gnews"
+  ],
+  "include_unclassified": false,
+  "separate_output_per_vertical": true
+}
+
