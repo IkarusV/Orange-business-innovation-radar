@@ -7,7 +7,7 @@ import yaml
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from radar_v2.constants import TAXONOMY, TEAM_DB
+from radar_v2.constants import SOURCE_DB, TAXONOMY, TEAM_DB
 from radar_v2.services import (
     attractiveness,
     domains as domain_service,
@@ -15,6 +15,7 @@ from radar_v2.services import (
     extension_store,
     geography as geography_service,
     horizon as horizon_service,
+    market_size_repository,
     personas as persona_service,
 )
 
@@ -197,13 +198,13 @@ DEMO_EVIDENCE = [
 
 
 def _connect(path: Path | None = None) -> sqlite3.Connection:
-    connection = sqlite3.connect(path or TEAM_DB)
+    connection = sqlite3.connect(path or SOURCE_DB)
     connection.row_factory = sqlite3.Row
     return connection
 
 
 def database_ready() -> bool:
-    if not TEAM_DB.exists():
+    if not SOURCE_DB.exists():
         return False
     with _connect() as connection:
         tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
@@ -307,13 +308,13 @@ def _geography_of(row: sqlite3.Row, region_ids: list[str] | None) -> tuple[str, 
 
 def list_opportunities() -> list[dict]:
     if not database_ready():
-        return DEMO_OPPORTUNITIES
+        return market_size_repository.attach(DEMO_OPPORTUNITIES)
     with _connect() as connection:
         rows = connection.execute(
             f"SELECT {_opportunity_space_columns(connection)} FROM opportunity_spaces"
         ).fetchall()
         if not rows:
-            return DEMO_OPPORTUNITIES
+            return market_size_repository.attach(DEMO_OPPORTUNITIES)
         tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         domains_by_space = _space_domains(connection, tables)
         personas_by_space = _space_personas(connection, tables)
@@ -428,7 +429,7 @@ def list_opportunities() -> list[dict]:
         space.update(explanation_service.compose(item["article_rows"], space))
         output.append(space)
     output.sort(key=lambda item: (-item["relevance"], -item["article_count"]))
-    return output
+    return market_size_repository.attach(output)
 
 
 def opportunity_detail(opportunity_id: int) -> tuple[dict, list[dict]]:
@@ -480,7 +481,7 @@ def source_summary() -> list[dict]:
 
 
 def latest_run() -> dict:
-    summary_dir = TEAM_DB.parent.parent / "logs" / "radar_runs"
+    summary_dir = SOURCE_DB.parent.parent / "logs" / "radar_runs"
     files = sorted(summary_dir.glob("*.json"), reverse=True) if summary_dir.exists() else []
     if not files:
         return {"run_id": "Ready", "elapsed_seconds": 0, "tokens_this_run": 0, "pool_size": 0}
@@ -492,7 +493,7 @@ def pipeline_preflight() -> dict:
     collection or API calls. No cap: a run always classifies the entire
     pending pool, so this reports that full count rather than one clipped to
     a user-chosen limit."""
-    if not TEAM_DB.exists() or not database_ready():
+    if not SOURCE_DB.exists() or not database_ready():
         return {"articles": 0, "classification_calls": 0, "pool": 0, "ml_scored": 0, "spaces": 0}
     with _connect() as connection:
         tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
@@ -505,7 +506,7 @@ def pipeline_preflight() -> dict:
 
 
 def all_verticals() -> list[str]:
-    mapping = TEAM_DB.parent.parent / "ted_collector" / "config" / "mapping.yaml"
+    mapping = SOURCE_DB.parent.parent / "ted_collector" / "config" / "mapping.yaml"
     return list(yaml.safe_load(mapping.read_text(encoding="utf-8")).keys())
 
 

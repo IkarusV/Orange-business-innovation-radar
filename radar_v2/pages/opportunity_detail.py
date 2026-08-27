@@ -43,6 +43,47 @@ def _identity_card(item) -> rx.Component:
     )
 
 
+def _market_size_card(item) -> rx.Component:
+    """Opportunity-level annual addressable potential. Missing validation is
+    rendered as evidence status, never as zero or a fabricated euro value."""
+    market = item["market_size"]
+    return rx.box(
+        section_title(
+            "Estimated annual addressable potential",
+            "Opportunity-level scenario for Europe; separate from Attractiveness and Orange Fit",
+        ),
+        rx.flex(
+            rx.box(
+                rx.text("Market-size range", color=MUTED, size="1"),
+                rx.heading(market["range_label"], size="7", color=rx.cond(market["estimated"], ORANGE, MUTED), margin_top="6px"),
+                rx.text(market["availability_label"], color=MUTED, size="2", margin_top="8px"),
+                flex="1", min_width="260px",
+            ),
+            rx.box(
+                rx.text("Scope and coverage", color=MUTED, size="1"),
+                rx.text(market["scope_label"], weight="medium", margin_top="6px"),
+                rx.text(market["coverage_label"], color=MUTED, size="2", margin_top="6px"),
+                flex="1", min_width="220px",
+            ),
+            rx.box(
+                rx.text("Method", color=MUTED, size="1"),
+                rx.text(market["method_label"], size="2", line_height="1.5", margin_top="6px"),
+                flex="1", min_width="260px",
+            ),
+            gap="5", wrap="wrap", width="100%", margin_top="16px",
+        ),
+        rx.cond(
+            market["context_note"] != "",
+            rx.callout(
+                market["context_note"], icon="info", color_scheme="gray", size="1",
+                width="100%", margin_top="16px",
+            ),
+        ),
+        rx.text(market["source_note"], color=MUTED, size="1", line_height="1.5", margin_top="12px"),
+        **CARD, width="100%",
+    )
+
+
 def opportunity_detail() -> rx.Component:
     item = RadarState.selected_opportunity
     return page_shell(
@@ -82,6 +123,7 @@ def opportunity_detail() -> rx.Component:
                 ),
                 columns=rx.breakpoints(initial="2", lg="5"), gap="4", width="100%",
             ),
+            _market_size_card(item),
             _identity_card(item),
             # Region order and expansion come from the active mode's presentation
             # profile. CSS ordering is used rather than conditional rendering so

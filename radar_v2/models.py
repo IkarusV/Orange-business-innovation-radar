@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import Any, TypedDict
 
 
 class AttractivenessComponent(TypedDict):
@@ -113,6 +113,10 @@ class Opportunity(TypedDict):
     why_this_matters: str
     recommended_moves: dict[str, str]
     recommended_move: str
+    # Opportunity-level annual addressable-potential record imported from the
+    # analysis2 pipeline. It is intentionally separate from Attractiveness and
+    # Orange Fit. Pending/unavailable is a valid, rendered state.
+    market_size: dict[str, Any]
 
 
 class Evidence(TypedDict):

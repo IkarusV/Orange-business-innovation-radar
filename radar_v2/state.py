@@ -31,6 +31,14 @@ class RadarState(rx.State):
         "regions": [], "region_labels": [], "countries": [],
         "why_hot_now": "", "why_this_matters": "",
         "recommended_moves": {}, "recommended_move": "",
+        "market_size": {
+            "matched": False, "status": "unavailable", "estimated": False,
+            "low_eur": None, "central_eur": None, "high_eur": None,
+            "range_label": "Estimate unavailable", "availability_label": "No opportunity selected",
+            "scope_label": "Europe", "coverage_label": "No matched statistical record",
+            "method_label": "Not available", "context_note": "", "blocking_reasons": [],
+            "source_note": "",
+        },
     }
     metrics: dict[str, int] = {}
     source_mix: list[SourceSummary] = []

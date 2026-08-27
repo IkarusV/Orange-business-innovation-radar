@@ -70,7 +70,7 @@ def create_focused_report(opportunity_id: int, api_key: str, progress=None) -> t
         progress(f"Synthesising {len(sources)} retained sources into a decision report")
     report = _json_call(
         client, settings["ai_model"], mode,
-        "Create a concise, decision-ready opportunity report using only the supplied evidence and numbered web sources. Return JSON with executive_summary, market_signal, financial_indicators, company_fit, competitor_partner_landscape, risks (array of risk, likelihood, impact, mitigation), roadmap (array of phase, action, success_metric), recommendation, gaps, and source_ids. Keep estimates as ranges with assumptions. Never invent facts.",
+        "Create a concise, decision-ready opportunity report using only the supplied evidence and numbered web sources. Return JSON with executive_summary, market_signal, financial_indicators, company_fit, competitor_partner_landscape, risks (array of risk, likelihood, impact, mitigation), roadmap (array of phase, action, success_metric), recommendation, gaps, and source_ids. Keep estimates as ranges with assumptions. The opportunity.market_size object is the approved app-side market-size record: quote its EUR values only when estimated is true. When estimated is false, state the availability_label and evidence gap; never convert contextual employment, public expenditure, enterprise counts, adoption proxies, or addressable bases into a market-size value. Never invent facts.",
         f"Opportunity: {json.dumps(opportunity)}\nExisting evidence: {json.dumps(evidence)}\nResearch plan: {json.dumps(plan)}\nWeb sources: {json.dumps([{**item, 'source_id': index + 1} for index, item in enumerate(sources)])[:70000]}",
     )
     report["queries"] = queries
