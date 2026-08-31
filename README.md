@@ -55,8 +55,8 @@ The report's source and query trail is collapsed by default. Business readers ca
 
 Two top-level parts:
 
-- **`Pipelineteamfile/`** — the authoritative data pipeline. Collects real institutional evidence, classifies it against a closed business taxonomy, and aggregates it into opportunity spaces. Owns its own SQLite database (`Pipelineteamfile/data/articles.db`).
-- **`radar_v2/`** — the Reflex (Python) web application. Reads that same database and invokes the pipeline as a controlled subprocess; it never writes classifications or opportunity spaces directly.
+- **`Pipelineteamfile/`** the authoritative data pipeline. Collects real institutional evidence, classifies it against a closed business taxonomy, and aggregates it into opportunity spaces. Owns its own SQLite database (`Pipelineteamfile/data/articles.db`).
+- **`radar_v2/`** the Reflex (Python) web application. Reads that same database and invokes the pipeline as a controlled subprocess; it never writes classifications or opportunity spaces directly.
 
 | Path | Purpose |
 | --- | --- |
@@ -78,17 +78,17 @@ Focused discovery and custom source records enter only through the pipeline's `a
 
 ### The data pipeline, in detail
 
-Sources: **TED** (EU procurement notices), **CORDIS** (EU research/innovation grants), **OCDS UK** and **OCDS Ukraine** (procurement) — all live public APIs, collected across 14 fixed verticals. RSS and Google News also exist as source types; Google News is currently paused.
+Sources: **TED** (EU procurement notices), **CORDIS** (EU research/innovation grants), **OCDS UK** and **OCDS Ukraine** (procurement) all live public APIs, collected across 14 fixed verticals. RSS and Google News also exist as source types; Google News is currently paused.
 
 `run_radar.py` runs 5 stages end to end:
 
-1. **Collect** — TED, CORDIS and OCDS collectors run per vertical.
-2. **Select corpus** — rebuilds a balanced classification pool from scratch each run (TED-backbone, CORDIS/OCDS fill, RSS backfill; recent/1-year/5-year mix), up to 600 articles per vertical.
-3. **ML noise filter** — a locally trained multilingual-embedding + Logistic Regression gate scores articles for relevance; skipped until enough prior labels exist to train it.
-4. **Classify** — every pending article is sent to the LLM once, with **no cap**: a full update classifies the entire pending pool. TED, OCDS and CORDIS get their signal type and geography mechanically from the record itself (no LLM call, no cost) — only RSS/Google News need the model for those two fields. Every source still gets its taxonomy match (business use case × technology) from the model. See `NAVY_AGENT_PROMPTS.md` for the exact prompts.
-5. **Summarize** — writes a run summary and recomputes opportunity spaces (Vertical × Use Case × Technology triples).
+1. **Collect** TED, CORDIS and OCDS collectors run per vertical.
+2. **Select corpus** rebuilds a balanced classification pool from scratch each run (TED-backbone, CORDIS/OCDS fill, RSS backfill; recent/1-year/5-year mix), up to 600 articles per vertical.
+3. **ML noise filter** a locally trained multilingual-embedding + Logistic Regression gate scores articles for relevance; skipped until enough prior labels exist to train it.
+4. **Classify** every pending article is sent to the LLM once, with **no cap**: a full update classifies the entire pending pool. TED, OCDS and CORDIS get their signal type and geography mechanically from the record itself (no LLM call, no cost) only RSS/Google News need the model for those two fields. Every source still gets its taxonomy match (business use case × technology) from the model. See `NAVY_AGENT_PROMPTS.md` for the exact prompts.
+5. **Summarize** writes a run summary and recomputes opportunity spaces (Vertical × Use Case × Technology triples).
 
-**Taxonomy** (`Pipelineteamfile/opportunity_classifier/config/taxonomy.json`) is closed-vocabulary: fixed use cases, technologies, 6 business domains, and a weighted persona table. The classifier is instructed to never invent an id — null is a valid answer.
+**Taxonomy** (`Pipelineteamfile/opportunity_classifier/config/taxonomy.json`) is closed-vocabulary: fixed use cases, technologies, 6 business domains, and a weighted persona table. The classifier is instructed to never invent an id null is a valid answer.
 
 **Signal types** (6, closed): `buying_signal`, `regulation`, `proof_signal`, `competitor_move`, `market_trend`, `tech_maturity`, with a fixed tie-break priority in that order.
 
@@ -96,11 +96,11 @@ Sources: **TED** (EU procurement notices), **CORDIS** (EU research/innovation gr
 
 Three independent outputs per opportunity space, never blended into one number:
 
-- **Attractiveness score (0-100)** — a weighted sum of market signal strength (35%), source credibility (24%), evidence quality (24%) and novelty & momentum (18%). A missing component is excluded and the remaining weights rescaled, never counted as zero.
-- **Orange Fit / right-to-win score (0-100)** — standalone, never enters the Attractiveness sum. Matches a space against Orange's own selected priority use cases/technologies (Company tab), falling back to a business-domain coverage proxy while nothing is configured.
-- **Now / Next / Later horizon** — deadline-driven (nearest real tender-close or project-end date in the evidence), independent of both scores above.
+- **Attractiveness score (0-100)** a weighted sum of market signal strength (35%), source credibility (24%), evidence quality (24%) and novelty & momentum (18%). A missing component is excluded and the remaining weights rescaled, never counted as zero.
+- **Orange Fit / right-to-win score (0-100)** standalone, never enters the Attractiveness sum. Matches a space against Orange's own selected priority use cases/technologies (Company tab), falling back to a business-domain coverage proxy while nothing is configured.
+- **Now / Next / Later horizon** deadline-driven (nearest real tender-close or project-end date in the evidence), independent of both scores above.
 
-"Why hot now", "why this matters" and "recommended move" (`radar_v2/services/explanations.py`) are all composed deterministically from typed clauses already in the database — no LLM call at render time.
+"Why hot now", "why this matters" and "recommended move" (`radar_v2/services/explanations.py`) are all composed deterministically from typed clauses already in the database no LLM call at render time.
 
 ## Product Settings
 
@@ -150,4 +150,4 @@ The first completed bootstrap collected 5,794 institutional records. A bounded 1
 
 Use `/refresh` or **Radar update** in the sidebar to run the complete team pipeline. The Update scope panel previews the current corpus, ML-scored records and how many articles are pending classification before launch. There is no cap: a full update always classifies the entire pending pool.
 
-A full update legitimately takes a long time — collection alone across all sources and verticals can run for tens of minutes before classification even starts, and classification adds more on top. It runs as its own background process, independent of the browser session that started it.
+A full update legitimately takes a long time collection alone across all sources and verticals can run for tens of minutes before classification even starts, and classification adds more on top. It runs as its own background process, independent of the browser session that started it.
