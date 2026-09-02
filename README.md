@@ -1,13 +1,13 @@
 # Orange Business Innovation Radar V2
 
-Some sneak peak before the description !
+An AI-powered innovation radar that transforms public market signals into evidence-backed, scored, and actionable business opportunities.
+
+Some sneak peak before the technical part of the description !
 <img width="1280" height="579" alt="image" src="https://github.com/user-attachments/assets/5a0f47ca-5d49-4bf8-8307-0dde78b7176f" />
 
 <img width="1280" height="594" alt="image" src="https://github.com/user-attachments/assets/7de4e9a0-24ab-45da-816d-aa82f672e0f8" />
 
 <img width="800" height="911" alt="image" src="https://github.com/user-attachments/assets/38830517-6693-4d43-8df6-a495612041f8" />
-
-
 
 Business-facing innovation radar built in pure Python with Reflex. The application is powered by the team research pipeline in `Pipelineteamfile/`.
 
