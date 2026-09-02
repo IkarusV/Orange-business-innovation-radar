@@ -151,3 +151,26 @@ The first completed bootstrap collected 5,794 institutional records. A bounded 1
 Use `/refresh` or **Radar update** in the sidebar to run the complete team pipeline. The Update scope panel previews the current corpus, ML-scored records and how many articles are pending classification before launch. There is no cap: a full update always classifies the entire pending pool.
 
 A full update legitimately takes a long time collection alone across all sources and verticals can run for tens of minutes before classification even starts, and classification adds more on top. It runs as its own background process, independent of the browser session that started it.
+
+## Project Timeline
+
+This project was completed over approximately 9–10 working days, including the initial brainstorming and design sessions. The hands-on implementation took approximately 6–7 coding days. The brainstorming days were essential because the team first had to define what the innovation radar should be, how it should work, and how its results should support business decisions.
+
+- **Week 1 — rapid prototyping:** The team used Streamlit to build a functional prototype quickly, test as many features as possible, and create a working “scarecrow” of the complete product.
+- **Week 2 — final product:** The prototype was reworked into the final application. The UI was rebuilt with Reflex because Streamlit was effective for rapid prototyping but less suitable for the interactive, user-friendly product experience the team wanted to deliver.
+
+## Team and Contributions
+
+- **IkarusV — Team Lead:** Led the product's technical direction and integration. During the first-week prototype phase, IkarusV created the UI and core product structure. During the second week, they rebuilt the interface as a new interactive Reflex UI, troubleshot integration issues, combined the team's scripts into one application, and added features and compatibility patches so that every component worked cohesively. The Company Workspace was also designed and implemented by IkarusV.
+- **Iness — Project Manager:** Managed team coordination and contributed the web-search functionality.
+- **Dan — Pipeline Tech Lead:** Developed the pipeline scripts and the information-gathering workflow. Dan also contributed to the scoring system.
+- **Alex — Researcher and Business Forensics:** Led business research and forensic analysis and contributed to the scoring system.
+
+## Further Help and Documentation
+
+For help, implementation questions, or possible next steps, contact [IkarusV](https://github.com/IkarusV) or another member of the project team.
+
+For anyone who needs to understand, rework, or extend the pipeline:
+
+- [`Cobalt_Data_Society_Innovation_Radar_Explained.pdf`](Cobalt_Data_Society_Innovation_Radar_Explained.pdf) documents and explains the pipeline.
+- [`NAVY_AGENT_PROMPTS.md`](NAVY_AGENT_PROMPTS.md) contains the complete prompt inventory, the pipeline or application step associated with each prompt, and supporting information about how each prompt is used.
