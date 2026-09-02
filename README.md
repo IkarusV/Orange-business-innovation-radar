@@ -161,7 +161,7 @@ This project was completed over approximately 9–10 working days, including the
 
 ## Team and Contributions
 
-- **IkarusV — Team Lead:** Led the product's technical direction and integration. During the first-week prototype phase, IkarusV created the UI and core product structure. During the second week, they rebuilt the interface as a new interactive Reflex UI, troubleshot integration issues, combined the team's scripts into one application, and added features and compatibility patches so that every component worked cohesively. The Company Workspace was also designed and implemented by IkarusV.
+- **IkarusV-Imad — Team Lead:** Led the product's technical direction and integration. During the first-week prototype phase, IkarusV created the UI and core product structure. During the second week, they rebuilt the interface as a new interactive Reflex UI, troubleshot integration issues, combined the team's scripts into one application, and added features and compatibility patches so that every component worked cohesively. The Company Workspace was also designed and implemented by IkarusV.
 - **Iness — Project Manager:** Managed team coordination and contributed the web-search functionality.
 - **Dan — Pipeline Tech Lead:** Developed the pipeline scripts and the information-gathering workflow. Dan also contributed to the scoring system.
 - **Alex — Researcher and Business Forensics:** Led business research and forensic analysis and contributed to the scoring system.
